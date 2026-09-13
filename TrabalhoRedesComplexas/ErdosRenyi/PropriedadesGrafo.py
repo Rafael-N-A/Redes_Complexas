@@ -2,7 +2,7 @@ import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import Counter
-from GrafoErdosRenyi import GrafoErdosRenyi
+from CriacaoGrafo import GrafoErdosRenyi
 
 NUM_VERTICES = 100
 PROBABILIDADE = 0.1
@@ -19,18 +19,22 @@ def main():
     print("Grau Minimo:", grau_minimo)
 
     #Distancia Media
+    #Grafo Conectado
     if nx.is_connected(g.Grafo):
         distancia_media = nx.average_shortest_path_length(g.Grafo)
         print("Distancia Media:", distancia_media)
+    #Grafo Desconectado
     else:
         for C in (g.Grafo.subgraph(c).copy() for c in nx.connected_components(g.Grafo)):
             distancia_media = nx.average_shortest_path_length(C)
             print("Distancia Media do Componente Conectado:", distancia_media)
 
     #Coeficiente de Clustering
+    #Grafo Conectado
     if nx.is_connected(g.Grafo):
         coeficiente_clustering = nx.average_clustering(g.Grafo)
         print("Coeficiente de Clustering:", coeficiente_clustering)
+    #Grafo Desconectado
     else:
         for C in (g.Grafo.subgraph(c).copy() for c in nx.connected_components(g.Grafo)):
             coeficiente_clustering = nx.average_clustering(C)

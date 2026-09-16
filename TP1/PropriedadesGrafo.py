@@ -26,8 +26,7 @@ def main():
     #Grafo Desconectado
     else:
         for C in (g.Grafo.subgraph(c).copy() for c in nx.connected_components(g.Grafo)):
-            distancia_media = nx.average_shortest_path_length(C)
-            print("Distancia Media do Componente Conectado:", distancia_media)
+            distancia_media = -1
 
     #Coeficiente de Clustering
     #Grafo Conectado
@@ -37,8 +36,16 @@ def main():
     #Grafo Desconectado
     else:
         for C in (g.Grafo.subgraph(c).copy() for c in nx.connected_components(g.Grafo)):
-            coeficiente_clustering = nx.average_clustering(C)
-            print("Coeficiente de Clustering do Componente Conectado:", coeficiente_clustering)
+            coeficiente_clustering = -1
+
+    # Informações armazenadas em arquivos de cada grafo
+    with open("ErdosRenyi.txt", "a", encoding="utf-8") as arquivo:
+        arquivo.write(f"Numero de Vertices: {NUM_VERTICES}\n")
+        arquivo.write(f"Probabilidade: {PROBABILIDADE}\n")
+        arquivo.write(f"Grau Maximo: {grau_maximo}\n")
+        arquivo.write(f"Grau Minimo: {grau_minimo}\n")
+        arquivo.write(f"Distancia Media: {distancia_media}\n")
+        arquivo.write(f"Coeficiente de Clustering: {coeficiente_clustering}\n")
 
     #Distribuicao de Graus
     distribuicao_graus = list(dict(g.Grafo.degree()).values())
@@ -59,13 +66,13 @@ def main():
     plt.ylabel("P(K >= k)")
     plt.title("Distribuição cumulativa de graus")
     plt.grid(True, which="both", linestyle="--", alpha=0.6)
-    plt.savefig("distribuicao_graus_CCDF.png")
+    plt.savefig("distribuicao_graus_CCDF100.png")
     plt.close()
 
     # Plotar o grafo
     #plt.figure(figsize=(8, 5))
     #nx.draw(g.Grafo, with_labels=True)
-    #plt.savefig("grafo_erdos_renyi.png")
+    #plt.savefig("grafo_erdos_renyi100.png")
     #plt.close()
 
 if __name__ == "__main__":

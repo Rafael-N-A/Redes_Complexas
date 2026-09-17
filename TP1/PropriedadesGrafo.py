@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 from collections import Counter
 from CriacaoGrafo import GrafoErdosRenyi
 
-NUM_VERTICES = 100
-PROBABILIDADE = 0.1
+NUM_VERTICES = [100, 1000, 10000]
+# ordem preservada: primeiro 0-4, depois 5-8, depois 9-11
+PROBABILIDADE = [0.005, 0.01, 0.02, 0.1, 0.0005, 0.001, 0.003, 0.01, 0.00005, 0.0001, 0.0004, 0.002]
 
 def main():
     g = GrafoErdosRenyi(NUM_VERTICES, PROBABILIDADE)

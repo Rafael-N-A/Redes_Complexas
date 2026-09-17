@@ -1,0 +1,160 @@
+Numero de Vertices: 100
+Probabilidade: 0.005
+Grau Maximo: 2
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 100
+Probabilidade: 0.01
+Grau Maximo: 4
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 100
+Probabilidade: 0.02
+Grau Maximo: 6
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 100
+Probabilidade: 0.1
+Grau Maximo: 18
+Grau Minimo: 5
+Distancia Media: 2.2266666666666666
+Coeficiente de Clustering: 0.09082122126239772
+
+Numero de Vertices: 1000
+Probabilidade: 0.0005
+Grau Maximo: 3
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 1000
+Probabilidade: 0.001
+Grau Maximo: 6
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 1000
+Probabilidade: 0.003
+Grau Maximo: 9
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 1000
+Probabilidade: 0.01
+Grau Maximo: 22
+Grau Minimo: 2
+Distancia Media: 3.2617937937937937
+Coeficiente de Clustering: 0.010212098187330385
+
+Numero de Vertices: 10000
+Probabilidade: 5e-05
+Grau Maximo: 5
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 10000
+Probabilidade: 0.0001
+Grau Maximo: 7
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 10000
+Probabilidade: 0.0004
+Grau Maximo: 13
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 100
+Probabilidade: 0.005
+Grau Maximo: 2
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 100
+Probabilidade: 0.01
+Grau Maximo: 4
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 100
+Probabilidade: 0.02
+Grau Maximo: 6
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 100
+Probabilidade: 0.1
+Grau Maximo: 18
+Grau Minimo: 5
+Distancia Media: 2.2266666666666666
+Coeficiente de Clustering: 0.09082122126239772
+
+Numero de Vertices: 1000
+Probabilidade: 0.0005
+Grau Maximo: 3
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 1000
+Probabilidade: 0.001
+Grau Maximo: 6
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 1000
+Probabilidade: 0.003
+Grau Maximo: 9
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 1000
+Probabilidade: 0.01
+Grau Maximo: 22
+Grau Minimo: 2
+Distancia Media: 3.2617937937937937
+Coeficiente de Clustering: 0.010212098187330385
+
+Numero de Vertices: 10000
+Probabilidade: 5e-05
+Grau Maximo: 5
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 10000
+Probabilidade: 0.0001
+Grau Maximo: 7
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 10000
+Probabilidade: 0.0004
+Grau Maximo: 13
+Grau Minimo: 0
+Distancia Media: -1
+Coeficiente de Clustering: -1
+
+Numero de Vertices: 10000
+Probabilidade: 0.002
+Grau Maximo: 40
+Grau Minimo: 6
+Distancia Media: 3.404447624762476
+Coeficiente de Clustering: 0.0019865550582385655

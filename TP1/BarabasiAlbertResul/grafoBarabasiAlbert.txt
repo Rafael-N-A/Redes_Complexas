@@ -1,0 +1,17 @@
+Numero de Vertices: 100
+Grau Maximo: 33
+Grau Minimo: 2
+Distancia Media: 2.5242424242424244
+Coeficiente de Clustering: 0.20258643110435304
+
+Numero de Vertices: 1000
+Grau Maximo: 93
+Grau Minimo: 3
+Distancia Media: 3.4638118118118117
+Coeficiente de Clustering: 0.030997061347759244
+
+Numero de Vertices: 10000
+Grau Maximo: 284
+Grau Minimo: 3
+Distancia Media: 4.2726281828182815
+Coeficiente de Clustering: 0.004901087029970783

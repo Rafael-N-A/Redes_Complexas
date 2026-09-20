@@ -2,14 +2,16 @@ import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import Counter
-from CriacaoGrafo import GrafoErdosRenyi
+from CriacaoGrafo import GrafoErdosRenyi, GrafoWattsStrogatz, GrafoBarabasiAlbert
 
-NUM_VERTICES = [100, 1000, 10000]
-# ordem preservada: primeiro 0-4, depois 5-8, depois 9-11
-PROBABILIDADE = [0.005, 0.01, 0.02, 0.1, 0.0005, 0.001, 0.003, 0.01, 0.00005, 0.0001, 0.0004, 0.002]
+NUM_VERTICES = 10000
+PROBABILIDADE = 0.01
+
 
 def main():
-    g = GrafoErdosRenyi(NUM_VERTICES, PROBABILIDADE)
+    #g = GrafoErdosRenyi(NUM_VERTICES, PROBABILIDADE)
+    #g = GrafoWattsStrogatz(NUM_VERTICES, 6, PROBABILIDADE)
+    g = GrafoBarabasiAlbert(NUM_VERTICES, 3)
 
     #Grau Maximo
     grau_maximo = max(dict(g.Grafo.degree()).values())
@@ -23,7 +25,7 @@ def main():
     #Grafo Conectado
     if nx.is_connected(g.Grafo):
         distancia_media = nx.average_shortest_path_length(g.Grafo)
-        print("Distancia Media:", distancia_media)
+        #print("Distancia Media:", distancia_media)
     #Grafo Desconectado
     else:
         for C in (g.Grafo.subgraph(c).copy() for c in nx.connected_components(g.Grafo)):
@@ -33,15 +35,15 @@ def main():
     #Grafo Conectado
     if nx.is_connected(g.Grafo):
         coeficiente_clustering = nx.average_clustering(g.Grafo)
-        print("Coeficiente de Clustering:", coeficiente_clustering)
+        #print("Coeficiente de Clustering:", coeficiente_clustering)
     #Grafo Desconectado
     else:
         for C in (g.Grafo.subgraph(c).copy() for c in nx.connected_components(g.Grafo)):
             coeficiente_clustering = -1
 
     # Informações armazenadas em arquivos de cada grafo
-    with open("ErdosRenyi.txt", "a", encoding="utf-8") as arquivo:
-        arquivo.write(f"Numero de Vertices: {NUM_VERTICES}\n")
+    with open("grafoBarabasiAlbert.txt", "a", encoding="utf-8") as arquivo:
+        arquivo.write(f"\nNumero de Vertices: {NUM_VERTICES}\n")
         arquivo.write(f"Probabilidade: {PROBABILIDADE}\n")
         arquivo.write(f"Grau Maximo: {grau_maximo}\n")
         arquivo.write(f"Grau Minimo: {grau_minimo}\n")
@@ -50,7 +52,7 @@ def main():
 
     #Distribuicao de Graus
     distribuicao_graus = list(dict(g.Grafo.degree()).values())
-    print("Distribuicao de Graus:", distribuicao_graus)
+    #print("Distribuicao de Graus:", distribuicao_graus)
 
     contagem = Counter(distribuicao_graus)
 
@@ -67,13 +69,13 @@ def main():
     plt.ylabel("P(K >= k)")
     plt.title("Distribuição cumulativa de graus")
     plt.grid(True, which="both", linestyle="--", alpha=0.6)
-    plt.savefig("distribuicao_graus_CCDF100.png")
+    plt.savefig("distribuicao_graus_CCDF" + str(NUM_VERTICES) +  ".png")
     plt.close()
 
     # Plotar o grafo
     #plt.figure(figsize=(8, 5))
     #nx.draw(g.Grafo, with_labels=True)
-    #plt.savefig("grafo_erdos_renyi100.png")
+    #plt.savefig("grafoBarabasiAlbert25_0.png")
     #plt.close()
 
 if __name__ == "__main__":

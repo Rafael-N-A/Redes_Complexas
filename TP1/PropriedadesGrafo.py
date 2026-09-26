@@ -9,6 +9,8 @@ PROBABILIDADE = 0.01
 
 
 def main():
+    # Grafos que foram analisados
+    
     #g = GrafoErdosRenyi(NUM_VERTICES, PROBABILIDADE)
     #g = GrafoWattsStrogatz(NUM_VERTICES, 6, PROBABILIDADE)
     g = GrafoBarabasiAlbert(NUM_VERTICES, 3)

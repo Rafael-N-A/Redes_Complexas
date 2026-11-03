@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Roda o pipeline completo, na ordem do plano.
+# Roda o pipeline completo: testes, coleta e experimentos.
 # Uso, na raiz do projeto:
 #   bash executar_tudo.sh                # testes, coleta, exp0 a exp4
 #   bash executar_tudo.sh --sem-testes   # pula o pytest do início
@@ -41,18 +41,18 @@ if [ ${#FIGURAS[@]} -eq 0 ]; then
   done
 fi
 
-# 3. Experimentos (o 3 antes do 2, como no cronograma do plano)
+# 3. Experimentos
 etapa "Exp 0 — análise descritiva"
 "$PY" -m experimentos.exp0_descritiva --versao ambas "${FIGURAS[@]}"
 
 etapa "Exp 1 — robustez estrutural (a etapa mais longa)"
 "$PY" -m experimentos.exp1_robustez --versao ambas "${FIGURAS[@]}"
 
-etapa "Exp 3 — viés por substância"
-"$PY" -m experimentos.exp3_vies "${FIGURAS[@]}"
-
 etapa "Exp 2 — topologia vs. biologia"
 "$PY" -m experimentos.exp2_biologia "${FIGURAS[@]}"
+
+etapa "Exp 3 — viés por substância"
+"$PY" -m experimentos.exp3_vies "${FIGURAS[@]}"
 
 etapa "Exp 4 — comparação com outras redes"
 "$PY" -m experimentos.exp4_comparacao "${FIGURAS[@]}"

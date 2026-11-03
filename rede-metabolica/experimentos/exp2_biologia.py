@@ -44,8 +44,7 @@ def rodar(org: str) -> None:
          tabela 2x2 (choke x essencial) e scipy.stats.fisher_exact.
       7. Grave as quatro tabelas com config.arquivo_tabela("exp2", <conteudo>, org).
 
-    Para a discussão: separe dois ou três genes essenciais com baixa
-    centralidade (o plano diz que rendem uma boa discussão).
+    Para a discussão: separe dois ou três genes essenciais com baixa centralidade.
     """
     raise NotImplementedError
 

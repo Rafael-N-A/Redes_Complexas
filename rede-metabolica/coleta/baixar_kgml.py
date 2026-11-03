@@ -88,8 +88,8 @@ def registrar_metadados(org: str, vias: list[tuple[str, str]], falhas: list[str]
     """Grava dados/kgml/<org>/_metadados.json.
 
     Conteúdo: data e hora do download, vias baixadas, vias que falharam e a
-    resposta de info/<org> (versão da base). O plano pede a data registrada
-    porque o KEGG é atualizado continuamente.
+    resposta de info/<org> (versão da base). A data fica registrada porque
+    o KEGG é atualizado continuamente.
     """
     raise NotImplementedError
 

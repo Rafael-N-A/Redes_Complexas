@@ -4,7 +4,7 @@ Regra das isoenzimas (OU): uma reação só some quando TODOS os genes ligados
 a ela foram removidos. Deletar um gene de uma reação que tem outro gene
 deixa a reação funcionando.
 
-Limitação declarada no artigo: o KGML não diz se os genes de uma reação são
+Limitação: o KGML não diz se os genes de uma reação são
 alternativas (isoenzimas, OU) ou peças do mesmo complexo (E). Aqui todos
 valem como OU, o que subestima a fragilidade nos complexos.
 

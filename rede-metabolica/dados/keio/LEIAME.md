@@ -16,4 +16,4 @@ b0002
 ```
 
 Anote aqui de qual tabela suplementar a lista saiu e quantos genes ela tem
-(o plano espera 303 candidatos a essenciais).
+(Baba et al. relatam 303 candidatos a essenciais).

@@ -7,7 +7,7 @@ cruzamento é direto.
 
 A comparação fica restrita aos genes presentes na rede: genes essenciais
 fora do metabolismo (ribossomo, replicação) não têm como ser previstos pela
-topologia e tornariam a validação injusta (risco do plano).
+topologia e tornariam a validação injusta.
 """
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ import config
 
 
 def carregar_keio(caminho: Path = config.ARQ_KEIO) -> set[str]:
-    """Lê a coluna "gene" de essenciais.csv. O plano espera 303 genes.
+    """Lê a coluna "gene" de essenciais.csv (Baba et al. relatam 303 candidatos).
 
     Levanta FileNotFoundError com a instrução do LEIAME.md se o arquivo não existir.
     """

@@ -32,7 +32,7 @@ def rodar(org: str, versao: str) -> None:
          top10   = metricas.top_por_grau(G, 10, grafo.nomes_metabolitos(tabelas["metabolitos"]))
          graus   = metricas.distribuicao_graus(G)
       4. Grave cada uma em config.arquivo_tabela("exp0", <conteudo>, org, versao).
-      5. Opcional (só se sobrar tempo): metricas.ajuste_lei_potencia, numa quarta tabela.
+      5. Opcional: metricas.ajuste_lei_potencia, numa quarta tabela (exp0_lei_potencia).
 
     Na versão com_moeda, confira se o top-10 é mesmo de metabólitos-moeda e
     ajuste config.METABOLITOS_MOEDA se aparecer algum que falta.

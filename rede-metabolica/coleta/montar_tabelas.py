@@ -40,7 +40,7 @@ def ler_kgml(caminho: Path) -> tuple[list[dict], list[dict], list[dict]]:
         p.compounds  -> c.name ("cpd:C00024" ou "gl:G00001" para glicanos)
     Remova os prefixos rn:, cpd:, gl: e o do organismo (eco:, bsu:, mge:...),
     e separe os nomes múltiplos. Use o texto depois do primeiro ":" em vez de
-    fixar "eco:", senão bsu e mge saem sem genes no Exp 4 (ajuste 1 do plano).
+    fixar "eco:", senão bsu e mge saem sem genes.
     """
     raise NotImplementedError
 
@@ -57,7 +57,7 @@ def montar_camada_bruta(org: str) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFr
 def fundir_reacoes(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame) -> pd.DataFrame:
     """Funde a camada bruta numa linha por código R##### (tabela "reacoes").
 
-    Regras de fusão (documentar no artigo):
+    Regras de fusão:
       1. Uma linha bruta com vários códigos R vira uma ocorrência para cada código.
       2. Orientação: a primeira ocorrência (ordenando por via) é a referência.
          Uma ocorrência cujos substratos coincidem mais com os produtos da
@@ -67,11 +67,11 @@ def fundir_reacoes(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame) -
          lados_variam = True se as ocorrências listam conjuntos diferentes.
       4. reversivel = True se todas as ocorrências forem "reversible", OU se
          há ocorrências irreversíveis desenhadas em sentidos opostos (as duas
-         direções aparecem no KEGG; ajuste 3 do plano). Nos demais casos, False.
+         direções aparecem no KEGG). Nos demais casos, False.
          conflito_reversibilidade = True se as vias discordam do tipo.
       5. genes = união dos genes das linhas de reacoes_por_via e das entradas
          de genes_por_via cujo atributo reaction cita o código. Isso cobre as
-         entradas de gene sem tag <reaction> (risco do plano).
+         entradas de gene sem tag <reaction>.
       6. vias = união; n_ocorrencias = número de ocorrências fundidas.
     """
     raise NotImplementedError
@@ -104,7 +104,8 @@ def relatorio(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame,
     Inclua pelo menos:
       - número de vias, de linhas brutas, de reações, de metabólitos e de genes
       - entradas de gene sem <reaction> correspondente na mesma via (número e fração):
-        acima de config.LIMITE_LACUNA_GENES, o plano manda reparar com o eco01100
+        acima de config.LIMITE_LACUNA_GENES, marque reparo_necessario = True
+        (a rede precisa ser reparada com o mapa global eco01100)
       - as três conferências de que nada se perdeu:
           soma de n_ocorrencias == número de pares (linha bruta, código R);
           todo metabólito de reacoes_por_via está em metabolitos;

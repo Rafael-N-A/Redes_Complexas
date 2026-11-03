@@ -31,7 +31,7 @@ def nomes_metabolitos(metabolitos: pd.DataFrame) -> dict[str, str]:
 
 def grafo_metabolitos(reacoes: pd.DataFrame, remover_moeda: bool = True,
                       so_irreversiveis: bool = False) -> nx.MultiDiGraph:
-    """Rede metabólito-cêntrica dirigida (a modelagem principal do plano).
+    """Rede metabólito-cêntrica dirigida (a modelagem principal).
 
     Para cada reação, uma aresta de cada substrato para cada produto, com
     key = código R##### e atributos reacao, reversivel, genes, vias.
@@ -39,7 +39,7 @@ def grafo_metabolitos(reacoes: pd.DataFrame, remover_moeda: bool = True,
     com o mesmo código.
 
     remover_moeda:     tira os metabólitos de config.METABOLITOS_MOEDA antes de criar as arestas
-    so_irreversiveis:  teste de sensibilidade do plano (ignora as reações reversíveis)
+    so_irreversiveis:  teste de sensibilidade (ignora as reações reversíveis)
     """
     raise NotImplementedError
 

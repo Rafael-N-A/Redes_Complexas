@@ -49,7 +49,7 @@ def bow_tie(G: nx.DiGraph) -> dict[str, int]:
 
 
 def ajuste_lei_potencia(valores_grau: Iterable[int]) -> dict:
-    """Opcional (só se sobrar tempo): teste de Clauset et al. com o pacote powerlaw.
+    """Opcional: teste de Clauset et al. com o pacote powerlaw.
 
     Devolver alpha, xmin e a comparação com a log-normal (R e p).
     """
@@ -106,7 +106,7 @@ def alcance(G: nx.DiGraph, fontes: Iterable[str], n_original: int) -> float:
 # Para o exp2
 # ---------------------------------------------------------------------------
 def betweenness(G: nx.DiGraph, k: int | None = None, semente: int | None = None) -> pd.Series:
-    """Betweenness de cada nó; k amostras para a versão aproximada (risco do plano)."""
+    """Betweenness de cada nó; com k, a versão aproximada por amostragem (mais rápida)."""
     raise NotImplementedError
 
 

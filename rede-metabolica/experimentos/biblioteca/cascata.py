@@ -1,11 +1,11 @@
 """Cascata de falhas na rede bipartida (Smart, Amaral e Ottino, 2008).
 
-Regras do plano:
+Regras:
     - uma reação falha quando perde qualquer um de seus substratos (E);
     - um metabólito falha quando todas as reações que o produzem falharam (OU);
     - metabólitos sem produtor dentro da rede são sempre disponíveis.
 
-Implementação recomendada: expansão a partir das fontes.
+Implementação: expansão a partir das fontes.
 Em vez de partir de "tudo vivo" e ir derrubando, parta só das fontes e vá
 ativando as reações que têm todos os substratos disponíveis, até nada mudar.
 O dano é o que estava disponível na rede intacta e deixa de estar.
@@ -30,7 +30,7 @@ def fontes_externas(B: nx.DiGraph) -> set[str]:
     """Fontes sempre disponíveis: metabólitos sem nenhuma reação que os produza,
     mais os metabólitos-moeda (config.METABOLITOS_MOEDA) presentes em B.
 
-    Por que a moeda entra (ajuste 2 do plano): na versão com moeda, ATP e ADP
+    Por que a moeda entra: na versão com moeda, ATP e ADP
     só se produzem um a partir do outro. Sem uma entrada externa, a expansão
     não chega a nenhum dos dois e trava já na rede intacta. Na versão sem
     moeda eles nem estão em B, então a regra não muda nada.
@@ -47,7 +47,7 @@ def disponiveis(B: nx.DiGraph, fontes: Iterable[str],
     reacoes_removidas:     códigos R##### que nunca ativam (os dois sentidos)
     Retorna (metabolitos_disponiveis, nos_de_reacao_ativos).
 
-    Implementação sugerida (uma passada pelas arestas, porque os Exps 2 e 3
+    Implementação (uma passada pelas arestas, porque os Exps 2 e 3
     chamam esta função ~1.500 vezes):
       - para cada nó de reação, um contador de substratos ainda faltando;
       - uma fila com os metabólitos que acabaram de ficar disponíveis;

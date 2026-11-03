@@ -9,7 +9,7 @@ Para não perder informação do KGML, os dados ficam em duas camadas:
 1. Camada bruta (uma linha por elemento do KGML, sem fundir nada)
    - reacoes_por_via: cada <reaction> de cada via, como está no arquivo.
    - genes_por_via:   cada <entry type="gene"> de cada via, como está no arquivo.
-     Inclui as entradas de gene cuja reação não tem tag <reaction> (risco do plano).
+     Inclui as entradas de gene cuja reação não tem tag <reaction>.
 
 2. Camada fundida (deduplicada, é a que os experimentos usam)
    - reacoes:     uma linha por código R#####, com todos os substratos e

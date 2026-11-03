@@ -16,7 +16,7 @@ scikit-learn        # AUC e precisão do Exp 2
 matplotlib
 tqdm                # barra de progresso nas simulações longas
 
-# Opcional: teste formal de lei de potência (só se sobrar tempo)
+# Opcional: teste formal de lei de potência (Clauset et al.)
 powerlaw
 
 # Testes das regras da cascata e do nocaute

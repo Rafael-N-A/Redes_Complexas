@@ -88,8 +88,8 @@ def test_ciclo_reversivel_nao_se_sustenta_sozinho():
 def test_moeda_sempre_disponivel_nas_duas_versoes():
     """A + ATP -> B + ADP e ADP -> ATP: ATP e ADP só se produzem um do outro.
 
-    Sem a moeda entre as fontes, a versão com moeda nunca produziria B
-    (ajuste 2 do plano). Nas duas versões, B tem que estar disponível.
+    Sem a moeda entre as fontes, a versão com moeda nunca produziria B.
+    Nas duas versões, B tem que estar disponível.
     """
     reacoes = tabela_reacoes(
         ("R1", ["A", ATP], ["B", ADP], False, ["g1"]),
@@ -105,7 +105,7 @@ def test_fusao_com_sentido_invertido():
     """A mesma reação irreversível desenhada A -> B numa via e B -> A em outra.
 
     Vira uma linha só, no sentido da primeira via, marcada como invertida e
-    reversível (ajuste 3 do plano: as duas direções aparecem no KEGG).
+    reversível, porque as duas direções aparecem no KEGG.
     """
     reacoes_por_via = pd.DataFrame(
         [

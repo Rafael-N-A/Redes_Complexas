@@ -21,8 +21,8 @@ def rewiring(G: nx.DiGraph, trocas_por_aresta: int = config.TROCAS_POR_ARESTA,
     """Rede com os mesmos graus de entrada e saída de G, arestas embaralhadas.
 
     Usa nx.directed_edge_swap numa cópia de G sem pesos, com
-    nswap = trocas_por_aresta * número de arestas. max_tries precisa ser
-    bem maior que nswap (sugestão: 10 * nswap), porque muitas trocas são recusadas.
+    nswap = trocas_por_aresta * número de arestas e max_tries = 10 * nswap,
+    porque muitas trocas são recusadas.
     """
     raise NotImplementedError
 

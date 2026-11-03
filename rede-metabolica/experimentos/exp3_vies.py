@@ -30,12 +30,12 @@ from experimentos.biblioteca import cascata, figuras, grafo, metricas  # noqa: F
 
 def escolher_controles(G: nx.DiGraph, excluir: set[str], n: int,
                        rng: np.random.Generator) -> tuple[list[str], list[str]]:
-    """Os dois grupos de controle do plano.
+    """Os dois grupos de controle.
 
     Retorna (hubs, baixo_grau):
       hubs:       os n nós de maior grau total, fora de excluir
-      baixo_grau: n nós sorteados com rng entre os 25% de menor grau, fora de excluir
-                  (o corte de 25% é sugestão; registre no artigo o que for usado)
+      baixo_grau: n nós sorteados com rng entre a fração config.QUANTIL_BAIXO_GRAU
+                  de menor grau, fora de excluir
     """
     raise NotImplementedError
 

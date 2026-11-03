@@ -9,9 +9,6 @@ Rode tudo a partir da raiz do projeto, como módulo:
     python -m coleta.baixar_kgml --org eco
     python -m experimentos.exp1_robustez --org eco
     python -m pytest testes/
-
-Parâmetros marcados com "DECISÃO EM ABERTO" ainda dependem de uma escolha
-(ver a seção "Decisões em aberto" do plano de infraestrutura).
 """
 from __future__ import annotations
 
@@ -78,14 +75,13 @@ KEGG_URL = "https://rest.kegg.jp"
 PAUSA_ENTRE_REQUISICOES = 0.5   # segundos; com o cache, cada arquivo é baixado uma vez
 LIMITE_VIAS_REGULARES = 1100    # mantém vias com número < 01100 (descarta 011xx e 012xx)
 
-# Vias abaixo de 01100 que o KEGG não classifica como Metabolismo.
-# DECISÃO EM ABERTO: a sugestão do plano é excluir a 00970 (Tradução).
+# Vias abaixo de 01100 que o KEGG classifica fora de Metabolismo: não entram na rede.
 VIAS_EXCLUIDAS = {
     "00970": "Aminoacyl-tRNA biosynthesis (KEGG: Genetic Information Processing > Translation)",
 }
 
-# Fração de entradas de gene sem <reaction> acima da qual vale reparar a rede
-# com o mapa global eco01100 (risco do plano). DECISÃO EM ABERTO: sugestão 10%.
+# Fração de entradas de gene sem <reaction> acima da qual o relatório de
+# extração marca a rede para reparo com o mapa global eco01100.
 LIMITE_LACUNA_GENES = 0.10
 
 # ---------------------------------------------------------------------------
@@ -124,10 +120,9 @@ METABOLITOS_MOEDA = {
 # As duas versões de toda análise: nome -> remover metabólitos-moeda?
 VERSOES_MOEDA = {"sem_moeda": True, "com_moeda": False}
 
-# Na cascata (Exps 2 e 3), os metabólitos-moeda são SEMPRE fontes, nas duas
-# versões (ajuste 2 do plano). Com isso a cascata dá o mesmo resultado com ou
-# sem moeda, e os Exps 2 e 3 rodam numa versão só. Os hubs de controle do Exp 3
-# saem desta versão do grafo (senão seriam ATP, H2O e afins).
+# Versão usada pelos Exps 2 e 3. Na cascata, os metabólitos-moeda são sempre
+# fontes, então o resultado é o mesmo nas duas versões; os hubs de controle
+# do Exp 3 saem desta versão do grafo.
 VERSAO_CASCATA = "sem_moeda"
 
 # ---------------------------------------------------------------------------
@@ -145,7 +140,6 @@ NUTRIENTES = {
 
 # ---------------------------------------------------------------------------
 # Experimento 1 — Robustez estrutural
-# Ordem de corte do plano: se o tempo apertar, tire "betweenness_adaptativo".
 # ---------------------------------------------------------------------------
 ESTRATEGIAS = ("aleatoria", "grau", "grau_adaptativo", "betweenness", "betweenness_adaptativo")
 N_REPETICOES_ALEATORIAS = 100
@@ -159,13 +153,11 @@ K_PRECISAO = (10, 25, 50)   # precisão nos k primeiros do ranking
 
 # Como o grau e a betweenness dos metabólitos viram a pontuação de um gene:
 # "max" (o metabólito mais central das reações do gene) ou "soma".
-# DECISÃO EM ABERTO: sugestão "max".
 AGREGACAO_CENTRALIDADE_GENE = "max"
 
 # Medida de dano de um nocaute:
 #   "avalanche" -> metabólitos perdidos com as fontes externas (reaproveita o Exp 3)
 #   "alcance"   -> metabólitos perdidos partindo só do meio mínimo (NUTRIENTES)
-# DECISÃO EM ABERTO: sugestão "avalanche".
 DANO_NOCAUTE = "avalanche"
 
 # ---------------------------------------------------------------------------
@@ -180,6 +172,7 @@ SUBSTANCIAS_EXP3 = {
     "C00092": "Glicose-6-fosfato",
 }
 N_CONTROLES_EXP3 = 6        # 6 hubs de maior grau + 6 sorteados de baixo grau
+QUANTIL_BAIXO_GRAU = 0.25   # os de baixo grau são sorteados entre os 25% de menor grau
 
 # ---------------------------------------------------------------------------
 # Experimento 4 — Comparação com outras redes

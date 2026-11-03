@@ -1,0 +1,23 @@
+# Dependências do projeto. O setup.sh instala daqui na primeira vez e grava
+# as versões exatas em requirements-lock.txt (versione esse arquivo).
+
+# Coleta
+requests
+biopython
+
+# Dados e grafos
+pandas
+numpy
+scipy
+networkx>=3.0
+
+# Experimentos e figuras
+scikit-learn        # AUC e precisão do Exp 2
+matplotlib
+tqdm                # barra de progresso nas simulações longas
+
+# Opcional: teste formal de lei de potência (só se sobrar tempo)
+powerlaw
+
+# Testes das regras da cascata e do nocaute
+pytest

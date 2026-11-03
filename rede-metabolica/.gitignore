@@ -1,0 +1,8 @@
+# Ambiente e caches do Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Os dados NÃO são ignorados: o roteiro exige entregar dados, código e texto,
+# e o cache do KGML fixa a versão do KEGG usada (a base muda continuamente).

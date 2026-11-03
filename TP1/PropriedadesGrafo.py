@@ -5,7 +5,7 @@ from collections import Counter
 from CriacaoGrafo import GrafoErdosRenyi, GrafoWattsStrogatz, GrafoBarabasiAlbert
 
 NUM_VERTICES = 10000
-PROBABILIDADE = 0.01
+PROBABILIDADE = 0.006
 
 
 def main():
@@ -13,7 +13,7 @@ def main():
     
     #g = GrafoErdosRenyi(NUM_VERTICES, PROBABILIDADE)
     #g = GrafoWattsStrogatz(NUM_VERTICES, 6, PROBABILIDADE)
-    g = GrafoBarabasiAlbert(NUM_VERTICES, 3)
+    #g = GrafoBarabasiAlbert(NUM_VERTICES, 3)
 
     #Grau Maximo
     grau_maximo = max(dict(g.Grafo.degree()).values())
@@ -27,7 +27,7 @@ def main():
     #Grafo Conectado
     if nx.is_connected(g.Grafo):
         distancia_media = nx.average_shortest_path_length(g.Grafo)
-        #print("Distancia Media:", distancia_media)
+        print("Distancia Media:", distancia_media)
     #Grafo Desconectado
     else:
         for C in (g.Grafo.subgraph(c).copy() for c in nx.connected_components(g.Grafo)):
@@ -37,7 +37,7 @@ def main():
     #Grafo Conectado
     if nx.is_connected(g.Grafo):
         coeficiente_clustering = nx.average_clustering(g.Grafo)
-        #print("Coeficiente de Clustering:", coeficiente_clustering)
+        print("Coeficiente de Clustering:", coeficiente_clustering)
     #Grafo Desconectado
     else:
         for C in (g.Grafo.subgraph(c).copy() for c in nx.connected_components(g.Grafo)):

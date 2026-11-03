@@ -1,0 +1,28 @@
+
+Numero de Vertices: 100
+Probabilidade: 0.2
+Grau Maximo: 29
+Grau Minimo: 10
+Distancia Media: 1.8238383838383838
+Coeficiente de Clustering: 0.18747339310719957
+
+Numero de Vertices: 100
+Probabilidade: 0.3
+Grau Maximo: 43
+Grau Minimo: 19
+Distancia Media: 1.7054545454545456
+Coeficiente de Clustering: 0.2880239495773772
+
+Numero de Vertices: 1000
+Probabilidade: 0.05
+Grau Maximo: 72
+Grau Minimo: 29
+Distancia Media: 2.033299299299299
+Coeficiente de Clustering: 0.04946042115297413
+
+Numero de Vertices: 10000
+Probabilidade: 0.006
+Grau Maximo: 93
+Grau Minimo: 30
+Distancia Media: 2.6868971897189717
+Coeficiente de Clustering: 0.005978817493778713

@@ -61,7 +61,7 @@ COLUNAS = {
     "metabolitos": [
         "metabolito",  # C##### (ou G##### para glicanos)
         "nome",        # nome legível do KEGG
-        "tipo_id",     # "composto" ou "glicano"
+        "tipo_id",     # "composto" (C#####), "glicano" (G#####) ou "outro"
         "vias",        # lista: vias em que aparece
         "em_reacao",   # bool: aparece como substrato ou produto de alguma reação
     ],

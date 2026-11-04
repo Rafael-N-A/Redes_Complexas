@@ -42,6 +42,14 @@ def pasta_processados(org: str) -> Path:
     return DADOS / org
 
 
+def caminho_legivel(caminho: Path) -> str:
+    """Caminho relativo à raiz do projeto, para mensagens; o absoluto se estiver fora dela."""
+    try:
+        return str(caminho.relative_to(RAIZ))
+    except ValueError:
+        return str(caminho)
+
+
 def _nome_resultado(exp: str, conteudo: str, org: str, versao: str | None) -> str:
     partes = [exp, conteudo, org] + ([versao] if versao else [])
     return "_".join(partes)
@@ -73,6 +81,8 @@ DPI_FIGURA = 200
 # ---------------------------------------------------------------------------
 KEGG_URL = "https://rest.kegg.jp"
 PAUSA_ENTRE_REQUISICOES = 0.5   # segundos; com o cache, cada arquivo é baixado uma vez
+TENTATIVAS_REQUISICAO = 3       # tentativas para erros temporários (403, 429, 5xx, conexão)
+TIMEOUT_REQUISICAO = 30         # segundos de espera por resposta
 LIMITE_VIAS_REGULARES = 1100    # mantém vias com número < 01100 (descarta 011xx e 012xx)
 
 # Vias abaixo de 01100 que o KEGG classifica fora de Metabolismo: não entram na rede.

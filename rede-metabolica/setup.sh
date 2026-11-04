@@ -36,7 +36,7 @@ fi
 mkdir -p dados/kgml dados/keio resultados/tabelas resultados/figuras
 
 # 4. Conferência rápida
-"$PY" -c "import networkx, pandas, Bio, sklearn, matplotlib; print('Dependências OK')"
+"$PY" -c "import networkx, pandas, requests, sklearn, matplotlib; print('Dependências OK')"
 
 echo
 echo "Pronto. Para usar:"

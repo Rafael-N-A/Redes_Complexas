@@ -131,6 +131,30 @@ def test_fusao_com_sentido_invertido():
     assert linha["n_ocorrencias"] == 2
 
 
+def test_fusao_sentido_vem_da_via_irreversivel():
+    """A primeira via desenha a reação reversível (A <-> B); a segunda, irreversível B -> A.
+
+    Só a segunda afirma um sentido, então a reação fica irreversível B -> A,
+    e não no sentido em que a primeira via a desenhou.
+    """
+    reacoes_por_via = pd.DataFrame(
+        [
+            {"via": "eco00010", "entrada_kgml": 1, "reacoes": ["R1"], "tipo": "reversible",
+             "substratos": ["A"], "produtos": ["B"], "genes": ["g1"]},
+            {"via": "eco00020", "entrada_kgml": 7, "reacoes": ["R1"], "tipo": "irreversible",
+             "substratos": ["B"], "produtos": ["A"], "genes": ["g1"]},
+        ],
+        columns=contrato.COLUNAS["reacoes_por_via"],
+    )
+    genes_por_via = pd.DataFrame(columns=contrato.COLUNAS["genes_por_via"])
+
+    linha = montar_tabelas.fundir_reacoes(reacoes_por_via, genes_por_via).iloc[0]
+
+    assert linha["substratos"] == ["B"] and linha["produtos"] == ["A"]
+    assert not linha["reversivel"]
+    assert linha["conflito_reversibilidade"] and linha["orientacao_invertida"]
+
+
 def test_contrato_ida_e_volta(tmp_path, monkeypatch):
     """salvar() e carregar() devolvem a mesma tabela, listas vazias incluídas."""
     monkeypatch.setattr(config, "DADOS", tmp_path)

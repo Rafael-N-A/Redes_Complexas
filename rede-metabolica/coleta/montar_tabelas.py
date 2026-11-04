@@ -179,15 +179,25 @@ def _ocorrencias_por_codigo(reacoes_por_via: pd.DataFrame) -> dict[str, list[dic
     return ocorrencias
 
 
+def _esta_invertida(substratos: Iterable[str], produtos: Iterable[str],
+                    ref_substratos: set[str], ref_produtos: set[str]) -> bool:
+    """True se os lados coincidem mais com os da referência trocados do que como estão."""
+    s, p = set(substratos), set(produtos)
+    direto = len(s & ref_substratos) + len(p & ref_produtos)
+    inverso = len(s & ref_produtos) + len(p & ref_substratos)
+    return inverso > direto
+
+
 def fundir_reacoes(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame) -> pd.DataFrame:
     """Funde a camada bruta numa linha por código R##### (tabela "reacoes").
 
     Regras de fusão:
       1. Uma linha bruta com vários códigos R vira uma ocorrência para cada código.
-      2. Orientação: a primeira ocorrência (ordenando por via) é a referência.
-         Uma ocorrência cujos substratos coincidem mais com os produtos da
-         referência do que com os substratos é invertida antes de juntar
-         (orientacao_invertida = True).
+      2. Orientação: a referência é a primeira ocorrência irreversível
+         (ordenando por via), porque só uma irreversível afirma um sentido;
+         se todas forem reversíveis, a primeira ocorrência. Uma ocorrência
+         cujos substratos coincidem mais com os produtos da referência do que
+         com os substratos é invertida antes de juntar (orientacao_invertida = True).
       3. substratos e produtos = união das ocorrências já alinhadas;
          lados_variam = True se as ocorrências listam conjuntos diferentes.
       4. reversivel = True se todas as ocorrências forem "reversible", OU se
@@ -208,7 +218,8 @@ def fundir_reacoes(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame) -
     linhas = []
     for codigo in sorted(ocorrencias):
         grupo = ocorrencias[codigo]
-        ref_substratos, ref_produtos = set(grupo[0]["substratos"]), set(grupo[0]["produtos"])
+        referencia = next((o for o in grupo if o["tipo"] != "reversible"), grupo[0])
+        ref_substratos, ref_produtos = set(referencia["substratos"]), set(referencia["produtos"])
         substratos: list[str] = []
         produtos: list[str] = []
         genes: set[str] = set(genes_citados.get(codigo, ()))
@@ -217,11 +228,10 @@ def fundir_reacoes(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame) -
         sentidos_irreversiveis: set[bool] = set()
         alguma_invertida = lados_variam = False
 
-        for ocorrencia in grupo:
+        # a referência primeiro, para as listas começarem na ordem dela
+        for ocorrencia in [referencia, *(o for o in grupo if o is not referencia)]:
             s, p = ocorrencia["substratos"], ocorrencia["produtos"]
-            direto = len(set(s) & ref_substratos) + len(set(p) & ref_produtos)
-            inverso = len(set(s) & ref_produtos) + len(set(p) & ref_substratos)
-            invertida = inverso > direto
+            invertida = _esta_invertida(s, p, ref_substratos, ref_produtos)
             if invertida:
                 s, p = p, s
                 alguma_invertida = True
@@ -365,7 +375,8 @@ def relatorio(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame,
           todo gene ligado a uma reação da camada bruta está em reacoes.genes
       - reações com conflito de reversibilidade, com orientação invertida e,
         entre estas, quantas viraram reversíveis por estarem desenhadas como
-        irreversíveis em sentidos opostos
+        irreversíveis em sentidos opostos, e quantas irreversíveis ficaram no
+        sentido de uma via que não é a primeira (a primeira as desenhava reversíveis)
       - reações com um metabólito dos dois lados, linhas com vários códigos R
       - metabólitos que não aparecem em nenhuma reação
       - os metabólitos mais frequentes (para conferir a lista de moeda) e os
@@ -396,6 +407,13 @@ def relatorio(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame,
     registros = reacoes.to_dict("records")
     viraram_reversiveis = [r["reacao"] for r in registros
                            if r["reversivel"] and tipos_de[r["reacao"]] != {"reversible"}]
+    primeira = {codigo: grupo[0] for codigo, grupo in _ocorrencias_por_codigo(reacoes_por_via).items()}
+    sentido_de_outra_via = [
+        r["reacao"] for r in registros
+        if not r["reversivel"] and _esta_invertida(primeira[r["reacao"]]["substratos"],
+                                                   primeira[r["reacao"]]["produtos"],
+                                                   set(r["substratos"]), set(r["produtos"]))
+    ]
     dois_lados = [r["reacao"] for r in registros if set(r["substratos"]) & set(r["produtos"])]
     lado_vazio = [r["reacao"] for r in registros if not r["substratos"] or not r["produtos"]]
 
@@ -453,6 +471,8 @@ def relatorio(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame,
             "orientacao_invertida": int(reacoes["orientacao_invertida"].sum()),
             "reversiveis_por_sentidos_opostos": len(viraram_reversiveis),
             "exemplos_reversiveis_por_sentidos_opostos": _amostra(viraram_reversiveis),
+            "irreversiveis_com_sentido_de_outra_via": len(sentido_de_outra_via),
+            "exemplos_irreversiveis_com_sentido_de_outra_via": _amostra(sentido_de_outra_via),
             "lados_variam": int(reacoes["lados_variam"].sum()),
             "metabolito_dos_dois_lados": len(dois_lados),
             "exemplos_metabolito_dos_dois_lados": _amostra(dois_lados),

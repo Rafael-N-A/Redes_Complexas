@@ -200,10 +200,17 @@ def fundir_reacoes(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame) -
          com os substratos é invertida antes de juntar (orientacao_invertida = True).
       3. substratos e produtos = união das ocorrências já alinhadas;
          lados_variam = True se as ocorrências listam conjuntos diferentes.
-      4. reversivel = True se todas as ocorrências forem "reversible", OU se
-         há ocorrências irreversíveis desenhadas em sentidos opostos (as duas
-         direções aparecem no KEGG). Nos demais casos, False.
-         conflito_reversibilidade = True se as vias discordam do tipo.
+      4. Vale o reversível: reversivel = True se alguma ocorrência for
+         "reversible", ou se há ocorrências irreversíveis desenhadas em
+         sentidos opostos. Só fica False quando todas as ocorrências são
+         irreversíveis e no mesmo sentido. O mapa irreversível marca o sentido
+         em que a reação funciona naquela via (ex.: a fumarato redutase no
+         eco00620, o ciclo de Krebs redutivo no eco00720), e não que ela só
+         aconteça nesse sentido.
+         conflito_reversibilidade = True se as vias discordam do tipo. Nesse
+         caso, pela regra 2, substratos e produtos ficam no sentido da via
+         irreversível, o que permite reconstruir no grafo a regra contrária
+         (grafo.reversivel com conflito_como_irreversivel=True).
       5. genes = união dos genes das linhas de reacoes_por_via e das entradas
          de genes_por_via cujo atributo reaction cita o código. Isso cobre as
          entradas de gene sem tag <reaction>.
@@ -246,13 +253,13 @@ def fundir_reacoes(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame) -
             if ocorrencia["tipo"] != "reversible":
                 sentidos_irreversiveis.add(invertida)
 
-        todas_reversiveis = all(tipo == "reversible" for tipo in tipos)
+        alguma_reversivel = any(tipo == "reversible" for tipo in tipos)
         irreversiveis_opostas = sentidos_irreversiveis == {True, False}
         linhas.append({
             "reacao": codigo,
             "substratos": substratos,
             "produtos": produtos,
-            "reversivel": todas_reversiveis or irreversiveis_opostas,
+            "reversivel": alguma_reversivel or irreversiveis_opostas,
             "genes": sorted(genes),
             "vias": sorted(vias),
             "n_ocorrencias": len(grupo),
@@ -373,10 +380,12 @@ def relatorio(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame,
           soma de n_ocorrencias == número de pares (linha bruta, código R);
           todo metabólito de reacoes_por_via está em metabolitos;
           todo gene ligado a uma reação da camada bruta está em reacoes.genes
-      - reações com conflito de reversibilidade, com orientação invertida e,
-        entre estas, quantas viraram reversíveis por estarem desenhadas como
-        irreversíveis em sentidos opostos, e quantas irreversíveis ficaram no
-        sentido de uma via que não é a primeira (a primeira as desenhava reversíveis)
+      - a conferência da regra 4: toda reação com conflito de reversibilidade
+        ficou reversível, e nenhuma irreversível ficou no sentido de uma via
+        que não é a primeira (com "vale o reversível", as duas listas ficam vazias)
+      - reações com conflito de reversibilidade (todas reversíveis), com
+        orientação invertida e reversíveis só por estarem desenhadas como
+        irreversíveis em sentidos opostos
       - reações com um metabólito dos dois lados, linhas com vários códigos R
       - metabólitos que não aparecem em nenhuma reação
       - os metabólitos mais frequentes (para conferir a lista de moeda) e os
@@ -405,8 +414,10 @@ def relatorio(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame,
         for codigo in linha["reacoes"]:
             tipos_de[codigo].add(linha["tipo"])
     registros = reacoes.to_dict("records")
-    viraram_reversiveis = [r["reacao"] for r in registros
-                           if r["reversivel"] and tipos_de[r["reacao"]] != {"reversible"}]
+    por_sentidos_opostos = [r["reacao"] for r in registros
+                            if r["reversivel"] and "reversible" not in tipos_de[r["reacao"]]]
+    conflito_irreversivel = [r["reacao"] for r in registros
+                             if r["conflito_reversibilidade"] and not r["reversivel"]]
     primeira = {codigo: grupo[0] for codigo, grupo in _ocorrencias_por_codigo(reacoes_por_via).items()}
     sentido_de_outra_via = [
         r["reacao"] for r in registros
@@ -469,8 +480,8 @@ def relatorio(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame,
         "fusao": {
             "conflito_reversibilidade": int(reacoes["conflito_reversibilidade"].sum()),
             "orientacao_invertida": int(reacoes["orientacao_invertida"].sum()),
-            "reversiveis_por_sentidos_opostos": len(viraram_reversiveis),
-            "exemplos_reversiveis_por_sentidos_opostos": _amostra(viraram_reversiveis),
+            "reversiveis_por_sentidos_opostos": len(por_sentidos_opostos),
+            "exemplos_reversiveis_por_sentidos_opostos": _amostra(por_sentidos_opostos),
             "irreversiveis_com_sentido_de_outra_via": len(sentido_de_outra_via),
             "exemplos_irreversiveis_com_sentido_de_outra_via": _amostra(sentido_de_outra_via),
             "lados_variam": int(reacoes["lados_variam"].sum()),
@@ -484,6 +495,9 @@ def relatorio(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame,
             "metabolitos_completos": {"ok": not faltando_metabolitos,
                                       "faltando": _amostra(faltando_metabolitos)},
             "genes_completos": {"ok": not genes_faltando, "faltando": _amostra(genes_faltando)},
+            "conflitos_reversiveis": {"ok": not conflito_irreversivel and not sentido_de_outra_via,
+                                      "conflitos_que_ficaram_irreversiveis": _amostra(conflito_irreversivel),
+                                      "irreversiveis_com_sentido_de_outra_via": _amostra(sentido_de_outra_via)},
         },
         "mais_frequentes": [
             {"metabolito": m, "nome": nomes.get(m, ""), "n_reacoes": n,

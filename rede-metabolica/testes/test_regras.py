@@ -131,11 +131,12 @@ def test_fusao_com_sentido_invertido():
     assert linha["n_ocorrencias"] == 2
 
 
-def test_fusao_sentido_vem_da_via_irreversivel():
+def test_fusao_vale_o_reversivel():
     """A primeira via desenha a reação reversível (A <-> B); a segunda, irreversível B -> A.
 
-    Só a segunda afirma um sentido, então a reação fica irreversível B -> A,
-    e não no sentido em que a primeira via a desenhou.
+    Vale o reversível: a reação fica reversível e marcada com conflito. O
+    sentido guardado é o da via irreversível (B -> A), para o grafo poder
+    reconstruir a regra contrária no teste de sensibilidade.
     """
     reacoes_por_via = pd.DataFrame(
         [
@@ -151,7 +152,7 @@ def test_fusao_sentido_vem_da_via_irreversivel():
     linha = montar_tabelas.fundir_reacoes(reacoes_por_via, genes_por_via).iloc[0]
 
     assert linha["substratos"] == ["B"] and linha["produtos"] == ["A"]
-    assert not linha["reversivel"]
+    assert linha["reversivel"]
     assert linha["conflito_reversibilidade"] and linha["orientacao_invertida"]
 
 

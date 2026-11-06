@@ -125,6 +125,10 @@ METABOLITOS_MOEDA = {
     "C00014": "NH3",
     "C00020": "AMP",
     "C00080": "H+",
+    # Carregador de unidades de um carbono, como a CoA é de grupos acila: sai só
+    # a forma livre. As formas carregadas (5,10-metileno-THF, 10-formil-THF,
+    # 5-metil-THF) ficam, como a acetil-CoA fica, porque levam o carbono adiante.
+    "C00101": "THF (tetra-hidrofolato)",
 }
 
 # As duas versões de toda análise: nome -> remover metabólitos-moeda?

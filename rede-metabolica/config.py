@@ -129,6 +129,11 @@ METABOLITOS_MOEDA = {
     # a forma livre. As formas carregadas (5,10-metileno-THF, 10-formil-THF,
     # 5-metil-THF) ficam, como a acetil-CoA fica, porque levam o carbono adiante.
     "C00101": "THF (tetra-hidrofolato)",
+    # Carregador de grupos acila na síntese de ácidos graxos, como a CoA é fora dela:
+    # sai só a forma livre (holo-ACP); os acil-ACPs ficam. Sem isso, ACP e apo-ACP
+    # só se produzem um do outro (a origem real, a tradução do gene acpP, não é
+    # reação do KEGG) e a cascata nunca chegaria aos ácidos graxos e ao lipídio A.
+    "C00229": "ACP (proteína carregadora de acila)",
 }
 
 # As duas versões de toda análise: nome -> remover metabólitos-moeda?

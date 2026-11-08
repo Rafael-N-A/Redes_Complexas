@@ -9,8 +9,9 @@ Grava: resultados/tabelas/exp1_curvas_<org>_<versao>.csv   (formato longo, uma l
        resultados/figuras/exp1_<metrica>_<org>_<versao>.png
            para metrica em maior_fraco, maior_forte, eficiencia, alcance
 
-É a etapa mais longa do pipeline (~35 min nas duas versões): deixe rodando
-em segundo plano e use --so-figuras para ajustar os gráficos depois.
+Leva ~2 min por versão na eco (medido pelo testes/verificar_cascata_robustez;
+quase tudo nas 100 repetições aleatórias). Use --so-figuras para ajustar os
+gráficos sem recalcular.
 
 Uso, na raiz:
     python -m experimentos.exp1_robustez --org eco --versao ambas

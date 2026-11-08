@@ -1,0 +1,129 @@
+bsu01100	Metabolic pathways - Bacillus subtilis subsp. subtilis 168
+bsu01110	Biosynthesis of secondary metabolites - Bacillus subtilis subsp. subtilis 168
+bsu01120	Microbial metabolism in diverse environments - Bacillus subtilis subsp. subtilis 168
+bsu01200	Carbon metabolism - Bacillus subtilis subsp. subtilis 168
+bsu01210	2-Oxocarboxylic acid metabolism - Bacillus subtilis subsp. subtilis 168
+bsu01212	Fatty acid metabolism - Bacillus subtilis subsp. subtilis 168
+bsu01230	Biosynthesis of amino acids - Bacillus subtilis subsp. subtilis 168
+bsu01232	Nucleotide metabolism - Bacillus subtilis subsp. subtilis 168
+bsu01250	Biosynthesis of nucleotide sugars - Bacillus subtilis subsp. subtilis 168
+bsu01240	Biosynthesis of cofactors - Bacillus subtilis subsp. subtilis 168
+bsu01220	Degradation of aromatic compounds - Bacillus subtilis subsp. subtilis 168
+bsu01310	Nitrogen cycle - Bacillus subtilis subsp. subtilis 168
+bsu01320	Sulfur cycle - Bacillus subtilis subsp. subtilis 168
+bsu00010	Glycolysis / Gluconeogenesis - Bacillus subtilis subsp. subtilis 168
+bsu00020	Citrate cycle (TCA cycle) - Bacillus subtilis subsp. subtilis 168
+bsu00030	Pentose phosphate pathway - Bacillus subtilis subsp. subtilis 168
+bsu00040	Pentose and glucuronate interconversions - Bacillus subtilis subsp. subtilis 168
+bsu00051	Fructose and mannose metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00052	Galactose metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00053	Ascorbate and aldarate metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00500	Starch and sucrose metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00620	Pyruvate metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00630	Glyoxylate and dicarboxylate metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00640	Propanoate metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00650	Butanoate metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00660	C5-Branched dibasic acid metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00562	Inositol phosphate metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00190	Oxidative phosphorylation - Bacillus subtilis subsp. subtilis 168
+bsu00710	Carbon fixation by Calvin cycle - Bacillus subtilis subsp. subtilis 168
+bsu00720	Other carbon fixation pathways - Bacillus subtilis subsp. subtilis 168
+bsu00680	Methane metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00910	Nitrogen metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00920	Sulfur metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00061	Fatty acid biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00071	Fatty acid degradation - Bacillus subtilis subsp. subtilis 168
+bsu00074	Mycolic acid biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00561	Glycerolipid metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00564	Glycerophospholipid metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00600	Sphingolipid metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00592	alpha-Linolenic acid metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00230	Purine metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00240	Pyrimidine metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00250	Alanine, aspartate and glutamate metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00260	Glycine, serine and threonine metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00270	Cysteine and methionine metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00280	Valine, leucine and isoleucine degradation - Bacillus subtilis subsp. subtilis 168
+bsu00290	Valine, leucine and isoleucine biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00300	Lysine biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00310	Lysine degradation - Bacillus subtilis subsp. subtilis 168
+bsu00220	Arginine biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00330	Arginine and proline metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00340	Histidine metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00350	Tyrosine metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00360	Phenylalanine metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00380	Tryptophan metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00400	Phenylalanine, tyrosine and tryptophan biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00410	beta-Alanine metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00430	Taurine and hypotaurine metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00450	Selenocompound metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00460	Cyanoamino acid metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00470	D-Amino acid metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00480	Glutathione metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00520	Amino sugar and nucleotide sugar metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00541	Biosynthesis of various nucleotide sugars - Bacillus subtilis subsp. subtilis 168
+bsu00511	Other glycan degradation - Bacillus subtilis subsp. subtilis 168
+bsu00542	O-Antigen repeat unit biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00550	Peptidoglycan biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00552	Teichoic acid biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00543	Exopolysaccharide biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00730	Thiamine metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00740	Riboflavin metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00750	Vitamin B6 metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00760	Nicotinate and nicotinamide metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00770	Pantothenate and CoA biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00780	Biotin metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00785	Lipoic acid metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00790	Folate biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00670	One carbon pool by folate - Bacillus subtilis subsp. subtilis 168
+bsu00860	Porphyrin metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00130	Ubiquinone and other terpenoid-quinone biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00900	Terpenoid backbone biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00906	Carotenoid biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00907	Pinene, camphor and geraniol degradation - Bacillus subtilis subsp. subtilis 168
+bsu00523	Polyketide sugar unit biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu01054	Nonribosomal peptide structures - Bacillus subtilis subsp. subtilis 168
+bsu01053	Biosynthesis of siderophore group nonribosomal peptides - Bacillus subtilis subsp. subtilis 168
+bsu00946	Degradation of flavonoids - Bacillus subtilis subsp. subtilis 168
+bsu00966	Glucosinolate metabolism - Bacillus subtilis subsp. subtilis 168
+bsu00311	Penicillin and cephalosporin biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00332	Carbapenem biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00261	Monobactam biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00521	Streptomycin biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00525	Acarbose and validamycin biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00401	Novobiocin biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu00998	Biosynthesis of various antibiotics - Bacillus subtilis subsp. subtilis 168
+bsu00999	Biosynthesis of various plant secondary metabolites - Bacillus subtilis subsp. subtilis 168
+bsu00362	Benzoate degradation - Bacillus subtilis subsp. subtilis 168
+bsu00627	Aminobenzoate degradation - Bacillus subtilis subsp. subtilis 168
+bsu00625	Chloroalkane and chloroalkene degradation - Bacillus subtilis subsp. subtilis 168
+bsu00361	Chlorocyclohexane and chlorobenzene degradation - Bacillus subtilis subsp. subtilis 168
+bsu00622	Xylene degradation - Bacillus subtilis subsp. subtilis 168
+bsu00626	Naphthalene degradation - Bacillus subtilis subsp. subtilis 168
+bsu00984	Steroid degradation - Bacillus subtilis subsp. subtilis 168
+bsu03020	RNA polymerase - Bacillus subtilis subsp. subtilis 168
+bsu03010	Ribosome - Bacillus subtilis subsp. subtilis 168
+bsu00970	Aminoacyl-tRNA biosynthesis - Bacillus subtilis subsp. subtilis 168
+bsu03060	Protein export - Bacillus subtilis subsp. subtilis 168
+bsu04141	Protein processing in endoplasmic reticulum - Bacillus subtilis subsp. subtilis 168
+bsu04122	Sulfur relay system - Bacillus subtilis subsp. subtilis 168
+bsu03018	RNA degradation - Bacillus subtilis subsp. subtilis 168
+bsu03030	DNA replication - Bacillus subtilis subsp. subtilis 168
+bsu03410	Base excision repair - Bacillus subtilis subsp. subtilis 168
+bsu03420	Nucleotide excision repair - Bacillus subtilis subsp. subtilis 168
+bsu03430	Mismatch repair - Bacillus subtilis subsp. subtilis 168
+bsu03440	Homologous recombination - Bacillus subtilis subsp. subtilis 168
+bsu03450	Non-homologous end-joining - Bacillus subtilis subsp. subtilis 168
+bsu02010	ABC transporters - Bacillus subtilis subsp. subtilis 168
+bsu02060	Phosphotransferase system (PTS) - Bacillus subtilis subsp. subtilis 168
+bsu03070	Bacterial secretion system - Bacillus subtilis subsp. subtilis 168
+bsu02020	Two-component system - Bacillus subtilis subsp. subtilis 168
+bsu04146	Peroxisome - Bacillus subtilis subsp. subtilis 168
+bsu04156	Integrated stress response (ISR) signaling pathway - Bacillus subtilis subsp. subtilis 168
+bsu02024	Quorum sensing - Bacillus subtilis subsp. subtilis 168
+bsu02030	Bacterial chemotaxis - Bacillus subtilis subsp. subtilis 168
+bsu02040	Flagellar assembly - Bacillus subtilis subsp. subtilis 168
+bsu04981	Folate transport and metabolism - Bacillus subtilis subsp. subtilis 168
+bsu01501	beta-Lactam resistance - Bacillus subtilis subsp. subtilis 168
+bsu01502	Vancomycin resistance - Bacillus subtilis subsp. subtilis 168
+bsu01503	Cationic antimicrobial peptide (CAMP) resistance - Bacillus subtilis subsp. subtilis 168

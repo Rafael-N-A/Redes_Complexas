@@ -1,0 +1,4421 @@
+gene,simbolo,descricao
+BSU00010,dnaA,chromosomal replication initiator protein DnaA
+BSU00020,dnaN,DNA polymerase III subunit beta
+BSU00030,yaaA,hypothetical protein
+BSU00040,recF,DNA replication and repair protein RecF
+BSU00050,yaaB,hypothetical protein
+BSU00060,gyrB,DNA gyrase subunit B
+BSU00070,gyrA,DNA gyrase subunit A
+BSU_rRNA_1,rrnO-16S,16S ribosomal RNA
+BSU_tRNA_5,trnO-Ile,tRNA-Ile
+BSU_tRNA_6,trnO-Ala,tRNA-Ala
+BSU_rRNA_2,rrnO-23S,23S ribosomal RNA
+BSU_rRNA_3,rrnO-5S,5S ribosomal RNA
+BSU00080,yaaC,hypothetical protein
+BSU00090,guaB,inosine-5'-monophosphate dehydrogenase
+BSU00100,dacA,D-alanyl-D-alanine carboxypeptidase DacA
+BSU00110,yaaD,pyridoxal biosynthesis lyase PdxS
+BSU00120,yaaE,glutamine amidotransferase subunit PdxT
+BSU_misc_RNA_1,,T-box
+BSU00130,serS,serine--tRNA ligase
+BSU_tRNA_7,trnSL-Ser1,tRNA-Ser
+BSU00140,dck,deoxyadenosine/deoxycytidine kinase
+BSU00150,dgk,deoxyguanosine kinase
+BSU00160,yaaH,spore germination protein YaaH
+BSU00170,yaaI,isochorismatase
+BSU00180,tadA,tRNA-specific adenosine deaminase
+BSU_misc_RNA_2,scr,"small cytoplasmic RNA (scRNA, 4.5S RNA), signal recognition particle-like (SRP) component"
+BSU00190,dnaX,DNA polymerase III subunit gamma/tau
+BSU00200,yaaK,nucleoid-associated protein YaaK
+BSU00210,recR,recombination protein RecR
+BSU00220,yaaL,hypothetical protein
+BSU00230,bofA,sigma-K factor-processing regulator BofA
+BSU_rRNA_4,rrnA-16S,16S ribosomal RNA
+BSU_tRNA_8,trnA-Ile,tRNA-Ile
+BSU_tRNA_9,trnA-Ala,tRNA-Ala
+BSU_rRNA_5,rrnA-23S,23S ribosomal RNA
+BSU_rRNA_26,rrnA-5S,5S ribosomal RNA
+BSU00240,csfB,sporulation protein CsfB
+BSU00250,xpaC,5-bromo 4-chloroindolyl phosphate hydrolysis protein XpaC
+BSU00260,yaaN,hypothetical protein
+BSU00270,yaaO,hypothetical protein
+BSU00280,tmk,thymidylate kinase
+BSU00290,yaaQ,hypothetical protein
+BSU00300,yaaR,hypothetical protein
+BSU00310,holB,DNA polymerase III subunit delta
+BSU00320,yaaT,stage 0 sporulation protein YaaT
+BSU00330,yabA,initiation-control protein YabA
+BSU00340,yabB,hypothetical protein
+BSU00350,yazA,hypothetical protein
+BSU00360,yabC,ribosomal RNA small subunit methyltransferase I
+BSU00370,abrB,transition state regulatory protein AbrB
+BSU00380,metS,methionine--tRNA ligase
+BSU00390,yabD,deoxyribonuclease YabD
+BSU00400,yabE,hypothetical protein
+BSU00410,rnmV,ribonuclease M5
+BSU00420,ksgA,ribosomal RNA small subunit methyltransferase A
+BSU00430,yabG,sporulation-specific protease YabG
+BSU00440,veg,protein Veg
+BSU00450,sspF,small acid-soluble spore protein SspF
+BSU00460,ipk,4-diphosphocytidyl-2C-methyl-D-erythritol kinase
+BSU00470,purR,Pur operon repressor
+BSU00480,yabJ,enamine/imine deaminase
+BSU00490,spoVG,septation protein SpoVG
+BSU00500,glmU,bifunctional N-acetylglucosamine-1-phosphate uridyltransferase/glucosamine-1-phosphate acetyltransferase
+BSU00510,prs,ribose-phosphate pyrophosphokinase
+BSU00520,ctc,50S ribosomal protein L25/general stress protein Ctc
+BSU00530,pth,peptidyl-tRNA hydrolase
+BSU00540,yabK,hypothetical protein
+BSU00550,mfd,transcription-repair-coupling factor
+BSU00560,spoVT,stage V sporulation protein T
+BSU00570,yabM,hypothetical protein
+BSU00580,yabN,hypothetical protein
+BSU00590,yabO,hypothetical protein
+BSU00600,yabP,spore protein YabP
+BSU00610,yabQ,spore protein YabQ
+BSU00620,divIC,cell division protein DivIC
+BSU00630,yabR,hypothetical protein
+BSU_tRNA_10,trnSL-Met1,tRNA-Met
+BSU_tRNA_11,trnSL-Glu1,tRNA-Glu
+BSU00640,spoIIE,stage II sporulation protein E
+BSU00650,yabS,hypothetical protein
+BSU00660,yabT,serine/threonine protein kinase
+BSU00670,tilS,tRNA(ile)-lysidine synthase
+BSU00680,hprT,hypoxanthine-guanine phosphoribosyltransferase
+BSU00690,ftsH,ATP-dependent zinc metalloprotease FtsH
+BSU00700,coaX,type III pantothenate kinase
+BSU00710,hslO,chaperonin
+BSU00720,yacD,peptidyl-prolyl cis-trans isomerase
+BSU00730,cysK,cysteine synthase
+BSU00740,pabB,para-aminobenzoate synthase component 1
+BSU00750,pabA,para-aminobenzoate/anthranilate synthase glutamine amidotransferase component II
+BSU00760,pabC,4-amino-4-deoxychorismate lyase
+BSU00770,sul,dihydropteroate synthase
+BSU00780,folB,dihydroneopterin aldolase
+BSU00790,folK,2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase
+BSU00800,yazB,XRE family transcriptional regulator
+BSU00810,dusB,tRNA-dihydrouridine synthase
+BSU00820,lysS,lysine--tRNA ligase
+BSU_rRNA_6,rrnJ-16S,16S ribosomal RNA
+BSU_rRNA_7,rrnJ-23S,23S ribosomal RNA
+BSU_rRNA_8,rrnJ-5S,5S ribosomal RNA
+BSU_tRNA_12,trnJ-Val,tRNA-Val
+BSU_tRNA_13,trnJ-Thr,tRNA-Thr
+BSU_tRNA_14,trnJ-Lys,tRNA-Lys
+BSU_tRNA_15,trnJ-Leu1,tRNA-Leu
+BSU_tRNA_16,trnJ-Gly,tRNA-Gly
+BSU_tRNA_17,trnJ-Leu2,tRNA-Leu
+BSU_tRNA_18,trnJ-Arg,tRNA-Arg
+BSU_tRNA_19,trnJ-Pro,tRNA-Pro
+BSU_tRNA_20,trnJ-Ala,tRNA-Ala
+BSU_rRNA_9,rrnW-16S,16S ribosomal RNA
+BSU_rRNA_10,rrnW-23S,23S ribosomal RNA
+BSU_rRNA_11,rrnW-5S,5S ribosomal RNA
+BSU00830,ctsR,transcriptional regulator CtsR
+BSU00840,mcsA,hypothetical protein
+BSU00850,mcsB,ATP:guanido phosphotransferase YacI
+BSU00860,clpC,negative regulator of genetic competence ClpC/MecB
+BSU00870,radA,DNA repair protein RadA
+BSU00880,yacK,DNA integrity scanning protein DisA
+BSU00890,yacL,PIN and TRAM-domain containing protein YacL
+BSU00900,ispD,2-D-methyl-D-erythritol 4-phosphate cytidylyltransferase
+BSU00910,ispF,"2-D-methyl-D-erythritol 2,4-cyclodiphosphate synthase"
+BSU00920,gltX,glutamate--tRNA ligase
+BSU00930,cysE,serine acetyltransferase
+BSU00940,cysS,cysteine--tRNA ligase
+BSU00950,mrnC,mini-ribonuclease 3
+BSU00960,rlmB,23S rRNA (guanosine(2251)-2'-O)-methyltransferase RlmB
+BSU00970,yacP,hypothetical protein
+BSU00980,sigH,RNA polymerase sigma-H factor
+BSU00990,rpmG,50S ribosomal protein L33
+BSU01000,secE,preprotein translocase subunit SecE
+BSU01010,nusG,transcription termination/antitermination protein NusG
+BSU01020,rplK,50S ribosomal protein L11
+BSU01030,rplA,50S ribosomal protein L1
+BSU_misc_RNA_3,,L10_leader
+BSU01040,rplJ,50S ribosomal protein L10
+BSU01050,rplL,50S ribosomal protein L7/L12
+BSU01060,ybxB,hypothetical protein
+BSU01070,rpoB,DNA-directed RNA polymerase subunit beta
+BSU01080,rpoC,DNA-directed RNA polymerase subunit beta'
+BSU01090,ybxF,ribosome-associated protein L7Ae-like
+BSU01100,rpsL,30S ribosomal protein S12
+BSU01110,rpsG,30S ribosomal protein S7
+BSU01120,fusA,elongation factor G
+BSU01130,tufA,elongation factor Tu
+BSU01140,ybaC,aminopeptidase YbaC
+BSU01150,rpsJ,30S ribosomal protein S10
+BSU01160,rplC,50S ribosomal protein L3
+BSU01170,rplD,50S ribosomal protein L4
+BSU01180,rplW,50S ribosomal protein L23
+BSU01190,rplB,50S ribosomal protein L2
+BSU01200,rpsS,30S ribosomal protein S19
+BSU01210,rplV,50S ribosomal protein L22
+BSU01220,rpsC,30S ribosomal protein S3
+BSU01230,rplP,50S ribosomal protein L16
+BSU01240,rpmC,50S ribosomal protein L29
+BSU01250,rpsQ,30S ribosomal protein S17
+BSU01260,rplN,50S ribosomal protein L14
+BSU01270,rplX,50S ribosomal protein L24
+BSU01280,rplE,50S ribosomal protein L5
+BSU01290,rpsN,30S ribosomal protein S14
+BSU01300,rpsH,30S ribosomal protein S8
+BSU01310,rplF,50S ribosomal protein L6
+BSU01320,rplR,50S ribosomal protein L18
+BSU01330,rpsE,30S ribosomal protein S5
+BSU01340,rpmD,50S ribosomal protein L30
+BSU01350,rplO,50S ribosomal protein L15
+BSU01360,secY,protein translocase subunit SecY
+BSU01370,adk,adenylate kinase
+BSU01380,mapA,methionine aminopeptidase 1
+BSU01389,ybzG,ribosome-binding protein YbzG
+BSU01390,infA,translation initiation factor IF-1
+BSU01400,rpmJ,50S ribosomal protein L36
+BSU01410,rpsM,30S ribosomal protein S13
+BSU01420,rpsK,30S ribosomal protein S11
+BSU01430,rpoA,DNA-directed RNA polymerase subunit alpha
+BSU01440,rplQ,50S ribosomal protein L17
+BSU01450,cbiO,energy-coupling factor transporter ATP-binding protein EcfA1
+BSU01460,cbiO,energy-coupling factor transporter ATP-binding protein EcfA2
+BSU01470,ybaF,energy-coupling factor transporter transmembrane protein EcfT
+BSU01480,truA,tRNA pseudouridine synthase A
+BSU_misc_RNA_4,,L13_leader
+BSU01490,rplM,50S ribosomal protein L13
+BSU01500,rpsI,30S ribosomal protein S9
+BSU01510,ybaJ,methyltransferase
+BSU01520,ybaK,hypothetical protein
+BSU01530,cwlD,germination-specific N-acetylmuramoyl-L-alanine amidase
+BSU01540,salA,chromosome partitioning protein ParA
+BSU01550,gerD,spore germination protein GerD
+BSU01560,kbaA,kinB-signaling pathway activation protein
+BSU01570,ybaN,polysaccharide deacetylase PdaB
+BSU_rRNA_23,rrnI-16S,16S ribosomal RNA
+BSU_rRNA_14,rrnI-23S,23S ribosomal RNA
+BSU_rRNA_15,rrnI-5S,5S ribosomal RNA
+BSU_tRNA_23,trnI-Asn,tRNA-Asn
+BSU_tRNA_24,trnI-Thr,tRNA-Thr
+BSU_tRNA_25,trnI-Gly,tRNA-Gly
+BSU_tRNA_26,trnI-Arg,tRNA-Arg
+BSU_tRNA_27,trnI-Pro,tRNA-Pro
+BSU_tRNA_28,trnI-Ala,tRNA-Ala
+BSU_rRNA_16,rrnH-16S,16S ribosomal RNA
+BSU_rRNA_29,rrnH-23S,23S ribosomal RNA
+BSU_rRNA_24,rrnH-5S,5S ribosomal RNA
+BSU_rRNA_25,rrnG-16S,16S ribosomal RNA
+BSU_rRNA_27,rrnG-23S,23S ribosomal RNA
+BSU_rRNA_28,rrnG-5S,5S ribosomal RNA
+BSU01580,ybaR,sulfate transporter YbaR
+BSU01590,ybaS,hypothetical protein
+BSU01600,ybbA,hypothetical protein
+BSU01610,feuC,iron-uptake system permease protein FeuC
+BSU01620,feuB,iron-uptake system permease protein FeuB
+BSU01630,feuA,iron-uptake system-binding protein
+BSU01640,ybbB,AraC family transcriptional regulator
+BSU01650,ybbC,hypothetical protein
+BSU01660,ybbD,lipoprotein
+BSU01670,ybbE,hypothetical protein
+BSU01680,ybbF,PTS system transporter subunit EIIBC
+BSU01690,ybbH,RpiR family transcriptional regulator
+BSU01700,murQ,N-acetylmuramic acid 6-phosphate etherase
+BSU01710,ybbJ,N-acetyltransferase YbbJ
+BSU01720,ybbK,hypothetical protein
+BSU_tRNA_75,trnSL-Glu2,tRNA-Glu
+BSU_tRNA_78,trnSL-Val1,tRNA-Val
+BSU_tRNA_76,trnSL-Thr1,tRNA-Thr
+BSU_tRNA_77,trnSL-Tyr1,tRNA-Tyr
+BSU_tRNA_74,trnSL-Gln2,tRNA-Gln
+BSU01730,sigW,RNA polymerase sigma factor SigW
+BSU01740,rsiW,anti-sigma-W factor RsiW
+BSU01750,ybbP,hypothetical protein
+BSU01760,ybbR,YbbR-like domain-containing protein YbbR
+BSU01770,glmM,phosphoglucosamine mutase
+BSU_misc_RNA_5,,glmS
+BSU01780,glmS,glutamine--fructose-6-phosphate aminotransferase
+BSU01800,alkA,DNA-3-methyladenine glycosylase
+BSU01810,adaA,bifunctional transcriptional activator/DNA repair enzyme AdaA
+BSU01820,adaB,methylated-dna--protein-cysteine methyltransferase
+BSU01830,ndhF,NADH-quinone oxidoreductase subunit 5
+BSU01845,ybcC,hypothetical protein
+BSU01860,ybcF,carbonic anhydrase-like protein YbcF
+BSU01870,ybcH,hypothetical protein
+BSU01880,ybcI,hypothetical protein
+BSU01889,ybzH,ArsR family transcriptional regulator
+BSU01890,ybcL,MFS transporter
+BSU01900,ybcM,hypothetical protein
+BSU01910,skfA,sporulation-killing factor SkfA
+BSU01920,skfB,hypothetical protein
+BSU01935,skfC,sporulation-killing factor biosynthesis protein SkfC
+BSU01950,skfE,SkfA peptide export ATP-binding protein SkfE
+BSU01960,skfF,bacteriocin-SkfA transport system permease SkfF
+BSU01970,skfG,hypothetical protein
+BSU01980,skfH,thioredoxin
+BSU01990,ybdG,hypothetical protein
+BSU02000,ybdJ,transcriptional regulator
+BSU02010,ybdK,sensor histidine kinase
+BSU02019,ybzI,hypothetical protein
+BSU02030,ybdM,serine/threonine protein kinase
+BSU02040,ybdN,hypothetical protein
+BSU02050,ybdO,hypothetical protein
+BSU02060,ybxG,transporter
+BSU02070,csgA,sigma-G-dependent sporulation-specific SASP protein
+BSU02080,ybxH,hypothetical protein
+BSU02090,ybxI,beta-lactamase YbxI
+BSU02100,cypC,fatty-acid peroxygenase
+BSU02110,ybyB,hypothetical protein
+BSU02120,ybeC,amino acid-proton symporter YbeC
+BSU02130,glpQ,glycerophosphoryl diester phosphodiesterase
+BSU02140,glpT,glycerol-3-phosphate transporter
+BSU02150,ybeF,hypothetical protein
+BSU02160,ybfA,MarR family transcriptional regulator
+BSU02170,ybfB,MFS transporter
+BSU02180,ybfE,hypothetical protein
+BSU02190,ybfF,hypothetical protein
+BSU02200,ybfG,hypothetical protein
+BSU02210,ybfH,transporter
+BSU02220,ybfI,AraC family transcriptional regulator
+BSU02230,purT,phosphoribosylglycinamide formyltransferase
+BSU02240,mpr,extracellular metalloprotease
+BSU02250,ybfJ,hypothetical protein
+BSU02260,ybfK,carboxylesterase YbfK
+BSU02270,pssA,CDP-diacylglycerol--serine O-phosphatidyltransferase
+BSU02280,ybfM,hypothetical protein
+BSU02290,psd,phosphatidylserine decarboxylase proenzyme
+BSU02300,ybfN,hypothetical protein
+BSU02310,ybfO,hydrolase YbfO
+BSU02320,ybfP,AraC family transcriptional regulator
+BSU02330,ybfQ,hypothetical protein
+BSU02340,gltP,proton glutamate symport protein
+BSU02350,nagP,PTS system-glucosamine-specific transporter subunit EIICBA
+BSU02360,nagBB,glucosamine-6-phosphate deaminase 2
+BSU02370,ybgA,GntR family transcriptional regulator
+BSU02380,ybgB,hypothetical protein
+BSU02390,ybgE,branched-chain-amino acid transaminase 1
+BSU02400,ybgF,amino acid permease YbgF
+BSU02410,mmuM,homocysteine S-methyltransferase YbgG
+BSU02420,glnT,sodium/glutamine symporter GlnT
+BSU02430,ybgJ,glutaminase 1
+BSU02440,glnJ,sensor histidine kinase
+BSU02450,glnL,transcriptional regulatory protein GlnL
+BSU02460,ycbC,5-dehydro-4-deoxyglucarate dehydratase
+BSU02470,ycbD,aldehyde dehydrogenase YcbD
+BSU02480,gudP,glucarate transporter
+BSU02490,gudD,glucarate dehydratase
+BSU02500,ycbG,GntR family transcriptional regulator
+BSU02510,garD,D-galactarate dehydratase
+BSU02520,ycbJ,hypothetical protein
+BSU_misc_RNA_6,,T-box
+BSU02530,rtpA,tryptophan RNA-binding attenuator protein inhibitory protein
+BSU02540,ycbK,transporter
+BSU02550,ycbL,transcriptional regulator
+BSU02560,ycbM,sensor histidine kinase
+BSU02570,ycbN,ABC transporter ATP-binding protein
+BSU02580,ycbO,hypothetical protein
+BSU02590,ycbP,hypothetical protein
+BSU02600,cwlJ,cell wall hydrolase CwlJ
+BSU02610,ycbR,hypothetical protein
+BSU02619,yczK,hypothetical protein
+BSU02620,phoD,alkaline phosphatase D
+BSU02630,tatAD,Sec-independent protein translocase protein TatAd
+BSU02640,tatCD,Sec-independent protein translocase protein TatCd
+BSU02650,pcp,pyrrolidone-carboxylate peptidase
+BSU02660,ycbU,aminotransferase YcbU
+BSU02670,lmrB,lincomycin resistance protein LmrB
+BSU02680,lmrA,TetR family transcriptional regulator
+BSU02690,ansZ,asparaginase
+BSU02700,estA,lipase EstA
+BSU02710,yczC,hypothetical protein
+BSU02720,yccF,hypothetical protein
+BSU02730,natK,sensor histidine kinase
+BSU02740,natR,transcriptional regulator
+BSU02750,natA,ABC transporter ATP-binding protein
+BSU02760,natB,sodium efflux ABC transporter permease NatB
+BSU02770,yccK,oxidoreductase
+BSU02780,ycdA,lipoprotein
+BSU02790,ycdB,hypothetical protein
+BSU02800,ycdC,hypothetical protein
+BSU02810,cwlK,peptidoglycan L-alanyl-D-glutamate endopeptidase CwlK
+BSU02820,rapJ,response regulator aspartate phosphatase J
+BSU02830,ycdF,glucose 1-dehydrogenase 2
+BSU02840,ycdG,"oligo-1,6-glucosidase 2"
+BSU02850,adcA,zinc transport system zinc-binding lipoprotein AdcA
+BSU02860,adcC,zinc transport system ATP-binding protein AdcC
+BSU02870,adcB,zinc transport system permease protein AdcB
+BSU02880,yceB,hypothetical protein
+BSU02890,yceC,stress response protein SCP2
+BSU02900,yceD,general stress protein 16U
+BSU02910,yceE,hypothetical protein
+BSU02920,yceF,hypothetical protein
+BSU02930,yceG,hypothetical protein
+BSU02940,yceH,hypothetical protein
+BSU02950,yceI,niacin/nicotinamide transporter NaiP
+BSU02960,yceJ,MFS transporter
+BSU02970,yceK,ArsR family transcriptional regulator
+BSU02980,opuAA,glycine/betaine ABC transporter ATP-binding protein
+BSU02990,opuAB,glycine betaine transport system permease protein OpuAB
+BSU03000,opuAC,glycine betaine-binding protein OpuAC
+BSU03010,amhX,amidohydrolase AmhX
+BSU03020,ycgA,hypothetical protein
+BSU03030,ycgB,hypothetical protein
+BSU03040,amyE,alpha-amylase
+BSU03050,ldh,L-lactate dehydrogenase
+BSU03060,lctP,L-lactate permease
+BSU03070,mdr,multidrug resistance protein
+BSU03080,ycgE,ArsR family transcriptional regulator
+BSU03090,ycgF,amino acid efflux protein YcgF
+BSU03100,ycgG,hypothetical protein
+BSU03110,ycgH,transporter
+BSU03120,ycgI,hypothetical protein
+BSU03130,nadE,NH(3)-dependent NAD(+) synthetase
+BSU03140,tmrB,tunicamycin resistance protein
+BSU03150,aroK,shikimate kinase
+BSU03160,ycgJ,methyltransferase
+BSU03170,ycgK,LysR family transcriptional regulator
+BSU03180,cah,cephalosporin-C deacetylase
+BSU03190,ycgL,hypothetical protein
+BSU03200,ycgM,proline dehydrogenase 2
+BSU03210,ycgN,1-pyrroline-5-carboxylate dehydrogenase
+BSU03220,ycgO,symporter
+BSU03230,ycgP,hypothetical protein
+BSU03240,ycgQ,hypothetical protein
+BSU03250,ycgR,hypothetical protein
+BSU03260,ycgS,hydrolase YcgS
+BSU03270,ycgT,ferredoxin--NADP reductase 1
+BSU03280,nasF,uroporphyrinogen-iii C-methyltransferase
+BSU03290,nasE,assimilatory nitrite reductase [NAD(P)H] small subunit
+BSU03300,nasD,nitrite reductase
+BSU03310,nasC,assimilatory nitrate reductase catalytic subunit
+BSU03320,nasB,assimilatory nitrate reductase electron transfer subunit
+BSU03330,nasA,nitrate transporter
+BSU03340,yciA,GTP cyclohydrolase folE2
+BSU03350,yciB,"L,D-transpeptidase YciB"
+BSU03359,yczL,hypothetical protein
+BSU03360,yciC,metal chaperone YciC
+BSU03370,yckA,amino acid ABC transporter permease protein YckA
+BSU03380,yckB,ABC transporter substrate-binding protein
+BSU03390,yckC,hypothetical protein
+BSU03400,yckD,hypothetical protein
+BSU03410,bglC,aryl-phospho-beta-d-glucosidase BglC
+BSU03420,nin,DNA-entry nuclease inhibitor
+BSU03430,nucA,DNA-entry nuclease
+BSU03440,tlpC,methyl-accepting chemotaxis protein TlpC
+BSU03450,hxlB,3-hexulose-6-phosphate isomerase
+BSU03460,hxlA,3-hexulose-6-phosphate synthase
+BSU03470,hxlR,HxlR family transcriptional regulator
+BSU03480,srfAA,surfactin synthase subunit 1
+BSU03490,srfAB,surfactin synthase subunit 2
+BSU03500,comS,competence protein S
+BSU03510,srfAC,surfactin synthase subunit 3
+BSU03520,srfAD,surfactin synthase thioesterase subunit
+BSU03530,ycxA,MFS transporter
+BSU03540,ycxB,hypothetical protein
+BSU03550,ycxC,transporter
+BSU03560,ycxD,GntR family transcriptional regulator
+BSU03569,sfp,pseudogene
+BSU03570,sfp,pseudogene
+BSU03580,yczE,hypothetical protein
+BSU03590,tcyC,L-cystine import ATP-binding protein TcyC
+BSU03600,tcyB,L-cystine transport system permease protein TcyB
+BSU03610,tcyA,L-cystine-binding protein TcyA
+BSU03620,yclA,LysR family transcriptional regulator
+BSU03630,yclB,phenolic acid decarboxylase subunit B
+BSU03640,ubiD,phenolic acid decarboxylase subunit C
+BSU03651,bsdD,phenolic acid decarboxylase subunit D
+BSU03652,yclD,hypothetical protein
+BSU03660,yclE,AB hydrolase superfamily protein YclE
+BSU03670,dtpT,transporter
+BSU03680,yclG,hypothetical protein
+BSU03690,yczF,hypothetical protein
+BSU03700,gerKA,spore germination protein KA
+BSU03710,gerKC,spore germination protein KC
+BSU03720,gerKB,spore germination protein KB
+BSU03730,yclH,ABC transporter ATP-binding protein
+BSU03740,yclI,ABC transporter permease
+BSU03750,yclJ,transcriptional regulator
+BSU03760,yclK,sensor histidine kinase
+BSU03770,rapC,response regulator aspartate phosphatase C
+BSU03780,phrC,phosphatase RapC inhibitor
+BSU03789,yczN,hypothetical protein
+BSU03790,yclM,aspartokinase 3
+BSU03800,yclN,ABC transporter permease
+BSU03810,yclO,ABC transporter permease
+BSU03820,yclP,ABC transporter ATP-binding protein
+BSU03830,yclQ,ABC transporter substrate-binding protein
+BSU03840,ycnB,MFS transporter
+BSU03850,ycnC,TetR family transcriptional regulator
+BSU03860,ycnD,FMN reductase
+BSU03870,ycnE,monooxygenase YcnE
+BSU03880,yczG,ArsR family transcriptional regulator
+BSU03890,gabR,GntR family transcriptional regulator
+BSU03900,gabT,4-aminobutyrate aminotransferase
+BSU03910,gabD,succinate-semialdehyde dehydrogenase
+BSU03920,glcU,glucose uptake protein GlcU
+BSU03930,gdh,glucose 1-dehydrogenase
+BSU03940,ycnI,hypothetical protein
+BSU03950,ycnJ,copper transport protein YcnJ
+BSU03960,ycnK,DeoR family transcriptional regulator
+BSU03970,ycnL,hypothetical protein
+BSU03981,mtlA,PTS system-mannitol-specific transporter subunit EIICB
+BSU03982,mtlF,mannitol-specific phosphotransferase enzyme IIA component
+BSU03990,mtlD,mannitol-1-phosphate 5-dehydrogenase
+BSU04000,ycsA,tartrate dehydrogenase/decarboxylase
+BSU04010,sipU,signal peptidase I U
+BSU04020,yczH,hydrolase
+BSU04030,ycsD,hypothetical protein
+BSU04039,yczO,hypothetical protein
+BSU04040,ycsE,hypothetical protein
+BSU04050,ycsF,hypothetical protein
+BSU04060,ycsG,hypothetical protein
+BSU04070,ycsI,hypothetical protein
+BSU04080,kipI,kinase A inhibitor
+BSU04090,kipA,kipi antagonist
+BSU04100,kipR,IclR family transcriptional regulator
+BSU04110,lipC,spore germination lipase LipC
+BSU04120,yczI,hypothetical protein
+BSU04130,yczJ,hypothetical protein
+BSU04140,pbpC,penicillin-binding protein 3
+BSU04150,ycsN,oxidoreductase
+BSU04160,mtlR,transcriptional regulator MtlR
+BSU04170,ydaB,acyl--CoA ligase YdaB
+BSU04180,ydaC,methyltransferase
+BSU04190,ydaD,general stress protein 39
+BSU04200,ydaE,D-lyxose ketol-isomerase
+BSU04210,ydaF,ribosomal N-acetyltransferase YdaF
+BSU04220,ydaG,general stress protein 26
+BSU04230,ydaH,hypothetical protein
+BSU04240,ydzA,hypothetical protein
+BSU04250,lrpC,AsnC family transcriptional regulator
+BSU04260,topB,DNA topoisomerase 3
+BSU04270,ydaJ,lipoprotein
+BSU04280,ydaK,hypothetical protein
+BSU04290,ydaL,hypothetical protein
+BSU04300,ydaM,glycosyltransferase YdaM
+BSU04310,ydaN,hypothetical protein
+BSU_misc_RNA_7,,hypothetical protein
+BSU04320,ydaO,amino acid permease YdaO
+BSU04330,mutT,8-oxo-dGTP diphosphatase
+BSU04340,ydaP,thiamine pyrophosphate-containing protein YdaP
+BSU04359,ydzK,hypothetical protein
+BSU04360,mntH,divalent metal cation transporter MntH
+BSU04370,ydaS,hypothetical protein
+BSU04380,ydaT,hypothetical protein
+BSU04390,ydbA,hypothetical protein
+BSU04400,gsiB,glucose starvation-inducible protein B
+BSU04410,ydbB,hypothetical protein
+BSU04420,ydbC,hypothetical protein
+BSU04430,ydbD,manganese catalase
+BSU04440,dctB,C4-dicarboxylate-binding protein DctB
+BSU04450,dctS,C4-dicarboxylate sensor kinase
+BSU04460,dctR,C4-dicarboxylate response regulator DctR
+BSU04470,dctP,C4-dicarboxylate transport protein
+BSU04480,ydbI,hypothetical protein
+BSU04490,ydbJ,ABC transporter ATP-binding protein
+BSU04500,ydbK,hypothetical protein
+BSU04510,ydbL,hypothetical protein
+BSU04520,ydbM,acyl-CoA dehydrogenase YdbM
+BSU04530,ydbN,hypothetical protein
+BSU04540,ydbO,transporter
+BSU04550,ydbP,thioredoxin
+BSU04560,ddl,D-alanine--D-alanine ligase
+BSU04570,murF,UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase
+BSU04580,cshA,ATP-dependent RNA helicase
+BSU04590,ydbS,hypothetical protein
+BSU04600,ydbT,hypothetical protein
+BSU04610,ydcA,rhomboid protease YdcA
+BSU04620,acpS,holo-[acyl-carrier-protein] synthase
+BSU04630,ydcC,sporulation protein YdcC
+BSU04640,alrA,alanine racemase 1
+BSU04650,endB,antitoxin EndoAI
+BSU04660,ndoA,mRNA interferase EndoA
+BSU04670,rsbRA,RsbT co-antagonist protein RsbRA
+BSU04680,rsbS,RsbT antagonist protein RsbS
+BSU04690,rsbT,serine/threonine protein kinase
+BSU04700,rsbU,phosphoserine phosphatase RsbU
+BSU04710,rsbV,anti-sigma-B factor antagonist
+BSU04720,rsbW,serine-protein kinase RsbW
+BSU04730,sigB,RNA polymerase sigma-B factor
+BSU04740,rsbX,phosphoserine phosphatase RsbX
+BSU04750,ydcF,hypothetical protein
+BSU04760,ydcG,hypothetical protein
+BSU04770,ydcH,MarR family transcriptional regulator
+BSU04780,ydcI,hypothetical protein
+BSU04790,ydcK,protein SprT-like
+BSU_tRNA_45,trnS-Asn,tRNA-Asn
+BSU_tRNA_46,trnS-Ser,tRNA-Ser
+BSU_tRNA_47,trnS-Glu,tRNA-Glu
+BSU_tRNA_48,trnS-Gln,tRNA-Gln
+BSU_tRNA_49,trnS-Lys,tRNA-Lys
+BSU_tRNA_50,trnS-Leu1,tRNA-Leu
+BSU_tRNA_51,trnS-Leu2,tRNA-Leu
+BSU04800,ydcL,ICEBs1 integrase
+BSU04810,immA,metallopeptidase ImmA
+BSU04820,immR,XRE family transcriptional regulator
+BSU04830,sacV,excisionase
+BSU04839,ydzL,hypothetical protein
+BSU04840,ydcO,hypothetical protein
+BSU04850,ydcP,hypothetical protein
+BSU04860,ydcQ,Ftsk domain-containing protein YdcQ
+BSU04870,ydcR,DNA relaxase NicK
+BSU04880,ydcS,hypothetical protein
+BSU04890,ydcT,hypothetical protein
+BSU04900,yddA,hypothetical protein
+BSU04910,yddB,hypothetical protein
+BSU04920,yddC,hypothetical protein
+BSU04930,yddD,hypothetical protein
+BSU04940,yddE,hypothetical protein
+BSU04950,yddF,hypothetical protein
+BSU04960,yddG,hypothetical protein
+BSU04970,yddH,endopeptidase YddH
+BSU04980,yddI,hypothetical protein
+BSU04990,yddJ,hypothetical protein
+BSU05000,yddK,hypothetical protein
+BSU05010,rapI,response regulator aspartate phosphatase I
+BSU05020,phrI,secreted regulator of the activity of phosphatase RapI
+BSU05030,yddM,helicase
+BSU05040,yddN,hypothetical protein
+BSU05050,lrpA,AsnC family transcriptional regulator
+BSU05060,lrpB,AsnC family transcriptional regulator
+BSU05070,yddQ,isochorismatase
+BSU05080,yddR,hypothetical protein
+BSU05090,yddS,MFS transporter
+BSU05099,ydzM,hypothetical protein
+BSU05100,yddT,hypothetical protein
+BSU05109,ydzN,hypothetical protein
+BSU05110,ydeA,protease YdeA
+BSU05120,cspC,cold shock protein CspC
+BSU05130,ydeB,transcription factor YdeB
+BSU05140,ydzE,permease
+BSU05150,ydeC,AraC family transcriptional regulator
+BSU05160,ydeD,transporter
+BSU05170,ydeE,AraC family transcriptional regulator
+BSU05180,ydeF,GntR family transcriptional regulator
+BSU05190,ydeG,MFS transporter
+BSU05200,ydeH,hypothetical protein
+BSU05210,ydeI,hypothetical protein
+BSU05220,ydeJ,lipoprotein
+BSU05230,ydeK,transporter
+BSU05240,ydeL,GntR family transcriptional regulator
+BSU05250,ydeM,hypothetical protein
+BSU05260,ydeN,hydrolase
+BSU05270,ydzF,HxlR family transcriptional regulator
+BSU05280,ydeO,hypothetical protein
+BSU05290,ydeP,HxlR family transcriptional regulator
+BSU05300,ydeQ,NAD(P)H oxidoreductase
+BSU05310,ydeR,MFS transporter
+BSU05320,ydeS,TetR family transcriptional regulator
+BSU05329,ydzO,hypothetical protein
+BSU05330,aseR,ArsR family transcriptional regulator
+BSU05340,ydfA,arsenic pump protein
+BSU05343,ydzS,pseudogene
+BSU05344,ydzS,pseudogene
+BSU05350,ydfB,N-acetyltransferase YdfB
+BSU05360,ydfC,transporter
+BSU05370,ydfD,GntR family transcriptional regulator
+BSU05380,ydfE,hypothetical protein
+BSU05390,ydfF,ArsR family transcriptional regulator
+BSU05400,ydfG,hypothetical protein
+BSU05408,ydzP,hypothetical protein
+BSU05409,ydzQ,hypothetical protein
+BSU05410,ydfH,sensor histidine kinase
+BSU05420,ydfI,transcriptional regulator
+BSU05430,ydfJ,hypothetical protein
+BSU05440,nap,carboxylesterase nap
+BSU05450,ydfK,hypothetical protein
+BSU05460,ydfL,GntR family transcriptional regulator
+BSU05470,ydfM,transporter
+BSU05480,ydfN,NAD(P)H nitroreductase MhqN
+BSU05490,ydfO,ring-cleaving dioxygenase MhqO
+BSU05500,ydfP,oxidoreductase
+BSU05510,ydfQ,thioredoxin
+BSU05520,ydzH,hypothetical protein
+BSU05529,ydzR,spore germination protein
+BSU05530,ydfR,hypothetical protein
+BSU05540,ydfS,hypothetical protein
+BSU05550,cotP,spore coat protein P
+BSU05560,ydgA,hypothetical protein
+BSU05570,ydgB,hypothetical protein
+BSU05580,ydgC,TetR family transcriptional regulator
+BSU05590,ydgD,hypothetical protein
+BSU05600,ydgE,N-acetyltransferase YdgE
+BSU05610,vmlR,nucleotide-binding protein ExpZ
+BSU05620,ydgF,transporter
+BSU05630,dinB,protein DinB
+BSU05640,ydgG,MarR family transcriptional regulator
+BSU05650,ydgH,hypothetical protein
+BSU05660,ydgI,NAD(P)H nitroreductase YdgI
+BSU05670,ydgJ,MarR family transcriptional regulator
+BSU05680,ydgK,MFS transporter
+BSU05690,ydhB,hypothetical protein
+BSU05700,ydhC,GntR family transcriptional regulator
+BSU05710,ydhD,sporulation protein
+BSU05720,ydhE,UDP-glucosyltransferase YdhE
+BSU05730,ydhF,hypothetical protein
+BSU05740,phoB,alkaline phosphatase 3
+BSU05750,ydhG,hypothetical protein
+BSU05760,ydhH,hypothetical protein
+BSU05770,ydhI,hypothetical protein
+BSU05780,ydhJ,hypothetical protein
+BSU05790,ydhK,hypothetical protein
+BSU05800,pbuE,purine efflux pump PbuE
+BSU_misc_RNA_8,,Purine
+BSU05810,gmuB,PTS system-oligo-beta-mannoside-specific transporter subunit IIB
+BSU05820,gmuA,PTS system-oligo-beta-mannoside-specific transporter subunit IIA
+BSU05830,gmuC,PTS system-oligo-beta-mannoside-specific transporter subunit IIC
+BSU05840,gmuD,6-phospho-beta-glucosidase GmuD
+BSU05850,gmuR,GntR family transcriptional regulator
+BSU05860,gmuE,fructokinase
+BSU05870,gmuF,mannose-6-phosphate isomerase GmuF
+BSU05880,gmuG,"mannan endo-1,4-beta-mannosidase"
+BSU05890,ydhU,pseudogene
+BSU05899,ydhU,pseudogene
+BSU_tRNA_79,trnE-Arg,tRNA-Arg
+BSU_tRNA_80,trnE-Gly,tRNA-Gly
+BSU_rRNA_30,rrnE-16S,16S ribosomal RNA
+BSU_rRNA_12,rrnE-23S,23S ribosomal RNA
+BSU_rRNA_13,rrnE-5S,5S ribosomal RNA
+BSU_tRNA_21,trnE-Met,tRNA-Met
+BSU_tRNA_22,trnE-Asp,tRNA-Asp
+BSU05900,thiL,thiamine-monophosphate kinase
+BSU05910,ydiB,ATP-binding protein YdiB
+BSU05920,ydiC,hypothetical protein
+BSU05930,rimI,ribosomal-protein-alanine acetyltransferase
+BSU05940,gcp,tRNA threonylcarbamoyladenosine biosynthesis protein Gcp
+BSU05950,ydiF,ABC transporter ATP-binding protein
+BSU05960,moaC,cyclic pyranopterin monophosphate synthase accessory protein
+BSU05970,ydiH,redox-sensing transcriptional repressor rex
+BSU05980,tatAY,Sec-independent protein translocase protein TatAy
+BSU05990,tatCY,Sec-independent protein translocase protein TatCy
+BSU06000,ydiK,lipoprotein
+BSU06010,ydiL,membrane peptidase YdiL
+BSU06020,groES,chaperonin
+BSU06030,groEL,chaperonin
+BSU06033,ydzT,pseudogene
+BSU06034,ydzT,pseudogene
+BSU06036,ydzT,pseudogene
+BSU06037,ydzT,pseudogene
+BSU06038,ydzT,pseudogene
+BSU06040,ydiM,hypothetical protein
+BSU06048,ydzU,hypothetical protein
+BSU06049,ydzV,pseudogene
+BSU06060,ydiO,BsuMI modification methylase subunit YdiO
+BSU06070,ydiP,BsuMI modification methylase subunit YdiP
+BSU06073,ydzW,pseudogene
+BSU06074,ydzW,pseudogene
+BSU06076,ydzW,pseudogene
+BSU06077,ydzW,pseudogene
+BSU06078,ydzW,pseudogene
+BSU06079,ydzW,pseudogene
+BSU06083,ydzW,pseudogene
+BSU06090,ydiR,type-2 restriction enzyme BsuMI component YdiR
+BSU06100,ydiS,type-2 restriction enzyme BsuMI component YdiS
+BSU06110,ydjA,type-2 restriction enzyme BsuMI component YdjA
+BSU06120,ydjB,hypothetical protein
+BSU06130,ydjC,hypothetical protein
+BSU06140,gutR,transcription activator GutR
+BSU06150,gutB,sorbitol dehydrogenase
+BSU06160,gutP,glucitol transport protein GutA
+BSU06170,ydjE,sugar kinase YdjE
+BSU06180,pspA,phage shock protein A homolog
+BSU06190,ydjG,hypothetical protein
+BSU06200,ydjH,hypothetical protein
+BSU06210,ydjI,hypothetical protein
+BSU06220,ydjJ,hypothetical protein
+BSU06230,iolT,major myo-inositol transporter IolT
+BSU06240,bdhA,"(R,R)-butanediol dehydrogenase"
+BSU06250,ydjM,hypothetical protein
+BSU06260,ydjN,hypothetical protein
+BSU06269,ydzJ,hypothetical protein
+BSU06270,ydjO,hypothetical protein
+BSU06280,ydjP,AB hydrolase superfamily protein YdjP
+BSU06290,yeaA,hypothetical protein
+BSU06300,cotA,spore coat protein A
+BSU06310,gabP,GABA permease
+BSU06319,ydzX,hypothetical protein
+BSU06320,yeaB,transporter
+BSU06330,yeaC,hypothetical protein
+BSU06340,yeaD,hypothetical protein
+BSU06350,yebA,hypothetical protein
+BSU06360,guaA,GMP synthase
+BSU_misc_RNA_9,,Purine
+BSU06370,pbuG,guanine/hypoxanthine permease PbuG
+BSU06380,yebC,hypothetical protein
+BSU06390,yebD,hypothetical protein
+BSU06400,yebE,hypothetical protein
+BSU06410,yebG,hypothetical protein
+BSU_misc_RNA_10,,Purine
+BSU06420,purE,5-(carboxyamino)imidazole ribonucleotide mutase
+BSU06430,purK,5-(carboxyamino)imidazole ribonucleotide synthase
+BSU06440,purB,adenylosuccinate lyase
+BSU06450,purC,phosphoribosylaminoimidazole-succinocarboxamide synthase
+BSU06460,purS,hypothetical protein
+BSU06470,purQ,phosphoribosylformylglycinamidine synthase
+BSU06480,purL,phosphoribosylformylglycinamidine synthase
+BSU06490,purF,amidophosphoribosyltransferase
+BSU06500,purM,phosphoribosylformylglycinamidine cyclo-ligase
+BSU06510,purN,phosphoribosylglycinamide formyltransferase
+BSU06520,purH,bifunctional purine biosynthesis protein PurH
+BSU06530,purD,phosphoribosylamine--glycine ligase
+BSU06540,yezC,AsnC family transcriptional regulator
+BSU06550,yecA,amino acid permease
+BSU06559,yezF,hypothetical protein
+BSU06560,yerA,adenine deaminase YerA
+BSU06570,yerB,lipoprotein
+BSU06580,yerC,hypothetical protein
+BSU06590,yerD,glutamate synthase large subunit-like protein YerD
+BSU06600,pcrB,heptaprenylglyceryl phosphate synthase
+BSU06610,pcrA,ATP-dependent DNA helicase PcrA
+BSU06620,ligA,DNA ligase
+BSU06630,yerH,lipoprotein
+BSU06640,yerI,hypothetical protein
+BSU06650,sapB,peptide ABC transporter permease SapB
+BSU06660,opuE,osmoregulated proline transporter
+BSU06670,gatC,glutamyl-tRNA(Gln) amidotransferase subunit C
+BSU06680,gatA,glutamyl-tRNA(Gln) amidotransferase subunit A
+BSU06690,gatB,aspartyl/glutamyl-tRNA amidotransferase subunit B
+BSU06700,yerO,TetR family transcriptional regulator
+BSU06710,swrC,surfactin self-resistance transporter
+BSU06720,yerQ,diacylglycerol kinase
+BSU06730,yefA,23S rRNA (uracil-C(5))-methyltransferase RlmCD
+BSU06740,yefB,hypothetical protein
+BSU06750,yefC,resolvase YefC
+BSU06760,yeeA,DNA methyltransferase YeeA
+BSU06770,yeeB,ATP-dependent helicase YeeB
+BSU06780,yeeC,hypothetical protein
+BSU06790,yeeD,hypothetical protein
+BSU06800,yezA,hypothetical protein
+BSU06811,yezG,hypothetical protein
+BSU06812,yeeF,hypothetical protein
+BSU06820,yeeG,hypothetical protein
+BSU06830,rapH,response regulator aspartate phosphatase H
+BSU06839,phrH,inhibitor of regulatory cascade
+BSU06840,yeeI,transcriptional regulator
+BSU06850,yeeK,spore coat protein YeeK
+BSU06860,yezE,TetR family transcriptional regulator
+BSU06870,yesE,hypothetical protein
+BSU06880,yesF,oxidoreductase
+BSU06890,cotJA,spore coat associated protein CotJA
+BSU06900,cotJB,spore coat protein CotJB
+BSU06910,cotJC,spore coat peptide assembly protein CotJC
+BSU06920,yesJ,N-acetyltransferase YesJ
+BSU06930,yesK,hypothetical protein
+BSU06940,yesL,hypothetical protein
+BSU06950,yesM,sensor histidine kinase
+BSU06960,yesN,transcriptional regulator
+BSU06970,yesO,ABC transporter substrate-binding protein
+BSU06980,yesP,ABC transporter permease
+BSU06990,yesQ,ABC transporter permease
+BSU07000,yesR,rhamnogalacturonyl hydrolase
+BSU07010,yesS,AraC family transcriptional regulator
+BSU07020,rhgT,rhamnogalacturonan acetylesterase RhgT
+BSU07030,yesU,hypothetical protein
+BSU07040,yesV,hypothetical protein
+BSU07050,yesW,rhamnogalacturonan endolyase YesW
+BSU07060,yesX,rhamnogalacturonan exolyase YesX
+BSU07070,yesY,rhamnogalacturonan acetylesterase YesY
+BSU07080,yesZ,beta-galactosidase YesZ
+BSU07090,yetA,hypothetical protein
+BSU07100,lplA,lipoprotein
+BSU07110,lplB,ABC transporter permease LplB
+BSU07120,lplC,ABC transporter permease LplC
+BSU07130,lplD,alpha-galacturonidase
+BSU07140,yetF,hypothetical protein
+BSU07150,yetG,monooxygenase
+BSU07160,yetH,hypothetical protein
+BSU07170,yetI,pseudogene
+BSU07180,yetI,pseudogene
+BSU07190,yezD,hypothetical protein
+BSU07200,yetJ,hypothetical protein
+BSU07210,yetK,transporter
+BSU07220,yetL,MarR family transcriptional regulator
+BSU07230,yetM,oxidoreductase
+BSU07240,yetN,hypothetical protein
+BSU07250,yetO,bifunctional P-450/NADPH-P450 reductase 1
+BSU07260,ltaSA,lipoteichoic acid synthase
+BSU07270,yfnH,glucose-1-phosphate cytidylyltransferase
+BSU07280,yfnG,CDP-sugar-dehydratase/epimerase
+BSU07290,yfnF,hypothetical protein
+BSU07300,yfnE,glycosyltransferase YfnE
+BSU07310,yfnD,hypothetical protein
+BSU07320,yfnC,MFS transporter
+BSU07330,yfnB,HAD-hydrolase YfnB
+BSU07340,yfnA,amino acid permease YfnA
+BSU07350,yfmT,aldehyde dehydrogenase YfmT
+BSU07360,yfmS,sensory transducer protein YfmS
+BSU07370,yfmR,ABC transporter ATP-binding protein
+BSU07380,yfmQ,hypothetical protein
+BSU07390,yfmP,MerR family transcriptional regulator
+BSU07400,yfmO,MFS transporter
+BSU07410,yfmN,hypothetical protein
+BSU07420,yfmM,ABC transporter ATP-binding protein
+BSU07430,yfmL,ATP-dependent RNA helicase YfmL
+BSU07440,yfmK,N-acetyltransferase YfmK
+BSU07450,yfmJ,NADP-dependent oxidoreductase YfmJ
+BSU07460,yfmI,MFS transporter
+BSU07480,yfmG,hypothetical protein
+BSU07490,yfmF,Fe(3+)-citrate import ATP-binding protein YfmF
+BSU07500,yfmE,Fe(3+)-citrate import system permease protein YfmE
+BSU07510,yfmD,Fe(3+)-citrate import system permease protein YfmD
+BSU07520,yfmC,Fe(3+)-citrate-binding protein YfmC
+BSU07530,yfmB,hypothetical protein
+BSU07540,yfmA,hypothetical protein
+BSU07550,yflT,general stress protein 17M
+BSU07560,pel,pectate lyase
+BSU07570,yflS,malate transporter YflS
+BSU07580,citS,sensor protein CitS
+BSU07590,citT,transcriptional regulatory protein CitT
+BSU07600,yflP,hypothetical protein
+BSU07610,citM,Mg(2+)/citrate complex secondary transporter
+BSU07620,yflN,hypothetical protein
+BSU07630,nosA,nitric oxide synthase oxygenase
+BSU07640,yflL,acylphosphatase
+BSU07650,yflK,hypothetical protein
+BSU07660,yflJ,hypothetical protein
+BSU07670,yflI,hypothetical protein
+BSU07680,yflH,hypothetical protein
+BSU07690,yflG,methionine aminopeptidase 2
+BSU07700,nagP,PTS system-N-acetylglucosamine-specific transporter subunit EIICB
+BSU07710,yflE,lipoteichoic acid synthase
+BSU07720,yflD,hypothetical protein
+BSU07735,yflB,hypothetical protein
+BSU07750,yflA,transporter
+BSU07760,yfkT,spore germination protein YfkT
+BSU07770,yfkS,hypothetical protein
+BSU07780,yfkR,spore germination protein YfkR
+BSU07790,yfkQ,hypothetical protein
+BSU07800,treP,PTS system-trehalose-specific transporter subunit EIIBC
+BSU07810,treA,trehalose-6-phosphate hydrolase
+BSU07820,treR,trehalose operon transcriptional repressor
+BSU07830,yfkO,NAD(P)H nitroreductase YfkO
+BSU07840,yfkN,nucleotide phosphoesterase
+BSU07850,yfkM,general stress protein 18
+BSU07860,yfkL,MFS transporter
+BSU07870,yfkK,hypothetical protein
+BSU07880,yfkJ,low molecular weight protein-tyrosine-phosphatase YfkJ
+BSU07890,yfkI,hypothetical protein
+BSU07900,yfkH,ribonuclease-like protein YfkH
+BSU07910,yfkF,MFS transporter
+BSU07920,yfkE,cation exchanger YfkE
+BSU07930,yfkD,hypothetical protein
+BSU07940,yfkC,MscS family protein YfkC
+BSU07955,yfkA,radical SAM protein YfkA
+BSU07970,yfjT,hypothetical protein
+BSU07980,pdaA,polysaccharide deacetylase PdaA
+BSU07990,yfjR,oxidoreductase
+BSU08000,yfjQ,metal ion transporter YfjQ
+BSU08010,yfjP,DNA-3-methyladenine glycosylase YfjP
+BSU08020,yfjO,RNA methyltransferase YfjO
+BSU08029,yfzA,hypothetical protein
+BSU08030,dusC,tRNA-dihydrouridine synthase 2
+BSU08040,yfjM,hypothetical protein
+BSU08050,yfjL,hypothetical protein
+BSU08060,acoA,"acetoin:2,6-dichlorophenolindophenol oxidoreductase subunit alpha"
+BSU08070,acoB,"acetoin:2,6-dichlorophenolindophenol oxidoreductase subunit beta"
+BSU08080,acoC,dihydrolipoyllysine-residue acetyltransferase component of acetoin cleaving system
+BSU08090,acoL,dihydrolipoyl dehydrogenase
+BSU08100,acoR,acetoin dehydrogenase operon transcriptional activator AcoR
+BSU08110,sspH,small acid-soluble spore protein H
+BSU08120,yfjF,hypothetical protein
+BSU08130,yfjE,hypothetical protein
+BSU08140,yfjD,lipoprotein
+BSU08150,yfjC,hypothetical protein
+BSU08160,yfjB,hypothetical protein
+BSU08170,yfjA,hypothetical protein
+BSU08180,malA,maltose-6'-phosphate glucosidase
+BSU08190,malR,RpiR family transcriptional regulator
+BSU08200,malP,PTS system-maltose-specific transporter subunit IIBC
+BSU08210,malQ,ABC transporter ATP-binding protein
+BSU08220,yfiC,ABC transporter ATP-binding protein
+BSU08230,catD,oxidoreductase
+BSU08240,catE,"catechol-2,3-dioxygenase"
+BSU08250,yfiF,AraC family transcriptional regulator
+BSU08260,yfiG,metabolite transporter
+BSU08270,yfiH,hypothetical protein
+BSU08280,yfiI,oxidoreductase
+BSU08290,yfiJ,sensor histidine kinase
+BSU08300,yfiK,transcriptional regulator
+BSU08310,yfiL,ABC transporter ATP-binding protein
+BSU08320,yfiM,transport permease YfiM
+BSU08330,yfiN,transport permease YfiN
+BSU08340,padR,negative transcription regulator PadR
+BSU08350,estB,extracellular esterase EstB
+BSU08360,yfiQ,membrane-bound acyltransferase YfiQ
+BSU08370,yfiR,TetR family transcriptional regulator
+BSU08380,yfiS,MFS transporter
+BSU08390,yfiT,metal-dependent hydrolase YfiT
+BSU08400,yfiU,MFS transporter
+BSU08410,yfiV,MarR family transcriptional regulator
+BSU08425,mprF,phosphatidylglycerol lysyltransferase
+BSU08440,yfiY,siderophore-binding lipoprotein YfiY
+BSU08450,yfiZ,siderophore transport system permease protein YfiZ
+BSU08460,yfhA,siderophore transport system permease protein YfhA
+BSU08470,yfhB,isomerase
+BSU08480,yfhC,NAD(P)H nitroreductase YfhC
+BSU08490,yfhD,hypothetical protein
+BSU08500,yfhE,hypothetical protein
+BSU08510,yfhF,epimerase family protein YfhF
+BSU08520,recX,regulatory protein RecX
+BSU08530,yfhH,hypothetical protein
+BSU08540,yfhI,MFS transporter
+BSU08550,sspK,small acid-soluble spore protein K
+BSU08560,yfhJ,hypothetical protein
+BSU08570,yfhK,hypothetical protein
+BSU08580,yfhL,hypothetical protein
+BSU08590,yfhM,AB hydrolase superfamily protein YfhM
+BSU08600,csbB,glycosyltransferase CsbB
+BSU08610,yfhO,hypothetical protein
+BSU08620,yfhP,hypothetical protein
+BSU08630,yfhQ,A/G-specific adenine glycosylase
+BSU08640,yfhS,hypothetical protein
+BSU08650,fabL,enoyl-[acyl-carrier-protein] reductase [NADPH] FabL
+BSU08660,sspE,small acid-soluble spore protein gamma-type
+BSU08670,ygaB,hypothetical protein
+BSU08680,ygaC,hypothetical protein
+BSU08690,ygaD,ABC transporter ATP-binding protein
+BSU08700,ygaE,hypothetical protein
+BSU08710,gsaB,"glutamate-1-semialdehyde 2,1-aminomutase"
+BSU08720,ygaF,peroxiredoxin YgaF
+BSU08730,perR,peroxide operon regulator
+BSU08740,ygzB,hypothetical protein
+BSU08750,ygxA,hypothetical protein
+BSU_rRNA_22,rrnD-16S,16S ribosomal RNA
+BSU_rRNA_17,rrnD-23S,23S ribosomal RNA
+BSU_rRNA_18,rrnD-5S,5S ribosomal RNA
+BSU_tRNA_29,trnD-Asn,tRNA-Asn
+BSU_tRNA_30,trnD-Ser,tRNA-Ser
+BSU_tRNA_31,trnD-Glu,tRNA-Glu
+BSU_tRNA_32,trnD-Val,tRNA-Val
+BSU_tRNA_33,trnD-Met,tRNA-Met
+BSU_tRNA_34,trnD-Asp,tRNA-Asp
+BSU_tRNA_35,trnD-Phe,tRNA-Phe
+BSU_tRNA_36,trnD-Thr,tRNA-Thr
+BSU_tRNA_37,trnD-Tyr,tRNA-Tyr
+BSU_tRNA_38,trnD-Trp,tRNA-Trp
+BSU_tRNA_39,trnD-His,tRNA-His
+BSU_tRNA_40,trnD-Gln,tRNA-Gln
+BSU_tRNA_41,trnD-Gly,tRNA-Gly
+BSU_tRNA_42,trnD-Cys,tRNA-Cys
+BSU_tRNA_43,trnD-Leu1,tRNA-Leu
+BSU_tRNA_44,trnD-Leu2,tRNA-Leu
+BSU08760,spo0M,sporulation-control protein spo0M
+BSU08770,ygzA,hypothetical protein
+BSU08779,ygzC,spore coat protein F
+BSU08780,ygaJ,peptidase YgaJ
+BSU_misc_RNA_11,,hypothetical protein
+BSU08790,thiC,phosphomethylpyrimidine synthase
+BSU08800,ygaK,FAD-linked oxidoreductase YgaK
+BSU08810,senS,transcriptional regulator
+BSU08820,katA,vegetative catalase
+BSU08830,ssuB,aliphatic sulfonates import ATP-binding protein SsuB
+BSU08840,ssuA,aliphatic sulfonates-binding protein
+BSU08850,ssuC,aliphatic sulfonates transport permease protein SsuC
+BSU08860,ssuD,alkanesulfonate monooxygenase
+BSU08870,ygaN,hypothetical protein
+BSU08880,rpsN,30S ribosomal protein S14
+BSU08890,ygaO,lipoprotein
+BSU08899,ygzD,XRE family transcriptional regulator
+BSU_tRNA_82,trnSL-Gly1,tRNA-Gly
+BSU08900,yhzB,hypothetical protein
+BSU08910,yhbA,epoxyqueuosine reductase
+BSU08920,yhbB,hypothetical protein
+BSU08930,cspR,tRNA (cytidine(34)-2'-O)-methyltransferase
+BSU08940,yhbD,hypothetical protein
+BSU08950,yhbE,hypothetical protein
+BSU08960,yhbF,hypothetical protein
+BSU08970,prkA,serine protein kinase PrkA
+BSU08980,yhbH,stress response UPF0229 protein YhbH
+BSU08990,yhbI,MarR family transcriptional regulator
+BSU09000,yhbJ,efflux system component YhbJ
+BSU09010,yhcA,MFS transporter
+BSU09020,yhcB,hypothetical protein
+BSU09030,yhcC,hypothetical protein
+BSU09040,yhcD,hypothetical protein
+BSU09050,yhcE,hypothetical protein
+BSU09060,yhcF,GntR family transcriptional regulator
+BSU09070,yhcG,spermidine/putrescine ABC transporter ATP-binding protein
+BSU09080,yhcH,ABC transporter ATP-binding protein
+BSU09090,yhcI,hypothetical protein
+BSU09100,cspB,cold shock protein CspB
+BSU09110,yhcJ,lipoprotein
+BSU09120,dgcK,diguanylate cyclase
+BSU09130,tcyP,L-cystine uptake protein TcyP
+BSU09140,yhcM,hypothetical protein
+BSU09150,yhcN,lipoprotein
+BSU09165,yhcO,hypothetical protein
+BSU09180,yhcQ,spore coat protein F
+BSU09190,yhcR,endonuclease
+BSU09200,yhcS,hypothetical protein
+BSU09210,yhcT,RNA pseudouridine synthase YhcT
+BSU09220,yhcU,hypothetical protein
+BSU09230,yhcV,CBS domain-containing protein YhcV
+BSU09240,yhcW,hypothetical protein
+BSU09250,yhcX,hydrolase
+BSU09259,yhzG,pseudogene
+BSU09260,yhxA,aminotransferase YhxA
+BSU09270,glpP,glycerol uptake operon antiterminator regulatory protein
+BSU09280,glpF,glycerol uptake facilitator protein
+BSU09290,glpK,glycerol kinase
+BSU09300,glpD,aerobic glycerol-3-phosphate dehydrogenase
+BSU09310,pgcA,phosphoglucomutase
+BSU09320,yhcY,sensor histidine kinase
+BSU09330,yhcZ,transcriptional regulator
+BSU09340,yhdA,FMN-dependent NADPH-azoreductase
+BSU09350,yhdB,hypothetical protein
+BSU09360,yhdC,hypothetical protein
+BSU09370,lytF,peptidoglycan endopeptidase LytF
+BSU09380,nsrR,Rrf2 family transcriptional regulator
+BSU09390,ygxB,hypothetical protein
+BSU09400,spoVR,stage V sporulation protein R
+BSU09410,phoA,alkaline phosphatase
+BSU09420,lytE,peptidoglycan endopeptidase LytE
+BSU09430,citR,LysR family transcriptional regulator
+BSU09440,citA,citrate synthase
+BSU09450,yhdF,oxidoreductase
+BSU09460,ctrA,amino acid permease
+BSU09470,yhdH,sodium-dependent transporter YhdH
+BSU09480,yhdI,GntR family transcriptional regulator
+BSU09490,yhdJ,N-acetyltransferase YhdJ
+BSU09500,yhdK,anti-sigma-M factor YhdK
+BSU09510,yhdL,anti-sigma-M factor YhdL
+BSU09520,sigM,RNA polymerase sigma factor SigM
+BSU09530,yhdN,general stress protein 69
+BSU09540,plsC,1-acyl-sn-glycerol-3-phosphate acyltransferase
+BSU09550,yhdP,hypothetical protein
+BSU09560,cueR,MerR family transcriptional regulator
+BSU09570,yhdR,aspartate aminotransferase
+BSU09590,yhdT,hypothetical protein
+BSU09600,crcBA,camphor resistance protein CrcB
+BSU09610,yhdV,chromosome condensation protein CrcB
+BSU09620,yhdW,glycerophosphoryl diester phosphodiesterase
+BSU09630,yhdX,hypothetical protein
+BSU09640,yhdY,small mechanosensitive ion chanel protein MscS
+BSU09650,yhdZ,NAD-dependent protein deacetylase
+BSU09660,yheN,polysaccharide deacetylase
+BSU09670,dat,D-alanine aminotransferase
+BSU09680,nhaC,Na(+)/H(+) antiporter NhaC
+BSU09690,nhaX,stress response protein NhaX
+BSU09700,yheJ,hypothetical protein
+BSU09710,yheI,multidrug resistance ABC transporter ATP-binding/permease protein YheI
+BSU09720,yheH,multidrug resistance ABC transporter ATP-binding/permease protein YheH
+BSU09730,yheG,hypothetical protein
+BSU09740,yheF,hypothetical protein
+BSU09750,sspB,small acid-soluble spore protein B
+BSU09760,yheE,hypothetical protein
+BSU09770,yheD,endospore coat-associated protein YheD
+BSU09780,yheC,endospore coat-associated protein YheC
+BSU09790,yheB,hypothetical protein
+BSU09800,yheA,hypothetical protein
+BSU09810,yhaZ,hypothetical protein
+BSU09830,yhaX,hydrolase
+BSU09840,hemZ,oxygen-independent coproporphyrinogen-III oxidase
+BSU09850,yhaU,K(+)/H(+) antiporter YhaU
+BSU09860,khtT,K(+)/H(+) antiporter subunit KhtT
+BSU09870,khtS,hypothetical protein
+BSU09880,yhaR,enoyl-CoA hydratase/isomerase YhaR
+BSU09889,yhzD,hypothetical protein
+BSU09890,natA,ABC transporter ATP-binding protein
+BSU09900,natB,hypothetical protein
+BSU09910,yhaO,metallophosphoesterase
+BSU09920,yhaN,hypothetical protein
+BSU09930,yhaM,3'-5' exoribonuclease yhaM
+BSU09940,yhaL,sporulation protein YhaL
+BSU09950,prsA,foldase protein PrsA
+BSU09958,yhzE,hypothetical protein
+BSU09965,yhaJ,hypothetical protein
+BSU09980,yhaI,hypothetical protein
+BSU09990,hpr,MarR family transcriptional regulator
+BSU10000,yhaH,hypothetical protein
+BSU10009,yhzF,hypothetical protein
+BSU10010,trpP,tryptophan transport protein
+BSU10020,serC,3-phosphoserine/phosphohydroxythreonine aminotransferase
+BSU10030,hinT,protein hit
+BSU10040,ecsA,ABC transporter ATP-binding protein
+BSU10050,ecsB,ABC transporter permease EcsB
+BSU10060,ecsC,ABC transporter substrate-binding protein EcsC
+BSU10070,yhaA,amidohydrolase YhaA
+BSU10080,yhfA,hypothetical protein
+BSU10090,yhgB,hypothetical protein
+BSU10100,yhgC,hypothetical protein
+BSU10110,pbpF,penicillin-binding protein 1F
+BSU10120,hemE,uroporphyrinogen decarboxylase
+BSU10130,hemH,ferrochelatase
+BSU10140,hemY,protoporphyrinogen oxidase
+BSU10150,yhgD,TetR family transcriptional regulator
+BSU10160,yhgE,hypothetical protein
+BSU10170,fabHB,3-oxoacyl-ACP synthase III
+BSU10180,yhfC,hypothetical protein
+BSU10200,yhfE,aminopeptidase YhfE
+BSU10210,yhfF,hypothetical protein
+BSU10220,gltT,proton/sodium-glutamate symport protein
+BSU10230,yhfH,hypothetical protein
+BSU10240,yhfI,hypothetical protein
+BSU10250,yhfJ,lipoate-protein ligase LplJ
+BSU10260,yhfK,sugar epimerase YhfK
+BSU10270,yhfL,long-chain-fatty-acid--CoA ligase
+BSU10280,yhfM,hypothetical protein
+BSU10290,yhfN,metalloprotease YhfN
+BSU10300,aprE,subtilisin E
+BSU10310,yhfO,N-acetyltransferase YhfO
+BSU10320,yhfP,quinone oxidoreductase YhfP
+BSU10330,yhfQ,ABC transporter substrate-binding protein
+BSU10340,phoE,phosphatase PhoE
+BSU10350,yhfS,acetyl-CoA acetyltransferase
+BSU10360,yhfT,acyl--CoA ligase
+BSU10370,bioY,biotin transporter BioY
+BSU10380,hemAT,heme-based aerotactic transducer HemAT
+BSU10390,yhfW,rieske 2Fe-2S iron-sulfur protein YhfW
+BSU10400,yhxC,oxidoreductase
+BSU10410,yhzC,hypothetical protein
+BSU10420,comK,competence transcription factor
+BSU10430,yhxD,oxidoreductase
+BSU10440,yhjA,hypothetical protein
+BSU10450,yhjB,symporter
+BSU10460,yhjC,hypothetical protein
+BSU10470,yhjD,hypothetical protein
+BSU10480,yhjE,hypothetical protein
+BSU10490,sipV,signal peptidase I V
+BSU10500,yhjG,aromatic compound monooxygenase YhjG
+BSU10510,yhjH,MarR family transcriptional regulator
+BSU10520,glcP,sugar transporter
+BSU10530,ntdC,NTD biosynthesis operon putative oxidoreductase NtdC
+BSU10540,ntdB,NTD biosynthesis operon putative hydrolase NtdB
+BSU10550,ntdA,3-oxo-glucose-6-phosphate--glutamate aminotransferase
+BSU10560,yhjM,NTD biosynthesis operon regulator NtdR
+BSU10570,yhjN,hypothetical protein
+BSU10580,yhjO,MFS transporter
+BSU10590,yhjP,hypothetical protein
+BSU10600,yhjQ,cysteine-rich protein YhjQ
+BSU10610,yhjR,hypothetical protein
+BSU10620,addB,ATP-dependent helicase/deoxyribonuclease subunit B
+BSU10630,addA,ATP-dependent helicase/nuclease subunit A
+BSU10640,sbcD,nuclease SbcCD subunit D
+BSU10650,sbcC,nuclease SbcCD subunit C
+BSU10660,yisB,hypothetical protein
+BSU10670,gerPF,spore germination protein
+BSU10680,gerPE,spore germination protein GerPE
+BSU10690,gerPD,spore germination protein GerPD
+BSU10700,gerPC,spore germination protein GerPC
+BSU10710,gerPB,spore germination protein
+BSU10720,gerPA,spore germination protein GerPA
+BSU10730,yisI,aspartyl-phosphate phosphatase YisI
+BSU10740,yisJ,inner spore coat protein H-like protein
+BSU10750,yisK,hypothetical protein
+BSU10760,yisL,hypothetical protein
+BSU10770,wprA,cell wall-associated protease
+BSU10780,yisN,hypothetical protein
+BSU10790,asnO,asparagine synthetase 3
+BSU10800,yizA,hypothetical protein
+BSU10810,yisP,squalene/phytoene synthase
+BSU10820,yisQ,transporter
+BSU10830,yisR,AraC family transcriptional regulator
+BSU10840,degA,LacI family transcriptional regulator
+BSU10850,yisS,oxidoreductase
+BSU10860,yisT,hypothetical protein
+BSU10870,yisU,amino acid transporter YisU
+BSU10880,yisV,GntR family transcriptional regulator
+BSU10890,yisX,hypothetical protein
+BSU10900,yisY,AB hydrolase superfamily protein YisY
+BSU10910,yisZ,adenylyl-sulfate kinase
+BSU10920,sat,sulfate adenylyltransferase
+BSU10930,yitB,phosphoadenosine phosphosulfate reductase
+BSU10940,yitC,2-phosphosulfolactate phosphatase
+BSU10950,yitD,phosphosulfolactate synthase
+BSU10960,yitE,hypothetical protein
+BSU10970,yitF,isomerase
+BSU10980,yitG,MFS transporter
+BSU10990,yitH,N-acetyltransferase YitH
+BSU11000,yitI,N-acetyltransferase
+BSU11010,yitJ,"bifunctional homocysteine S-methyltransferase/5,10-methylenetetrahydrofolate reductase"
+BSU_misc_RNA_12,,hypothetical protein
+BSU11020,yitK,hypothetical protein
+BSU11030,yitL,hypothetical protein
+BSU11040,yitM,hypothetical protein
+BSU11055,yitO,hypothetical protein
+BSU11070,yitP,hypothetical protein
+BSU11079,yizB,DNA-binding protein YizB
+BSU11080,yitQ,hypothetical protein
+BSU11090,yitR,hypothetical protein
+BSU11100,nprB,neutral protease B
+BSU11110,yitS,Degv domain-containing protein YitS
+BSU11120,yitT,hypothetical protein
+BSU11130,ipi,intracellular proteinase inhibitor
+BSU11139,yizC,hypothetical protein
+BSU11140,yitU,phosphatase YitU
+BSU11150,yitV,esterase YitV
+BSU11160,yitW,mip18 family protein YitW
+BSU11170,yitY,FAD-linked oxidoreductase YitY
+BSU11180,yitZ,MFS transporter
+BSU11190,argC,N-acetyl-gamma-glutamyl-phosphate reductase
+BSU11200,argJ,arginine biosynthesis bifunctional protein ArgJ
+BSU11210,argB,acetylglutamate kinase
+BSU11220,argD,acetylornithine aminotransferase
+BSU11230,carA,carbamoyl-phosphate synthase arginine-specific small chain
+BSU11240,carB,carbamoyl-phosphate synthase arginine-specific large chain
+BSU11250,argF,ornithine carbamoyltransferase
+BSU11260,yjzC,hypothetical protein
+BSU11270,yjzD,hypothetical protein
+BSU11280,yjaU,hypothetical protein
+BSU11290,yjaV,hypothetical protein
+BSU11300,med,transcriptional activator protein med
+BSU11310,comZ,ComG operon repressor
+BSU11320,yjzB,hypothetical protein
+BSU11330,fabHA,3-oxoacyl-ACP synthase III
+BSU11340,fabF,3-oxoacyl-[acyl-carrier-protein] synthase 2
+BSU11350,yjaZ,hypothetical protein
+BSU11360,appD,oligopeptide transport ATP-binding protein AppD
+BSU11370,appF,oligopeptide transport ATP-binding protein AppF
+BSU11381,appA,pseudogene
+BSU11382,appA,pseudogene
+BSU11390,appB,oligopeptide transport system permease protein AppB
+BSU11400,appC,oligopeptide transport system permease protein AppC
+BSU11410,yjbA,hypothetical protein
+BSU11420,trpS,tryptophan--tRNA ligase
+BSU_misc_RNA_13,,T-box
+BSU11430,oppA,oligopeptide ABC transporter binding lipoprotein
+BSU11440,oppB,oligopeptide transport system permease protein OppB
+BSU11450,oppC,oligopeptide transport system permease protein OppC
+BSU11460,oppD,oligopeptide transport ATP-binding protein OppD
+BSU11470,oppF,oligopeptide transport ATP-binding protein OppF
+BSU11480,yjbB,MFS transporter
+BSU11490,yjbC,acetyltransferase YjbC
+BSU11500,spxA,regulatory protein spx
+BSU11510,yjbE,hypothetical protein
+BSU11520,mecA,adaptor protein MecA
+BSU11530,coiA,competence protein CoiA
+BSU11540,pepF,oligoendopeptidase F
+BSU11549,yizD,hypothetical protein
+BSU11550,yjbH,hypothetical protein
+BSU11560,yjbI,group 2 truncated hemoglobin YjbI
+BSU11570,yjbJ,murein lytic transglycosylase YjbJ
+BSU11580,yjbK,hypothetical protein
+BSU11590,yjbL,hypothetical protein
+BSU11600,yjbM,GTP pyrophosphokinase YjbM
+BSU11610,ppnK,inorganic polyphosphate/ATP-NAD kinase 1
+BSU11620,yjbO,RNA pseudouridine synthase YjbO
+BSU11630,yjbP,Bis(5'-nucleosyl)-tetraphosphatase PrpE
+BSU11640,yjbQ,Na(+)/H(+) antiporter YjbQ
+BSU_misc_RNA_14,,hypothetical protein
+BSU11650,tenA,thiaminase
+BSU11660,tenI,regulatory protein TenI
+BSU11670,thiO,glycine oxidase
+BSU11680,thiS,sulfur carrier protein ThiS
+BSU11690,thiG,thiazole synthase
+BSU11700,thiF,sulfur carrier protein ThiS adenylyltransferase
+BSU11710,yjbV,hydroxymethylpyrimidine/phosphomethylpyrimidine kinase
+BSU11720,fabI,enoyl-ACP reductase
+BSU11730,cotO,spore coat protein O
+BSU11740,cotZ,spore coat protein Z
+BSU11750,cotY,spore coat protein Y
+BSU11760,cotX,spore coat protein X
+BSU11770,cotW,spore coat protein W
+BSU11780,cotV,spore coat protein V
+BSU11790,yjcA,sporulation protein YjcA
+BSU11799,yjzK,hypothetical protein
+BSU11809,yjcZ,hypothetical protein
+BSU11810,spoVIF,sporulation-specific transcription factor SpoVIF
+BSU11820,yjcD,ATP-dependent DNA helicase
+BSU11839,yjzE,hypothetical protein
+BSU11840,yjcF,N-acetyltransferase YjcF
+BSU11850,yjcG,hypothetical protein
+BSU11860,yjcH,hypothetical protein
+BSU_misc_RNA_15,,hypothetical protein
+BSU11870,yjcI,cystathionine gamma-synthase/O-acetylhomoserine
+BSU11880,yjcJ,cystathionine beta-lyase MetC
+BSU11890,yjcK,ribosomal-protein-alanine acetyltransferase
+BSU11900,yjcL,hypothetical protein
+BSU_tRNA_83,trnSL-Val2,tRNA-Val
+BSU11910,yjcM,hypothetical protein
+BSU11920,yjcN,hypothetical protein
+BSU11928,yjzF,hypothetical protein
+BSU11929,yjzG,hypothetical protein
+BSU11930,yjcO,hypothetical protein
+BSU11940,yjcP,hypothetical protein
+BSU11950,yjcQ,hypothetical protein
+BSU11960,yjcR,hypothetical protein
+BSU11970,yjcS,hypothetical protein
+BSU11980,yjdA,oxidoreductase
+BSU11990,yjdB,hypothetical protein
+BSU12000,manR,transcriptional regulator ManR
+BSU12010,manP,PTS system-mannose-specific transporter subunit EIIBCA
+BSU12020,manA,mannose-6-phosphate isomerase ManA
+BSU12030,yjdF,hypothetical protein
+BSU12040,yjdG,N-acetyltransferase YjdG
+BSU12050,yjdH,hypothetical protein
+BSU12060,yjdI,Cys-tRNA
+BSU12069,yjzH,hypothetical protein
+BSU12070,yjdJ,hypothetical protein
+BSU12080,ctaO,protoheme IX farnesyltransferase
+BSU12090,cotT,spore coat protein
+BSU12100,yjeA,hypothetical protein
+BSU12110,yjfA,hypothetical protein
+BSU12120,yjfB,hypothetical protein
+BSU12130,yjfC,hypothetical protein
+BSU12140,yjgA,hypothetical protein
+BSU12150,yjgB,hypothetical protein
+BSU12160,yjgC,oxidoreductase
+BSU12170,yjgD,hypothetical protein
+BSU12180,yjhA,lipoprotein
+BSU12190,yjhB,ADP-ribose pyrophosphatase YjhB
+BSU12200,yjiA,hypothetical protein
+BSU12210,yjiB,cytochrome P450 YjiB
+BSU12220,yjiC,UDP-glucosyltransferase YjiC
+BSU12229,yjzI,hypothetical protein
+BSU12230,hemD,hypothetical protein
+BSU12240,yjkA,hypothetical protein
+BSU12250,yjkB,ABC transporter ATP-binding protein
+BSU12260,yjlA,hypothetical protein
+BSU12270,yjlB,hypothetical protein
+BSU12280,rex,hypothetical protein
+BSU12290,ndh,NADH dehydrogenase-like protein YjlD
+BSU12300,uxaC,uronate isomerase
+BSU12310,exuM,symporter
+BSU12320,yjmC,oxidoreductase
+BSU12330,yjmD,zinc-type alcohol dehydrogenase
+BSU12340,uxuA,mannonate dehydratase
+BSU12350,yjmF,oxidoreductase
+BSU12360,exuT,hexuronate transporter
+BSU12370,exuR,LacI family transcriptional regulator
+BSU12380,uxaB,altronate oxidoreductase
+BSU12390,uxaA,altronate dehydratase
+BSU12400,yjnA,hypothetical protein
+BSU12410,yjoA,hypothetical protein
+BSU12420,yjoB,ATPase YjoB
+BSU12430,rapA,response regulator aspartate phosphatase A
+BSU12440,phrA,phosphatase RapA inhibitor
+BSU12450,yjpA,hypothetical protein
+BSU12460,xlyB,N-acetylmuramoyl-L-alanine amidase XlyB
+BSU12470,yjqA,hypothetical protein
+BSU12480,yjqB,hypothetical protein
+BSU12490,yjqC,hypothetical protein
+BSU12500,xkdA,phage-like element PBSX protein XkdA
+BSU12510,xre,XRE family transcriptional regulator
+BSU12519,yjzJ,hypothetical protein
+BSU12520,xkdB,phage-like element PBSX protein XkdB
+BSU12530,xkdC,phage-like element PBSX protein XkdC
+BSU12539,ykzK,hypothetical protein
+BSU12540,xkdD,phage-like element PBSX protein XkdD
+BSU12550,xtrA,phage-like element PBSX protein XtrA
+BSU12560,xpf,positive control factor
+BSU12570,xtmA,PBSX phage terminase small subunit
+BSU12580,xtmB,PBSX phage terminase large subunit
+BSU12590,xkdE,phage-like element PBSX protein XkdE
+BSU12600,xkdF,phage-like element PBSX protein XkdF
+BSU12610,xkdG,phage-like element PBSX protein XkdG
+BSU12619,ykzL,hypothetical protein
+BSU12620,xkdH,phage-like element PBSX protein XkdH
+BSU12630,xkdI,phage-like element PBSX protein XkdI
+BSU12640,xkdJ,phage-like element PBSX protein XkdJ
+BSU12649,ykzM,hypothetical protein
+BSU12650,xkdK,phage-like element PBSX protein XkdK
+BSU12660,xkdM,phage-like element PBSX protein XkdM
+BSU12671,xkdN,phage-like element PBSX protein XkdN
+BSU12672,xkzB,hypothetical protein
+BSU12680,xkdO,phage-like element PBSX protein XkdO
+BSU12690,xkdP,phage-like element PBSX protein XkdP
+BSU12700,xkdQ,phage-like element PBSX protein XkdQ
+BSU12710,xkdR,phage-like element PBSX protein XkdR
+BSU12720,xkdS,phage-like element PBSX protein XkdS
+BSU12730,xkdT,phage-like element PBSX protein XkdT
+BSU12740,xkdU,phage-like element PBSX protein XkdU
+BSU12749,xkzA,hypothetical protein
+BSU12750,xkdV,phage-like element PBSX protein XkdV
+BSU12760,xkdW,phage-like element PBSX protein XkdW
+BSU12770,xkdX,phage-like element PBSX protein XkdX
+BSU12780,xepA,phage-like element PBSX protein XepA
+BSU12790,xhlA,phage-like element PBSX protein XhlA
+BSU12800,xhlB,holin
+BSU12810,xlyA,N-acetylmuramoyl-L-alanine amidase XlyA
+BSU12820,spoIISB,stage II sporulation protein SB
+BSU12830,spoIISA,stage II sporulation protein SA
+BSU12840,pit,low-affinity inorganic phosphate transporter
+BSU12850,ykaA,hypothetical protein
+BSU12860,ykbA,serine/threonine exchanger SteT
+BSU12870,mhqA,ring-cleaving dioxygenase MhqA
+BSU12880,ykcB,mannosyltransferase YkcB
+BSU12890,ykcC,glycosyltransferase YkcC
+BSU12900,htrA,serine protease Do-like HtrA
+BSU12910,proG,pyrroline-5-carboxylate reductase 3
+BSU12920,dppA,D-aminopeptidase
+BSU12930,dppB,dipeptide transport system permease protein DppB
+BSU12940,dppC,dipeptide transport system permease protein DppC
+BSU12950,dppD,dipeptide transport ATP-binding protein DppD
+BSU12960,dppE,dipeptide ABC transporter substrate-binding protein
+BSU12970,ykfA,murein peptide carboxypeptidase
+BSU12980,ykfB,L-Ala-D/L-Glu epimerase
+BSU12990,ykfC,gamma-D-glutamyl-l-lysine endopeptidase
+BSU13000,ykfD,oligopeptide transport ATP-binding protein YkfD
+BSU13010,ykgB,6-phosphogluconolactonase
+BSU13020,ykgA,hypothetical protein
+BSU13030,ykhA,acyl-CoA thioesterase
+BSU13040,hmp,flavohemoprotein
+BSU13050,ykzH,hypothetical protein
+BSU13060,ykjA,hypothetical protein
+BSU13070,ykkA,hypothetical protein
+BSU13080,ykkB,hypothetical protein
+BSU_misc_RNA_16,,hypothetical protein
+BSU13090,ykkC,multidrug resistance protein
+BSU13100,ykkD,multidrug resistance protein
+BSU13110,purU,formyltetrahydrofolate deformylase
+BSU_misc_RNA_17,,T-box
+BSU13120,proB,glutamate 5-kinase 1
+BSU13130,proA,gamma-glutamyl phosphate reductase
+BSU13140,ohrA,organic hydroperoxide resistance protein OhrA
+BSU13150,ohrR,organic hydroperoxide resistance transcriptional regulator
+BSU13160,ohrB,organic hydroperoxide resistance protein OhrB
+BSU13169,ykzN,hypothetical protein
+BSU13170,guaD,guanine deaminase
+BSU13180,metE,5-methyltetrahydropteroyltriglutamate--homocysteine methyltransferase
+BSU_misc_RNA_18,,hypothetical protein
+BSU13190,ispA,major intracellular serine protease
+BSU13200,rsbRB,RsbT co-antagonist protein RsbRB
+BSU13210,thiX,HMP/thiamine permease protein YkoC
+BSU13220,thiW,HMP/thiamine import ATP-binding protein YkoD
+BSU13230,thiV,HMP/thiamine permease protein YkoE
+BSU13240,thiU,HMP/thiamine-binding protein YkoF
+BSU_misc_RNA_19,,hypothetical protein
+BSU13250,ykoG,transcriptional regulator
+BSU13260,ykoH,sensor histidine kinase
+BSU13270,ykoI,hypothetical protein
+BSU13280,ykoJ,hypothetical protein
+BSU13290,ykzD,hypothetical protein
+BSU13299,ykzO,pseudogene
+BSU13300,mgtE,magnesium transporter MgtE
+BSU13310,tnrA,MerR family transcriptional regulator
+BSU13320,ykzB,hypothetical protein
+BSU13330,ykoL,stress response protein YkoL
+BSU13340,ykoM,MarR family transcriptional regulator
+BSU13350,ykoN,glycosyltransferase
+BSU13360,ykoP,hypothetical protein
+BSU13370,ykoQ,metallophosphoesterase
+BSU13380,ykoS,hypothetical protein
+BSU13390,ykoT,glycosyltransferase YkoT
+BSU13400,ligD,ATP-dependent DNA ligase YkoU
+BSU13410,ykoV,DNA repair protein YkoV
+BSU13420,dgcW,diguanylate cyclase
+BSU13430,ykoX,hypothetical protein
+BSU13440,ykoY,hypothetical protein
+BSU13450,sigI,RNA polymerase sigma factor SigI
+BSU13460,rsgI,anti-sigma-I factor RsgI
+BSU13470,sspD,small acid-soluble spore protein D
+BSU13480,ykrK,hypothetical protein
+BSU13490,ykrL,protease HtpX
+BSU13500,ktrD,ktr system potassium uptake protein D
+BSU13509,ykzP,hypothetical protein
+BSU13510,ykzE,hypothetical protein
+BSU13520,ykrP,membrane-bound acyltransferase YkrP
+BSU13530,kinE,sporulation kinase E
+BSU13540,ogt,methylated-dna--protein-cysteine methyltransferase
+BSU13550,mtnA,methylthioribose-1-phosphate isomerase
+BSU13560,mtnK,methylthioribose kinase
+BSU_misc_RNA_20,,hypothetical protein
+BSU13570,mtnU,hydrolase
+BSU13580,ykrV,transaminase MtnE
+BSU_misc_RNA_21,,hypothetical protein
+BSU13590,mtnW,"2,3-diketo-5-methylthiopentyl-1-phosphate enolase"
+BSU13600,mtnX,2-hydroxy-3-keto-5-methylthiopentenyl-1-phosphate phosphatase
+BSU13610,mtnB,methylthioribulose-1-phosphate dehydratase
+BSU13620,mtnD,acireductone dioxygenase
+BSU13630,ykvA,hypothetical protein
+BSU13640,spo0E,aspartyl-phosphate phosphatase Spo0E
+BSU13650,eag,hypothetical protein
+BSU13660,kinD,sporulation kinase D
+BSU13670,mhqR,MarR family transcriptional regulator
+BSU13680,motB,motility protein B
+BSU13690,motA,motility protein A
+BSU13700,clpE,ATP-dependent Clp protease ATP-binding subunit ClpE
+BSU13710,ykvI,hypothetical protein
+BSU_misc_RNA_22,,PreQ1
+BSU13720,queC,7-cyano-7-deazaguanine synthase QueC
+BSU13730,queD,6-pyruvoyl tetrahydrobiopterin synthase
+BSU13740,queE,7-carboxy-7-deazaguanine synthase
+BSU13750,ykvM,7-cyano-7-deazaguanine reductase
+BSU13760,ykvN,HxlR family transcriptional regulator
+BSU13770,ykvO,oxidoreductase
+BSU13780,ykvP,spore protein YkvP
+BSU13789,ykzQ,hypothetical protein
+BSU13790,ykvQ,glycosylase YkvQ
+BSU13799,ykzR,spore-specific glycosyl hydrolase
+BSU13800,ykvR,hypothetical protein
+BSU13810,ykvS,hypothetical protein
+BSU13819,ykzS,hypothetical protein
+BSU13820,ykvT,hypothetical protein
+BSU13830,ykvU,sporulation protein YkvU
+BSU13840,stoA,sporulation thiol-disulfide oxidoreductase A
+BSU13850,zosA,zinc-transporting ATPase
+BSU13860,ykvY,dipeptidase YkvY
+BSU13870,ykvZ,LacI family transcriptional regulator
+BSU13880,glcT,BglG family transcription antiterminator
+BSU13890,ptsG,PTS system-glucose-specific transporter subunit EIICBA
+BSU13900,ptsH,phosphocarrier protein HPr
+BSU13910,ptsI,phosphoenolpyruvate-protein phosphotransferase
+BSU13920,splA,transcriptional regulator SplA
+BSU13930,splB,spore photoproduct lyase
+BSU13940,ykwB,N-acetyltransferase YkwB
+BSU13950,mcpC,methyl-accepting chemotaxis protein McpC
+BSU13960,ykwC,oxidoreductase
+BSU13970,ykwD,hypothetical protein
+BSU13980,pbpH,penicillin-binding enzyme for formation of rod-shaped peptidoglycan cell wall
+BSU13990,kinA,sporulation kinase A
+BSU14000,patA,N-acetyl-LL-diaminopimelate aminotransferase
+BSU14009,ykzT,hypothetical protein
+BSU14010,cheV,chemotaxis protein CheV
+BSU14020,ykyB,hypothetical protein
+BSU14030,ykuC,MFS transporter
+BSU14040,ykuD,"L,D-transpeptidase YkuD"
+BSU14050,ykuE,metallophosphoesterase
+BSU14060,ykuF,"2,4-dienoyl-CoA reductase"
+BSU14071,fadG,hypothetical protein
+BSU14072,ykzU,hypothetical protein
+BSU14080,ykuH,hypothetical protein
+BSU14090,ykuI,EAL-domain containing protein YkuI
+BSU14100,ykuJ,hypothetical protein
+BSU14110,ykuK,hypothetical protein
+BSU14120,ykzF,hypothetical protein
+BSU14130,ykuL,CBS domain-containing protein YkuL
+BSU14140,ccpC,LysR family transcriptional regulator
+BSU14150,ykuN,flavodoxin
+BSU14160,ykuO,hypothetical protein
+BSU14170,ykuP,flavodoxin-2
+BSU14180,dapH,"2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-acetyltransferase"
+BSU14190,dapL,N-acetyldiaminopimelate deacetylase
+BSU14200,ykuS,hypothetical protein
+BSU14210,ykuT,MscS family protein YkuT
+BSU14220,ykuU,thioredoxin
+BSU14230,ykuV,thiol-disulfide oxidoreductase
+BSU14240,rok,repressor rok
+BSU14250,yknT,sporulation protein cse15
+BSU14260,mobA,molybdenum cofactor guanylyltransferase
+BSU14270,moeB,molybdopterin-synthase adenylyltransferase
+BSU14280,moeA,molybdopterin molybdenumtransferase
+BSU14290,mobB,molybdopterin-guanine dinucleotide biosynthesis adapter protein
+BSU14300,moaE,molybdopterin synthase catalytic subunit
+BSU14310,moaD,molybdopterin synthase sulfur carrier subunit
+BSU14320,yknU,ABC transporter ATP-binding protein
+BSU14330,yknV,ABC transporter ATP-binding protein
+BSU14340,yknW,hypothetical protein
+BSU14350,yknX,efflux system component YknX
+BSU14360,yknY,ABC transporter ATP-binding protein
+BSU14370,yknZ,ABC transporter permease
+BSU14380,fruR,DeoR family transcriptional regulator
+BSU14390,fruK,1-phosphofructokinase
+BSU14400,fruA,PTS system-fructose-specific transporter subunit EIIABC
+BSU14410,sipT,signal peptidase I T
+BSU14420,ykoA,hypothetical protein
+BSU14430,ykpA,ABC transporter ATP-binding protein
+BSU14440,ykpB,oxidoreductase
+BSU14450,ampS,aminopeptidase AmpS
+BSU14460,ykpC,hypothetical protein
+BSU14470,mreBH,rod-share determining protein MreBH
+BSU14480,abh,transition state regulator Abh
+BSU14490,kinC,sporulation kinase C
+BSU14500,ykqA,gamma-glutamylcyclotransferase YkqA
+BSU14510,ktrC,ktr system potassium uptake protein C
+BSU14520,adeC,adenine deaminase
+BSU14530,rnjA,ribonuclease J 1
+BSU14540,ykzG,hypothetical protein
+BSU14550,ykrA,phosphatase YkrA
+BSU14560,def,peptide deformylase
+BSU14569,ykzV,hypothetical protein
+BSU14570,ykyA,lipoprotein
+BSU14580,pdhA,pyruvate dehydrogenase E1 component subunit alpha
+BSU14590,pdhB,pyruvate dehydrogenase E1 component subunit beta
+BSU14600,pdhC,dihydrolipoyllysine-residue acetyltransferase component of pyruvate dehydrogenase complex
+BSU14610,pdhD,dihydrolipoyl dehydrogenase
+BSU14620,slp,Pal-related lipoprotein
+BSU14629,ykzW,hypothetical protein
+BSU14630,speA,arginine decarboxylase
+BSU14640,yktA,hypothetical protein
+BSU14650,yktB,hypothetical protein
+BSU14660,ykzI,hypothetical protein
+BSU14670,suhB,inositol-1-monophosphatase
+BSU14680,ykzC,hypothetical protein
+BSU14690,yktD,S-adenosyl-L-methionine-dependent methyltransferase YktD
+BSU14700,nprE,bacillolysin
+BSU14710,ylaA,hypothetical protein
+BSU14720,ylaB,hypothetical protein
+BSU14730,ylaC,RNA polymerase sigma factor YlaC
+BSU14740,ylaD,anti-sigma-YlaC factor YlaD
+BSU14750,ylaE,hypothetical protein
+BSU14760,ylaF,hypothetical protein
+BSU14770,bipA,GTP-binding protein TypA/BipA
+BSU14780,ylaH,hypothetical protein
+BSU14790,ylaI,hypothetical protein
+BSU14800,ylaJ,lipoprotein
+BSU14810,ylaK,hypothetical protein
+BSU14820,ylaL,hypothetical protein
+BSU14830,ylaM,glutaminase
+BSU14840,ylaN,hypothetical protein
+BSU14850,ftsW,lipid II flippase FtsW
+BSU14860,pycA,pyruvate carboxylase
+BSU14870,ctaA,heme A synthase
+BSU14880,ctaB,protoheme IX farnesyltransferase 2
+BSU14890,ctaC,cytochrome c oxidase subunit 2
+BSU14900,ctaD,cytochrome c oxidase subunit 1
+BSU14910,ctaE,cytochrome c oxidase subunit 3
+BSU14920,ctaF,cytochrome c oxidase subunit 4B
+BSU14930,ctaG,cytochrome c oxidase assembly factor CtaG
+BSU14940,ylbA,hypothetical protein
+BSU14950,ylbB,hypothetical protein
+BSU14960,ylbC,hypothetical protein
+BSU14970,ylbD,hypothetical protein
+BSU14980,ylbE,hypothetical protein
+BSU14990,ylbF,regulatory protein YlbF
+BSU15000,ylbG,hypothetical protein
+BSU_misc_RNA_23,,ylbH
+BSU15010,ylbH,rRNA methyltransferase YlbH
+BSU15020,coaD,phosphopantetheine adenylyltransferase
+BSU15030,ylbJ,sporulation integral membrane protein YlbJ
+BSU15040,ylbK,NTE family protein YlbK
+BSU15050,ylbL,hypothetical protein
+BSU15060,ylbM,hypothetical protein
+BSU15069,ylzH,hypothetical protein
+BSU15070,ylbN,hypothetical protein
+BSU15080,rpmF,50S ribosomal protein L32
+BSU15090,ylbO,hypothetical protein
+BSU15100,ylbP,N-acetyltransferase YlbP
+BSU15110,ylbQ,2-dehydropantoate 2-reductase
+BSU15120,yllA,hypothetical protein
+BSU15130,yllB,protein MraZ
+BSU15140,mraW,ribosomal RNA small subunit methyltransferase H
+BSU15150,ftsL,cell division protein FtsL
+BSU15160,pbpB,penicillin-binding protein 2B
+BSU15170,spoVD,stage V sporulation protein D
+BSU15180,murE,"UDP-N-acetylmuramoyl-L-alanyl-D-glutamate--2,6-diaminopimelate ligase"
+BSU15190,mraY,phospho-n-acetylmuramoyl-pentapeptide-transferase
+BSU15200,murD,UDP-N-acetylmuramoylalanine--D-glutamate ligase
+BSU15210,spoVE,stage V sporulation protein E
+BSU15220,murG,UDP-N-acetylglucosamine--N-acetylmuramyl-(pentapeptide) pyrophosphoryl-undecaprenol N-acetylglucosamine transferase
+BSU15230,murB,UDP-N-acetylenolpyruvoylglucosamine reductase
+BSU15240,divIB,cell division protein DivIB
+BSU15250,ylxW,hypothetical protein
+BSU15260,ylxX,hypothetical protein
+BSU15270,sbp,small basic protein
+BSU15280,ftsA,cell division protein FtsA
+BSU15290,ftsZ,cell division protein FtsZ
+BSU15300,bpr,bacillopeptidase F
+BSU15310,spoIIGA,sporulation sigma-E factor-processing peptidase
+BSU15320,sigE,RNA polymerase sigma-E factor
+BSU15330,sigG,RNA polymerase sigma-G factor
+BSU15340,ylmA,ABC transporter ATP-binding protein
+BSU_misc_RNA_24,,hypothetical protein
+BSU15350,ylmB,N-formyl-4-amino-5-aminomethyl-2-methylpyrimidine deformylase
+BSU15360,ylmC,hypothetical protein
+BSU15370,ylmD,laccase domain protein YlmD
+BSU15380,ylmE,hypothetical protein
+BSU15390,sepF,cell division machinery factor
+BSU15400,ylmG,hypothetical protein
+BSU15410,ylmH,RNA-binding protein YlmH
+BSU15420,divIVA,septum site-determining protein DivIVA
+BSU_misc_RNA_25,,T-box
+BSU15430,ileS,isoleucine--tRNA ligase
+BSU15440,ylyA,hypothetical protein
+BSU15450,lspA,lipoprotein signal peptidase
+BSU15460,rluD,RNA pseudouridine synthase YlyB
+BSU_misc_RNA_26,,PyrR protein
+BSU15470,pyrR,bifunctional protein PyrR
+BSU_misc_RNA_27,,PyrR protein
+BSU15480,pyrP,uracil permease
+BSU_misc_RNA_28,,PyrR protein
+BSU15490,pyrB,aspartate carbamoyltransferase
+BSU15500,pyrC,dihydroorotase
+BSU15510,pyrAA,carbamoyl-phosphate synthase pyrimidine-specific small chain
+BSU15520,carB,carbamoyl-phosphate synthase pyrimidine-specific large chain
+BSU15530,pyrK,dihydroorotate dehydrogenase B
+BSU15540,pyrD,dihydroorotate dehydrogenase B
+BSU15550,pyrF,orotidine 5'-phosphate decarboxylase
+BSU15560,pyrE,orotate phosphoribosyltransferase
+BSU_misc_RNA_29,,hypothetical protein
+BSU15570,cysH,phosphoadenosine phosphosulfate reductase
+BSU15580,cysP,sulfate permease CysP
+BSU15590,sat,sulfate adenylyltransferase
+BSU15600,cysC,adenylyl-sulfate kinase
+BSU15610,sumT,uroporphyrinogen-iii C-methyltransferase
+BSU15620,sirB,sirohydrochlorin ferrochelatase
+BSU15630,sirC,precorrin-2 dehydrogenase
+BSU15640,yloA,hypothetical protein
+BSU15650,yloB,calcium-transporting ATPase
+BSU15660,yloC,hypothetical protein
+BSU15670,ylzA,hypothetical protein
+BSU15680,gmk,guanylate kinase
+BSU15690,rpoZ,DNA-directed RNA polymerase subunit omega
+BSU15700,coaBC,coenzyme A biosynthesis bifunctional protein CoaBC
+BSU15710,priA,primosomal protein N'
+BSU15720,def,peptide deformylase
+BSU15730,fmt,methionyl-tRNA formyltransferase
+BSU15740,rsmB,16S rRNA m5C967 methyltransferase
+BSU15750,yloN,23S rRNA (adenine(2503)-C(2))-methyltransferase RlmN
+BSU15760,prpC,protein phosphatase PrpC
+BSU15770,prkC,serine/threonine protein kinase
+BSU15780,yloQ,ribosome biogenesis GTPase RsgA
+BSU15790,rpe,ribulose-phosphate 3-epimerase
+BSU15800,thiN,thiamine pyrophosphokinase
+BSU15810,spoVM,stage V sporulation protein M
+BSU15820,rpmB,50S ribosomal protein L28
+BSU15830,yloU,hypothetical protein
+BSU15840,yloV,hypothetical protein
+BSU15850,sdaAB,"L-serine dehydratase, beta chain"
+BSU15860,sdaAA,"L-serine dehydratase, alpha chain"
+BSU15870,recG,ATP-dependent DNA helicase RecG
+BSU15880,ylpC,transcription factor FapR
+BSU15890,plsX,phosphate acyltransferase
+BSU15900,fabD,malonyl CoA-acyl carrier protein transacylase
+BSU15910,fabG,3-oxoacyl-[acyl-carrier-protein] reductase FabG
+BSU15920,acpP,acyl carrier protein
+BSU15930,rnc,ribonuclease 3
+BSU15940,smc,chromosome partition protein Smc
+BSU15950,ftsY,signal recognition particle receptor FtsY
+BSU15960,ylqB,hypothetical protein
+BSU15970,ylxM,hypothetical protein
+BSU15980,ffh,signal recognition particle protein
+BSU15990,rpsP,30S ribosomal protein S16
+BSU16000,ylqC,hypothetical protein
+BSU16010,ylqD,hypothetical protein
+BSU16020,rimM,ribosome maturation factor RimM
+BSU16030,trmD,tRNA (guanine-N(1)-)-methyltransferase
+BSU_misc_RNA_30,,L19_leader
+BSU16040,rplS,50S ribosomal protein L19
+BSU16050,rbgA,ribosome biogenesis GTPase A
+BSU16060,rnhB,ribonuclease HII
+BSU16070,ylqG,hypothetical protein
+BSU16080,ylqH,hypothetical protein
+BSU16090,sucC,succinyl-CoA ligase [ADP-forming] subunit beta
+BSU16100,sucD,succinyl-CoA ligase [ADP-forming] subunit alpha
+BSU16110,dprA,protein smf
+BSU16120,topA,DNA topoisomerase 1
+BSU16130,gid,methylenetetrahydrofolate--tRNA-(uracil-5-)-methyltransferase TrmFO
+BSU16140,xerC,tyrosine recombinase XerC
+BSU16150,clpQ,ATP-dependent protease subunit ClpQ
+BSU16160,hslU,ATP-dependent protease ATPase subunit ClpY
+BSU16170,codY,GTP-sensing transcriptional pleiotropic repressor CodY
+BSU16180,flgB,flagellar basal body rod protein FlgB
+BSU16190,flgC,flagellar basal-body rod protein FlgC
+BSU16200,fliE,flagellar hook-basal body complex protein FliE
+BSU16210,fliF,flagellar M-ring protein
+BSU16220,fliG,flagellar motor switch protein FliG
+BSU16230,fliH,flagellar assembly protein FliH
+BSU16240,fliI,flagellum-specific ATP synthase
+BSU16250,fliJ,flagellar FliJ protein
+BSU16260,ylxF,flagellar filament outer layer protein FlaA
+BSU16270,fliK,flagellar hook-length control protein
+BSU16280,flgD,basal-body rod modification protein FlgD
+BSU16290,flgG,flagellar basal-body rod protein FlgG
+BSU16299,ylzI,hypothetical protein
+BSU16300,fliL,flagellar protein FliL
+BSU16310,fliM,flagellar motor switch protein FliM
+BSU16320,fliY,flagellar motor switch phosphatase FliY
+BSU16330,cheY,chemotaxis protein CheY
+BSU16340,fliZ,flagellar biosynthetic protein FliZ
+BSU16350,fliP,flagellar biosynthetic protein FliP
+BSU16360,fliQ,flagellar biosynthetic protein FliQ
+BSU16370,fliR,flagellar biosynthetic protein FliR
+BSU16380,flhB,flagellar biosynthetic protein FlhB
+BSU16390,flhA,flagellar biosynthesis protein FlhA
+BSU16400,flhF,flagellar biosynthesis protein FlhF
+BSU16410,ylxH,flagellum site-determining protein YlxH
+BSU16420,cheB,chemotaxis response regulator protein-glutamate methylesterase
+BSU16430,cheA,chemotaxis protein CheA
+BSU16440,cheW,chemotaxis protein CheW
+BSU16450,cheC,Chey-P phosphatase CheC
+BSU16460,cheD,chemoreceptor glutamine deamidase CheD
+BSU16470,sigD,RNA polymerase sigma-D factor
+BSU16480,ylxL,swarming motility protein SwrB
+BSU16490,rpsB,30S ribosomal protein S2
+BSU16500,tsf,elongation factor Ts
+BSU16510,pyrH,uridylate kinase
+BSU16520,frr,ribosome-recycling factor
+BSU16530,uppS,undecaprenyl pyrophosphate synthase
+BSU16540,cdsA,phosphatidate cytidylyltransferase
+BSU16550,dxr,1-deoxy-D-xylulose 5-phosphate reductoisomerase
+BSU16560,rseP,zinc metalloprotease RasP
+BSU16570,proS,proline--tRNA ligase
+BSU16580,polC,DNA polymerase III PolC-type
+BSU16590,ylxS,ribosome maturation factor RimP
+BSU16600,nusA,transcription termination/antitermination protein NusA
+BSU16610,ylxR,hypothetical protein
+BSU16620,ylxQ,ribosomal protein YlxQ
+BSU16630,infB,translation initiation factor IF-2
+BSU16640,ylxP,hypothetical protein
+BSU16650,rbfA,ribosome-binding factor A
+BSU16660,truB,tRNA pseudouridine synthase B
+BSU16670,ribC,riboflavin biosynthesis protein RibC
+BSU16680,rpsO,30S ribosomal protein S15
+BSU16690,pnpA,polyribonucleotide nucleotidyltransferase
+BSU16700,ylxY,hypothetical protein
+BSU16710,mlpA,zinc protease YmxG
+BSU16720,ymxH,hypothetical protein
+BSU16730,spoVFA,dipicolinate synthase subunit A
+BSU16740,spoVFB,dipicolinate synthase subunit B
+BSU16750,asd,aspartate-semialdehyde dehydrogenase
+BSU16760,dapG,aspartokinase 1
+BSU16770,dapA,4-hydroxy-tetrahydrodipicolinate synthase
+BSU16780,rnjB,ribonuclease J 2
+BSU16790,tepA,translocation-enhancing protein TepA
+BSU16799,ylzJ,hypothetical protein
+BSU16800,spoIIIE,spore DNA translocase
+BSU16810,ymfC,GntR family transcriptional regulator
+BSU16825,ymfD,bacillibactin exporter
+BSU16845,ymfF,inactive metalloprotease YmfF
+BSU16860,ymfH,zinc protease YmfH
+BSU16870,fabG,oxidoreductase
+BSU16880,ymfJ,hypothetical protein
+BSU16890,ymfK,pseudogene
+BSU16900,ymfK,pseudogene
+BSU16910,ymfM,hypothetical protein
+BSU16920,pgsA,CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase
+BSU16930,cinA,competence-damage inducible protein
+BSU16940,recA,recombinase RecA
+BSU16950,pbpX,penicillin-binding protein PbpX
+BSU16960,ymdA,ribonuclease Y
+BSU16970,ymdB,hypothetical protein
+BSU16980,spoVS,stage V sporulation protein S
+BSU16990,tdh,L-threonine 3-dehydrogenase
+BSU17000,kbl,8-amino-7-oxononanoate synthase
+BSU17010,ymcB,(dimethylallyl)adenosine tRNA methylthiotransferase MiaB
+BSU17020,ymcA,hypothetical protein
+BSU17030,cotE,spore coat protein E
+BSU17040,mutS,DNA mismatch repair protein MutS
+BSU17050,mutL,DNA mismatch repair protein MutL
+BSU17060,ymzD,hypothetical protein
+BSU17070,ymcC,hypothetical protein
+BSU17080,pksA,TetR family transcriptional regulator
+BSU17090,pksB,polyketide biosynthesis zinc-dependent hydrolase
+BSU17100,pksC,polyketide biosynthesis malonyl CoA-acyl carrier protein transacylase PksC
+BSU17110,pksD,polyketide biosynthesis acyltransferase homolog PksD
+BSU17120,pksE,polyketide biosynthesis protein PksE
+BSU17130,acpK,polyketide biosynthesis acyl-carrier-protein AcpK
+BSU17140,pksF,polyketide biosynthesis malonyl-ACP decarboxylase PksF
+BSU17150,pksG,polyketide biosynthesis 3-hydroxy-3-methylglutaryl-ACP synthase PksG
+BSU17160,pksH,polyketide biosynthesis enoyl-CoA hydratase PksH
+BSU17170,pksI,polyketide biosynthesis enoyl-CoA isomerase PksI
+BSU17180,pksJ,polyketide synthase PksJ
+BSU17190,pksL,polyketide synthase PksL
+BSU17200,pksM,polyketide synthase PksM
+BSU17210,pksN,polyketide synthase PksN
+BSU17220,pksR,polyketide synthase PksR
+BSU17230,pksS,polyketide biosynthesis cytochrome P450 PksS
+BSU17240,ymzB,hypothetical protein
+BSU17250,ymaE,hypothetical protein
+BSU17260,aprX,serine protease AprX
+BSU17266,ymzE,pseudogene
+BSU17267,ymzE,pseudogene
+BSU17270,ymaC,hypothetical protein
+BSU17280,ymaD,hypothetical protein
+BSU17290,ebrB,multidrug resistance protein EbrB
+BSU17300,ebrA,multidrug resistance protein EbrA
+BSU17310,ymaG,hypothetical protein
+BSU17320,ymaF,hypothetical protein
+BSU17330,miaA,tRNA dimethylallyltransferase
+BSU17340,hfq,RNA-binding protein Hfq
+BSU17350,ymzC,hypothetical protein
+BSU17360,ymzA,hypothetical protein
+BSU17370,nrdI,ribonucleotide reductase stimulatory protein NrdI
+BSU17380,nrdE,ribonucleoside-diphosphate reductase subunit alpha
+BSU17390,nrdF,ribonucleoside-diphosphate reductase subunit beta
+BSU17400,ymaB,hypothetical protein
+BSU17410,cwlC,sporulation-specific N-acetylmuramoyl-L-alanine amidase
+BSU17420,spoVK,stage V sporulation protein K
+BSU17430,ynbA,GTPase HflX
+BSU17440,ynbB,hypothetical protein
+BSU17450,glnR,MerR family transcriptional regulator
+BSU17460,glnA,glutamine synthetase
+BSU17470,ynxB,hypothetical protein
+BSU17480,ynzF,hypothetical protein
+BSU17490,ynzG,hypothetical protein
+BSU17500,ynaB,hypothetical protein
+BSU17510,ynaC,hypothetical protein
+BSU17520,ynaD,N-acetyltransferase YnaD
+BSU17530,ynaE,hypothetical protein
+BSU17540,ynaF,hypothetical protein
+BSU17550,ynaG,hypothetical protein
+BSU17559,ynzI,hypothetical protein
+BSU17560,ynaI,hypothetical protein
+BSU17570,xynP,symporter
+BSU17580,xynB,beta-xylosidase
+BSU17590,xylR,transcriptional regulator
+BSU17600,xylA,xylose isomerase
+BSU17610,xylB,xylulose kinase
+BSU17620,yncB,endonuclease
+BSU17630,yncC,metabolite transport protein YncC
+BSU17640,alrB,alanine racemase 2
+BSU17650,yncE,hypothetical protein
+BSU17660,yncF,deoxyuridine 5'-triphosphate nucleotidohydrolase YncF
+BSU17670,cotU,hypothetical protein
+BSU17678,ynzJ,pseudogene
+BSU17680,thyA,thymidylate synthase
+BSU17690,yncM,hypothetical protein
+BSU17699,ynzK,hypothetical protein
+BSU17700,cotC,spore coat protein C
+BSU17710,tatAC,Sec-independent protein translocase protein TatAc
+BSU17720,yndA,hypothetical protein
+BSU17730,yndB,hypothetical protein
+BSU17740,ynzB,hypothetical protein
+BSU17750,yndD,hypothetical protein
+BSU17760,yndE,spore germination protein YndE
+BSU17770,yndF,spore germination protein YndF
+BSU17780,yndG,hypothetical protein
+BSU17790,yndH,hypothetical protein
+BSU17800,yndJ,hypothetical protein
+BSU17810,yndK,hypothetical protein
+BSU17820,yndL,hypothetical protein
+BSU17830,yndM,hypothetical protein
+BSU17840,yndN,metallothiol transferase FosB
+BSU17850,lexA,lexa repressor
+BSU17860,yneA,cell division suppressor protein YneA
+BSU17870,yneB,resolvase YneB
+BSU17880,ynzC,hypothetical protein
+BSU17890,tkt,transketolase
+BSU17900,yneE,sporulation inhibitor of replication protein SirA
+BSU17910,yneF,hypothetical protein
+BSU17920,ynzD,aspartyl-phosphate phosphatase YnzD
+BSU17930,ccdA,cytochrome c-type biogenesis protein CcdA
+BSU17940,yneI,plasmid maintenance protein CcdB
+BSU17950,yneJ,hypothetical protein
+BSU17960,yneK,hypothetical protein
+BSU17970,cotM,spore coat protein M
+BSU17980,sspP,small acid-soluble spore protein P
+BSU17990,sspO,small acid-soluble spore protein O
+BSU18000,citB,aconitate hydratase
+BSU18010,yneN,thioredoxin
+BSU18019,ynzL,hypothetical protein
+BSU18020,sspN,small acid-soluble spore protein N
+BSU18030,tlp,small acid-soluble spore protein Tlp
+BSU18040,yneP,acyl-CoA thioesterase
+BSU18050,yneQ,hypothetical protein
+BSU18060,yneR,hypothetical protein
+BSU18070,yneS,glycerol-3-phosphate acyltransferase
+BSU18080,yneT,hypothetical protein
+BSU18090,parE,DNA topoisomerase 4 subunit B
+BSU18100,parC,DNA topoisomerase 4 subunit A
+BSU18110,ynfC,hypothetical protein
+BSU18120,alsT,amino acid carrier protein AlsT
+BSU18130,eglS,endoglucanase
+BSU18140,ynfE,hypothetical protein
+BSU18150,xynC,glucuronoxylanase XynC
+BSU18160,xynD,arabinoxylan arabinofuranohydrolase
+BSU18170,yngA,hypothetical protein
+BSU18180,yngB,UTP--glucose-1-phosphate uridylyltransferase YngB
+BSU18190,yngC,hypothetical protein
+BSU18200,yngD,oligoribonuclease NrnB
+BSU18210,yngE,carboxylase YngE
+BSU18220,yngF,enoyl-CoA hydratase/isomerase YngF
+BSU18230,yngG,hydroxymethylglutaryl-CoA lyase YngG
+BSU18239,yngHB,acetyl-CoA carboxylase biotin carboxyl carrier protein subunit
+BSU18240,yngH,biotin carboxylase 2
+BSU18250,yngI,acyl-CoA synthetase YngI
+BSU18260,yngJ,acyl-CoA dehydrogenase
+BSU18270,ynzE,hypothetical protein
+BSU18280,yngK,hypothetical protein
+BSU18290,yngL,hypothetical protein
+BSU18300,ppsE,plipastatin synthase subunit E
+BSU18310,ppsD,plipastatin synthase subunit D
+BSU18320,ppsC,plipastatin synthase subunit C
+BSU18330,ppsB,plipastatin synthase subunit B
+BSU18340,ppsA,plipastatin synthase subunit A
+BSU18350,dacC,D-alanyl-D-alanine carboxypeptidase DacC
+BSU18360,yoxA,aldose 1-epimerase
+BSU18370,yoeA,multidrug resistance protein
+BSU18380,iseA,hypothetical protein
+BSU_tRNA_85,trnSL-Arg1,tRNA-Arg
+BSU18390,yoeC,integrase/recombinase YoeC
+BSU18400,yoeD,hypothetical protein
+BSU18410,ggt,gamma-glutamyltranspeptidase
+BSU18420,ftsR,LysR family transcriptional regulator
+BSU18430,yogA,zinc-type alcohol dehydrogenase
+BSU18440,gltD,glutamate synthase [NADPH] small chain
+BSU18450,gltA,glutamate synthase [NADPH] large chain
+BSU18460,gltC,LysR family transcriptional regulator
+BSU18470,proJ,glutamate 5-kinase
+BSU18480,proH,pyrroline-5-carboxylate reductase 1
+BSU18490,rtp,replication termination protein
+BSU18500,fabG,oxidoreductase
+BSU18510,yoxC,hypothetical protein
+BSU18520,yoxB,hypothetical protein
+BSU18530,yoaA,N-acetyltransferase YoaA
+BSU18540,yoaB,transporter
+BSU18550,yoaC,sugar kinase YoaC
+BSU18560,yoaD,2-hydroxyacid dehydrogenase YoaD
+BSU_misc_RNA_31,,hypothetical protein
+BSU18570,yoaE,oxidoreductase
+BSU18580,yoaF,hypothetical protein
+BSU18590,yoaG,hypothetical protein
+BSU18600,yozQ,hypothetical protein
+BSU18610,yoaH,methyl-accepting chemotaxis protein YoaH
+BSU18620,yoaI,4-hydroxyphenylacetate 3-monooxygenase
+BSU18630,exlX,expansin-YoaJ
+BSU18640,yoaK,hypothetical protein
+BSU18650,pelB,pectin lyase
+BSU18660,yoaM,hypothetical protein
+BSU18669,yozS,hypothetical protein
+BSU18670,yoaN,oxalate decarboxylase OxdD
+BSU18680,yoaO,hypothetical protein
+BSU18690,yoaP,N-acetyltransferase YoaP
+BSU18700,yoaQ,hypothetical protein
+BSU18709,yozT,hypothetical protein
+BSU18710,yozF,hypothetical protein
+BSU18720,yoaR,hypothetical protein
+BSU18730,yoaS,hypothetical protein
+BSU18740,yozG,XRE family transcriptional regulator
+BSU18750,yoaT,hypothetical protein
+BSU18760,yoaU,LysR family transcriptional regulator
+BSU18770,cyeA,transporter
+BSU18780,yoaW,hypothetical protein
+BSU18790,yoaZ,protease YoaZ
+BSU18800,penP,beta-lactamase
+BSU18810,yobA,hypothetical protein
+BSU18819,yozU,pseudogene
+BSU18820,yobB,hypothetical protein
+BSU18830,pps,phosphoenolpyruvate synthase
+BSU18840,xynA,"endo-1,4-beta-xylanase A"
+BSU18849,yozV,hypothetical protein
+BSU18850,yobD,XRE family transcriptional regulator
+BSU18860,yozH,hypothetical protein
+BSU18870,yozI,hypothetical protein
+BSU18880,yobE,hypothetical protein
+BSU18890,yobF,hypothetical protein
+BSU18898,yozW,hypothetical protein
+BSU18899,yozX,protein YozX
+BSU18900,yozJ,hypothetical protein
+BSU18908,yozY,hypothetical protein
+BSU18909,yozZ,pseudogene
+BSU18910,rapK,response regulator aspartate phosphatase K
+BSU18920,phrK,phosphatase RapK inhibitor
+BSU18930,yobH,DNA repair protein
+BSU18940,yozK,DNA repair protein UvrX
+BSU18950,yozL,hypothetical protein
+BSU18960,yozM,prophage-derived-like protein YozM
+BSU18970,yobI,hypothetical protein
+BSU18979,yoyA,pseudogene
+BSU18980,yobJ,hypothetical protein
+BSU18990,yobK,hypothetical protein
+BSU19000,yobL,hypothetical protein
+BSU19010,yobM,hypothetical protein
+BSU19020,yobN,amine oxidase
+BSU19030,yobO,phage-related protein YobO
+BSU19040,csaA,protein CsaA
+BSU19050,yobQ,AraC family transcriptional regulator
+BSU19060,yobR,acetyltransferase
+BSU19070,yobS,TetR family transcriptional regulator
+BSU19080,yobT,hypothetical protein
+BSU19090,yobU,transcriptional regulator
+BSU19100,yobV,DeoR family transcriptional regulator
+BSU19110,yobW,mother cell-specific membrane sporulation protein
+BSU19120,czrA,ArsR family transcriptional regulator
+BSU19130,yocA,hypothetical protein
+BSU19140,yozB,hypothetical protein
+BSU19150,yocB,hypothetical protein
+BSU19160,yocC,hypothetical protein
+BSU19170,yocD,carboxypeptidase YocD
+BSU19180,des,fatty acid desaturase
+BSU19190,desK,sensor histidine kinase
+BSU19200,desR,transcriptional regulatory protein DesR
+BSU19210,yocH,cell wall-binding protein YocH
+BSU19220,yocI,ATP-dependent DNA helicase RecQ
+BSU_misc_RNA_32,,6S
+BSU19230,yocJ,FMN-dependent NADH-azoreductase 1
+BSU19240,yocK,general stress protein 16O
+BSU19250,yocL,hypothetical protein
+BSU19259,yoyB,hypothetical protein
+BSU19260,yocM,hypothetical protein
+BSU19270,yozN,hypothetical protein
+BSU19280,yocN,hypothetical protein
+BSU19290,yozO,hypothetical protein
+BSU19300,yozC,hypothetical protein
+BSU19310,dhaS,aldehyde dehydrogenase DhaS
+BSU19320,sqhC,sporulenol synthase
+BSU19330,sodF,superoxide dismutase
+BSU19340,yocR,sodium-dependent transporter YocR
+BSU19350,yocS,sodium-dependent transporter YocS
+BSU19360,odhB,dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex
+BSU19370,sucA,2-oxoglutarate dehydrogenase subunit E1
+BSU19380,yojO,hypothetical protein
+BSU19390,yojN,hypothetical protein
+BSU19400,sodC,superoxide dismutase-like protein YojM
+BSU19410,cwlS,D-gamma-glutamyl-meso-diaminopimelic acid endopeptidase CwlS
+BSU19420,yojK,UDP-glucosyltransferase YojK
+BSU19430,yojJ,hypothetical protein
+BSU19440,yojI,multidrug resistance protein NorM
+BSU19450,rsbRC,RsbT co-antagonist protein RsbRC
+BSU19460,yojG,deacetylase YojG
+BSU19470,yojF,hypothetical protein
+BSU19479,yoyC,hypothetical protein
+BSU19480,yojE,transporter
+BSU19490,gerT,spore germination protein GerT
+BSU19510,yojB,hypothetical protein
+BSU19520,yojA,permease YojA
+BSU19530,yodA,tautomerase YolI
+BSU19540,yodB,ArsR family transcriptional regulator
+BSU19550,yodC,NAD(P)H nitroreductase
+BSU19560,yodD,hydrolase MhqD
+BSU19570,yodE,ring-cleaving dioxygenase MhqE
+BSU19579,yoyD,hypothetical protein
+BSU19580,yodF,symporter
+BSU19590,ctpA,carboxy-terminal processing protease CtpA
+BSU19600,yodH,methyltransferase
+BSU19610,yodI,hypothetical protein
+BSU19620,yodJ,carboxypeptidase YodJ
+BSU19630,deoD,purine nucleoside phosphorylase DeoD-type
+BSU19639,yoyE,hypothetical protein
+BSU19640,yodL,hypothetical protein
+BSU19650,yodM,lipid phosphate phosphatase YodM
+BSU19660,yozD,hypothetical protein
+BSU19669,yoyF,hypothetical protein
+BSU19670,yodN,hypothetical protein
+BSU19680,yozE,hypothetical protein
+BSU19689,yokU,hypothetical protein
+BSU19690,kamA,"L-lysine 2,3-aminomutase"
+BSU19700,yodP,N-acetyltransferase YodP
+BSU19710,yodQ,metallohydrolase YodQ
+BSU19720,yodR,coenzyme A transferase subunit beta
+BSU19730,yodS,coenzyme A transferase subunit alpha
+BSU19740,yodT,aminotransferase YodT
+BSU19749,yoyG,hypothetical protein
+BSU19750,cgeE,N-acetyltransferase CgeE
+BSU19760,cgeD,spore maturation protein CgeD
+BSU19770,cgeC,spore maturation protein CgeC
+BSU19780,cgeA,spore maturation protein CgeA
+BSU19790,cgeB,spore maturation protein CgeB
+BSU19800,phy,3-phytase
+BSU19810,ypqP,pseudogene
+BSU19820,yotN,hypothetical protein
+BSU19830,yotM,hypothetical protein
+BSU19840,yotL,XRE family transcriptional regulator
+BSU19850,yotK,hypothetical protein
+BSU19860,yotJ,hypothetical protein
+BSU19870,yotI,hypothetical protein
+BSU19880,yotH,hypothetical protein
+BSU19890,yotG,hypothetical protein
+BSU19900,yotF,hypothetical protein
+BSU19910,yotE,hypothetical protein
+BSU19920,yotD,hypothetical protein
+BSU19930,yotC,hypothetical protein
+BSU19940,yotB,hypothetical protein
+BSU19950,sspC,small acid-soluble spore protein C
+BSU19970,yosX,hypothetical protein
+BSU19980,yosW,hypothetical protein
+BSU19990,yosV,hypothetical protein
+BSU19999,yojW,hypothetical protein
+BSU20000,yosU,hypothetical protein
+BSU20010,yosT,transcriptional regulator YosT
+BSU20020,yosS,deoxyuridine 5'-triphosphate nucleotidohydrolase YosS
+BSU20030,yosR,thioredoxin
+BSU20040,nrdF,ribonucleoside-diphosphate reductase subunit beta
+BSU20050,yosQ,HNH homing endonuclease YosQ
+BSU20060,nrdEB,ribonucleoside-diphosphate reductase NrdEB subunit alpha
+BSU20070,nrdI,ribonucleotide reductase stimulatory protein NrdI
+BSU20080,yosL,hypothetical protein
+BSU20090,yosK,hypothetical protein
+BSU20100,yosJ,hypothetical protein
+BSU20110,yosI,hypothetical protein
+BSU20120,yosH,hypothetical protein
+BSU20130,yosG,hypothetical protein
+BSU20140,yosF,hypothetical protein
+BSU20150,yosE,hypothetical protein
+BSU20160,yosD,hypothetical protein
+BSU20170,yosC,hypothetical protein
+BSU20180,yosB,hypothetical protein
+BSU20190,yosA,hypothetical protein
+BSU20200,yorZ,hypothetical protein
+BSU20210,yorY,hypothetical protein
+BSU20220,yorX,hypothetical protein
+BSU20230,yorW,hypothetical protein
+BSU20240,yorV,hypothetical protein
+BSU20250,mtbP,Phi-3T prophage-derived modification methylase Phi3TI
+BSU20260,yorT,hypothetical protein
+BSU20270,yorS,5'(3')-deoxyribonucleotidase
+BSU20280,yorR,hypothetical protein
+BSU20290,yorQ,hypothetical protein
+BSU20300,yorP,hypothetical protein
+BSU20310,yorO,hypothetical protein
+BSU20320,yorN,hypothetical protein
+BSU20330,yorM,hypothetical protein
+BSU20340,yorL,DNA polymerase YorL
+BSU20350,yorK,single-strand DNA-specific exonuclease YorK
+BSU20360,yorJ,hypothetical protein
+BSU20370,yorI,hypothetical protein
+BSU20380,yorH,hypothetical protein
+BSU20390,yorG,hypothetical protein
+BSU20400,yorF,hypothetical protein
+BSU20410,yorE,hypothetical protein
+BSU20420,yorD,stress response protein SCP1
+BSU20430,yorC,hypothetical protein
+BSU20440,yorB,hypothetical protein
+BSU20450,yorA,hypothetical protein
+BSU20460,yoqZ,hypothetical protein
+BSU20470,yoqY,hypothetical protein
+BSU20480,yoqX,hypothetical protein
+BSU20490,yoqW,hypothetical protein
+BSU20500,ligB,DNA ligase-like protein LigB
+BSU20510,yoqU,hypothetical protein
+BSU20520,yoqT,hypothetical protein
+BSU20530,yoqS,hypothetical protein
+BSU20540,yoqR,hypothetical protein
+BSU20550,yoqP,hypothetical protein
+BSU20560,yoqO,hypothetical protein
+BSU20570,yoqN,hypothetical protein
+BSU20580,yoqM,hypothetical protein
+BSU20590,yoqL,HNH endonuclease YoqL
+BSU20600,yoqK,hypothetical protein
+BSU20610,yoqJ,hypothetical protein
+BSU20620,yoqI,hypothetical protein
+BSU20630,yoqH,hypothetical protein
+BSU20640,yoqG,hypothetical protein
+BSU20650,yoqF,hypothetical protein
+BSU20660,yoqE,hypothetical protein
+BSU20670,yoqD,antirepressor protein YoqD
+BSU20680,yoqC,hypothetical protein
+BSU20690,yoqB,hypothetical protein
+BSU20700,yoqA,hypothetical protein
+BSU20710,yopZ,hypothetical protein
+BSU20720,yopY,hypothetical protein
+BSU20730,yopX,hypothetical protein
+BSU20740,yopW,hypothetical protein
+BSU20750,yopV,hypothetical protein
+BSU20760,yopU,hypothetical protein
+BSU20770,yopT,hypothetical protein
+BSU20780,yopS,XRE family transcriptional regulator
+BSU20790,yopR,hypothetical protein
+BSU20800,yopQ,hypothetical protein
+BSU20810,yopP,integrase/recombinase YopP
+BSU20820,yopO,XRE family transcriptional regulator
+BSU20830,yopN,hypothetical protein
+BSU20840,yopM,hypothetical protein
+BSU20850,yopL,hypothetical protein
+BSU20860,yopK,hypothetical protein
+BSU20870,yopJ,hypothetical protein
+BSU20880,yopI,hypothetical protein
+BSU20890,yopH,hypothetical protein
+BSU20900,yopG,hypothetical protein
+BSU20910,yopF,hypothetical protein
+BSU20920,yopE,hypothetical protein
+BSU20928,yoyH,hypothetical protein
+BSU20929,yoyI,hypothetical protein
+BSU20930,yopD,hypothetical protein
+BSU20940,yopC,hypothetical protein
+BSU20950,yopB,hypothetical protein
+BSU20960,yopA,hypothetical protein
+BSU20970,yonX,hypothetical protein
+BSU20980,yonV,hypothetical protein
+BSU20990,yonU,hypothetical protein
+BSU20999,yoyJ,hypothetical protein
+BSU21000,yonT,hypothetical protein
+BSU21010,yonS,lipoprotein
+BSU21020,yonR,XRE family transcriptional regulator
+BSU21030,yonP,hypothetical protein
+BSU21040,yonO,hypothetical protein
+BSU21050,yonN,DNA-binding protein HU 2
+BSU21060,yonK,hypothetical protein
+BSU21070,yonJ,hypothetical protein
+BSU21080,yonI,hypothetical protein
+BSU21090,yonH,hypothetical protein
+BSU21100,yonG,hypothetical protein
+BSU21110,yonF,hypothetical protein
+BSU21120,yonE,hypothetical protein
+BSU21130,yonD,hypothetical protein
+BSU21140,yonC,hypothetical protein
+BSU21150,yonB,hypothetical protein
+BSU21160,yonA,hypothetical protein
+BSU21170,yomZ,hypothetical protein
+BSU21180,yomY,hypothetical protein
+BSU21190,yomX,hypothetical protein
+BSU21200,yomW,hypothetical protein
+BSU21210,yomV,hypothetical protein
+BSU21220,yomU,hypothetical protein
+BSU21229,youA,hypothetical protein
+BSU21230,yomT,hypothetical protein
+BSU21240,yomS,hypothetical protein
+BSU21250,yomR,hypothetical protein
+BSU21260,yomQ,hypothetical protein
+BSU21270,yomP,hypothetical protein
+BSU21280,yomO,hypothetical protein
+BSU21290,yomN,hypothetical protein
+BSU21300,yomM,recombinase-like protein YomM
+BSU21310,yozP,hypothetical protein
+BSU21320,yomL,hypothetical protein
+BSU21329,youB,hypothetical protein
+BSU21330,yomK,hypothetical protein
+BSU21340,yomJ,hypothetical protein
+BSU21350,yomI,transglycosylase YomI
+BSU21360,yomH,hypothetical protein
+BSU21370,yomG,hypothetical protein
+BSU21380,yomF,hypothetical protein
+BSU21390,yomE,hypothetical protein
+BSU21400,yomD,hypothetical protein
+BSU21410,blyA,N-acetylmuramoyl-L-alanine amidase BlyA
+BSU21420,bhlA,holin BhlA
+BSU21430,bhlB,holin-like bacteriophage SPbeta protein BhlB
+BSU21440,bdbB,disulfide bond formation protein B
+BSU21450,yolJ,glycosyltransferase SunS
+BSU21460,bdbA,disulfide bond formation protein A
+BSU21470,sunT,sublancin-168-processing and transport ATP-binding protein SunT
+BSU21480,sunA,bacteriocin sublancin-168
+BSU21490,sunI,hypothetical protein
+BSU21500,uvrX,UV-damage repair protein UvrX
+BSU21510,yolD,hypothetical protein
+BSU21520,yolC,hypothetical protein
+BSU21530,yolB,hypothetical protein
+BSU21540,yolA,hypothetical protein
+BSU21550,yokL,N-acetyltransferase YokL
+BSU21560,yokK,hypothetical protein
+BSU21570,yokJ,hypothetical protein
+BSU21580,yokI,hypothetical protein
+BSU21590,yokH,hypothetical protein
+BSU21598,yoyK,pseudogene
+BSU21599,yoyK,pseudogene
+BSU21600,yokG,pesticidal crystal protein-like YokG
+BSU21610,yokF,endonuclease
+BSU21620,yokE,hypothetical protein
+BSU21630,yokD,AAC(3) family N-acetyltransferase
+BSU21640,yokC,hypothetical protein
+BSU21650,yokB,lipoprotein
+BSU21660,yokA,resolvase YokA
+BSU21670,ypqP,pseudogene
+BSU21680,yppQ,peptide methionine sulfoxide reductase MsrB
+BSU21690,msrA,peptide methionine sulfoxide reductase MsrA
+BSU21700,ypoP,MarR family transcriptional regulator
+BSU21710,dinF,multidrug resistance protein
+BSU21720,ypmT,hypothetical protein
+BSU21730,ypmS,hypothetical protein
+BSU21740,ypmR,hypothetical protein
+BSU21750,scuA,SCO1 protein
+BSU21760,ypmP,hypothetical protein
+BSU21770,ilvA,threonine dehydratase
+BSU21780,yplP,sigma L-dependent transcriptional regulator YplP
+BSU21790,yplQ,hemolysin-3
+BSU21800,ypkP,hypothetical protein
+BSU21810,dfrA,dihydrofolate reductase
+BSU21820,thyA,thymidylate synthase
+BSU21830,ypjQ,hypothetical protein
+BSU21840,ypjP,hypothetical protein
+BSU21850,ypiP,hypothetical protein
+BSU21860,yphP,hypothetical protein
+BSU21870,ilvD,dihydroxy-acid dehydratase
+BSU21880,ypgR,hypothetical protein
+BSU21890,ypgQ,hypothetical protein
+BSU21900,bsaA,glutathione peroxidase BsaA
+BSU21910,metA,homoserine O-succinyltransferase
+BSU21920,ugtP,processive diacylglycerol glucosyltransferase
+BSU21930,cspD,cold shock protein CspD
+BSU21940,degR,regulatory protein DegR
+BSU21950,ypzA,hypothetical protein
+BSU21960,ypeQ,hypothetical protein
+BSU21970,ypeP,hypothetical protein
+BSU21980,ypdP,hypothetical protein
+BSU21990,ypdQ,ribonuclease H-like protein
+BSU22000,sspL,small acid-soluble spore protein L
+BSU22010,exoA,5'-3' exonuclease
+BSU22019,ypzF,hypothetical protein
+BSU22020,ypbS,hypothetical protein
+BSU22030,ypbR,hypothetical protein
+BSU22040,ypbQ,hypothetical protein
+BSU22050,bcsA,chalcone synthase
+BSU22060,pbuX,xanthine permease
+BSU22070,xpt,xanthine phosphoribosyltransferase
+BSU_misc_RNA_34,,Purine
+BSU22080,ypwA,metalloprotease YpwA
+BSU22090,kdgT,2-keto-3-deoxygluconate permease
+BSU22100,kdgA,KHG/KDPG aldolase
+BSU22110,kdgK,2-dehydro-3-deoxygluconokinase
+BSU22120,kdgR,LacI family transcriptional regulator
+BSU22130,kduI,5-keto-4-deoxyuronate isomerase
+BSU22140,kduD,2-dehydro-3-deoxy-D-gluconate 5-dehydrogenase
+BSU22150,ypvA,ATP-dependent helicase YpvA
+BSU22160,yptA,hypothetical protein
+BSU22169,ypzG,hypothetical protein
+BSU22170,ypsC,RNA methyltransferase YpsC
+BSU_misc_RNA_35,rnpB,"RNA component of ribonuclease P (RNase P) (catalytic subunit, ribozyme)"
+BSU22180,ypsB,cell cycle protein GpsB
+BSU22190,ypsA,hypothetical protein
+BSU22200,cotD,spore coat protein D
+BSU22210,yprB,hypothetical protein
+BSU22220,yprA,ATP-dependent helicase YprA
+BSU22230,ypqE,PTS system transporter subunit IIA YpqE
+BSU22240,ypqA,hypothetical protein
+BSU22250,yppG,hypothetical protein
+BSU22260,yppF,hypothetical protein
+BSU22270,yppE,hypothetical protein
+BSU22280,yppD,hypothetical protein
+BSU22290,sspM,small acid-soluble spore protein M
+BSU22300,yppC,hypothetical protein
+BSU22310,recU,holliday junction resolvase RecU
+BSU22320,ponA,penicillin-binding protein 1A/1B
+BSU22330,ypoC,hypothetical protein
+BSU22340,nth,endonuclease III
+BSU22350,dnaD,DNA replication protein DnaD
+BSU22360,asnC,asparagine--tRNA ligase
+BSU22370,aspB,aspartate aminotransferase
+BSU22380,ypmB,hypothetical protein
+BSU22390,ypmA,hypothetical protein
+BSU22400,dinG,ATP-dependent helicase DinG
+BSU22410,panD,aspartate 1-decarboxylase
+BSU22420,panC,pantothenate synthetase
+BSU22430,panB,3-methyl-2-oxobutanoate hydroxymethyltransferase
+BSU22440,birA,bifunctional protein BirA
+BSU22450,cca,CCA-adding enzyme
+BSU22460,ypjH,glycosyltransferase YpjH
+BSU22470,ypjG,deacetylase YpjG
+BSU22480,mgsA,methylglyoxal synthase
+BSU22490,dapB,4-hydroxy-tetrahydrodipicolinate reductase
+BSU22500,ypjD,hypothetical protein
+BSU22510,ypjC,hypothetical protein
+BSU22520,ypjB,hypothetical protein
+BSU22530,ypjA,hypothetical protein
+BSU22540,qcrC,menaquinol-cytochrome c reductase cytochrome b/c subunit
+BSU22550,qcrB,menaquinol-cytochrome c reductase cytochrome b subunit
+BSU22560,qcrA,menaquinol-cytochrome c reductase iron-sulfur subunit
+BSU22570,ypiF,hypothetical protein
+BSU22580,ypiB,hypothetical protein
+BSU22590,ypiA,TPR repeat-containing protein YpiA
+BSU22600,aroE,3-phosphoshikimate 1-carboxyvinyltransferase
+BSU22610,tyrA,prephenate dehydrogenase
+BSU22620,hisC,histidinol-phosphate aminotransferase
+BSU22630,trpA,tryptophan synthase alpha chain
+BSU22640,trpB,tryptophan synthase beta chain
+BSU22650,trpF,N-(5'-phosphoribosyl)anthranilate isomerase
+BSU22660,trpC,indole-3-glycerol phosphate synthase
+BSU22670,trpD,anthranilate phosphoribosyltransferase
+BSU22680,trpE,anthranilate synthase component 1
+BSU22690,aroH,chorismate mutase AroH
+BSU22700,aroB,3-dehydroquinate synthase
+BSU22710,aroF,chorismate synthase
+BSU22720,cheR,chemotaxis protein methyltransferase
+BSU22730,ndk,nucleoside diphosphate kinase
+BSU22740,hepT,heptaprenyl diphosphate synthase component 2
+BSU22750,ubiE,demethylmenaquinone methyltransferase
+BSU22760,hepS,heptaprenyl diphosphate synthase component 1
+BSU22770,mtrB,transcription attenuation protein MtrB
+BSU22780,folE,GTP cyclohydrolase 1
+BSU22790,hbs,DNA-binding protein HU 1
+BSU22800,spoIVA,stage IV sporulation protein A
+BSU22810,yphF,hypothetical protein
+BSU22820,yphE,hypothetical protein
+BSU22830,gpsA,glycerol-3-phosphate dehydrogenase
+BSU22840,engA,GTPase Der
+BSU22849,ypzH,hypothetical protein
+BSU22850,seaA,hypothetical protein
+BSU22860,yphA,hypothetical protein
+BSU22869,ypzI,hypothetical protein
+BSU22870,fni,isopentenyl-diphosphate delta-isomerase
+BSU22880,rpsA,30S ribosomal protein S1
+BSU22890,cmk,cytidylate kinase
+BSU22900,ypfB,hypothetical protein
+BSU22910,dgrA,c-di-GMP receptor protein
+BSU22920,ypeB,sporulation protein YpeB
+BSU22930,sleB,spore cortex-lytic enzyme
+BSU22940,prsW,protease PrsW
+BSU22950,ypdA,hypothetical protein
+BSU22960,gudB,cryptic catabolic NAD-specific glutamate dehydrogenase GudB
+BSU22970,ypbH,adapter protein MecA
+BSU22980,ypbG,hypothetical protein
+BSU22990,ypbF,hypothetical protein
+BSU23000,ypbE,hypothetical protein
+BSU23010,ypbD,hypothetical protein
+BSU23020,recQ,ATP-dependent DNA helicase RecS
+BSU23030,ypbB,hypothetical protein
+BSU23040,fer,ferredoxin
+BSU23050,fmnP,riboflavin transporter FmnP
+BSU23060,ypzE,hypothetical protein
+BSU23070,serA,D-3-phosphoglycerate dehydrogenase
+BSU23080,aroD,3-dehydroquinase
+BSU23090,rsiX,sigma-X negative effector
+BSU23100,sigX,RNA polymerase sigma factor SigX
+BSU23110,resE,sensor histidine kinase
+BSU23120,resD,transcriptional regulatory protein ResD
+BSU23130,resC,cytochrome c biogenesis protein ResC
+BSU23140,resB,cytochrome c biogenesis protein ResB
+BSU23150,resA,thiol-disulfide oxidoreductase ResA
+BSU23160,rluB,ribosomal large subunit pseudouridine synthase B
+BSU23170,spmB,spore maturation protein B
+BSU23180,spmA,spore maturation protein A
+BSU23190,dacB,D-alanyl-D-alanine carboxypeptidase DacB
+BSU23200,ypuI,hypothetical protein
+BSU23210,spcB,segregation and condensation protein B
+BSU23220,scpA,segregation and condensation protein A
+BSU23230,ypuF,hypothetical protein
+BSU23240,ypzK,riboflavin biosynthesis protein RibT
+BSU23250,ribH,"6,7-dimethyl-8-ribityllumazine synthase"
+BSU23260,ribA,riboflavin biosynthesis protein RibBA
+BSU23270,ribE,riboflavin synthase
+BSU23280,ribD,riboflavin biosynthesis protein RibD
+BSU_misc_RNA_36,,FMN
+BSU23300,ypuD,hypothetical protein
+BSU23310,sipS,signal peptidase I S
+BSU23320,ypzC,hypothetical protein
+BSU23328,ypzJ,hypothetical protein
+BSU23329,ypuC,pseudogene
+BSU23330,ypuC,pseudogene
+BSU23340,ypuB,hypothetical protein
+BSU23350,ypzD,spore germination protein-like protein YpzD
+BSU23360,ppiB,peptidyl-prolyl cis-trans isomerase
+BSU23370,ypuA,hypothetical protein
+BSU23380,lysA,diaminopimelate decarboxylase
+BSU23390,spoVAF,stage V sporulation protein AF
+BSU23401,spoVAEA,stage V sporulation protein AE
+BSU23402,spoVAEB,stage V sporulation protein AEB
+BSU23410,spoVAD,stage V sporulation protein AD
+BSU23420,spoVAC,stage V sporulation protein AC
+BSU23430,spoVAB,stage V sporulation protein AB
+BSU23440,spoVAA,stage V sporulation protein AA
+BSU23450,sigF,RNA polymerase sigma-F factor
+BSU23460,spoIIAB,anti-sigma F factor
+BSU23470,spoIIAA,anti-sigma F factor antagonist
+BSU23480,dacF,D-alanyl-D-alanine carboxypeptidase DacF
+BSU23490,pupG,purine nucleoside phosphorylase 1
+BSU23500,drm,phosphopentomutase
+BSU23510,xerD,tyrosine recombinase XerD
+BSU23519,yqzK,hypothetical protein
+BSU23520,fur,ferric uptake regulation protein
+BSU23530,spoIIM,stage II sporulation protein M
+BSU23540,yqkK,hypothetical protein
+BSU23550,mleA,NAD-dependent malic enzyme 1
+BSU23560,mleN,malate-2H(+)/Na(+)-lactate antiporter
+BSU23570,aspA,aspartate ammonia-lyase
+BSU23580,ansA,L-asparaginase 1
+BSU23590,ansR,XRE family transcriptional regulator
+BSU23600,yqxK,hypothetical protein
+BSU23610,nudF,adp-ribose pyrophosphatase
+BSU23620,yqkF,oxidoreductase
+BSU23630,yqkE,hypothetical protein
+BSU23640,yqkD,hypothetical protein
+BSU23650,yqkC,hypothetical protein
+BSU23660,yqkB,hypothetical protein
+BSU23670,yqkA,hypothetical protein
+BSU23680,yqjZ,hypothetical protein
+BSU23690,yqjY,hypothetical protein
+BSU23700,yqjX,hypothetical protein
+BSU23710,yqjW,DNA polymerase IV 2
+BSU23720,yqzH,hypothetical protein
+BSU23730,yqjV,MFS transporter
+BSU23740,yqjU,hypothetical protein
+BSU23750,yqjT,hypothetical protein
+BSU23760,coaA,pantothenate kinase
+BSU23770,dsdA,D-serine dehydratase
+BSU23780,yqjQ,oxidoreductase
+BSU23790,yqjP,hypothetical protein
+BSU23800,proI,pyrroline-5-carboxylate reductase 2
+BSU23810,yqjN,hypothetical protein
+BSU23820,yqjM,NADPH dehydrogenase
+BSU23830,yqjL,hypothetical protein
+BSU23840,yqjK,ribonuclease Z
+BSU23850,zwf,glucose-6-phosphate 1-dehydrogenase
+BSU23860,yqjI,6-phosphogluconate dehydrogenase
+BSU23870,yqjH,DNA polymerase IV 1
+BSU23880,yqzJ,hypothetical protein
+BSU23890,yqjG,membrane protein insertase MisCB
+BSU23900,yqjF,hypothetical protein
+BSU23910,yqjE,hypothetical protein
+BSU23920,yqjD,propionyl-CoA carboxylase beta chain
+BSU23930,yqjC,hypothetical protein
+BSU23940,yqjB,"L,D-transpeptidase YqjB"
+BSU23950,yqjA,hypothetical protein
+BSU23960,artR,arginine transport ATP-binding protein ArtM
+BSU23970,artQ,arginine transport system permease protein ArtQ
+BSU23980,artP,arginine-binding extracellular protein ArtP
+BSU23990,yqiW,hypothetical protein
+BSU24000,bmrU,lipid kinase BmrU
+BSU24010,bmr,multidrug resistance protein
+BSU24020,bmrR,MerR family transcriptional regulator
+BSU24030,bkdB,lipoamide acyltransferase component of branched-chain alpha-keto acid dehydrogenase complex
+BSU24040,bkdAB,2-oxoisovalerate dehydrogenase subunit beta
+BSU24050,bkdAA,2-oxoisovalerate dehydrogenase subunit alpha
+BSU24060,lpdV,dihydrolipoyl dehydrogenase
+BSU24070,buk,butyrate kinase
+BSU24080,bcd,leucine dehydrogenase
+BSU24090,ptb,phosphate butyryltransferase
+BSU24100,bkdR,sigma L-dependent transcriptional regulator YqiR
+BSU24110,yqzF,hypothetical protein
+BSU24120,prpB,methylisocitrate lyase
+BSU24130,prpD,2-methylcitrate dehydratase
+BSU24140,mmgD,2-methylcitrate synthase
+BSU24150,mmgC,acyl-CoA dehydrogenase
+BSU24160,mmgB,3-hydroxybutyryl-CoA dehydrogenase
+BSU24170,mmgA,acetyl-CoA acetyltransferase
+BSU24180,yqiK,hypothetical protein
+BSU24190,yqiI,hypothetical protein
+BSU24200,yqiH,lipoprotein
+BSU24210,yqiG,NADH-dependent flavin oxidoreductase YqiG
+BSU24220,spo0A,stage 0 sporulation protein A
+BSU24230,spoIVB,peptidase S55
+BSU24240,recN,DNA repair protein RecN
+BSU24250,ahrC,arginine repressor
+BSU24260,yqxC,rRNA methyltransferase YqxC
+BSU24270,dxs,1-deoxy-D-xylulose-5-phosphate synthase
+BSU24280,ispA,farnesyl diphosphate synthase
+BSU24290,xseB,exodeoxyribonuclease 7 small subunit
+BSU24300,xseA,exodeoxyribonuclease 7 large subunit
+BSU24310,folD,bifunctional protein FolD
+BSU24320,nusB,N utilization substance protein B
+BSU24330,yqhY,hypothetical protein
+BSU24340,accC,acetyl-CoA carboxylase biotin carboxylase subunit
+BSU24350,accB,acetyl-CoA carboxylase biotin carboxyl carrier protein subunit
+BSU24360,spoIIIAH,stage III sporulation protein AH
+BSU24370,spoIIIAG,stage III sporulation protein AG
+BSU24380,spoIIIAF,stage III sporulation protein AF
+BSU24390,spoIIIAE,stage III sporulation protein AE
+BSU24400,spoIIIAD,stage III sporulation protein AD
+BSU24410,spoIIIAC,stage III sporulation protein AC
+BSU24420,spoIIIAB,stage III sporulation protein AB
+BSU24430,spoIIIAA,stage III sporulation protein AA
+BSU24440,yqhV,hypothetical protein
+BSU24450,efp,elongation factor P
+BSU24460,yqhT,peptidase YqhT
+BSU24470,yqhS,3-dehydroquinate dehydratase
+BSU24480,yqhR,hypothetical protein
+BSU24490,yqhQ,hypothetical protein
+BSU24500,yqhP,hypothetical protein
+BSU24510,yqhO,hypothetical protein
+BSU24520,mntR,transcriptional regulator MntR
+BSU24530,yqhM,octanoyltransferase LipM
+BSU24540,yqhL,hypothetical protein
+BSU24550,gcvPB,glycine dehydrogenase subunit 2
+BSU24560,gcvPA,glycine dehydrogenase subunit 1
+BSU24570,gcvT,aminomethyltransferase
+BSU_misc_RNA_37,,Glycine
+BSU_misc_RNA_38,,Glycine
+BSU24580,yqhH,ATP-dependent helicase YqhH
+BSU24590,yqhG,hypothetical protein
+BSU24600,sinI,SinR antagonist SinI
+BSU24610,sinR,XRE family transcriptional regulator
+BSU24620,tasA,spore coat protein N
+BSU24630,sipW,signal peptidase I W
+BSU24640,yqxM,hypothetical protein
+BSU24650,yqzG,hypothetical protein
+BSU24660,yqzE,hypothetical protein
+BSU24670,comGG,ComG operon protein 7
+BSU24680,comGF,ComG operon protein 6
+BSU24690,comGE,ComG operon protein 5
+BSU24700,comGD,ComG operon protein 4
+BSU24710,comGC,ComG operon protein 3
+BSU24720,comGB,ComG operon protein 2
+BSU24730,comGA,ComG operon protein 1
+BSU24740,yqxL,magnesium transport protein CorA
+BSU24750,yqhB,hypothetical protein
+BSU24760,rsbRD,RsbT co-antagonist protein RsbRD
+BSU_tRNA_73,trnSL-Gln1,tRNA-Gln
+BSU24770,mgsR,regulatory protein MgsR
+BSU24780,yqgY,hypothetical protein
+BSU24790,yqgX,hypothetical protein
+BSU24800,yqgW,hypothetical protein
+BSU24810,yqgV,hypothetical protein
+BSU24820,yqgU,lipoprotein
+BSU24830,yqgT,hypothetical protein
+BSU24840,yqgS,lipoteichoic acid synthase
+BSU24850,glcK,glucokinase
+BSU24860,yqgQ,hypothetical protein
+BSU24870,glpG,rhomboid protease GluP
+BSU24880,yqgO,hypothetical protein
+BSU24890,yqgN,5-formyltetrahydrofolate cyclo-ligase
+BSU24900,rpmG,50S ribosomal protein L33
+BSU24910,yqgM,glycosyltransferase YqgM
+BSU24920,yqgL,hypothetical protein
+BSU24930,yqzD,hypothetical protein
+BSU24940,yqzC,hypothetical protein
+BSU24950,pstBB,phosphate import ATP-binding protein PstB 1
+BSU24960,pstBA,phosphate import ATP-binding protein PstB 2
+BSU24970,pstA,ABC transporter permease
+BSU24980,pstC,ABC transporter permease
+BSU24990,pstS,phosphate-binding protein PstS
+BSU25000,pbpA,hypothetical protein
+BSU25010,yqgE,hypothetical protein
+BSU25020,sodA,superoxide dismutase
+BSU25030,yqgC,hypothetical protein
+BSU25040,yqgB,hypothetical protein
+BSU25050,yqgA,cell wall-binding protein YqgA
+BSU25060,yqfZ,hypothetical protein
+BSU25070,ispG,4-hydroxy-3-methylbut-2-en-1-yl diphosphate synthase (flavodoxin)
+BSU25080,yqfX,hypothetical protein
+BSU25090,yqfW,nucleotidase YqfW
+BSU25100,zur,zinc-specific metallo-regulatory protein
+BSU25110,yqfU,hypothetical protein
+BSU25120,yqfT,hypothetical protein
+BSU25130,yqfS,endonuclease IV
+BSU25140,cshB,DEAD/DEAH box helicase
+BSU25150,yqfQ,hypothetical protein
+BSU25160,ispH,4-hydroxy-3-methylbut-2-enyl diphosphate reductase
+BSU25170,yqfO,hypothetical protein
+BSU25180,trmK,tRNA: m1A22 methyltransferase
+BSU25190,cccA,cytochrome c-550
+BSU25200,sigA,RNA polymerase sigma factor RpoD
+BSU25210,dnaG,DNA primase
+BSU25220,antE,protein AntE
+BSU25230,yqxD,hypothetical protein
+BSU25240,yqfL,hypothetical protein
+BSU25250,ccpN,transcriptional repressor CcpN
+BSU25260,glyS,glycine--tRNA ligase beta subunit
+BSU25270,glyQ,glycine--tRNA ligase alpha subunit
+BSU_misc_RNA_39,,T-box
+BSU25280,recO,DNA repair protein RecO
+BSU25289,yqzL,hypothetical protein
+BSU25290,era,GTPase Era
+BSU25300,cdd,cytidine deaminase
+BSU25310,dgkA,undecaprenol kinase
+BSU25320,yqfG,metalloprotease
+BSU25330,yqfF,hypothetical protein
+BSU25340,phoH,PhoH-like protein
+BSU25350,yqfD,hypothetical protein
+BSU25360,yqfC,hypothetical protein
+BSU25370,yqfB,hypothetical protein
+BSU25380,yqfA,hypothetical protein
+BSU25390,yqeZ,hypothetical protein
+BSU25400,yqeY,hypothetical protein
+BSU25410,rpsU,30S ribosomal protein S21
+BSU25420,yqeW,hypothetical protein
+BSU25430,rimO,threonylcarbamoyladenosine tRNA methylthiotransferase MtaB
+BSU25440,yqeU,ribosomal RNA small subunit methyltransferase E
+BSU25450,prmA,ribosomal protein L11 methyltransferase
+BSU25460,dnaJ,chaperone protein DnaJ
+BSU25470,dnaK,chaperone protein DnaK
+BSU25480,grpE,heat shock protein GrpE
+BSU25490,hrcA,heat-inducible transcription repressor HrcA
+BSU25500,hemN,oxygen-independent coproporphyrinogen-III oxidase 1
+BSU25510,lepA,elongation factor 4
+BSU25520,yqxA,hypothetical protein
+BSU25530,spoIIP,stage II sporulation protein P
+BSU25540,gpr,germination protease
+BSU25550,rpsT,30S ribosomal protein S20
+BSU25560,holA,hypothetical protein
+BSU25569,yqzM,hypothetical protein
+BSU25570,comEC,ComE operon protein 3
+BSU25580,comEB,ComE operon protein 2
+BSU25590,comEA,ComE operon protein 1
+BSU25600,comER,ComE operon protein 4
+BSU25610,yqeM,methyltransferase
+BSU25620,yqeL,hypothetical protein
+BSU25630,yqeK,hypothetical protein
+BSU25640,nadD,nicotinate-nucleotide adenylyltransferase
+BSU25650,yqeI,RNA-binding protein YqeI
+BSU25660,aroE,shikimate dehydrogenase
+BSU25670,yqeH,hypothetical protein
+BSU25680,yqeG,hypothetical protein
+BSU25690,sda,sporulation inhibitor sda
+BSU25700,yqeF,lipoprotein
+BSU25710,cwlH,N-acetylmuramoyl-L-alanine amidase CwlH
+BSU25720,yqeD,hypothetical protein
+BSU25730,yqeC,6-phosphogluconate dehydrogenase YqeC
+BSU25740,yqeB,hypothetical protein
+BSU25750,nucB,sporulation-specific extracellular nuclease
+BSU25760,spoIVCB,pseudogene
+BSU25770,spoIVCA,DNA recombinase
+BSU25780,arsC,arsenate reductase ArsC
+BSU25790,arsB,arsenite resistance protein ArsB
+BSU25800,yqcK,hypothetical protein
+BSU25810,arsR,arsenical resistance operon repressor
+BSU25820,yqcI,hypothetical protein
+BSU25830,rapE,response regulator aspartate phosphatase E
+BSU25840,phrE,phosphatase RapE inhibitor
+BSU25850,yqzI,hypothetical protein
+BSU25860,yqcG,hypothetical protein
+BSU25870,yqcF,hypothetical protein
+BSU25880,yqxJ,hypothetical protein
+BSU25890,yqxI,hypothetical protein
+BSU25900,cwlA,N-acetylmuramoyl-L-alanine amidase CwlA
+BSU25910,yqxH,hypothetical protein
+BSU25920,yqxG,hypothetical protein
+BSU25930,yqcE,hypothetical protein
+BSU25940,yqcD,hypothetical protein
+BSU25950,yqcC,hypothetical protein
+BSU25960,yqcB,hypothetical protein
+BSU25970,yqcA,hypothetical protein
+BSU25980,yqbT,hypothetical protein
+BSU25990,yqbS,hypothetical protein
+BSU26000,yqbR,hypothetical protein
+BSU26010,yqbQ,hypothetical protein
+BSU26020,yqbP,hypothetical protein
+BSU26030,yqbO,hypothetical protein
+BSU26039,yqbN,pseudogene
+BSU26040,yqbN,pseudogene
+BSU26050,yqdB,hypothetical protein
+BSU26060,yqbM,hypothetical protein
+BSU26075,yqbK,hypothetical protein
+BSU26089,yqzN,hypothetical protein
+BSU26090,yqbJ,hypothetical protein
+BSU26100,yqbI,hypothetical protein
+BSU26110,yqbH,hypothetical protein
+BSU26120,yqbG,hypothetical protein
+BSU26130,yqbF,hypothetical protein
+BSU26140,yqbE,hypothetical protein
+BSU26150,yqbD,hypothetical protein
+BSU26160,yqbC,hypothetical protein
+BSU26170,yqbB,hypothetical protein
+BSU26180,yqbA,hypothetical protein
+BSU26190,yqaT,hypothetical protein
+BSU26200,yqaS,hypothetical protein
+BSU26210,yqaR,hypothetical protein
+BSU26220,yqaQ,hypothetical protein
+BSU26230,yqaP,hypothetical protein
+BSU26240,yqaO,hypothetical protein
+BSU26250,yqaN,hypothetical protein
+BSU26259,yqzO,hypothetical protein
+BSU26260,yqaM,hypothetical protein
+BSU26270,yqaL,DNA-binding protein
+BSU26280,yqaK,hypothetical protein
+BSU26290,yqaJ,hypothetical protein
+BSU26300,yqaI,hypothetical protein
+BSU26310,yqaH,hypothetical protein
+BSU26320,yqaG,transcriptional regulator
+BSU26330,yqdA,hypothetical protein
+BSU26340,yqaF,XRE family transcriptional regulator
+BSU26350,yqaE,XRE family transcriptional regulator
+BSU26360,yqaD,hypothetical protein
+BSU26370,yqaC,hypothetical protein
+BSU26380,yqaB,hypothetical protein
+BSU26390,spoIIIC,pseudogene
+BSU26400,yrkS,hypothetical protein
+BSU26410,yrkR,phosphate-starvation-inducible protein PsiE
+BSU26420,yrkQ,sensor histidine kinase
+BSU26430,yrkP,transcriptional regulator
+BSU26440,yrkO,hypothetical protein
+BSU26450,yrkN,hypothetical protein
+BSU26470,yrkL,NAD(P)H oxidoreductase YrkL
+BSU26480,yrkK,hypothetical protein
+BSU26490,yrkJ,hypothetical protein
+BSU26500,yrkI,hypothetical protein
+BSU26510,yrkH,hypothetical protein
+BSU26530,yrkF,hypothetical protein
+BSU26540,yrkE,hypothetical protein
+BSU26550,yrkD,hypothetical protein
+BSU26558,yrzM,pseudogene
+BSU26559,yrzN,pseudogene
+BSU26560,yrkC,hypothetical protein
+BSU26570,yrkB,hypothetical protein
+BSU26580,bltR,multidrug-efflux transporter 2 regulator
+BSU26590,blt,multidrug resistance protein 2
+BSU26600,bltD,spermine/spermidine acetyltransferase
+BSU26610,yrkA,hypothetical protein
+BSU26619,yrzO,hypothetical protein
+BSU26620,yrdR,transporter
+BSU26630,yrdQ,LysR family transcriptional regulator
+BSU26640,yrdP,oxidoreductase
+BSU26650,czcD,"cadmium, cobalt and zinc/H"
+BSU26660,yrdN,tautomerase YrdN
+BSU26670,gltR,LysR family transcriptional regulator
+BSU26680,yrdK,hypothetical protein
+BSU26690,brnQ,branched-chain amino acid transport system carrier protein BrnQ
+BSU26700,azlD,branched-chain amino acid transport protein AzlD
+BSU26710,azlC,branched-chain amino acid transport protein AzlC
+BSU26720,azlB,transcriptional regulator AzlB
+BSU26730,yrdF,ribonuclease inhibitor YrdF
+BSU26740,cypA,cytochrome P450
+BSU26748,yrdD,pseudogene
+BSU26749,yrdD,pseudogene
+BSU26750,yrdD,pseudogene
+BSU26760,yrdC,isochorismatase
+BSU26770,yrdB,hypothetical protein
+BSU26780,yrdA,hypothetical protein
+BSU26790,aadK,aminoglycoside 6-adenylyltransferase
+BSU26800,yrpB,nitronate monooxygenase
+BSU26810,yrpC,glutamate racemase
+BSU26820,yrpD,hypothetical protein
+BSU26830,yrpE,zinc-binding protein
+BSU26840,sigZ,RNA polymerase sigma factor SigZ
+BSU26850,yrpG,oxidoreductase
+BSU26860,yraO,transporter
+BSU26870,yraN,LysR family transcriptional regulator
+BSU26880,yraM,isomerase
+BSU26890,csn,chitosanase
+BSU26900,yraL,hypothetical protein
+BSU26910,yraK,hydrolase YraK
+BSU26920,yraJ,hypothetical protein
+BSU26930,yraI,hypothetical protein
+BSU26940,yraH,hypothetical protein
+BSU26950,yraG,spore coat protein F
+BSU26960,yraF,spore coat protein F
+BSU26970,adhB,zinc-type alcohol dehydrogenase
+BSU26980,yraE,hypothetical protein
+BSU26990,yraD,spore coat protein F
+BSU27000,yraB,MerR family transcriptional regulator
+BSU27009,yrzP,pseudogene
+BSU27010,adhA,formaldehyde dehydrogenase AdhA
+BSU27020,yraA,cysteine protease YraA
+BSU27030,sacC,levanase
+BSU27040,levG,PTS system-fructose-specific transporter subunit IID
+BSU27050,levF,PTS system-fructose-specific transporter subunit IIC
+BSU27060,levE,PTS system-fructose-specific transporter subunit IIB
+BSU27070,levD,PTS system-fructose-specific transporter subunit IIA
+BSU27080,levR,transcriptional regulatory protein LevR
+BSU27090,aapA,amino acid permease AapA
+BSU27100,yrhP,hypothetical protein
+BSU27110,yrhO,hypothetical protein
+BSU27120,sigV,RNA polymerase sigma factor SigV
+BSU27130,rsiV,anti-sigma-V factor RsiV
+BSU27140,oatA,peptidoglycan O-acetyltransferase YrhL
+BSU27150,yrhK,hypothetical protein
+BSU27160,cypB,bifunctional P-450/NADPH-P450 reductase 2
+BSU27170,bscR,TetR family transcriptional regulator
+BSU27180,yrhH,methyltransferase
+BSU27190,yrzI,hypothetical protein
+BSU27200,yrhG,transporter
+BSU27210,yrhF,hypothetical protein
+BSU27220,yrhE,formate dehydrogenase YrhE
+BSU27230,yrhD,hypothetical protein
+BSU27240,yrhC,hypothetical protein
+BSU27250,yrhB,cystathionine gamma-lyase
+BSU27260,mccA,O-acetylserine dependent cystathionine beta-synthase
+BSU27270,mtn,5'-methylthioadenosine/s-adenosylhomocysteine nucleosidase
+BSU27280,yrrT,methyltransferase
+BSU27290,yrzA,hypothetical protein
+BSU27300,yrrS,hypothetical protein
+BSU27310,pbpI,penicillin-binding protein 4B
+BSU27320,greA,transcription elongation factor GreA
+BSU27330,udk,uridine kinase
+BSU27340,yrrO,protease YrrO
+BSU27350,yrrN,protease YrrN
+BSU27360,yrrM,O-methyltransferase YrrM
+BSU27370,yrrL,hypothetical protein
+BSU27380,yrzB,hypothetical protein
+BSU27390,yrrK,Holliday junction resolvase
+BSU27400,yrzL,hypothetical protein
+BSU27410,alaS,alanine--tRNA ligase
+BSU_misc_RNA_40,,T-box
+BSU27420,yrrI,hypothetical protein
+BSU27430,glnQ,glutamine transport ATP-binding protein GlnQ
+BSU27440,glnH,ABC transporter substrate-binding protein GlnH
+BSU27450,glnM,glutamine ABC transporter permease protein GlnM
+BSU27460,glnP,glutamine ABC transporter permease protein GlnP
+BSU27468,yrzQ,hypothetical protein
+BSU27469,yrzR,hypothetical protein
+BSU27470,yrrD,hypothetical protein
+BSU27480,yrrC,hypothetical protein
+BSU27490,yrrB,TPR repeat-containing protein YrrB
+BSU27500,mnmA,tRNA-specific 2-thiouridylase MnmA
+BSU27510,iscS,cysteine desulfurase IscS 1
+BSU27520,cymR,Rrf2 family transcriptional regulator
+BSU27530,yrvN,ATPase
+BSU27540,yrvM,hypothetical protein
+BSU_misc_RNA_41,,6S
+BSU27550,aspS,aspartate--tRNA ligase
+BSU27560,hisS,histidine--tRNA ligase
+BSU_misc_RNA_42,,T-box
+BSU27570,yrzK,hypothetical protein
+BSU27580,yrvJ,N-acetylmuramoyl-L-alanine amidase YrvJ
+BSU27590,yrvI,D-tyrosyl-tRNA(Tyr) deacylase
+BSU27600,relA,GTP pyrophosphokinase
+BSU27610,apt,adenine phosphoribosyltransferase
+BSU27620,recJ,single-stranded-dna-specific exonuclease RecJ
+BSU27630,yrvD,hypothetical protein
+BSU27640,yrvC,hypothetical protein
+BSU27650,secDF,protein translocase subunit SecDF
+BSU27660,comN,post-transcriptional regulator
+BSU27670,spoVB,stage V sporulation protein B
+BSU27680,yrbG,hypothetical protein
+BSU27690,yrzE,hypothetical protein
+BSU27700,yajC,preprotein translocase subunit YajC
+BSU27710,tgt,queuine tRNA-ribosyltransferase
+BSU27720,queA,S-adenosylmethionine:tRNA ribosyltransferase-isomerase
+BSU27729,yrzS,hypothetical protein
+BSU27730,ruvB,holliday junction ATP-dependent DNA helicase RuvB
+BSU27740,ruvA,holliday junction ATP-dependent DNA helicase RuvA
+BSU27750,bofC,general stress protein BofC
+BSU27760,csbX,alpha-ketoglutarate permease
+BSU27770,yrbE,oxidoreductase
+BSU27785,yrzF,serine/threonine protein kinase
+BSU27800,yrzH,hypothetical protein
+BSU27809,yrzT,hypothetical protein
+BSU27810,yrbD,sodium/proton-dependent alanine carrier protein YrbD
+BSU27820,yrbC,transcriptional regulator
+BSU27830,coxA,sporulation cortex protein CoxA
+BSU27840,safA,spoivd-associated factor A
+BSU27850,nadA,quinolinate synthase A
+BSU27860,nadC,nicotinate-nucleotide pyrophosphorylase
+BSU27870,nadB,L-aspartate oxidase
+BSU27880,nifS,cysteine desulfurase NifS
+BSU27890,nadR,transcription repressor NadR
+BSU27900,pheA,prephenate dehydratase
+BSU27910,pheB,hypothetical protein
+BSU27920,obgE,GTPase ObgE
+BSU27930,spo0B,sporulation initiation phosphotransferase B
+BSU27940,rpmA,50S ribosomal protein L27
+BSU27950,ysxB,hypothetical protein
+BSU27960,rplU,50S ribosomal protein L21
+BSU_misc_RNA_43,,L21_leader
+BSU27970,spoIVFB,stage IV sporulation protein FB
+BSU27980,spoIVFA,stage IV sporulation protein FA
+BSU27990,minD,septum site-determining protein MinD
+BSU28000,minC,septum site-determining protein MinC
+BSU28010,mreD,rod shape-determining protein MreD
+BSU28020,mreC,cell shape-determining protein MreC
+BSU28030,mreB,rod shape-determining protein MreB
+BSU28040,radC,hypothetical protein
+BSU28050,maf,septum formation protein Maf
+BSU28060,spoIIB,stage II sporulation protein B
+BSU28070,comC,type 4 prepilin-like proteins leader peptide-processing enzyme
+BSU28080,folC,folylpolyglutamate synthase
+BSU28090,valS,valine--tRNA ligase
+BSU_misc_RNA_44,,T-box
+BSU28099,yszA,hypothetical protein
+BSU28100,ysxE,hypothetical protein
+BSU28110,spoVID,stage VI sporulation protein D
+BSU28120,hemL,"glutamate-1-semialdehyde 2,1-aminomutase"
+BSU28130,hemB,delta-aminolevulinic acid dehydratase
+BSU28140,hemD,uroporphyrinogen-iii synthase
+BSU28150,hemC,porphobilinogen deaminase
+BSU28160,hemX,protein HemX
+BSU28170,hemA,glutamyl-tRNA reductase
+BSU28180,ysxD,hypothetical protein
+BSU28190,engB,GTP-binding protein EngB
+BSU28200,lonA,Lon protease 1
+BSU28210,lonB,Lon protease 2
+BSU28220,clpX,ATP-dependent Clp protease ATP-binding subunit ClpX
+BSU28230,tig,trigger factor
+BSU28240,ysoA,TPR repeat-containing protein YsoA
+BSU28250,leuD,3-isopropylmalate dehydratase small subunit
+BSU28260,leuC,3-isopropylmalate dehydratase large subunit
+BSU28270,leuB,3-isopropylmalate dehydrogenase
+BSU28280,leuA,2-isopropylmalate synthase
+BSU28290,ilvC,ketol-acid reductoisomerase
+BSU28300,ilvH,acetolactate synthase small subunit
+BSU28310,ilvB,acetolactate synthase large subunit
+BSU_misc_RNA_45,,T-box
+BSU28320,ysnD,hypothetical protein
+BSU28330,ysnE,N-acetyltransferase YsnE
+BSU28340,ysnF,stress response protein YsnF
+BSU_tRNA_84,trnSL-Arg2,tRNA-Arg
+BSU28350,ysnB,metallophosphoesterase
+BSU28360,ysnA,non-canonical purine NTP pyrophosphatase
+BSU28370,rph,ribonuclease PH
+BSU28380,gerM,spore germination protein GerM
+BSU28390,racE,glutamate racemase
+BSU28400,ysmB,MarR family transcriptional regulator
+BSU28410,gerE,spore germination protein GerE
+BSU28420,ysmA,hypothetical protein
+BSU28430,sdhB,succinate dehydrogenase iron-sulfur subunit
+BSU28440,sdhA,succinate dehydrogenase flavoprotein subunit
+BSU28450,sdhC,succinate dehydrogenase cytochrome b558 subunit
+BSU28460,yslB,hypothetical protein
+BSU28470,lysC,aspartokinase 2
+BSU_misc_RNA_46,,Lysine
+BSU28490,uvrC,UvrABC system protein C
+BSU28500,trxA,thioredoxin
+BSU28510,xsa,alpha-L-arabinofuranosidase
+BSU28520,etfA,electron transfer flavoprotein subunit alpha
+BSU28530,etfB,electron transfer flavoprotein subunit beta
+BSU28540,ysiB,enoyl-CoA hydratase
+BSU28550,fadR,fatty acid metabolism regulator protein
+BSU28560,lcfA,long-chain-fatty-acid--CoA ligase
+BSU28570,yshE,hypothetical protein
+BSU28580,mutSB,methyl-directed mismatch repair protein MutS
+BSU28590,yshC,DNA polymerase/3'-5' exonuclease PolX
+BSU28600,yshB,transmembrane protein YshB
+BSU28610,yshA,cell division protein ZapA
+BSU28620,rnhC,ribonuclease HIII
+BSU28630,pheT,phenylalanine--tRNA ligase beta subunit
+BSU28640,pheS,phenylalanine--tRNA ligase alpha subunit
+BSU28650,ysgA,tRNA/rRNA methyltransferase YsgA
+BSU28660,sspI,small acid-soluble spore protein I
+BSU28670,ysfB,hypothetical protein
+BSU28680,glcD,glycolate oxidase subunit GlcD
+BSU28690,glcF,glycolate oxidase iron-sulfur subunit
+BSU28700,ysfE,hypothetical protein
+BSU28710,cstA,carbon starvation protein A
+BSU28720,abfA,alpha-L-arabinofuranosidase
+BSU28730,araQ,L-arabinose transport system permease protein AraQ
+BSU28740,araP,L-arabinose transport system permease protein AraP
+BSU28750,araN,arabinose-binding protein
+BSU28760,araM,glycerol-1-phosphate dehydrogenase
+BSU28770,araL,arabinose operon protein AraL
+BSU28780,araD,L-ribulose-5-phosphate 4-epimerase
+BSU28790,araB,ribulokinase
+BSU28800,araA,L-arabinose isomerase
+BSU28810,abnA,"arabinan-endo 1,5-alpha-L-arabinase"
+BSU28820,ysdC,aminopeptidase
+BSU28830,ysdB,sigma-W pathway protein YsdB
+BSU28840,ysdA,hypothetical protein
+BSU28850,rplT,50S ribosomal protein L20
+BSU28860,rpmI,50S ribosomal protein L35
+BSU28870,infC,translation initiation factor IF-3
+BSU_misc_RNA_47,,L20_leader
+BSU28890,yscB,hypothetical protein
+BSU28900,ysbB,antiholin-like protein LrgB
+BSU28910,ysbA,antiholin-like protein LrgA
+BSU28920,lytT,sensory transduction protein LytT
+BSU28930,lytS,sensor protein LytS
+BSU28940,ysaA,hydrolase YsaA
+BSU28950,thrS,threonine--tRNA ligase 1
+BSU_misc_RNA_48,,T-box
+BSU28960,ytxC,hypothetical protein
+BSU28970,ytxB,tvp38/tmem64 family membrane protein YtxB
+BSU28980,dnaI,primosomal protein DnaI
+BSU28990,dnaB,replication initiation and membrane attachment protein
+BSU29000,nrdR,transcriptional repressor NrdR
+BSU29010,speD,S-adenosylmethionine decarboxylase proenzyme
+BSU29020,gapB,glyceraldehyde-3-phosphate dehydrogenase 2
+BSU29030,ytcD,HxlR family transcriptional regulator
+BSU29040,ytbD,MFS transporter
+BSU29050,ytbE,oxidoreductase
+BSU29060,coaE,dephospho-CoA kinase
+BSU29070,ytaF,hypothetical protein
+BSU29080,mutM,formamidopyrimidine-DNA glycosylase
+BSU29090,polA,DNA polymerase I
+BSU29100,phoR,alkaline phosphatase synthesis sensor protein PhoR
+BSU29110,phoP,alkaline phosphatase synthesis transcriptional regulatory protein PhoP
+BSU29120,mdh,malate dehydrogenase
+BSU29130,icd,isocitrate dehydrogenase
+BSU29140,citZ,citrate synthase 2
+BSU29150,ytwI,hypothetical protein
+BSU29160,ytvI,hypothetical protein
+BSU29170,fxsA,hypothetical protein
+BSU29180,pyk,pyruvate kinase
+BSU29190,pfkA,6-phosphofructokinase
+BSU29200,accA,acetyl-CoA carboxylase carboxyltransferase subunit alpha
+BSU29210,accD,acetyl-CoA carboxylase carboxyltransferase subunit beta
+BSU29220,ytsJ,NAD-dependent malic enzyme 4
+BSU29230,dnaE,DNA polymerase III subunit alpha
+BSU29239,ytrH,sporulation membrane protein YtrH
+BSU29240,ytrI,sporulation protein
+BSU29249,ytzJ,hypothetical protein
+BSU29250,nrnA,bifunctional oligoribonuclease/PAP phosphatase NrnA
+BSU29260,ytpI,hypothetical protein
+BSU29270,ytoI,hypothetical protein
+BSU29280,ytnM,hypothetical protein
+BSU29290,ytnL,hydrolase YtnL
+BSU29300,rbfK,RNA-binding riboflavin kinase RibR
+BSU29310,ytnJ,monooxygenase MoxC
+BSU29320,ytnI,glutaredoxin YtnI
+BSU29330,ytmO,hypothetical protein
+BSU29340,tcyN,L-cystine import ATP-binding protein TcyN
+BSU29350,tcyM,L-cystine transport system permease protein TcyM
+BSU29360,tcyL,L-cystine transport system permease protein TcyL
+BSU29370,tcyK,L-cystine-binding protein TcyK
+BSU29380,tcyJ,L-cystine-binding protein TcyJ
+BSU29390,ytmI,N-acetyltransferase YtmI
+BSU29400,ytlI,LysR family transcriptional regulator
+BSU29410,ytkL,metal-dependent hydrolase
+BSU29420,fabG,oxidoreductase
+BSU29430,ytzD,hypothetical protein
+BSU29440,argH,argininosuccinate lyase
+BSU29450,argG,argininosuccinate synthase
+BSU29460,moaB,molybdenum cofactor biosynthesis protein B
+BSU29470,ackA,acetate kinase
+BSU29480,ytxK,hypothetical protein
+BSU29490,tpx,2-Cys peroxiredoxin
+BSU29500,ytfJ,spore protein YtfJ
+BSU29510,ytfI,hypothetical protein
+BSU29520,yteJ,hypothetical protein
+BSU29530,sppA,signal peptide peptidase SppA
+BSU29540,ppnK,inorganic polyphosphate/ATP-NAD kinase 2
+BSU29550,ytcJ,amidohydrolase YtcJ
+BSU29560,ytcI,acyl--CoA ligase
+BSU29570,sspA,small acid-soluble spore protein A
+BSU29580,ytbJ,tRNA sulfurtransferase
+BSU29590,iscS,cysteine desulfurase IscS 2
+BSU29600,braB,branched-chain amino acid transport system carrier protein BraB
+BSU29610,ezrA,septation ring formation regulator EzrA
+BSU29620,hisJ,histidinol-phosphatase
+BSU29630,yttP,TetR family transcriptional regulator
+BSU29640,ytsP,hypothetical protein
+BSU29650,dgcP,diguanylate cyclase
+BSU29660,rpsD,30S ribosomal protein S4
+BSU29670,tyrS,tyrosine--tRNA ligase 1
+BSU29679,ytzK,hypothetical protein
+BSU29680,acsA,acetyl-CoA synthetase
+BSU29690,acuA,acetoin utilization protein AcuA
+BSU29700,acuB,acetoin utilization protein AcuB
+BSU29710,acuC,acetoin utilization protein AcuC
+BSU29720,ytxE,hypothetical protein
+BSU29730,ytxD,hypothetical protein
+BSU29740,ccpA,catabolite control protein A
+BSU29750,aroA,5-enolpyruvylshikimate-3-phosphate synthetase AroA
+BSU29760,ytxJ,hypothetical protein
+BSU29770,ytxH,hypothetical protein
+BSU29780,ytxG,hypothetical protein
+BSU29790,murC,UDP-N-acetylmuramate--L-alanine ligase
+BSU29805,ytpS,DNA translocase SftA
+BSU29820,ytpR,tRNA-binding protein YtpR
+BSU29830,ytpQ,hypothetical protein
+BSU29840,ytpP,thioredoxin
+BSU29850,ytoQ,hypothetical protein
+BSU29860,ytoP,aminopeptidase YtoP
+BSU29870,ytzB,hypothetical protein
+BSU29880,malS,NAD-dependent malic enzyme 3
+BSU29890,ytnP,hypothetical protein
+BSU29900,trmB,tRNA (guanine-N(7)-)-methyltransferase
+BSU29910,ytzH,hypothetical protein
+BSU29920,ytmP,phosphotransferase YtmP
+BSU29930,amyX,pullulanase
+BSU29940,ytlR,lipid kinase YtlR
+BSU29950,ytlQ,hypothetical protein
+BSU29960,ytlP,hypothetical protein
+BSU29970,ytkP,cysteine synthase
+BSU29980,ytjP,dipeptidase YtjP
+BSU29990,pbuO,guanine/hypoxanthine permease PbuO
+BSU30000,ythQ,transporter
+BSU30010,ythP,ABC transporter ATP-binding protein
+BSU30020,ytzE,DeoR family transcriptional regulator
+BSU30035,ytzG,16S rRNA pseudouridine(516) synthase
+BSU30050,ytgP,cell division protein YtgP
+BSU30060,ytfP,hypothetical protein
+BSU30070,opuD,glycine betaine transporter OpuD
+BSU30080,yteV,sporulation protein cse60
+BSU30090,yteU,hypothetical protein
+BSU30100,yteT,oxidoreductase
+BSU30110,yteS,lipoprotein
+BSU30120,yteR,rhamnogalacturonyl hydrolase
+BSU30135,yteP,multiple-sugar transport system permease YteP
+BSU30150,ytdP,AraC family transcriptional regulator
+BSU30160,ytcQ,peptide ABC transporter substrate-binding protein
+BSU30170,ytcP,ABC transporter permease
+BSU30180,ytbQ,hypothetical protein
+BSU30190,bioI,biotin biosynthesis cytochrome P450
+BSU30200,bioB,biotin synthase
+BSU30210,bioD,ATP-dependent dethiobiotin synthetase BioD
+BSU30220,bioF,8-amino-7-oxononanoate synthase
+BSU30230,bioA,adenosylmethionine--8-amino-7-oxononanoate aminotransferase BioA
+BSU30240,bioW,6-carboxyhexanoate--CoA ligase
+BSU30250,ytaP,hydrolase YtaP
+BSU30260,msmR,LacI family transcriptional regulator
+BSU30270,msmE,sugar ABC transporter substrate-binding protein
+BSU30280,amyD,ABC transporter permease
+BSU30290,amyC,ABC transporter permease
+BSU30300,melA,alpha-galactosidase
+BSU30310,ytwF,hypothetical protein
+BSU30320,leuS,leucine--tRNA ligase
+BSU_misc_RNA_49,,T-box
+BSU30330,ytvB,hypothetical protein
+BSU30340,ytvA,blue-light photoreceptor
+BSU30350,yttB,MFS transporter
+BSU30360,yttA,hypothetical protein
+BSU30370,bceB,bacitracin export permease protein BceB
+BSU30380,bceA,bacitracin export ATP-binding protein BceA
+BSU30390,bceS,sensor protein BceS
+BSU30400,bceR,sensory transduction protein BceR
+BSU30410,ytrF,ABC transporter permease
+BSU30420,ytrE,ABC transporter ATP-binding protein
+BSU30430,ytrD,ABC transporter permease
+BSU30440,ytrC,ABC transporter permease
+BSU30450,ytrB,ABC transporter ATP-binding protein
+BSU30460,ytrA,GntR family transcriptional regulator
+BSU30470,ytzC,hypothetical protein
+BSU30480,ytqA,radical SAM protein YtqA
+BSU30490,ytqB,rRNA methylase YtqB
+BSU30500,ytpB,tetraprenyl-beta-curcumene synthase
+BSU30510,ytpA,phospholipase YtpA
+BSU30520,ytoA,transferase YtoA
+BSU30530,ytnA,amino acid permease YtnA
+BSU30540,asnB,asparagine synthetase 1
+BSU30550,metK,S-adenosylmethionine synthase
+BSU_misc_RNA_50,,hypothetical protein
+BSU30560,pckA,phosphoenolpyruvate carboxykinase
+BSU30570,ytmB,hypothetical protein
+BSU30580,ytmA,peptidase YtmA
+BSU30595,ytlA,ABC transporter substrate-binding protein YtlA
+BSU30610,ytlC,ABC transporter ATP-binding protein
+BSU30620,ytlD,ABC transporter permease
+BSU30630,ytkD,8-oxo-dGTP diphosphatase YtkD
+BSU30640,ytkC,hypothetical protein
+BSU30650,dps,general stress protein 20U
+BSU30659,ytzI,hypothetical protein
+BSU30660,ytkA,hypothetical protein
+BSU30670,luxS,S-ribosylhomocysteine lyase
+BSU30680,ytjA,membrane protein insertion efficiency factor
+BSU30690,ytiB,carbonic anhydrase YtiB
+BSU30700,rpmE2,50S ribosomal protein L31 type B
+BSU30710,ythA,cytochrome bd menaquinol oxidase subunit I
+BSU30720,ythB,cytochrome bd menaquinol oxidase subunit II
+BSU30739,ytzL,hypothetical protein
+BSU30740,mntD,manganese transport system membrane protein MntD
+BSU30750,mntC,manganese transport system membrane protein MntC
+BSU30760,mntB,manganese transport system ATP-binding protein MntB
+BSU30770,mntA,manganese-binding lipoprotein MntA
+BSU30780,menC,o-succinylbenzoate synthase
+BSU30790,menE,2-succinylbenzoate-CoA ligase
+BSU30800,menB,"1,4-dihydroxy-2-naphthoyl-CoA synthase"
+BSU30810,ytxM,esterase
+BSU30820,menD,2-succinyl-5-enolpyruvyl-6-hydroxy-3-cyclohexene-1-carboxylate synthase
+BSU30830,menF,menaquinone-specific isochorismate synthase
+BSU30840,yteA,hypothetical protein
+BSU30850,ytdA,UTP--glucose-1-phosphate uridylyltransferase
+BSU30860,ytcA,UDP-glucose 6-dehydrogenase YtcA
+BSU30870,ytcB,UDP-glucose epimerase YtcB
+BSU30880,ytcC,glycosyltransferase YtcC
+BSU30890,ytxO,hypothetical protein
+BSU30900,cotS,spore coat protein S
+BSU30910,cotSA,spore coat protein SA
+BSU30920,cotI,spore coat protein I
+BSU30930,ytaB,hypothetical protein
+BSU30940,glgP,glycogen phosphorylase
+BSU30950,glgA,glycogen synthase
+BSU30960,glgD,glycogen biosynthesis protein GlgD
+BSU30970,glgC,glucose-1-phosphate adenylyltransferase
+BSU30980,glgB,"1,4-alpha-glucan branching enzyme GlgB"
+BSU_tRNA_72,trnB-Glu,tRNA-Glu
+BSU_tRNA_71,trnB-Ser2,tRNA-Ser
+BSU_tRNA_70,trnB-Asn,tRNA-Asn
+BSU_tRNA_69,trnB-Ile2,tRNA-Ile
+BSU_tRNA_68,trnB-Gly2,tRNA-Gly
+BSU_tRNA_67,trnB-His,tRNA-His
+BSU_tRNA_66,trnB-Phe,tRNA-Phe
+BSU_tRNA_65,trnB-Asp,tRNA-Asp
+BSU_tRNA_64,trnB-Met2,tRNA-Met
+BSU_tRNA_63,trnB-Ser1,tRNA-Ser
+BSU_tRNA_62,trnB-Met3,tRNA-Met
+BSU_tRNA_61,trnB-Met1,tRNA-Met
+BSU_tRNA_60,trnB-Ala,tRNA-Ala
+BSU_tRNA_59,trnB-Pro,tRNA-Pro
+BSU_tRNA_58,trnB-Arg,tRNA-Arg
+BSU_tRNA_57,trnB-Leu2,tRNA-Leu
+BSU_tRNA_56,trnB-Gly1,tRNA-Gly
+BSU_tRNA_55,trnB-Leu1,tRNA-Leu
+BSU_tRNA_54,trnB-Lys,tRNA-Lys
+BSU_tRNA_53,trnB-Thr,tRNA-Thr
+BSU_tRNA_52,trnB-Val,tRNA-Val
+BSU_rRNA_21,rrnB-5S,5S ribosomal RNA
+BSU_rRNA_20,rrnB-23S,23S ribosomal RNA
+BSU_rRNA_19,rrnB-16S,16S ribosomal RNA
+BSU_misc_RNA_51,,hypothetical protein
+BSU30990,thiT,thiamine transporter ThiT
+BSU31000,yuaI,N-acetyltransferase YuaI
+BSU31010,yuaG,hypothetical protein
+BSU31020,yuaF,hypothetical protein
+BSU31030,yuaE,hypothetical protein
+BSU31040,yuaD,metal-sulfur cluster biosynthesis proteins YuaD
+BSU31050,gbsB,alcohol dehydrogenase
+BSU31060,gbsA,betaine aldehyde dehydrogenase
+BSU31070,yuaC,hypothetical protein
+BSU31080,yuaB,hypothetical protein
+BSU_misc_RNA_52,,hypothetical protein
+BSU31090,ktrA,ktr system potassium uptake protein A
+BSU31100,ktrB,ktr system potassium uptake protein B
+BSU31110,yubF,hypothetical protein
+BSU31120,lytG,exo-glucosaminidase LytG
+BSU31130,yubD,MFS transporter
+BSU31140,cdoA,cysteine dioxygenase
+BSU_tRNA_86,trnSL-Ala1,tRNA-Ala
+BSU31150,yubB,undecaprenyl-diphosphatase
+BSU31160,yubA,hypothetical protein
+BSU31170,yulF,oxidoreductase
+BSU31180,yulE,L-rhamnose isomerase
+BSU31190,yulD,L-rhamnose mutarotase
+BSU31200,yulC,rhamnulokinase
+BSU31210,yulB,DeoR family transcriptional regulator
+BSU31220,yuxG,oxidoreductase
+BSU31230,tlpB,methyl-accepting chemotaxis protein TlpB
+BSU31240,mcpA,methyl-accepting chemotaxis protein McpA
+BSU31250,tlpA,methyl-accepting chemotaxis protein TlpA
+BSU31260,mcpB,methyl-accepting chemotaxis protein McpB
+BSU31270,tgl,protein-glutamine gamma-glutamyltransferase
+BSU31279,yuzH,hypothetical protein
+BSU31280,yugU,hypothetical protein
+BSU31290,yugT,"oligo-1,6-glucosidase 3"
+BSU31300,yugS,hypothetical protein
+BSU31310,yugP,membrane protease YugP
+BSU31319,yuzI,hypothetical protein
+BSU31321,mstX,protein mistic
+BSU31322,yugO,potassium channel protein YugO
+BSU31330,yugN,hypothetical protein
+BSU31340,yugM,hypothetical protein
+BSU31350,pgi,glucose-6-phosphate isomerase
+BSU31360,yugK,NADH-dependent butanol dehydrogenase 2
+BSU31370,yugJ,NADH-dependent butanol dehydrogenase 1
+BSU31380,yuzA,hypothetical protein
+BSU31390,yugI,general stress protein 13
+BSU31400,alaT,aminotransferase YugH
+BSU31410,yugG,AsnC family transcriptional regulator
+BSU31420,yugF,hydrolase
+BSU31430,yugE,hypothetical protein
+BSU31440,patB,cystathionine beta-lyase
+BSU31450,kinB,sporulation kinase B
+BSU31460,kapB,kinase-associated lipoprotein B
+BSU31470,kapD,3'-5' exonuclease KapD
+BSU31480,yuxJ,MFS transporter
+BSU31490,pbpD,penicillin-binding protein 4
+BSU31500,yuxK,hypothetical protein
+BSU31510,yufK,hypothetical protein
+BSU31520,yufL,sensor histidine kinase
+BSU31530,yufM,transcriptional regulatory protein MalR
+BSU31540,yufN,lipoprotein
+BSU31550,yufO,ABC transporter ATP-binding protein
+BSU31560,yufP,ABC transporter permease
+BSU31570,yufQ,ABC transporter permease
+BSU31580,maeN,Na(+)-malate symporter
+BSU31590,yufS,hypothetical protein
+BSU31600,mrpA,Na(+)/H(+) antiporter subunit A
+BSU31610,mrpB,Na(+)/H(+) antiporter subunit B
+BSU31620,mrpC,Na(+)/H(+) antiporter subunit C
+BSU31630,mrpD,Na(+)/H(+) antiporter subunit D
+BSU31640,mrpE,Na(+)/H(+) antiporter subunit E
+BSU31650,mrpF,Na(+)/H(+) antiporter subunit F
+BSU31660,mrpG,Na(+)/H(+) antiporter subunit G
+BSU31670,yuxO,esterase ComA2
+BSU31680,comA,transcriptional regulatory protein ComA
+BSU31690,comP,sensor histidine kinase
+BSU31700,comX,competence pheromone
+BSU31710,comQ,competence regulatory protein ComQ
+BSU31720,degQ,degradation enzyme regulation protein DegQ
+BSU31730,yuzC,hypothetical protein
+BSU31740,pdeH,phosphodiesterase
+BSU31750,yueK,nicotinate phosphoribosyltransferase
+BSU31760,pncA,isochorismatase
+BSU31770,yueI,hypothetical protein
+BSU31780,yueH,hypothetical protein
+BSU31790,yueG,spore germination protein-like protein YueG
+BSU31800,yueF,hypothetical protein
+BSU31810,yuzE,hypothetical protein
+BSU31820,yuzF,hypothetical protein
+BSU31830,yueE,phosphohydrolase YueE
+BSU31840,yueD,benzil reductase
+BSU31850,yueC,hypothetical protein
+BSU31860,yueB,bacteriophage SPP1 adsorption protein YueB
+BSU31875,yukB,Ftsk domain-containing protein YukB
+BSU31890,yukC,hypothetical protein
+BSU31900,yukD,ubiquitin-like protein YukD
+BSU31910,yukE,hypothetical protein
+BSU31920,yukF,transcriptional regulator
+BSU31930,ald,alanine dehydrogenase
+BSU31945,yukJ,hypothetical protein
+BSU31959,ybdZ,hypothetical protein
+BSU31960,dhbF,dimodular nonribosomal peptide synthase
+BSU31970,dhbB,isochorismatase
+BSU31980,dhbE,"2,3-dihydroxybenzoate-AMP ligase"
+BSU31990,dhbC,isochorismate synthase DhbC
+BSU32000,dhbA,"2,3-dihydro-2,3-dihydroxybenzoate dehydrogenase"
+BSU32010,besA,ferri-bacillibactin esterase BesA
+BSU32020,yuiH,oxidoreductase
+BSU32030,bioYB,biotin transporter BioYB
+BSU32040,yuiF,amino acid transporter YuiF
+BSU32050,yuiE,cytosol aminopeptidase
+BSU32060,yuiD,hypothetical protein
+BSU32070,yuiC,hypothetical protein
+BSU32080,yuiB,hypothetical protein
+BSU32090,yuiA,hypothetical protein
+BSU32100,yumB,NADH dehydrogenase-like protein YumB
+BSU32110,yumC,ferredoxin--NADP reductase 2
+BSU32120,yuzG,hypothetical protein
+BSU32130,guaC,GMP reductase
+BSU32140,paiB,protease synthase and sporulation protein PAI 2
+BSU32150,paiA,protease synthase and sporulation negative regulatory protein PAI 1
+BSU32160,yutM,hypothetical protein
+BSU32170,dapF,diaminopimelate epimerase
+BSU32180,yutK,transporter
+BSU32190,yuzB,hypothetical protein
+BSU32200,yutJ,NADH dehydrogenase-like protein YutJ
+BSU32210,yuzD,disulfide oxidoreductase YuzD
+BSU32220,yutI,nitrogen fixation protein YutI
+BSU32230,yuxL,peptidase YuxL
+BSU32240,thrB,homoserine kinase
+BSU32250,thrC,threonine synthase
+BSU32260,hom,homoserine dehydrogenase
+BSU32270,yutH,endospore coat-associated protein YutH
+BSU32280,yutG,hypothetical protein
+BSU32290,yutF,hydrolase YutF
+BSU32300,yutE,hypothetical protein
+BSU32310,yutD,hypothetical protein
+BSU32320,yutC,lipoprotein
+BSU32330,lipA,lipoyl synthase
+BSU32340,lytH,L-Ala--D-Glu endopeptidase
+BSU32350,yunB,sporulation protein YunB
+BSU32360,yunC,hypothetical protein
+BSU32370,yunD,metallophosphoesterase
+BSU32380,yunE,hypothetical protein
+BSU32390,yunF,hypothetical protein
+BSU32400,yunG,hypothetical protein
+BSU32410,pucH,allantoinase
+BSU32420,pucR,purine catabolism regulatory protein
+BSU32430,pucJ,uric acid permease PucJ
+BSU32440,pucK,uric acid permease PucK
+BSU32450,pucL,urate oxidase with peroxide reductase N-terminal domain
+BSU32460,pucM,5-hydroxyisourate hydrolase
+BSU32469,yuzJ,hypothetical protein
+BSU32470,pucE,xanthine dehydrogenase subunit E
+BSU32480,pucD,xanthine dehydrogenase subunit D
+BSU32490,pucC,xanthine dehydrogenase subunit C
+BSU32500,pucB,purine catabolism protein PucB
+BSU32510,pucA,xanthine dehydrogenase subunit A
+BSU32520,pucG,purine catabolism protein PucG
+BSU32530,yurH,allantoate amidohydrolase
+BSU32540,bsn,extracellular ribonuclease
+BSU32550,yurJ,ABC transporter ATP-binding protein
+BSU32560,frlR,DNA-binding transcriptional regulator FrlR
+BSU32570,frlD,fructosamine kinase FrlD
+BSU32580,frlM,ABC transporter permease
+BSU32590,frlN,ABC transporter permease
+BSU32600,frlO,ABC transporter substrate-binding protein YurO
+BSU32610,frlB,fructosamine deglycase FrlB
+BSU32620,yurQ,hypothetical protein
+BSU32630,yurR,oxidoreductase
+BSU32640,sspG,small acid-soluble spore protein G
+BSU32650,yurS,hypothetical protein
+BSU32660,yurT,hypothetical protein
+BSU32669,yuzN,HTH-type transcriptional regulator YuzN
+BSU32670,sufB,FeS cluster assembly protein SufB
+BSU32680,iscU,NifU-like protein
+BSU32690,sufS,cysteine desulfurase
+BSU32700,sufD,FeS cluster assembly protein SufD
+BSU32710,sufC,ABC transporter ATP-binding protein
+BSU32719,yuzK,hypothetical protein
+BSU32720,yurZ,hypothetical protein
+BSU32730,metN,methionine-binding lipoprotein MetQ
+BSU32740,metP,methionine import system permease protein MetP
+BSU32750,metQ,methionine import ATP-binding protein MetN
+BSU_misc_RNA_53,,hypothetical protein
+BSU32760,yusD,hypothetical protein
+BSU32770,yusE,thioredoxin
+BSU32780,yusF,hypothetical protein
+BSU32790,yusG,hypothetical protein
+BSU32800,yusH,glycine cleavage system H protein
+BSU32810,yusI,hypothetical protein
+BSU32820,fadE,acyl-CoA dehydrogenase
+BSU32830,yusK,3-ketoacyl-CoA thiolase
+BSU32840,fadN,enoyl-CoA hydratase
+BSU32849,yuzL,hypothetical protein
+BSU32850,fadM,proline dehydrogenase 1
+BSU32859,yuzM,hypothetical protein
+BSU32860,yusN,hypothetical protein
+BSU32870,yusO,HTH-type transcriptional regulator YusO
+BSU32880,yusP,MFS transporter
+BSU32890,yusQ,tautomerase YusQ
+BSU32900,yusR,3-oxoacyl-ACP reductase
+BSU32910,yusS,short-chain dehydrogenase/reductase YusS
+BSU32920,yusT,HTH-type transcriptional regulator YusT
+BSU32930,yusU,hypothetical protein
+BSU32940,yusV,siderophore transport system ATP-binding protein YusV
+BSU32950,yusW,hypothetical protein
+BSU32960,yusY,pseudogene
+BSU32970,yusY,pseudogene
+BSU32980,yusZ,oxidoreductase
+BSU32990,mrgA,metalloregulation DNA-binding stress protein
+BSU33000,htrB,serine protease Do-like HtrB
+BSU33010,cssR,transcriptional regulatory protein CssR
+BSU33020,cssS,sensor histidine kinase
+BSU33029,yuzO,hypothetical protein
+BSU33030,yuxN,HTH-type transcriptional regulator YuxN
+BSU33040,fumC,fumarate hydratase class II
+BSU33049,yvzF,hypothetical protein
+BSU33050,gerAA,spore germination protein A1
+BSU33060,gerAB,spore germination protein A2
+BSU33070,gerAC,spore germination protein A3
+BSU33080,liaR,transcriptional regulatory protein LiaR
+BSU33090,liaS,sensor histidine kinase
+BSU33100,liaF,LiaR negative effector LiaF
+BSU33110,liaG,protein LiaG
+BSU33120,liaH,lia operon expression modulator LiaH
+BSU33130,liaI,protein LiaI
+BSU33140,yvqJ,MFS transporter
+BSU33150,yvqK,"Cob(i)yrinic acid a,c-diamide adenosyltransferase"
+BSU33160,yvrA,ABC transporter ATP-binding protein
+BSU33170,yvrB,ABC transporter permease
+BSU33180,yvrC,ABC transporter substrate-binding protein
+BSU33190,yvrD,oxidoreductase
+BSU33200,yvrE,sugar lactone lactonase YvrE
+BSU33210,yvrG,sensor histidine kinase
+BSU33221,yvrH,transcriptional regulator
+BSU33222,rsoA,sigma-O factor regulatory protein RsoA
+BSU33230,sigO,RNA polymerase sigma factor SigO
+BSU33239,yvrJ,hypothetical protein
+BSU33240,oxdC,oxalate decarboxylase OxdC
+BSU33250,yvrL,membrane-bound negative regulator YvrL
+BSU33260,yvrN,ABC transporter permease
+BSU33270,yvrO,ABC transporter ATP-binding protein
+BSU33280,yvrP,efflux system protein YvrP
+BSU33290,fhuC,iron(3+)-hydroxamate import ATP-binding protein FhuC
+BSU33300,fhuG,iron(3+)-hydroxamate import system permease protein FhuG
+BSU33310,fhuB,iron(3+)-hydroxamate import system permease protein FhuB
+BSU33320,fhuD,iron(3+)-hydroxamate-binding protein FhuD
+BSU33330,lysP,arginine/ornithine antiporter
+BSU_misc_RNA_54,,Lysine
+BSU33340,sspJ,small acid-soluble spore protein J
+BSU33350,yvsG,hypothetical protein
+BSU33360,yvgJ,lipoteichoic acid synthase
+BSU33370,yvgK,hypothetical protein
+BSU33380,yvgL,ABC transporter substrate-binding protein
+BSU33390,yvgM,molybdenum transport system permease protein YvgM
+BSU33400,yvgN,glyoxal reductase
+BSU33410,yvgO,stress response protein YvgO
+BSU33420,nhaK,"sodium, potassium, lithium and rubidium/H(+) antiporter"
+BSU33430,yvgQ,sulfite reductase [NADPH] hemoprotein beta-component
+BSU33440,cysJ,sulfite reductase [NADPH] flavoprotein alpha-component
+BSU33450,helD,helicase IV
+BSU33460,yvgT,hypothetical protein
+BSU33470,bdbC,disulfide bond formation protein C
+BSU33480,bdbD,disulfide bond formation protein D
+BSU33490,copB,copper(I)-transporting ATPase
+BSU33500,copA,copper-exporting P-type ATPase A
+BSU33510,copZ,copper chaperone CopZ
+BSU33520,csoR,copper-sensing transcriptional repressor CsoR
+BSU33530,yvaA,oxidoreductase
+BSU33540,yvaB,FMN-dependent NADH-azoreductase 2
+BSU33550,yvaC,hypothetical protein
+BSU33560,yvaD,hypothetical protein
+BSU33570,yvaE,hypothetical protein
+BSU33580,yvaF,HTH-type transcriptional regulator YvaF
+BSU33590,yvaG,oxidoreductase
+BSU_misc_RNA_55,ssrA,Evidence 1a: Function experimentally demonstrated in the studied strain; 10Sa RNA
+BSU33600,smpB,SsrA-binding protein
+BSU33610,rnr,ribonuclease R
+BSU33620,yvaK,carboxylesterase
+BSU33630,secG,protein-export membrane protein SecG
+BSU33640,yvaM,AB hydrolase superfamily protein YvaM
+BSU33650,yvzC,HTH-type transcriptional regulator YvzC
+BSU33660,rghRA,HTH-type transcriptional repressor RghR
+BSU33670,rghRB,HTH-type transcriptional regulator RghRB
+BSU33680,yvaP,HTH-type transcriptional regulator YvaP
+BSU33690,yvaQ,sensory transducer protein YvaQ
+BSU33700,opuBD,choline transport system permease protein OpuBD
+BSU33710,opuBC,choline-binding protein
+BSU33720,opuBB,choline transport system permease protein OpuBB
+BSU33730,opuBA,choline transport ATP-binding protein OpuBA
+BSU33740,yvaV,HTH-type transcriptional regulator YvaV
+BSU33750,sdpA,sporulation-delaying protein SdpA
+BSU33760,sdpB,sporulation-delaying protein SdpB
+BSU33770,spbC,killing factor SdpC
+BSU33780,sdpI,immunity protein SdpI
+BSU33790,sdpR,transcriptional repressor SdpR
+BSU33800,opuCD,glycine betaine/carnitine/choline transport system permease protein OpuCD
+BSU33810,opuCC,glycine betaine/carnitine/choline-binding protein OpuCC
+BSU33820,opuCB,glycine betaine/carnitine/choline transport system permease protein OpuCB
+BSU33830,opuCA,glycine betaine/carnitine/choline transport ATP-binding protein OpuCA
+BSU33840,yvbF,HTH-type transcriptional regulator YvbF
+BSU33850,yvbG,hypothetical protein
+BSU33860,yvbH,hypothetical protein
+BSU33870,yvbI,hypothetical protein
+BSU33880,yvbJ,hypothetical protein
+BSU33890,yvbK,N-acetyltransferase YvbK
+BSU33900,eno,enolase
+BSU33910,pgm,"2,3-bisphosphoglycerate-independent phosphoglycerate mutase"
+BSU33920,tpiA,triosephosphate isomerase
+BSU33930,pgk,phosphoglycerate kinase
+BSU33940,gapA,glyceraldehyde-3-phosphate dehydrogenase 1
+BSU33950,cggR,central glycolytic genes regulator
+BSU33960,araE,arabinose-proton symporter
+BSU33970,araR,transcriptional repressor
+BSU33980,yvbT,hypothetical protein
+BSU33990,yvbU,HTH-type transcriptional regulator YvbU
+BSU34000,cyeB,transporter
+BSU34010,yvbW,amino acid permease YvbW
+BSU_misc_RNA_56,,T-box
+BSU34020,yvbX,glycosylase YvbX
+BSU34030,yvbY,lactate utilization protein C
+BSU34040,yvfW,lactate utilization protein B
+BSU34050,yvfV,lactate utilization protein A
+BSU34060,yvfU,transcriptional regulator
+BSU34070,yvfT,two-component sensor histidine kinase YvfU
+BSU34080,yvfS,transport permease YvfS
+BSU34090,yvfR,ABC transporter ATP-binding protein
+BSU34100,rsbQ,sigma factor SigB regulation protein RsbQ
+BSU34110,rsbP,phosphoserine phosphatase RsbP
+BSU34120,ganB,"arabinogalactan endo-1,4-beta-galactosidase"
+BSU34130,ganA,arabinogalactan type I oligomer exo-hydrolase
+BSU34140,ganQ,arabinogalactan oligomer transport system permease protein GanQ
+BSU34150,ganP,arabinogalactan oligomer transport system permease protein GanP
+BSU34160,cycB,cyclodextrin-binding protein
+BSU34170,ganR,HTH-type transcriptional regulator GanR
+BSU34180,yvfI,HTH-type transcriptional regulator LutR
+BSU34190,yvfH,L-lactate permease
+BSU34200,sigL,RNA polymerase sigma-54 factor
+BSU34210,yvfG,hypothetical protein
+BSU34220,epsO,pyruvyl transferase EpsO
+BSU34230,epsN,pyridoxal phosphate-dependent aminotransferase EpsN
+BSU34240,epsM,acetyltransferase EpsM
+BSU34250,epsL,sugar transferase EpsL
+BSU34265,epsK,membrane protein EpsK
+BSU34280,epsJ,glycosyltransferase EpsJ
+BSU34290,epsI,pyruvyl transferase EpsI
+BSU34300,epsH,glycosyltransferase EpsH
+BSU34310,epsG,transmembrane protein EpsG
+BSU34320,epsF,glycosyltransferase EpsF
+BSU34330,epsE,glycosyltransferase EpsE
+BSU34340,epsD,glycosyltransferase EpsD
+BSU34350,epsC,polysaccharide biosynthesis protein EpsC
+BSU34360,epsB,tyrosine-protein kinase YveL
+BSU34370,epsA,hypothetical protein
+BSU34380,slrR,HTH-type transcriptional regulator SlrR
+BSU34390,pnbA,para-nitrobenzyl esterase
+BSU34400,padC,phenolic acid decarboxylase PadC
+BSU34410,yveG,hypothetical protein
+BSU34420,yveF,hypothetical protein
+BSU34430,racX,amino acid racemase
+BSU34440,pbpE,penicillin-binding protein 4
+BSU34450,sacB,levansucrase
+BSU34460,levB,levanbiose-producing levanase
+BSU34470,yveA,aspartate-proton symporter
+BSU34480,yvdT,HTH-type transcriptional regulator YvdT
+BSU34490,yvdS,hypothetical protein
+BSU34500,yvdR,hypothetical protein
+BSU34510,yvdQ,hypothetical protein
+BSU34520,yvdP,FAD-linked oxidoreductase YvdP
+BSU34530,cotR,sporulation hydrolase CotR
+BSU_tRNA_81,trnQ-Arg,tRNA-Arg
+BSU34540,clpP,ATP-dependent Clp protease proteolytic subunit
+BSU34550,pgcM,beta-phosphoglucomutase
+BSU34560,malL,"oligo-1,6-glucosidase 1"
+BSU34570,yvdK,maltose phosphorylase
+BSU34580,yvdJ,maltodextrin utilization protein YvdJ
+BSU34590,mdxG,maltodextrin transport system permease protein MdxG
+BSU34600,mdxF,maltodextrin transport system permease protein MdxF
+BSU34610,mdxE,maltodextrin-binding protein MdxE
+BSU34620,mdxD,"glucan 1,4-alpha-maltohexaosidase"
+BSU34630,mdxR,HTH-type transcriptional regulator YvdE
+BSU34640,yvdD,LOG family protein YvdD
+BSU34650,yvdC,hypothetical protein
+BSU34660,yvdB,sulfate transporter YvdB
+BSU34670,yvdA,carbonic anhydrase YvdA
+BSU34680,yvcT,2-ketogluconate reductase
+BSU34690,yvcS,ABC transporter permease
+BSU34700,yvcR,ABC transporter ATP-binding protein
+BSU34710,yvcQ,sensor histidine kinase
+BSU34720,yvcP,transcriptional regulator
+BSU34729,yvzJ,lipoprotein
+BSU34730,yvcN,acetyltransferase YvcN
+BSU34740,crh,HPr-like protein Crh
+BSU34750,whiA,sporulation transcription regulator WhiA
+BSU34760,yvcK,hypothetical protein
+BSU34770,yvcJ,nucleotide-binding protein YvcJ
+BSU34780,yvcI,Nudix hydrolase YvcI
+BSU34790,trxB,thioredoxin
+BSU34800,cwlO,peptidoglycan DL-endopeptidase CwlO
+BSU34810,yvcD,TPR repeat-containing protein YvcD
+BSU34820,bmrA,multidrug resistance ABC transporter ATP-binding/permease protein BmrA
+BSU34830,yvzA,hypothetical protein
+BSU34840,yvcB,hypothetical protein
+BSU34850,yvcA,lipoprotein
+BSU34860,hisI,histidine biosynthesis bifunctional protein HisIE
+BSU34870,hisF,imidazole glycerol phosphate synthase subunit HisF
+BSU34880,hisA,1-(5-phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino] imidazole-4-carboxamide isomerase
+BSU34890,hisH,imidazole glycerol phosphate synthase subunit HisH
+BSU34900,hisB,imidazoleglycerol-phosphate dehydratase
+BSU34910,hisD,histidinol dehydrogenase
+BSU34920,hisG,ATP phosphoribosyltransferase
+BSU34930,hisZ,ATP phosphoribosyltransferase regulatory subunit
+BSU34940,yvpB,hypothetical protein
+BSU34950,pelC,pectate lyase C
+BSU34960,yvoF,acetyltransferase YvoF
+BSU34970,hprP,pyrophosphatase PpaX
+BSU34980,yvoD,hypothetical protein
+BSU34990,lgt,prolipoprotein diacylglyceryl transferase
+BSU35000,hprK,HPr kinase/phosphorylase
+BSU35010,nagA,N-acetylglucosamine-6-phosphate deacetylase
+BSU35020,nagBA,glucosamine-6-phosphate deaminase 1
+BSU35030,yvoA,HTH-type transcriptional repressor YvoA
+BSU35040,yvnB,hypothetical protein
+BSU35050,yvnA,HTH-type transcriptional regulator YvnA
+BSU35060,cypX,cytochrome P450 CypX
+BSU35070,yvmC,hypothetical protein
+BSU35080,yvmB,HTH-type transcriptional regulator YvmB
+BSU35090,yvmA,MFS transporter
+BSU35100,yvlD,hypothetical protein
+BSU35110,yvlC,hypothetical protein
+BSU35120,yvlB,hypothetical protein
+BSU35130,yvlA,hypothetical protein
+BSU35140,yvkN,hypothetical protein
+BSU35160,uvrA,UvrABC system protein A
+BSU35170,uvrB,UvrABC system protein B
+BSU35180,csbA,general stress protein CsbA
+BSU35190,yvkC,phosphotransferase YvkC
+BSU35200,yvkB,HTH-type transcriptional regulator YvkB
+BSU35210,yvkA,MFS transporter
+BSU35220,minJ,cell division topological determinant MinJ
+BSU35230,swrAA,pseudogene
+BSU35239,swrAA,pseudogene
+BSU35240,ctpB,carboxy-terminal processing protease CtpB
+BSU35250,ftsX,cell division protein FtsX
+BSU35260,ftsE,cell division ATP-binding protein FtsE
+BSU35270,cccB,cytochrome c-551
+BSU35280,yvjA,hypothetical protein
+BSU35290,prfB,peptide chain release factor 2
+BSU35300,secA,protein translocase subunit SecA
+BSU35310,yvyD,sigma-54 modulation protein
+BSU35319,yvzG,hypothetical protein
+BSU35320,fliT,flagellar protein FliT
+BSU35330,fliS,flagellar protein FliS
+BSU35340,fliD,flagellar hook-associated protein 2
+BSU35350,yvyC,hypothetical protein
+BSU35360,hag,flagellin
+BSU35370,csrA,carbon storage regulator
+BSU35380,yviF,flagellar assembly factor FliW
+BSU35390,yviE,hypothetical protein
+BSU35400,flgL,flagellar hook-associated protein 3
+BSU35410,flgK,flagellar hook-associated protein 1
+BSU35420,yvyG,hypothetical protein
+BSU35430,flgM,negative regulator of flagellin synthesis
+BSU35440,yvyF,hypothetical protein
+BSU35450,comFC,ComF operon protein 3
+BSU35460,comFB,ComF operon protein 2
+BSU35470,comFA,ComF operon protein 1
+BSU35480,yviA,protein DegV
+BSU35490,degU,transcriptional regulatory protein DegU
+BSU35500,degS,signal transduction histidine-protein kinase/phosphatase DegS
+BSU35510,yvyE,IMPACT family member YvyE
+BSU35520,yvhJ,transcriptional regulator YvhJ
+BSU35530,tagO,undecaprenyl-phosphate N-acetylglucosaminyl 1-phosphate transferase
+BSU35540,tuaH,teichuronic acid biosynthesis glycosyltransferase TuaH
+BSU35550,tuaG,teichuronic acid biosynthesis glycosyltransferase TuaG
+BSU35560,tuaF,teichuronic acid biosynthesis protein TuaF
+BSU35570,tuaE,teichuronic acid biosynthesis protein TuaE
+BSU35580,tuaD,UDP-glucose 6-dehydrogenase TuaD
+BSU35590,tuaC,teichuronic acid biosynthesis glycosyltransferase TuaC
+BSU35600,tuaB,teichuronic acid biosynthesis protein TuaB
+BSU35609,tuaA,pseudogene
+BSU35610,tuaA,pseudogene
+BSU35620,lytC,N-acetylmuramoyl-L-alanine amidase LytC
+BSU35630,lytB,amidase enhancer
+BSU35640,lytA,membrane-bound protein LytA
+BSU35650,lytR,transcriptional regulator LytR
+BSU35660,mnaA,UDP-N-acetylglucosamine 2-epimerase
+BSU35670,gtaB,UTP--glucose-1-phosphate uridylyltransferase
+BSU35679,yvzH,pseudogene
+BSU35680,ggaB,minor teichoic acid biosynthesis protein GgaB
+BSU35690,ggaA,minor teichoic acid biosynthesis protein GgaA
+BSU35698,yvzI,pseudogene
+BSU35699,yvzE,pseudogene
+BSU35700,tagH,teichoic acids export ATP-binding protein TagH
+BSU35710,tagG,teichoic acid translocation permease protein TagG
+BSU35720,tagF,CDP-glycerol:poly
+BSU35730,tagE,poly(glycerol-phosphate) alpha-glucosyltransferase
+BSU35740,tagD,glycerol-3-phosphate cytidylyltransferase
+BSU35750,tagA,N-acetylmannosaminyltransferase
+BSU35760,tagB,CDP-glycerol:glycerophosphate glycerophosphotransferase
+BSU35770,tagC,major teichoic acid biosynthesis protein C
+BSU35780,lytD,beta-N-acetylglucosaminidase
+BSU35790,yvyI,mannose-6-phosphate isomerase YvyI
+BSU35800,gerBA,spore germination protein B1
+BSU35810,gerBB,spore germination protein B2
+BSU35820,gerBC,spore germination protein B3
+BSU35830,ywtG,metabolite transport protein YwtG
+BSU35840,ywtF,transcriptional regulator YwtF
+BSU35850,ywtE,hypothetical protein
+BSU35860,pgdS,gamma-dl-glutamyl hydrolase
+BSU35870,pgsE,hypothetical protein
+BSU35880,pgsA,PGA biosynthesis protein CapA
+BSU35890,pgsC,PGA biosynthesis protein CapC
+BSU35900,pgsB,PGA synthase CapB
+BSU35910,rbsR,ribose operon repressor
+BSU35920,rbsK,ribokinase
+BSU35930,rbsD,D-ribose pyranase
+BSU35940,rbsA,ribose import ATP-binding protein RbsA
+BSU35950,rbsC,ribose transport system permease RbsC
+BSU35960,rbsB,D-ribose-binding protein
+BSU35970,ywsB,cell wall-binding protein YwsB
+BSU35980,ywsA,hypothetical protein
+BSU35990,ywrO,general stress protein 14
+BSU36000,alsD,alpha-acetolactate decarboxylase
+BSU36010,alsS,acetolactate synthase
+BSU36020,alsR,HTH-type transcriptional regulator AlsR
+BSU36030,ywrK,arsenical pump membrane protein
+BSU36040,ywrJ,hypothetical protein
+BSU36050,cotB,spore coat protein B
+BSU36060,cotH,inner spore coat protein H
+BSU36070,cotG,spore coat protein G
+BSU36080,ywrF,hypothetical protein
+BSU36090,ywrE,hypothetical protein
+BSU36100,ywrD,gamma-glutamyltransferase YwrD
+BSU36110,ywrC,HTH-type transcriptional regulator YwrC
+BSU36120,ywrB,transporter
+BSU36130,ywrA,transporter
+BSU36140,ywqO,hypothetical protein
+BSU36150,ywqN,NAD(P)H-dependent FMN-containing oxidoreductase YwqN
+BSU36160,ywqM,HTH-type transcriptional regulator YwqM
+BSU36170,ywqL,endonuclease V
+BSU36180,ywqK,hypothetical protein
+BSU36190,ywqJ,hypothetical protein
+BSU36200,ywqI,hypothetical protein
+BSU36210,ywqH,hypothetical protein
+BSU36220,ywqG,hypothetical protein
+BSU36230,ywqF,UDP-glucose 6-dehydrogenase YwqF
+BSU36240,ywqE,tyrosine-protein phosphatase YwqE
+BSU36250,ptkA,tyrosine-protein kinase YwqD
+BSU36260,ywqC,capsular polysaccharide biosynthesis protein YwqC
+BSU36269,ywzD,hypothetical protein
+BSU36270,ywqB,hypothetical protein
+BSU36280,ywqA,ATP-dependent helicase YwqA
+BSU36290,ywpJ,phosphatase YwpJ
+BSU36300,glcR,HTH-type transcriptional repressor GlcR
+BSU36310,ssbB,single-stranded DNA-binding protein SsbB
+BSU36320,ywpG,hypothetical protein
+BSU36330,ywpF,hypothetical protein
+BSU36340,ywpE,sortase
+BSU36350,ywpD,hypothetical protein
+BSU36360,mscL,large-conductance mechanosensitive channel
+BSU36370,fabZ,3-hydroxyacyl-[acyl-carrier-protein] dehydratase FabZ
+BSU36380,rapD,response regulator aspartate phosphatase D
+BSU36390,flhP,flagellar hook-basal body complex protein FlhP
+BSU36400,flhO,flagellar hook-basal body complex protein FlhO
+BSU36410,mbl,MreB-like protein
+BSU36420,spoIIID,stage III sporulation protein D
+BSU36430,usd,protein usd
+BSU36440,ywoH,HTH-type transcriptional regulator YwoH
+BSU36450,ywoG,MFS transporter
+BSU36460,ywoF,hypothetical protein
+BSU36470,pucI,allantoin permease
+BSU36480,ywoD,MFS transporter
+BSU36490,ywoC,isochorismatase
+BSU36500,ywoB,hypothetical protein
+BSU36510,amtB,ammonium transporter NrgA
+BSU36520,glnK,nitrogen regulatory PII-like protein
+BSU36530,bcrC,undecaprenyl-diphosphatase BcrC
+BSU36540,ywnJ,hypothetical protein
+BSU36550,spoIIQ,stage II sporulation protein Q
+BSU36560,ywnH,phosphinothricin acetyltransferase YwnH
+BSU36570,ywnG,hypothetical protein
+BSU36580,ywnF,hypothetical protein
+BSU36590,clsA,cardiolipin synthase
+BSU36600,mta,HTH-type transcriptional activator mta
+BSU36610,ywnC,hypothetical protein
+BSU36620,ywnB,hypothetical protein
+BSU36630,ywnA,HTH-type transcriptional regulator YwnA
+BSU36640,ureC,urease subunit alpha
+BSU36650,ureB,urease subunit beta
+BSU36660,ureA,urease subunit gamma
+BSU36668,ywzE,pseudogene
+BSU36669,ywzF,pseudogene
+BSU36670,csbD,stress response protein CsbD
+BSU36680,ywmF,hypothetical protein
+BSU36690,rapB,response regulator aspartate phosphatase B
+BSU36700,moaA,cyclic pyranopterin monophosphate synthase
+BSU36710,fdhD,protein FdhD
+BSU36720,ywmE,hypothetical protein
+BSU36730,ywmD,hypothetical protein
+BSU36740,ywmC,hypothetical protein
+BSU36750,spoIID,stage II sporulation protein D
+BSU36760,murAA,UDP-N-acetylglucosamine 1-carboxyvinyltransferase 1
+BSU36770,ywmB,hypothetical protein
+BSU36780,ywzB,hypothetical protein
+BSU36790,ywmA,hypothetical protein
+BSU36800,atpC,ATP synthase epsilon chain
+BSU36810,atpD,ATP synthase subunit beta
+BSU36820,atpG,ATP synthase gamma chain
+BSU36830,atpA,ATP synthase subunit alpha
+BSU36840,atpH,ATP synthase subunit delta
+BSU36850,atpF,ATP synthase subunit b
+BSU36860,atpE,ATP synthase subunit c
+BSU36870,atpB,ATP synthase subunit a
+BSU36880,atpI,ATP synthase protein I
+BSU36890,upp,uracil phosphoribosyltransferase
+BSU36900,glyA,serine hydroxymethyltransferase
+BSU36910,ywlG,hypothetical protein
+BSU36920,ywlF,sugar phosphate isomerase YwlF
+BSU36930,ywlE,low molecular weight protein-tyrosine-phosphatase YwlE
+BSU36940,ywlD,hypothetical protein
+BSU36950,ywlC,tRNA threonylcarbamoyladenosine biosynthesis protein YwlC
+BSU36960,ywlB,hypothetical protein
+BSU36970,spoIIR,stage II sporulation protein R
+BSU36980,ywlA,hypothetical protein
+BSU36990,ywkF,hypothetical protein
+BSU37000,prmC,release factor glutamine methyltransferase
+BSU37010,prfA,peptide chain release factor 1
+BSU37020,ywkD,hypothetical protein
+BSU37030,racA,chromosome-anchoring protein RacA
+BSU37040,ywkB,transporter
+BSU37050,ywkA,NAD-dependent malic enzyme 2
+BSU37060,tdk,thymidine kinase
+BSU37070,rpmE,50S ribosomal protein L31
+BSU37080,rho,transcription termination factor Rho
+BSU37090,glpX,"fructose-1,6-bisphosphatase class 2"
+BSU37100,murAB,UDP-N-acetylglucosamine 1-carboxyvinyltransferase 2
+BSU37110,ywjH,transaldolase
+BSU37120,fbaA,fructose-bisphosphate aldolase
+BSU37130,spo0F,sporulation initiation phosphotransferase F
+BSU37140,ywjG,hypothetical protein
+BSU37150,pyrG,CTP synthase
+BSU37160,rpoE,DNA-directed RNA polymerase subunit delta
+BSU37170,acdA,acyl-CoA dehydrogenase
+BSU37180,fadF,hypothetical protein
+BSU37190,clsB,cardiolipin synthetase
+BSU37200,uvsE,UV DNA damage endonuclease
+BSU37210,ywjC,hypothetical protein
+BSU37220,ywjB,hypothetical protein
+BSU37230,ywjA,ABC transporter ATP-binding protein
+BSU37240,ywiE,cardiolipin synthase YwiE
+BSU37250,narI,nitrate reductase gamma chain
+BSU37260,narJ,nitrate reductase molybdenum cofactor assembly chaperone NarJ
+BSU37270,narH,nitrate reductase beta chain
+BSU37280,narG,nitrate reductase alpha chain
+BSU37290,arfM,transcription regulator ArfM
+BSU37300,ywiC,hypothetical protein
+BSU37310,fnr,anaerobic regulatory protein
+BSU37320,narK,nitrite extrusion protein
+BSU37330,argS,arginine--tRNA ligase
+BSU37340,ywiB,beta-barrel protein YwiB
+BSU37350,sboA,subtilosin-A
+BSU37360,sboX,bacteriocin-like protein SboX
+BSU37370,albA,antilisterial bacteriocin subtilosin biosynthesis protein AlbA
+BSU37380,albB,antilisterial bacteriocin subtilosin biosynthesis protein AlbB
+BSU37390,albC,ABC transporter ATP-binding protein
+BSU37400,albD,antilisterial bacteriocin subtilosin biosynthesis protein AlbD
+BSU37410,albE,antilisterial bacteriocin subtilosin biosynthesis protein AlbE
+BSU37420,albF,zinc protease AlbF
+BSU37430,albG,antilisterial bacteriocin subtilosin biosynthesis protein AlbG
+BSU37440,ywhL,hypothetical protein
+BSU37450,ywhK,hypothetical protein
+BSU37460,rapF,response regulator aspartate phosphatase F
+BSU37470,phrF,phosphatase RapF inhibitor
+BSU37480,ywhH,hypothetical protein
+BSU37490,speB,agmatinase
+BSU37500,speE,spermidine synthase
+BSU37510,pbpG,penicillin-binding protein 2D
+BSU37520,ywhD,hypothetical protein
+BSU37530,ywhC,zinc metalloprotease YwhC
+BSU37540,ywhB,2-hydroxymuconate tautomerase
+BSU37550,ywhA,HTH-type transcriptional regulator YwhA
+BSU37560,thrZ,threonine--tRNA ligase 2
+BSU_misc_RNA_57,,T-box
+BSU_misc_RNA_58,,T-box
+BSU37570,mmr,methylenomycin A resistance protein
+BSU37580,ywgB,HTH-type transcriptional regulator YwgB
+BSU37590,ywgA,hypothetical protein
+BSU37600,ywfO,hypothetical protein
+BSU37610,ywzC,hypothetical protein
+BSU37620,rsfA,prespore-specific transcriptional regulator RsfA
+BSU37630,ywfM,transporter
+BSU37640,ywfL,octanoyl-[GcvH]:protein N-octanoyltransferase
+BSU37650,cysL,HTH-type transcriptional regulator CysL
+BSU37660,eutD,phosphate acetyltransferase
+BSU37670,ywfI,heme peroxidase
+BSU37680,ywfH,bacilysin biosynthesis oxidoreductase YwfH
+BSU37690,ywfG,aspartate aminotransferase
+BSU37700,bacE,bacilysin exporter BacE
+BSU37710,bacD,alanine-anticapsin ligase BacD
+BSU37720,bacC,bacilysin biosynthesis oxidoreductase
+BSU37730,bacB,bacilysin biosynthesis protein BacB
+BSU37740,bacA,bacilysin biosynthesis protein BacA
+BSU37750,ywfA,MFS transporter
+BSU37760,rocC,amino acid permease RocC
+BSU37770,rocB,arginine utilization protein RocB
+BSU37780,rocA,1-pyrroline-5-carboxylate dehydrogenase
+BSU37790,rocG,catabolic NAD-specific glutamate dehydrogenase RocG
+BSU37800,yweA,hypothetical protein
+BSU37810,spsL,spore coat polysaccharide biosynthesis protein SpsL
+BSU37820,spsK,spore coat polysaccharide biosynthesis protein SpsK
+BSU37830,spsJ,"dTDP-glucose 4,6-dehydratase"
+BSU37840,spsI,dTDP-glucose pyrophosphorylase
+BSU37850,spsG,spore coat polysaccharide biosynthesis protein SpsG
+BSU37860,spsF,spore coat polysaccharide biosynthesis protein SpsF
+BSU37870,spsE,spore coat polysaccharide biosynthesis protein SpsE
+BSU37880,spsD,spore coat polysaccharide biosynthesis protein SpsD
+BSU37890,spsC,spore coat polysaccharide biosynthesis protein SpsC
+BSU37900,spsB,spore coat polysaccharide biosynthesis protein SpsB
+BSU37910,spsA,spore coat polysaccharide biosynthesis protein SpsA
+BSU37920,ywdL,spore coat protein GerQ
+BSU37930,ywdK,hypothetical protein
+BSU37940,ywdJ,purine permease YwdJ
+BSU37950,ywdI,hypothetical protein
+BSU37960,ywdH,aldehyde dehydrogenase YwdH
+BSU37970,ung,uracil-DNA glycosylase
+BSU37980,ywdF,glycosyltransferase YwdF
+BSU37990,ywdE,hypothetical protein
+BSU38000,ywdD,hypothetical protein
+BSU38018,ywzG,DNA-binding protein YwzG
+BSU38020,thiD,pyridoxine kinase
+BSU38030,ywdA,hypothetical protein
+BSU38040,sacA,sucrose-6-phosphate hydrolase
+BSU38050,sacP,PTS system-sucrose-specific transporter subunit EIIBC
+BSU38060,ywcJ,transporter
+BSU38070,sacT,SacPA operon antiterminator
+BSU38080,ywcI,hypothetical protein
+BSU38090,vpr,minor extracellular protease vpr
+BSU38100,ywcH,hypothetical protein
+BSU38110,nfrA,FMN reductase
+BSU38120,rodA,rod shape-determining protein RodA
+BSU38130,ywcE,spore morphogenesis and germination protein YwcE
+BSU38140,qoxD,quinol oxidase subunit 4
+BSU38150,qoxC,quinol oxidase subunit 3
+BSU38160,qoxB,quinol oxidase subunit 1
+BSU38170,qoxA,quinol oxidase subunit 2
+BSU38180,ywzA,hypothetical protein
+BSU38190,galT,galactose-1-phosphate uridylyltransferase
+BSU38200,galK,galactokinase
+BSU38210,ywcD,hypothetical protein
+BSU38220,ywcC,HTH-type transcriptional regulator YwcC
+BSU38229,slrA,transcriptional regulator SlrA
+BSU38230,ywcB,hypothetical protein
+BSU38240,ywcA,symporter
+BSU38250,ywbO,hypothetical protein
+BSU38260,efeN,deferrochelatase/peroxidase EfeN
+BSU38270,efeM,iron uptake system component EfeM
+BSU38280,efeU,ferrous iron permease EfeU
+BSU38290,thiE,thiamine-phosphate synthase
+BSU38300,thiM,hydroxyethylthiazole kinase
+BSU38310,ywbI,HTH-type transcriptional regulator YwbI
+BSU38320,ywbH,holin-like protein CidA
+BSU38330,lrgB,hypothetical protein
+BSU38340,ywbF,transporter
+BSU38350,ywbE,hypothetical protein
+BSU38360,ywbD,ribosomal RNA large subunit methyltransferase YwbD
+BSU38370,ywbC,hypothetical protein
+BSU38380,ywbB,hypothetical protein
+BSU38390,ywbA,permease IIC component YwbA
+BSU38400,epr,minor extracellular protease epr
+BSU38410,sacX,negative regulator of SacY activity
+BSU38420,sacY,levansucrase and sucrase synthesis operon antiterminator
+BSU38430,gspA,general stress protein A
+BSU38440,ywaF,hypothetical protein
+BSU38450,ywaE,HTH-type transcriptional regulator YwaE
+BSU_misc_RNA_59,,T-box
+BSU38460,tyrZ,tyrosine--tRNA ligase 2
+BSU38470,ywaD,aminopeptidase YwaD
+BSU38480,ywaC,GTP pyrophosphokinase YwaC
+BSU38490,menA,"1,4-dihydroxy-2-naphthoate octaprenyltransferase"
+BSU38499,ywzH,hypothetical protein
+BSU38500,dltA,D-alanine--poly(phosphoribitol) ligase subunit 1
+BSU38510,dltB,protein DltB
+BSU38520,dltC,D-alanine--poly(phosphoribitol) ligase subunit 2
+BSU38530,dltD,poly D-alanine transfer protein DltD
+BSU38540,dltE,oxidoreductase
+BSU38550,ywaA,branched-chain-amino acid aminotransferase 2
+BSU38560,licH,6-phospho-beta-glucosidase
+BSU38570,licA,PTS system-lichenan-specific transporter subunit IIA
+BSU38580,licC,PTS system-lichenan-specific transporter subunit IIC
+BSU38590,licB,PTS system-lichenan-specific transporter subunit IIB
+BSU38600,licR,licABCH operon regulator
+BSU38610,yxzF,hypothetical protein
+BSU38620,yxlJ,3-methyladenine DNA glycosylase
+BSU38630,katX,catalase X
+BSU38640,yxlH,MFS transporter
+BSU38650,yxlG,transmembrane protein YxlG
+BSU38660,yxlF,ABC transporter ATP-binding protein
+BSU38670,yxlE,negative regulatory protein YxlE
+BSU38680,yxlD,negative regulatory protein YxlD
+BSU38690,yxlC,hypothetical protein
+BSU38700,sigY,RNA polymerase sigma factor SigY
+BSU38710,yxlA,purine-cytosine permease YxlA
+BSU38720,yxkO,ADP-dependent (S)-NAD(P)H-hydrate dehydratase
+BSU38730,cydD,ATP-binding/permease protein CydD
+BSU38740,cydC,ATP-binding/permease protein CydC
+BSU38750,cydB,cytochrome d ubiquinol oxidase subunit 2
+BSU38760,cydA,cytochrome d ubiquinol oxidase subunit 1
+BSU38770,cimH,citrate/malate transporter
+BSU38780,yxkI,membrane metalloprotease YxkI
+BSU38790,yxzE,hypothetical protein
+BSU38800,yxkH,polysaccharide deacetylase
+BSU38810,msmX,maltodextrin import ATP-binding protein MsmX
+BSU38820,yxkF,hypothetical protein
+BSU38830,aldY,aldehyde dehydrogenase AldY
+BSU38840,yxkD,hypothetical protein
+BSU_misc_RNA_60,,hypothetical protein
+BSU38850,yxkC,hypothetical protein
+BSU38860,galE,UDP-glucose 4-epimerase
+BSU38870,yxkA,hypothetical protein
+BSU38880,yxjO,HTH-type transcriptional regulator YxjO
+BSU38890,yxjN,hypothetical protein
+BSU38900,yxjM,sensor histidine kinase
+BSU38910,yxjL,transcriptional regulator
+BSU38920,pepT,peptidase T
+BSU38930,yxjJ,hypothetical protein
+BSU38940,yxjI,hypothetical protein
+BSU_misc_RNA_61,,hypothetical protein
+BSU38950,yxjH,hypothetical protein
+BSU_misc_RNA_62,,hypothetical protein
+BSU38960,yxjG,hypothetical protein
+BSU38970,yxjF,oxidoreductase
+BSU38980,scoB,succinyl-CoA:3-ketoacid coenzyme A transferase subunit B
+BSU38990,scoA,succinyl-CoA:3-ketoacid coenzyme A transferase subunit A
+BSU39000,yxjC,transporter
+BSU39010,yxjB,23S rRNA (guanine-N(1)-)-methyltransferase YxjB
+BSU_misc_RNA_63,,Purine
+BSU39020,yxjA,purine nucleoside transport protein NupG
+BSU39029,yxiT,pseudogene
+BSU39030,yxiT,pseudogene
+BSU39040,yxiS,hypothetical protein
+BSU39050,katE,catalase-2
+BSU39060,citH,citrate transporter
+BSU39070,bglS,beta-glucanase
+BSU39080,licT,transcription antiterminator LicT
+BSU39090,yxiP,hypothetical protein
+BSU39100,yxiO,MFS transporter
+BSU39110,deaD,ATP-dependent RNA helicase DbpA
+BSU39120,yxiM,esterase YxiM
+BSU39129,yxzI,pseudogene
+BSU39139,yxzJ,hypothetical protein
+BSU39140,yxiK,hypothetical protein
+BSU39150,yxiJ,hypothetical protein
+BSU39160,yxiI,hypothetical protein
+BSU39170,yxzG,hypothetical protein
+BSU39180,yxiH,hypothetical protein
+BSU39190,yxiG,hypothetical protein
+BSU39200,yxzC,hypothetical protein
+BSU39210,yxiF,hypothetical protein
+BSU39220,yxxG,hypothetical protein
+BSU39230,wapA,wall-associated protein
+BSU39240,yxxF,transporter
+BSU39250,yxiE,universal stress protein YxiE
+BSU39260,bglH,aryl-phospho-beta-d-glucosidase BglH
+BSU39270,bglP,PTS system-beta-glucoside-specific subunit EIIBCA
+BSU39280,yxxE,hypothetical protein
+BSU39290,yxxD,hypothetical protein
+BSU39300,yxiD,hypothetical protein
+BSU39310,yxiC,hypothetical protein
+BSU39320,yxiB,hypothetical protein
+BSU39330,abnB,"arabinan endo-1,5-alpha-L-arabinosidase"
+BSU39339,yxzL,hypothetical protein
+BSU39340,hutP,anti-terminator HutP
+BSU39350,hutH,histidine ammonia-lyase
+BSU39360,hutU,urocanate hydratase
+BSU39370,hutI,imidazolonepropionase
+BSU39380,hutG,formimidoylglutamase
+BSU39390,hutM,histidine permease
+BSU39400,pdp,pyrimidine-nucleoside phosphorylase
+BSU39410,nupC,pyrimidine nucleoside transport protein
+BSU39420,deoC,2-deoxyribose-5-phosphate aldolase
+BSU39430,deoR,deoxyribonucleoside regulator
+BSU39440,yxxB,hypothetical protein
+BSU39450,yxeR,hypothetical protein
+BSU39460,yxeQ,hypothetical protein
+BSU39470,yxeP,hydrolase YxeP
+BSU39480,yxeO,amino acid import ATP-binding protein YxeO
+BSU39490,yxeN,amino acid permease protein YxeN
+BSU39500,yxeM,amino acid-binding protein YxeM
+BSU39510,yxeL,N-acetyltransferase YxeL
+BSU39520,yxeK,monooxygenase YxeK
+BSU39530,yxeJ,hypothetical protein
+BSU39540,yxeI,hypothetical protein
+BSU39550,yxeH,hypothetical protein
+BSU39560,yxeG,hypothetical protein
+BSU39570,yxeF,hypothetical protein
+BSU39580,yxeE,hypothetical protein
+BSU39590,yxeD,hypothetical protein
+BSU39600,yxeC,hypothetical protein
+BSU39610,yxeB,iron(3+)-hydroxamate-binding protein YxeB
+BSU39620,yxeA,hypothetical protein
+BSU39630,yxdM,ABC transporter permease
+BSU39640,yxdL,ABC transporter ATP-binding protein
+BSU39650,yxdK,sensor histidine kinase
+BSU39660,yxdJ,transcriptional regulator
+BSU39670,iolJ,6-phospho-5-dehydro-2-deoxy-D-gluconate aldolase
+BSU39680,iolI,inosose isomerase
+BSU39690,iolH,myo-inositol catabolism protein IolH
+BSU39700,iolG,inositol 2-dehydrogenase/D-chiro-inositol 3-dehydrogenase
+BSU39710,iolF,minor myo-inositol transporter IolF
+BSU39720,iolE,inosose dehydratase
+BSU39730,iolD,"3D-(3,5/4)-trihydroxycyclohexane-1,2-dione acylhydrolase (decyclizing)"
+BSU39740,iolC,5-dehydro-2-deoxygluconokinase
+BSU39750,iolB,5-deoxy-glucuronate isomerase
+BSU39760,mmsA,methylmalonate semialdehyde dehydrogenase
+BSU39770,iolR,HTH-type transcriptional regulator IolR
+BSU39780,iolS,aldo/keto reductase family protein IolS
+BSU39790,yxcE,hypothetical protein
+BSU39800,yxcD,hypothetical protein
+BSU39810,csbC,metabolite transport protein CsbC
+BSU39820,htpG,chaperone protein HtpG
+BSU39830,yxcA,hypothetical protein
+BSU39840,yxbG,oxidoreductase
+BSU39850,yxbF,HTH-type transcriptional regulator YxbF
+BSU39860,aldX,aldehyde dehydrogenase AldX
+BSU39870,yxbD,hypothetical protein
+BSU39880,yxbC,hypothetical protein
+BSU39890,yxbB,hypothetical protein
+BSU39900,aslA,hypothetical protein
+BSU39910,yxnB,hypothetical protein
+BSU39920,asnH,asparagine synthetase 2
+BSU39930,yxaM,MFS transporter
+BSU39940,yxaL,hypothetical protein
+BSU39950,yxaJ,hypothetical protein
+BSU39960,yxaI,hypothetical protein
+BSU39970,yxaH,hypothetical protein
+BSU39980,qodI,"quercetin 2,3-dioxygenase"
+BSU39990,yxaF,HTH-type transcriptional regulator YxaF
+BSU40000,yxnA,oxidoreductase
+BSU40010,yxaD,HTH-type transcriptional regulator YxaD
+BSU40021,yxzK,integral membrane protein YxzK
+BSU40022,yxaC,hypothetical protein
+BSU40030,yxaB,general stress protein 30
+BSU40040,glxK,glycerate kinase
+BSU40050,gntR,gluconate operon transcriptional repressor
+BSU40060,gntK,gluconokinase
+BSU40070,gntP,gluconate permease
+BSU40080,gntZ,6-phosphogluconate dehydrogenase
+BSU40090,ahpC,alkyl hydroperoxide reductase subunit C
+BSU40100,ahpF,NADH dehydrogenase
+BSU40110,bglA,aryl-phospho-beta-d-glucosidase BglA
+BSU40120,yyzE,PTS system transporter subunit IIA YyzE
+BSU40130,yydK,HTH-type transcriptional regulator YydK
+BSU40139,yyzN,hypothetical protein
+BSU40140,yydJ,peptide export permease protein YydJ
+BSU40150,yydI,peptide export ATP-binding protein YydI
+BSU40160,yydH,peptide zinc metalloprotease protein YydH
+BSU40170,yydG,peptide biosynthesis protein YydG
+BSU40180,yydF,hypothetical protein
+BSU40190,fbp,"fructose-1,6-bisphosphatase"
+BSU40200,yydD,hypothetical protein
+BSU40210,yydC,hypothetical protein
+BSU40220,yydB,metallophosphoesterase
+BSU40230,yydA,23S rRNA (pseudouridine(1915)-N(3))-methyltransferase RlmH
+BSU40239,yyzF,hypothetical protein
+BSU40240,yycS,hypothetical protein
+BSU40250,yycR,zinc-type alcohol dehydrogenase
+BSU40259,yyzG,hypothetical protein
+BSU40260,yycQ,hypothetical protein
+BSU40270,yycP,hypothetical protein
+BSU40280,yycO,hypothetical protein
+BSU40290,yycN,N-acetyltransferase YycN
+BSU40300,rapG,response regulator aspartate phosphatase G
+BSU40310,phrG,phosphatase RapG inhibitor
+BSU40320,argI,arginase
+BSU40330,rocE,amino acid permease RocE
+BSU40340,rocD,ornithine aminotransferase
+BSU40350,rocR,arginine utilization regulatory protein RocR
+BSU40359,yyzO,pseudogene
+BSU40360,htrC,serine protease YyxA
+BSU40370,yycJ,metallo-hydrolase YycJ
+BSU40380,yycI,two-component system YycFG regulatory protein
+BSU40390,walH,two-component system YycF/YycG regulatory protein YycH
+BSU40400,walK,sensor histidine kinase
+BSU40410,walR,transcriptional regulator
+BSU_tRNA_1,trnY-Phe,tRNA-Phe
+BSU_tRNA_2,trnY-Asp,tRNA-Asp
+BSU_tRNA_3,trnY-Glu,tRNA-Glu
+BSU_tRNA_4,trnY-Lys,tRNA-Lys
+BSU40420,purA,adenylosuccinate synthase
+BSU40430,yycE,hypothetical protein
+BSU40440,dnaC,replicative DNA helicase
+BSU40450,yycD,hypothetical protein
+BSU40460,yyzB,hypothetical protein
+BSU40470,yycC,hypothetical protein
+BSU40480,yycB,transporter
+BSU40490,yycA,mannosyltransferase YycA
+BSU40500,rplI,50S ribosomal protein L9
+BSU40510,yybT,hypothetical protein
+BSU40520,yybS,hypothetical protein
+BSU40529,yyzH,hypothetical protein
+BSU40530,cotF,spore coat protein F
+BSU40540,yybR,HTH-type transcriptional regulator YybR
+BSU40550,ppaC,manganese-dependent inorganic pyrophosphatase
+BSU40560,yybP,lipoprotein
+BSU40570,yybO,transporter
+BSU40573,yyzI,pseudogene
+BSU40574,yyzJ,pseudogene
+BSU40578,yyzK,pseudogene
+BSU40579,yyzL,pseudogene
+BSU40580,yybN,hypothetical protein
+BSU40590,yybM,hypothetical protein
+BSU40600,yybL,hypothetical protein
+BSU40610,yybK,hypothetical protein
+BSU40620,yybJ,ABC transporter ATP-binding protein
+BSU40630,yybI,hypothetical protein
+BSU40640,yybH,hypothetical protein
+BSU40650,yybG,hypothetical protein
+BSU40660,yybF,MFS transporter
+BSU40670,yybE,HTH-type transcriptional regulator YybE
+BSU40680,yybD,hypothetical protein
+BSU40690,yybC,hypothetical protein
+BSU40700,yybB,hypothetical protein
+BSU40710,yybA,HTH-type transcriptional regulator YybA
+BSU40720,yyaT,hypothetical protein
+BSU40730,yyaS,hypothetical protein
+BSU40740,yyaR,hypothetical protein
+BSU40750,yyaQ,hypothetical protein
+BSU40760,yyaP,hypothetical protein
+BSU40770,tetB,tetracycline resistance protein
+BSU40790,yyaO,hypothetical protein
+BSU40800,yyaN,HTH-type transcriptional regulator YyaN
+BSU40810,yyaM,transporter
+BSU40820,yyaL,hypothetical protein
+BSU40830,yyaK,hypothetical protein
+BSU40840,yyaJ,metabolite transport protein YyaJ
+BSU40850,maa,maltose O-acetyltransferase
+BSU40860,yyaH,hypothetical protein
+BSU40870,ccpB,catabolite control protein B
+BSU40880,exoAA,exodeoxyribonuclease
+BSU40890,rpsR,30S ribosomal protein S18
+BSU40900,ssbA,single-stranded DNA-binding protein
+BSU40910,rpsF,30S ribosomal protein S6
+BSU40920,yyaF,GTP-dependent nucleic acid-binding protein EngD
+BSU40930,yyaE,oxidoreductase
+BSU40939,yyzM,hypothetical protein
+BSU40940,yyaD,hypothetical protein
+BSU40950,yyaC,hypothetical protein
+BSU40960,parB,stage 0 sporulation protein J
+BSU40970,parA,sporulation initiation inhibitor protein Soj
+BSU40980,yyaB,hypothetical protein
+BSU40990,noc,nucleoid occlusion protein
+BSU41000,gidB,ribosomal RNA small subunit methyltransferase G
+BSU41010,gidA,tRNA uridine 5-carboxymethylaminomethyl modification enzyme MnmG
+BSU41020,trmE,tRNA modification GTPase MnmE
+BSU41030,jag,protein jag
+BSU41040,spoIIIJ,membrane protein insertase MisCA
+BSU41050,rnpA,ribonuclease P protein component
+BSU41060,rpmH,50S ribosomal protein L34

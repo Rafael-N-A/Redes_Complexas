@@ -1,0 +1,379 @@
+{
+  "org": "bsu",
+  "fonte": "https://rest.kegg.jp",
+  "data_download": "2026-11-08T13:41:13-03:00",
+  "ultima_execucao": "2026-11-08T13:41:13-03:00",
+  "info_kegg": "bsu\tBacillus subtilis subsp. subtilis 168\nT00010\t4174 proteins, 2465 proteins with KOs\n\t2107 RNAs, 178 RNAs with KOs\n\tKanehisa Laboratories\n\nlinked db\tpathway\n\tbrite\n\tmodule\n\tko\n\tgenome\n\tenzyme\n\tncbi-geneid\n\tncbi-proteinid\n\tuniprot",
+  "criterio": {
+    "limite_vias_regulares": "01100",
+    "vias_excluidas": {
+      "00970": "Aminoacyl-tRNA biosynthesis (KEGG: Genetic Information Processing > Translation)"
+    }
+  },
+  "n_vias_regulares": 90,
+  "n_baixadas_nesta_execucao": 90,
+  "n_reaproveitadas_do_cache": 0,
+  "vias": [
+    {
+      "codigo": "bsu00010",
+      "nome": "Glycolysis / Gluconeogenesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00020",
+      "nome": "Citrate cycle (TCA cycle) - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00030",
+      "nome": "Pentose phosphate pathway - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00040",
+      "nome": "Pentose and glucuronate interconversions - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00051",
+      "nome": "Fructose and mannose metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00052",
+      "nome": "Galactose metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00053",
+      "nome": "Ascorbate and aldarate metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00500",
+      "nome": "Starch and sucrose metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00620",
+      "nome": "Pyruvate metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00630",
+      "nome": "Glyoxylate and dicarboxylate metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00640",
+      "nome": "Propanoate metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00650",
+      "nome": "Butanoate metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00660",
+      "nome": "C5-Branched dibasic acid metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00562",
+      "nome": "Inositol phosphate metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00190",
+      "nome": "Oxidative phosphorylation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00710",
+      "nome": "Carbon fixation by Calvin cycle - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00720",
+      "nome": "Other carbon fixation pathways - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00680",
+      "nome": "Methane metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00910",
+      "nome": "Nitrogen metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00920",
+      "nome": "Sulfur metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00061",
+      "nome": "Fatty acid biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00071",
+      "nome": "Fatty acid degradation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00074",
+      "nome": "Mycolic acid biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00561",
+      "nome": "Glycerolipid metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00564",
+      "nome": "Glycerophospholipid metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00600",
+      "nome": "Sphingolipid metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00592",
+      "nome": "alpha-Linolenic acid metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00230",
+      "nome": "Purine metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00240",
+      "nome": "Pyrimidine metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00250",
+      "nome": "Alanine, aspartate and glutamate metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00260",
+      "nome": "Glycine, serine and threonine metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00270",
+      "nome": "Cysteine and methionine metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00280",
+      "nome": "Valine, leucine and isoleucine degradation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00290",
+      "nome": "Valine, leucine and isoleucine biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00300",
+      "nome": "Lysine biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00310",
+      "nome": "Lysine degradation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00220",
+      "nome": "Arginine biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00330",
+      "nome": "Arginine and proline metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00340",
+      "nome": "Histidine metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00350",
+      "nome": "Tyrosine metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00360",
+      "nome": "Phenylalanine metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00380",
+      "nome": "Tryptophan metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00400",
+      "nome": "Phenylalanine, tyrosine and tryptophan biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00410",
+      "nome": "beta-Alanine metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00430",
+      "nome": "Taurine and hypotaurine metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00450",
+      "nome": "Selenocompound metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00460",
+      "nome": "Cyanoamino acid metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00470",
+      "nome": "D-Amino acid metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00480",
+      "nome": "Glutathione metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00520",
+      "nome": "Amino sugar and nucleotide sugar metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00541",
+      "nome": "Biosynthesis of various nucleotide sugars - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00511",
+      "nome": "Other glycan degradation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00542",
+      "nome": "O-Antigen repeat unit biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00550",
+      "nome": "Peptidoglycan biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00552",
+      "nome": "Teichoic acid biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00543",
+      "nome": "Exopolysaccharide biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00730",
+      "nome": "Thiamine metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00740",
+      "nome": "Riboflavin metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00750",
+      "nome": "Vitamin B6 metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00760",
+      "nome": "Nicotinate and nicotinamide metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00770",
+      "nome": "Pantothenate and CoA biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00780",
+      "nome": "Biotin metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00785",
+      "nome": "Lipoic acid metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00790",
+      "nome": "Folate biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00670",
+      "nome": "One carbon pool by folate - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00860",
+      "nome": "Porphyrin metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00130",
+      "nome": "Ubiquinone and other terpenoid-quinone biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00900",
+      "nome": "Terpenoid backbone biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00906",
+      "nome": "Carotenoid biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00907",
+      "nome": "Pinene, camphor and geraniol degradation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00523",
+      "nome": "Polyketide sugar unit biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu01054",
+      "nome": "Nonribosomal peptide structures - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu01053",
+      "nome": "Biosynthesis of siderophore group nonribosomal peptides - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00946",
+      "nome": "Degradation of flavonoids - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00966",
+      "nome": "Glucosinolate metabolism - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00311",
+      "nome": "Penicillin and cephalosporin biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00332",
+      "nome": "Carbapenem biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00261",
+      "nome": "Monobactam biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00521",
+      "nome": "Streptomycin biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00525",
+      "nome": "Acarbose and validamycin biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00401",
+      "nome": "Novobiocin biosynthesis - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00998",
+      "nome": "Biosynthesis of various antibiotics - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00999",
+      "nome": "Biosynthesis of various plant secondary metabolites - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00362",
+      "nome": "Benzoate degradation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00627",
+      "nome": "Aminobenzoate degradation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00625",
+      "nome": "Chloroalkane and chloroalkene degradation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00361",
+      "nome": "Chlorocyclohexane and chlorobenzene degradation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00622",
+      "nome": "Xylene degradation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00626",
+      "nome": "Naphthalene degradation - Bacillus subtilis subsp. subtilis 168"
+    },
+    {
+      "codigo": "bsu00984",
+      "nome": "Steroid degradation - Bacillus subtilis subsp. subtilis 168"
+    }
+  ],
+  "falhas": []
+}

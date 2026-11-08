@@ -45,8 +45,8 @@ fi
 etapa "Exp 0 — análise descritiva"
 "$PY" -m experimentos.exp0_descritiva --versao ambas "${FIGURAS[@]}"
 
-etapa "Exp 1 — robustez estrutural (a etapa mais longa)"
-"$PY" -m experimentos.exp1_robustez --versao ambas "${FIGURAS[@]}"
+etapa "Exp 1 — robustez estrutural (só sem moeda; --versao ambas para as duas)"
+"$PY" -m experimentos.exp1_robustez "${FIGURAS[@]}"
 
 etapa "Exp 2 — topologia vs. biologia"
 "$PY" -m experimentos.exp2_biologia "${FIGURAS[@]}"

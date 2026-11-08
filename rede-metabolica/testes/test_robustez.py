@@ -102,12 +102,29 @@ def test_curva_grau_adaptativo_feita_a_mao():
 
 
 def test_indices_da_curva_feita_a_mao():
-    """R_fraco = (2+2+2+2+1+0)/6/6 = 1/4; R_forte = (1+1+1+1+1+0)/6/6 = 5/36."""
+    """R_fraco = (2+2+2+2+1+0)/6/6 = 1/4; R_forte = (1+1+1+1+1+0)/6/6 = 5/36.
+
+    Metade: tirar o hub leva o fraco de 4 para 2 e o forte de 3 para 1, então
+    os dois caem à metade logo na primeira remoção (1/6).
+    """
     _, indices = robustez.comparar_estrategias(estrela_com_par_solto(), ["grau"], medir_eficiencia=False)
     linha = indices.iloc[0]
     assert linha["estrategia"] == "grau" and linha["n_rep"] == 1
     assert math.isclose(linha["R_fraco"], 1 / 4) and math.isclose(linha["R_forte"], 5 / 36)
-    assert math.isnan(linha["R_fraco_dp"])
+    assert math.isclose(linha["metade_fraco"], 1 / 6) and math.isclose(linha["metade_forte"], 1 / 6)
+    assert math.isnan(linha["R_fraco_dp"]) and math.isnan(linha["metade_fraco_dp"])
+
+
+def test_fracao_ate_metade_em_curvas_montadas():
+    fracao = [0, 0.25, 0.5, 0.75, 1]
+    curva = pd.DataFrame({"n_removidos": range(5), "fracao_removida": fracao,
+                          "maior_fraco": [1.0, 0.8, 0.5, 0.2, 0.0],   # cai exatamente à metade
+                          "maior_forte": [0.8, 0.6, 0.41, 0.39, 0.0]})  # passa um pouco da metade
+    assert robustez.fracao_ate_metade(curva) == 0.5
+    assert robustez.fracao_ate_metade(curva, "maior_forte") == 0.75
+    assert robustez.fracao_ate_metade(curva.iloc[::-1]) == 0.5  # a ordem das linhas não importa
+    curva["maior_forte"] = 0.0
+    assert math.isnan(robustez.fracao_ate_metade(curva, "maior_forte"))  # sem componente inicial
 
 
 # ---------------------------------------------------------------------------
@@ -122,6 +139,8 @@ def test_r_do_grafo_completo(estrategia):
     _, indices = robustez.comparar_estrategias(G, [estrategia], n_rep=3, medir_eficiencia=False)
     assert math.isclose(indices["R_fraco"][0], (n - 1) / (2 * n))
     assert math.isclose(indices["R_forte"][0], (n - 1) / (2 * n))
+    # s(Q) = (N-Q)/N chega à metade em Q = N/2, qualquer que seja a ordem.
+    assert math.isclose(indices["metade_fraco"][0], 0.5) and math.isclose(indices["metade_forte"][0], 0.5)
 
 
 def test_r_da_estrela_sob_ataque():
@@ -133,6 +152,7 @@ def test_r_da_estrela_sob_ataque():
         G.add_edges_from([("c", f"f{i}"), (f"f{i}", "c")])
     _, indices = robustez.comparar_estrategias(G, ["grau", "betweenness"], medir_eficiencia=False)
     assert np.allclose(indices["R_fraco"], (n - 1) / n**2)
+    assert np.allclose(indices["metade_fraco"], 1 / n)  # o centro sai primeiro e a rede se desfaz
 
 
 # ---------------------------------------------------------------------------
@@ -187,6 +207,21 @@ def test_curva_aleatoria_e_a_media_das_repeticoes():
         valores = np.vstack([r[coluna] for r in reps])
         assert np.allclose(curva[coluna], valores.mean(axis=0))
         assert np.allclose(curva[f"{coluna}_dp"], valores.std(axis=0, ddof=1))
+
+
+def test_indices_da_aleatoria_sao_a_media_das_repeticoes():
+    """R e metade da aleatória: média e desvio padrão dos valores de cada repetição."""
+    G = grafo_sorteado(6)
+    _, indices = robustez.comparar_estrategias(G, ["aleatoria"], n_rep=4, semente=3, medir_eficiencia=False)
+    reps = [robustez.simular_remocao(G, "aleatoria", rng=np.random.default_rng([3, i]),
+                                     medir_eficiencia=False) for i in range(4)]
+    linha = indices.iloc[0]
+    for componente in ("fraco", "forte"):
+        metades = np.array([robustez.fracao_ate_metade(r, f"maior_{componente}") for r in reps])
+        assert math.isclose(linha[f"metade_{componente}"], metades.mean())
+        assert math.isclose(linha[f"metade_{componente}_dp"], metades.std(ddof=1))
+        Rs = np.array([r.loc[r["n_removidos"] > 0, f"maior_{componente}"].mean() for r in reps])
+        assert math.isclose(linha[f"R_{componente}_dp"], Rs.std(ddof=1))
 
 
 def test_comparar_estrategias_formato_e_reprodutibilidade():

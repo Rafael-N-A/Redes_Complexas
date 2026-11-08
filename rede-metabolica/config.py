@@ -144,6 +144,10 @@ VERSOES_MOEDA = {"sem_moeda": True, "com_moeda": False}
 # do Exp 3 saem desta versão do grafo.
 VERSAO_CASCATA = "sem_moeda"
 
+# Versão padrão do Exp 1. A com moeda só repetiria a mesma conclusão com o
+# dobro de figuras; continua disponível com --versao com_moeda ou ambas.
+VERSAO_ROBUSTEZ = "sem_moeda"
+
 # ---------------------------------------------------------------------------
 # Meio mínimo (Exp 1: alcance a partir de nutrientes)
 # Atenção: NH3 e ortofosfato também são metabólitos-moeda. Na versão

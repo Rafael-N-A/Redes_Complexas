@@ -94,13 +94,14 @@ def contra_ingenua(placar: Placar, B: nx.DiGraph, reacoes: pd.DataFrame, fontes:
 
     erradas = [m for m in config.SUBSTANCIAS_EXP3 if cascata.cascata(B, [m]) != esperado([m])]
     placar.checar("remoção de cada substância do Exp 3", not erradas, ", ".join(erradas))
-    mets = rng.sample(sorted(intactos), amostra)
+    # Redes pequenas (mge: 160 metabólitos produzidos, 139 reações) têm menos que a amostra.
+    mets = rng.sample(sorted(intactos), min(amostra, len(intactos)))
     erradas = [m for m in mets if cascata.cascata(B, [m]) != esperado([m])]
-    placar.checar(f"{amostra} metabólitos sorteados, um de cada vez", not erradas, ", ".join(erradas[:5]))
+    placar.checar(f"{len(mets)} metabólitos sorteados, um de cada vez", not erradas, ", ".join(erradas[:5]))
     codigos = sorted(reacoes["reacao"])
-    reacs = rng.sample(codigos, amostra)
+    reacs = rng.sample(codigos, min(amostra, len(codigos)))
     erradas = [r for r in reacs if cascata.cascata(B, reacoes_removidas=[r]) != esperado(reacs=[r])]
-    placar.checar(f"{amostra} reações sorteadas, uma de cada vez", not erradas, ", ".join(erradas[:5]))
+    placar.checar(f"{len(reacs)} reações sorteadas, uma de cada vez", not erradas, ", ".join(erradas[:5]))
     conjuntos = [rng.sample(codigos, 5) for _ in range(amostra // 4)]
     erradas = [c for c in conjuntos if cascata.cascata(B, reacoes_removidas=c) != esperado(reacs=c)]
     placar.checar(f"{len(conjuntos)} conjuntos de 5 reações (como um nocaute de vários genes)", not erradas)
@@ -128,10 +129,11 @@ def propriedades(placar: Placar, reacoes: pd.DataFrame, B: nx.DiGraph, fontes: s
                   avalanches.to_dict() == av_c.drop([m for m in av_c.index if m in moeda]).to_dict())
     rng = random.Random(config.SEMENTE + 1)
     codigos = sorted(reacoes["reacao"])
-    reacs = rng.sample(codigos, amostra)
+    reacs = rng.sample(codigos, min(amostra, len(codigos)))
     erradas = [r for r in reacs if cascata.cascata(B, reacoes_removidas=[r])
                != cascata.cascata(Bc, reacoes_removidas=[r]) - moeda]
-    placar.checar(f"com e sem moeda: o mesmo dano em {amostra} reações sorteadas", not erradas, ", ".join(erradas[:5]))
+    placar.checar(f"com e sem moeda: o mesmo dano em {len(reacs)} reações sorteadas", not erradas,
+                  ", ".join(erradas[:5]))
 
     mets = sorted(intactos)
     quebras = []
@@ -244,12 +246,6 @@ def robustez_contra_ingenua(placar: Placar, G: nx.DiGraph) -> None:
                   and np.isclose(inicial["eficiencia"], metricas.eficiencia_global_dirigida(G, n)))
 
 
-def _fracao_ate_metade(curva: pd.DataFrame, coluna: str = "maior_fraco") -> float:
-    """Fração removida quando a métrica cai, pela primeira vez, abaixo da metade do valor inicial."""
-    abaixo = curva[curva[coluna] < curva[coluna].iloc[0] / 2]
-    return float(abaixo["fracao_removida"].iloc[0]) if len(abaixo) else float("nan")
-
-
 def robustez_completa(placar: Placar, G: nx.DiGraph, n_rep: int) -> None:
     print(f"\n== 6. Robustez completa (sem moeda, {n_rep} repetições na aleatória)")
     curvas, indices = [], []
@@ -267,15 +263,20 @@ def robustez_completa(placar: Placar, G: nx.DiGraph, n_rep: int) -> None:
         alcance_5 = curva.loc[curva["fracao_removida"] >= 0.05, "alcance"].iloc[0]
         dp = f" ± {linha['R_fraco_dp']:.4f}" if linha["n_rep"] > 1 else ""
         print(f"  {linha['estrategia']:24s} {linha['R_fraco']:8.4f} {linha['R_forte']:8.4f} "
-              f"{_fracao_ate_metade(curva):10.1%} {alcance_5:11.3f} {tempos[linha['estrategia']]:6.1f}s{dp}")
-    print("  (metade em: fração removida quando o maior componente fraco cai à metade do inicial;"
-          " alcance 5%: depois de remover 5% da rede)")
+              f"{linha['metade_fraco']:10.1%} {alcance_5:11.3f} {tempos[linha['estrategia']]:6.1f}s{dp}")
+    print("  (metade em: robustez.fracao_ate_metade, fração removida até o maior componente fraco cair"
+          " à metade do inicial, média das repetições na aleatória; alcance 5%: depois de remover 5% da rede)")
 
     R = indices.set_index("estrategia")["R_fraco"]
     direcionadas = [e for e in R.index if e != "aleatoria"]
     placar.avisar("a remoção aleatória é a mais tolerada (R maior que o de toda direcionada)",
                   all(R["aleatoria"] > R[e] for e in direcionadas),
                   f"aleatória {R['aleatoria']:.3f}, direcionadas de {R[direcionadas].min():.3f} a {R[direcionadas].max():.3f}")
+    metade = indices.set_index("estrategia")["metade_fraco"]
+    placar.avisar("a remoção aleatória é a que mais demora a derrubar o maior componente à metade",
+                  all(metade["aleatoria"] > metade[e] for e in direcionadas),
+                  f"aleatória {metade['aleatoria']:.1%}, direcionadas de {metade[direcionadas].min():.1%}"
+                  f" a {metade[direcionadas].max():.1%}")
     placar.avisar("recalcular o grau causa pelo menos o mesmo dano", R["grau_adaptativo"] <= R["grau"] + 1e-12)
     placar.avisar("recalcular a betweenness causa pelo menos o mesmo dano",
                   R["betweenness_adaptativo"] <= R["betweenness"] + 1e-12)

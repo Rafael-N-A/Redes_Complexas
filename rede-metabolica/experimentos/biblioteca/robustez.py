@@ -10,6 +10,10 @@ Estratégias (nomes usados em config.ESTRATEGIAS):
 O grau é o total (entrada + saída) no grafo simples, o mesmo de
 metricas.graus. A betweenness é a exata de metricas.betweenness.
 
+Índices por estratégia (comparar_estrategias), para a tabela do Exp 1 e o Exp 4:
+    R_fraco, R_forte            índice R (Schneider et al., 2011) do maior componente
+    metade_fraco, metade_forte  fração removida até o maior componente cair à metade
+
 As métricas de dano vêm de metricas.py; este módulo só decide a ordem e
 mede ao longo do caminho.
 """
@@ -31,7 +35,8 @@ ADAPTATIVAS = ("grau_adaptativo", "betweenness_adaptativo")
 METRICAS = ("maior_fraco", "maior_forte", "alcance", "eficiencia")
 COLUNAS = ("n_removidos", "fracao_removida", *METRICAS)
 COLUNAS_DP = tuple(f"{m}_dp" for m in METRICAS)
-COLUNAS_INDICES = ("estrategia", "R_fraco", "R_forte", "R_fraco_dp", "R_forte_dp", "n_rep")
+COLUNAS_INDICES = ("estrategia", "R_fraco", "R_forte", "R_fraco_dp", "R_forte_dp",
+                   "metade_fraco", "metade_forte", "metade_fraco_dp", "metade_forte_dp", "n_rep")
 
 # A betweenness é arredondada antes de ordenar: dois nós com o mesmo valor
 # exato podem diferir na 17ª casa pela ordem da soma, e o desempate pelo
@@ -204,6 +209,25 @@ def _indice(curva: pd.DataFrame, coluna: str) -> float:
     return metricas.indice_robustez(curva.loc[curva["n_removidos"] > 0, coluna])
 
 
+def fracao_ate_metade(curva: pd.DataFrame, coluna: str = "maior_fraco") -> float:
+    """Fração removida no primeiro passo em que a métrica cai à metade do valor inicial ou menos.
+
+    O valor inicial é o do passo 0 (rede intacta). NaN se ele for 0. Como a
+    simulação vai até não sobrar nó, a métrica sempre chega a 0 no fim, e a
+    resposta existe sempre que o valor inicial é positivo.
+    """
+    curva = curva.sort_values("n_removidos")
+    inicial = float(curva[coluna].iloc[0])
+    if not inicial > 0:
+        return math.nan
+    caiu = curva[(curva["n_removidos"] > 0) & (curva[coluna] <= inicial / 2)]
+    return float(caiu["fracao_removida"].iloc[0]) if len(caiu) else math.nan
+
+
+def _desvio(valores: np.ndarray) -> float:
+    return float(valores.std(ddof=1)) if len(valores) > 1 else math.nan
+
+
 def comparar_estrategias(G: nx.DiGraph, estrategias: Iterable[str] = config.ESTRATEGIAS,
                          n_rep: int = config.N_REPETICOES_ALEATORIAS,
                          semente: int = config.SEMENTE,
@@ -215,10 +239,13 @@ def comparar_estrategias(G: nx.DiGraph, estrategias: Iterable[str] = config.ESTR
     Retorna (curvas, indices):
         curvas:  formato longo, coluna "estrategia" + colunas de simular_remocao
                  (+ as colunas _dp, preenchidas só na aleatória)
-        indices: uma linha por estratégia, com R_fraco e R_forte (metricas.indice_robustez).
-                 Na aleatória, R é a média dos R de cada repetição (igual ao R da
-                 curva média) e R_*_dp é o desvio padrão entre as repetições; nas
-                 determinísticas, R_*_dp é NaN e n_rep é 1.
+        indices: uma linha por estratégia, com R_fraco e R_forte (metricas.indice_robustez)
+                 e metade_fraco e metade_forte (fracao_ate_metade).
+                 Na aleatória, cada índice é a média dos valores de cada repetição e
+                 *_dp é o desvio padrão entre elas. O R da média é igual ao R da curva
+                 média (o índice é linear); a metade não é, então metade_* pode
+                 diferir um pouco do ponto em que a curva média cruza a metade.
+                 Nas determinísticas, *_dp é NaN e n_rep é 1.
     """
     nutrientes = list(nutrientes)
     curvas, indices = [], []
@@ -226,17 +253,21 @@ def comparar_estrategias(G: nx.DiGraph, estrategias: Iterable[str] = config.ESTR
         if estrategia == "aleatoria":
             repeticoes = _repeticoes_aleatorias(G, n_rep, semente, nutrientes, medir_eficiencia, progresso)
             curva = _media_das_repeticoes(repeticoes)
-            r_fraco = np.array([_indice(r, "maior_fraco") for r in repeticoes])
-            r_forte = np.array([_indice(r, "maior_forte") for r in repeticoes])
-            dp = (lambda v: float(v.std(ddof=1)) if len(v) > 1 else math.nan)
-            indices.append({"estrategia": estrategia,
-                            "R_fraco": float(r_fraco.mean()), "R_forte": float(r_forte.mean()),
-                            "R_fraco_dp": dp(r_fraco), "R_forte_dp": dp(r_forte), "n_rep": n_rep})
+            linha = {"estrategia": estrategia, "n_rep": n_rep}
+            for nome, funcao in (("R", _indice), ("metade", fracao_ate_metade)):
+                for componente in ("fraco", "forte"):
+                    valores = np.array([funcao(r, f"maior_{componente}") for r in repeticoes])
+                    linha[f"{nome}_{componente}"] = float(valores.mean())
+                    linha[f"{nome}_{componente}_dp"] = _desvio(valores)
+            indices.append(linha)
         else:
             curva = simular_remocao(G, estrategia, nutrientes=nutrientes, medir_eficiencia=medir_eficiencia)
-            indices.append({"estrategia": estrategia,
-                            "R_fraco": _indice(curva, "maior_fraco"), "R_forte": _indice(curva, "maior_forte"),
-                            "R_fraco_dp": math.nan, "R_forte_dp": math.nan, "n_rep": 1})
+            linha = {"estrategia": estrategia, "n_rep": 1}
+            for nome, funcao in (("R", _indice), ("metade", fracao_ate_metade)):
+                for componente in ("fraco", "forte"):
+                    linha[f"{nome}_{componente}"] = funcao(curva, f"maior_{componente}")
+                    linha[f"{nome}_{componente}_dp"] = math.nan
+            indices.append(linha)
         curva = curva.reindex(columns=[*COLUNAS, *COLUNAS_DP])
         curva.insert(0, "estrategia", estrategia)
         curvas.append(curva)

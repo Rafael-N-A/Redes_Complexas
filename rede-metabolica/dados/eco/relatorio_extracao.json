@@ -121,7 +121,7 @@
       "metabolito": "C00101",
       "nome": "Tetrahydrofolate",
       "n_reacoes": 13,
-      "na_lista_de_moeda": false
+      "na_lista_de_moeda": true
     },
     {
       "metabolito": "C00036",

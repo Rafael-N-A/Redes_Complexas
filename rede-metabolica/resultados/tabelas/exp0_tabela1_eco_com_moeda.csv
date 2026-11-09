@@ -1,0 +1,2 @@
+org,versao,reacoes,metabolitos_nas_reacoes,nos,arestas,densidade,grau_medio,clustering_medio,componentes_fracos,maior_fraco,caminho_medio,diametro,nucleo,entrada,saida,restante,assortatividade,lp_alpha,lp_xmin,lp_n_cauda,lp_R_vs_lognormal,lp_p
+eco,com_moeda,1244,1128,1127,1824,0.0014373499805358857,1.6184560780834072,0.05119587894132494,92,0.8039041703637977,9.332446290647109,33,497,180,188,262,0.1273967398704013,2.319593403947928,2.0,822.0,-5.376091428830992,7.61201492190584e-08

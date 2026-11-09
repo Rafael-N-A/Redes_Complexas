@@ -1,0 +1,11 @@
+metabolito,nome,total,entrada,saida,moeda
+C00022,Pyruvate,46,23,23,False
+C00024,Acetyl-CoA,42,23,19,False
+C00101,Tetrahydrofolate,25,14,11,True
+C00025,L-Glutamate,24,12,12,False
+C00085,D-Fructose 6-phosphate,24,13,11,False
+C00118,D-Glyceraldehyde 3-phosphate,23,12,11,False
+C00036,Oxaloacetate,19,10,9,False
+C00111,Glycerone phosphate,19,10,9,False
+C00010,CoA,17,8,9,True
+C00037,Glycine,17,7,10,False

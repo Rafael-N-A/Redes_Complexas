@@ -1,0 +1,2 @@
+org,versao,metabolitos,produzidos,sem_avalanche,fracao_sem_avalanche,avalanche_media,avalanche_max,metabolito_max,spearman_grau,p_grau,spearman_betweenness,p_betweenness,lp_alpha,lp_xmin,lp_n_cauda,lp_R_vs_lognormal,lp_p
+eco,sem_moeda,1116,1109,539,0.4860234445446348,3.276825969341749,71,C00025,0.34706741972380867,9.619708326682537e-33,0.5204530361298626,5.3019921700372705e-78,2.061164195871844,5.0,199,-3.3495625330520156,0.0008093928323832355

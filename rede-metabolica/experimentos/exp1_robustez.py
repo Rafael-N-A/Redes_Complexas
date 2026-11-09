@@ -18,10 +18,6 @@ Roda por padrão só na versão sem moeda (config.VERSAO_ROBUSTEZ), como os
 Exps 2, 3 e 4: a versão com moeda só repetiria a mesma conclusão com o dobro
 de figuras. Ela continua disponível com --versao com_moeda ou --versao ambas.
 
-Roda por padrão só na versão sem moeda (config.VERSAO_ROBUSTEZ), como os
-Exps 2, 3 e 4: a versão com moeda só repetiria a mesma conclusão com o dobro
-de figuras. Ela continua disponível com --versao com_moeda ou --versao ambas.
-
 Leva ~2 min por versão na eco (medido pelo testes/verificar_cascata_robustez;
 quase tudo nas 100 repetições aleatórias). Use --so-figuras para ajustar os
 gráficos sem recalcular.

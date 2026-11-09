@@ -1,0 +1,953 @@
+gene,simbolo,descricao,essencial,n_reacoes,n_reacoes_perdidas,dano,dano_meio_minimo,grau,betweenness,choke
+b0002,thrA,fused aspartate kinase/homoserine dehydrogenase 1,False,3,0,0,0,13.0,0.019239870997722112,True
+b0003,thrB,homoserine kinase,False,1,1,1,1,6.0,0.003230034055101689,True
+b0004,thrC,threonine synthase,False,2,2,1,1,5.0,0.002703441143079396,True
+b0008,talB,transaldolase B,False,1,0,0,0,24.0,0.08797148487402456,False
+b0009,mog,molybdopterin adenylyltransferase,False,1,0,0,0,2.0,0.0019334031958017533,True
+b0025,ribF,bifunctional riboflavin kinase/FMN adenylyltransferase,True,2,2,4,4,4.0,0.002170761512510837,True
+b0029,ispH,4-hydroxy-3-methylbut-2-enyl diphosphate reductase,True,2,2,12,11,5.0,0.00464407857554837,False
+b0030,rihC,ribonucleoside hydrolase RihC,False,2,0,0,0,12.0,0.01127745095100562,False
+b0031,dapB,4-hydroxy-tetrahydrodipicolinate reductase,True,2,2,18,18,3.0,0.0062382513261683694,False
+b0032,carA,carbamoyl-phosphate synthetase small subunit,False,1,0,0,0,8.0,0.02506420115733917,False
+b0033,carB,carbamoyl-phosphate synthetase large subunit,False,1,0,0,0,8.0,0.02506420115733917,False
+b0048,folA,dihydrofolate reductase,True,7,5,2,1,7.0,0.012904871479236293,True
+b0049,apaH,diadenosine tetraphosphatase,False,1,1,0,0,0.0,0.0,True
+b0052,pdxA,4-hydroxythreonine-4-phosphate dehydrogenase,False,1,1,1,1,4.0,0.0009618274721971747,True
+b0061,araD,L-ribulose-5-phosphate 4-epimerase AraD,False,1,0,0,0,12.0,0.01656958575334959,False
+b0062,araA,L-arabinose isomerase,False,2,2,2,1,16.0,0.0070851768900286145,True
+b0063,araB,ribulokinase,False,2,2,2,4,11.0,0.01208727646575734,False
+b0071,leuD,3-isopropylmalate dehydratase subunit LeuD,False,4,0,0,0,4.0,0.0020243868756041885,True
+b0072,leuC,3-isopropylmalate dehydratase subunit LeuC,False,6,2,2,0,4.0,0.0020243868756041885,True
+b0073,leuB,3-isopropylmalate dehydrogenase,False,2,2,4,4,9.0,0.005059735986246356,True
+b0074,leuA,2-isopropylmalate synthase,False,1,1,4,4,40.0,0.08874908525759842,False
+b0077,ilvI,"acetolactate synthase/acetohydroxybutanoate synthase, catalytic subunit",False,2,0,0,0,44.0,0.1606109230922754,False
+b0078,ilvH,"acetolactate synthase/acetohydroxybutanoate synthase, regulatory subunit",False,2,0,0,0,44.0,0.1606109230922754,False
+b0085,murE,"UDP-N-acetylmuramoyl-L-alanyl-D-glutamate--2,6-diaminopimelate ligase",True,1,1,4,4,4.0,0.006453525211415203,True
+b0086,murF,D-alanyl-D-alanine-adding enzyme,True,2,2,6,3,4.0,0.0027191106767301557,True
+b0087,mraY,phospho-N-acetylmuramoyl-pentapeptide-transferase,True,2,2,4,2,4.0,0.0009748251407403798,True
+b0088,murD,UDP-N-acetylmuramoyl-L-alanine--D-glutamate ligase,True,1,1,5,5,4.0,0.0012035897202714164,True
+b0090,murG,N-acetylglucosaminyl transferase,True,2,2,2,1,3.0,0.0004971608217775936,True
+b0091,murC,UDP-N-acetylmuramate--L-alanine ligase,True,1,1,6,6,2.0,0.0004963484674936434,True
+b0092,ddlB,D-alanine--D-alanine ligase B,False,1,0,0,0,4.0,0.0037231805716927465,True
+b0096,lpxC,UDP-3-O-acyl-N-acetylglucosamine deacetylase,True,1,1,20,20,2.0,0.003263864319971554,True
+b0103,coaE,dephospho-CoA kinase,False,1,1,0,0,2.0,0.0,False
+b0104,guaC,GMP reductase,False,1,1,0,0,9.0,0.036237384814932175,False
+b0109,nadC,quinolinate phosphoribosyltransferase (decarboxylating),False,1,1,0,0,7.0,0.0019301537786659518,True
+b0114,aceE,pyruvate dehydrogenase E1 component,False,2,2,1,0,44.0,0.1606109230922754,True
+b0115,aceF,"pyruvate dehydrogenase, E2 subunit",False,1,1,0,1,40.0,0.08874908525759842,True
+b0116,lpd,lipoamide dehydrogenase,False,4,2,0,2,13.0,0.045318838045725236,False
+b0118,acnB,AcnB,False,3,0,0,0,7.0,0.004187934694485379,True
+b0120,speD,S-adenosylmethionine decarboxylase proenzyme,False,1,1,6,6,3.0,0.006747185014304302,True
+b0121,speE,spermidine synthase,False,2,2,6,6,7.0,0.00813452955021936,True
+b0124,gcd,quinoprotein glucose dehydrogenase,False,1,1,1,1,12.0,0.004324139698350699,True
+b0125,hpt,hypoxanthine phosphoribosyltransferase,False,3,1,0,0,9.0,0.036237384814932175,False
+b0126,can,carbonic anhydrase 2,True,1,0,0,0,5.0,0.0034933447377090278,False
+b0131,panD,aspartate 1-decarboxylase proenzyme,False,1,0,0,0,13.0,0.019239870997722112,False
+b0133,panC,pantothenate synthetase,False,1,1,2,3,4.0,0.001837815282359917,True
+b0134,panB,3-methyl-2-oxobutanoate hydroxymethyltransferase,False,1,1,4,5,5.0,0.0014833589224932779,False
+b0142,folK,2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase,True,1,1,1,1,3.0,0.001248114661099332,True
+b0154,hemL,"glutamate-1-semialdehyde 2,1-aminomutase",True,1,1,12,10,2.0,0.005790461335997856,True
+b0159,mtn,5'-methylthioadenosine/S-adenosylhomocysteine nucleosidase,False,2,2,2,2,4.0,0.0009634521807650753,True
+b0160,dgt,dGTP triphosphohydrolase,False,1,1,0,0,5.0,0.0016020980403306823,False
+b0166,dapD,tetrahydrodipicolinate succinylase,True,1,1,17,17,3.0,0.00629267906319304,True
+b0171,pyrH,UMP kinase,True,1,1,2,11,8.0,0.0081183287880114,False
+b0173,dxr,1-deoxy-D-xylulose 5-phosphate reductoisomerase,True,1,1,17,16,6.0,0.03671177019079983,True
+b0174,ispU,"ditrans,polycis-undecaprenyl-diphosphate synthase [(2E,6E)-farnesyl-diphosphate specific]",True,1,1,7,4,4.0,0.001978895035702971,True
+b0175,cdsA,CDP-diglyceride synthetase,True,1,0,0,0,5.0,0.006375762597584059,True
+b0179,lpxD,UDP-3-O-(3-hydroxymyristoyl)glucosamine N-acyltransferase,True,1,1,19,19,3.0,0.002795948252416167,True
+b0180,fabZ,3-hydroxy-acyl-[acyl-carrier-protein] dehydratase,True,11,3,10,15,6.0,0.00770287871279756,True
+b0181,lpxA,acyl-[acyl-carrier-protein]--UDP-N-acetylglucosamine O-acyltransferase,True,1,1,21,21,4.0,0.006146909673711211,True
+b0182,lpxB,lipid A disaccharide synthase,True,1,1,17,17,3.0,0.002326407476292881,True
+b0185,accA,acetyl-CoA carboxyltransferase subunit alpha,True,1,0,0,0,40.0,0.08874908525759842,True
+b0186,ldcC,lysine decarboxylase 2,False,1,0,0,0,4.0,0.007013866887627032,True
+b0200,gmhB,"D-glycero-beta-D-manno-heptose-1,7-bisphosphate 7-phosphatase",False,2,2,4,3,2.0,0.001447615333999464,True
+b0212,gloB,hydroxyacylglutathione hydrolase GloB,False,1,0,0,0,4.0,0.00026442131942582795,False
+b0219,yafV,2-oxoglutaramate amidase,False,2,2,0,0,17.0,0.029012531228177797,True
+b0221,fadE,acyl-CoA dehydrogenase,False,7,7,20,0,7.0,0.0017921889427750567,False
+b0222,gmhA,D-sedoheptulose 7-phosphate isomerase,False,2,2,6,6,10.0,0.006780521524224193,True
+b0237,pepD,peptidase D,False,2,0,0,0,13.0,0.013291242948591917,True
+b0238,gpt,xanthine-guanine phsophoribosyltransferase,False,2,0,0,0,8.0,0.02610072651551461,False
+b0242,proB,glutamate 5-kinase,False,1,1,2,2,22.0,0.042012164998035374,True
+b0243,proA,glutamate-5-semialdehyde dehydrogenase,False,1,1,1,1,2.0,0.0005337167645553579,True
+b0261,mmuM,homocysteine S-methyltransferase,False,1,1,0,0,7.0,0.007090921710610888,False
+b0268,yagE,putative 2-dehydro-3-deoxygluconate aldolase,False,1,0,0,0,44.0,0.1606109230922754,False
+b0269,yagF,D-xylonate dehydratase,False,1,0,0,0,4.0,0.001013818146369995,True
+b0271,yagH,putative xylosidase/arabinosidase,False,1,1,0,0,3.0,0.0005345291188393082,True
+b0273,argF,ornithine carbamoyltransferase ArgF,False,1,0,0,0,7.0,0.004650901087277261,False
+b0284,paoC,aldehyde dehydrogenase: molybdenum cofactor-binding subunit,False,2,0,0,0,7.0,0.004143954594811222,True
+b0285,paoB,"aldehyde dehydrogenase, FAD-binding subunit",False,2,0,0,0,7.0,0.004143954594811222,True
+b0286,paoA,"aldehyde dehydrogenase, Fe-S subunit",False,2,0,0,0,7.0,0.004143954594811222,True
+b0311,betA,choline dehydrogenase,False,1,1,2,0,2.0,6.498834271602532e-06,True
+b0312,betB,betaine aldehyde dehydrogenase,False,2,2,1,0,2.0,4.061771419751582e-06,False
+b0323,yahI,carbamate kinase-like protein YahI,False,2,0,0,0,7.0,0.004650901087277261,False
+b0325,yahK,"aldehyde reductase, NADPH-dependent",False,2,1,3,2,10.0,0.00634114241290126,False
+b0331,prpB,2-methylisocitrate lyase,False,1,0,0,0,13.0,0.009580485244737735,False
+b0333,prpC,2-methylcitrate synthase,False,2,1,1,1,40.0,0.08874908525759842,True
+b0334,prpD,2-methylcitrate dehydratase,False,1,1,0,0,5.0,0.01049100272841046,False
+b0335,prpE,propionyl-CoA synthetase,False,2,0,0,0,13.0,0.00982911073413911,False
+b0337,codA,cytosine/isoguanine deaminase,False,3,3,1,0,12.0,0.01127745095100562,True
+b0339,cynT,carbonic anhydrase 1,False,1,0,0,0,5.0,0.0034933447377090278,False
+b0340,cynS,cyanase,False,1,1,0,0,5.0,0.0034933447377090278,True
+b0344,lacZ,beta-galactosidase,False,3,2,1,0,16.0,0.0070851768900286145,True
+b0347,mhpA,3-(3-hydroxyphenyl)propanoate hydroxylase,False,2,2,0,0,3.0,0.0016108985450734778,True
+b0348,mhpB,"3-carboxyethylcatechol 2,3-dioxygenase",False,2,2,3,0,3.0,0.002144615309628836,True
+b0349,mhpC,"2-hydroxy-6-ketonona-2,4-dienedioate hydrolase",False,2,2,1,0,13.0,0.02427808153395598,True
+b0350,mhpD,2-hydroxypentadienoate hydratase,False,1,1,0,0,5.0,0.005194867674579125,True
+b0351,mhpF,acetaldehyde dehydrogenase (acetylating) MhpF,False,2,0,0,0,40.0,0.08874908525759842,True
+b0352,mhpE,4-hydroxy-2-oxovalerate aldolase,False,1,1,0,1,44.0,0.1606109230922754,True
+b0355,frmB,S-formylglutathione hydrolase FrmB,False,1,0,0,0,6.0,0.012269873875719105,True
+b0356,frmA,S-(hydroxymethyl)glutathione dehydrogenase,False,8,1,1,0,10.0,0.005868563397869079,True
+b0368,tauD,taurine dioxygenase,False,1,1,1,0,8.0,0.005369661816911592,True
+b0369,hemB,porphobilinogen synthase,True,1,1,11,9,2.0,0.005316858788454821,True
+b0381,ddlA,D-alanine--D-alanine ligase A,False,1,0,0,0,4.0,0.0037231805716927465,True
+b0383,phoA,alkaline phosphatase,False,2,1,7,7,7.0,0.0084221642742833,True
+b0386,proC,pyrroline-5-carboxylate reductase,False,4,4,2,1,4.0,0.001013818146369995,False
+b0388,aroL,shikimate kinase 2,False,1,0,0,0,3.0,0.019836337690260147,False
+b0391,ppnP,nucleoside phosphorylase PpnP,False,7,1,0,0,12.0,0.01127745095100562,True
+b0394,mak,fructokinase,False,1,1,0,0,24.0,0.05809127727302761,False
+b0403,malZ,maltodextrin glucosidase,False,2,2,0,0,12.0,0.004873531339578844,True
+b0404,acpH,acyl carrier protein phosphodiesterase,False,1,1,2,2,4.0,0.0004963484674936434,True
+b0414,ribD,fused diaminohydroxyphosphoribosylaminopyrimidine deaminase/5-amino-6-(5-phosphoribosylamino)uracil reductase,True,2,2,10,10,2.0,0.0011672177136559463,True
+b0415,ribE,"6,7-dimethyl-8-ribityllumazine synthase",True,1,1,7,7,4.0,0.0033869912679651186,True
+b0417,thiL,thiamine monophosphate kinase,True,1,1,4,0,8.0,0.006537570676434519,False
+b0418,pgpA,phosphatidylglycerophosphatase A,False,1,0,0,0,2.0,0.0009634521807650753,True
+b0420,dxs,1-deoxy-D-xylulose-5-phosphate synthase,True,1,1,19,17,44.0,0.1606109230922754,True
+b0421,ispA,geranyl diphosphate/farnesyl diphosphate synthase,True,2,2,10,7,5.0,0.0026917359198693736,True
+b0423,thiI,tRNA uridine 4-sulfurtransferase,False,1,1,2,0,3.0,0.0004942498855934383,True
+b0425,panE,2-dehydropantoate 2-reductase,False,1,1,3,4,3.0,0.0005060967189010471,True
+b0428,cyoE,heme O synthase,False,1,1,1,0,3.0,0.0004898496332220409,True
+b0444,queC,7-cyano-7-deazaguanine synthase,False,1,1,2,2,2.0,0.0009650768893329759,True
+b0452,tesB,acyl-CoA thioesterase II,False,1,0,0,0,3.0,0.0005353414731232585,False
+b0469,apt,adenine phosphoribosyltransferase,False,2,2,1,1,7.0,0.00551145825717512,True
+b0474,adk,adenylate kinase,True,3,3,1,0,8.0,0.006537570676434519,True
+b0475,hemH,ferrochelatase,True,2,2,3,0,3.0,0.0009764498493082804,True
+b0477,gsk,inosine/guanosine kinase,False,2,2,0,0,9.0,0.036237384814932175,False
+b0480,ushA,5'-nucleotidase/UDP-sugar hydrolase,False,13,0,0,0,9.0,0.036237384814932175,True
+b0485,glsA,glutaminase 1,False,2,0,0,0,22.0,0.042012164998035374,False
+b0494,tesA,multifunctional acyl-CoA thioesterase I and protease I and lysophospholipase L1,False,1,0,0,0,3.0,0.0005353414731232585,False
+b0505,allA,ureidoglycolate lyase,False,1,1,1,0,10.0,0.00877377505442003,True
+b0507,gcl,glyoxylate carboligase,False,1,1,7,7,10.0,0.00877377505442003,False
+b0508,hyi,hydroxypyruvate isomerase,False,1,1,0,0,8.0,0.0016585275400708937,False
+b0509,glxR,tartronate semialdehyde reductase 2,False,2,0,0,0,8.0,0.0016585275400708937,False
+b0512,allB,allantoinase,False,1,1,0,0,3.0,0.0005361538274072089,True
+b0514,glxK,glycerate 2-kinase 2,False,1,0,0,0,5.0,0.0017438141445070402,False
+b0515,allE,(S)-ureidoglycine aminohydrolase,False,1,1,4,0,6.0,0.0036709506491504037,True
+b0516,allC,allantoate amidohydrolase,False,1,1,5,0,3.0,0.001070682946246517,True
+b0517,allD,ureidoglycolate dehydrogenase,False,1,1,2,0,6.0,0.0036709506491504037,True
+b0518,fdrA,putative oxamate carbamoyltransferase FdrA,False,1,0,0,0,7.0,0.004650901087277261,True
+b0520,ylbF,DUF2877 domain-containing protein YlbF,False,1,0,0,0,7.0,0.004650901087277261,True
+b0521,ybcF,putative carbamate kinase,False,2,0,0,0,7.0,0.004650901087277261,False
+b0522,purK,5-(carboxyamino)imidazole ribonucleotide synthase,False,1,1,0,0,3.0,0.0021161964489286402,False
+b0523,purE,N(5)-carboxyaminoimidazole ribonucleotide mutase,False,1,1,0,0,4.0,0.0010528653089518735,True
+b0524,lpxH,"UDP-2,3-diacylglucosamine diphosphatase",True,1,1,18,18,3.0,0.002326407476292881,True
+b0529,folD,bifunctional methylenetetrahydrofolate dehydrogenase/methenyltetrahydrofolate cyclohydrolase,True,2,2,2,2,12.0,0.045318838045725236,False
+b0578,nfsB,NAD(P)H-dependent nitroreductase NfsB,False,3,0,0,0,2.0,0.0,True
+b0581,ybdK,putative glutamate--cysteine ligase 2,False,1,0,0,0,22.0,0.042012164998035374,True
+b0583,entD,phosphopantetheinyl transferase EntD,True,2,0,0,0,2.0,0.00048253844466648795,True
+b0586,entF,apo-serine activating enzyme,False,1,0,0,0,2.0,0.00048253844466648795,True
+b0593,entC,isochorismate synthase EntC,False,1,0,0,0,9.0,0.026254748887751592,True
+b0594,entE,"2,3-dihydroxybenzoate-AMP ligase",False,1,0,0,0,2.0,0.00048253844466648795,True
+b0595,entB,enterobactin synthase component B,False,2,1,3,3,4.0,0.005290051097084461,True
+b0596,entA,"2,3-dihydro-2,3-dihydroxybenzoate dehydrogenase",False,1,1,2,2,2.0,0.0009634521807650753,True
+b0622,pagP,Lipid A palmitoyltransferase,False,4,4,4,3,7.0,0.002970245783591141,True
+b0628,lipA,lipoyl synthase,False,2,2,0,7,8.0,0.008543205707317517,True
+b0630,lipB,lipoyl(octanoyl) transferase,False,2,2,1,9,5.0,0.0077532446784024794,True
+b0638,cobC,putative adenosylcobalamin phosphatase/alpha-ribazole phosphatase,False,1,1,1,0,2.0,1.624708567900633e-06,True
+b0639,nadD,nicotinate-nucleotide adenylyltransferase,True,2,0,0,0,7.0,0.001457769762548843,True
+b0651,rihA,pyrimidine-specific ribonucleoside hydrolase RihA,False,2,0,0,0,12.0,0.01127745095100562,False
+b0662,ubiF,3-demethoxyubiquinol 3-hydroxylase,False,1,1,0,0,2.0,0.0009732004321724791,False
+b0674,asnB,asparagine synthetase B,False,1,1,0,0,13.0,0.019239870997722112,False
+b0675,umpH,UMP phosphatase,False,13,0,0,0,9.0,0.036237384814932175,True
+b0677,nagA,N-acetylglucosamine-6-phosphate deacetylase,False,1,1,0,0,7.0,0.027812741339953696,False
+b0678,nagB,glucosamine-6-phosphate deaminase,False,1,1,0,0,24.0,0.05809127727302761,False
+b0679,nagE,N-acetylglucosamine-specific PTS enzyme IIABC component,False,1,0,0,0,6.0,0.00482782150951673,False
+b0688,pgm,phosphoglucomutase,False,3,2,0,29,13.0,0.031730100773638435,True
+b0693,speF,inducible ornithine decarboxylase,False,1,0,0,0,7.0,0.0052678552739550966,False
+b0711,pxpB,5-oxoprolinase component B,False,1,0,0,0,22.0,0.042012164998035374,True
+b0712,pxpC,5-oxoprolinase component C,False,1,0,0,0,22.0,0.042012164998035374,True
+b0713,pxpA,5-oxoprolinase component A,False,1,0,0,0,22.0,0.042012164998035374,True
+b0720,gltA,citrate synthase,False,1,0,0,0,40.0,0.08874908525759842,False
+b0721,sdhC,"succinate:quinone oxidoreductase, membrane protein SdhC",False,1,0,0,0,13.0,0.02427808153395598,False
+b0722,sdhD,"succinate:quinone oxidoreductase, membrane protein SdhD",False,1,0,0,0,13.0,0.02427808153395598,False
+b0723,sdhA,"succinate:quinone oxidoreductase, FAD binding protein",False,1,0,0,0,13.0,0.02427808153395598,False
+b0724,sdhB,"succinate:quinone oxidoreductase, iron-sulfur cluster binding protein",False,1,0,0,0,13.0,0.02427808153395598,False
+b0726,sucA,subunit of E1(0) component of 2-oxoglutarate dehydrogenase,False,2,2,1,0,15.0,0.027609099184588475,True
+b0727,sucB,dihydrolipoyltranssuccinylase,False,3,2,0,1,8.0,0.008543205707317517,True
+b0728,sucC,succinyl-CoA synthetase subunit beta,False,2,0,0,0,13.0,0.009580485244737735,True
+b0729,sucD,succinyl-CoA synthetase subunit alpha,False,2,0,0,0,13.0,0.009580485244737735,True
+b0750,nadA,quinolinate synthase,False,1,1,1,1,19.0,0.03149139248668933,True
+b0754,aroG,"3-deoxy-7-phosphoheptulonate synthase, Phe-sensitive",False,1,0,0,0,10.0,0.020049174512655126,True
+b0755,gpmA,"2,3-bisphosphoglycerate-dependent phosphoglycerate mutase",False,1,0,0,0,6.0,0.0018504216902489408,False
+b0756,galM,galactose-1-epimerase,False,2,2,2,1,16.0,0.0070851768900286145,True
+b0757,galK,galactokinase,False,1,1,0,0,5.0,0.001791412406964309,True
+b0758,galT,galactose-1-phosphate uridylyltransferase,False,1,1,0,1,13.0,0.015759664701568418,True
+b0759,galE,UDP-glucose 4-epimerase,False,1,1,0,3,8.0,0.005684888273824284,False
+b0766,ybhA,"pyridoxal phosphate/fructose-1,6-bisphosphate phosphatase",False,1,0,0,0,6.0,1.2997668543205063e-05,True
+b0767,pgl,6-phosphogluconolactonase,False,1,1,0,1,4.0,0.002992267183642562,True
+b0772,ybhC,outer membrane lipoprotein YbhC,False,1,1,1,0,1.0,0.0,True
+b0774,bioA,adenosylmethionine-8-amino-7-oxononanoate aminotransferase,False,1,1,1,5,3.0,0.002453309937529956,True
+b0775,bioB,biotin synthase,False,1,1,0,3,3.0,0.0014792971510735262,True
+b0776,bioF,8-amino-7-oxononanoate synthase,False,2,2,2,6,3.0,0.002934223673628543,True
+b0777,bioC,malonyl-acyl carrier protein methyltransferase,False,1,1,10,16,13.0,0.02798857017522483,True
+b0778,bioD,dethiobiotin synthetase,False,2,0,0,0,3.0,0.001965897367159766,True
+b0781,moaA,"GTP 3',8'-cyclase",False,1,1,7,7,9.0,0.014129169746843329,True
+b0782,moaB,protein MoaB,False,1,0,0,0,2.0,0.0019334031958017533,True
+b0783,moaC,cyclic pyranopterin monophosphate synthase,False,1,1,6,6,2.0,0.002890356542295226,True
+b0785,moaE,molybdopterin synthase catalytic subunit,False,1,1,5,5,2.0,0.00241269222333244,True
+b0789,clsB,cardiolipin synthase B,False,1,0,0,0,2.0,0.00048253844466648795,False
+b0801,hcxB,hydroxycarboxylate dehydrogenase B,False,4,4,2,2,7.0,0.003325778438492596,False
+b0827,moeA,molybdopterin molybdotransferase,False,1,1,3,3,3.0,0.001452489459703166,True
+b0828,iaaA,isoaspartyl dipeptidase proenzyme,False,1,0,0,0,13.0,0.019239870997722112,False
+b0838,gstB,glutathione S-transferase GstB,False,1,0,0,0,11.0,0.016636733922074515,True
+b0841,ybjG,undecaprenyl pyrophosphate phosphatase,False,1,0,0,0,4.0,0.0010073193120983925,True
+b0844,ybjI,5-amino-6-(5-phospho-D-ribitylamino)uracil phosphatase,False,2,0,0,0,4.0,0.002170761512510837,True
+b0851,nfsA,NADPH-dependent nitro/quinone reductase NfsA,False,3,0,0,0,2.0,0.0,True
+b0870,ltaE,low-specificity L-threonine aldolase,False,2,2,1,1,13.0,0.0112196734942731,True
+b0871,poxB,pyruvate oxidase,False,1,1,0,0,44.0,0.1606109230922754,False
+b0873,hcp,protein S-nitrosylase,False,1,1,0,0,0.0,0.0,True
+b0888,trxB,thioredoxin reductase,False,2,2,1,0,3.0,4.874125703701899e-06,True
+b0894,dmsA,dimethyl sulfoxide reductase subunit A,False,1,0,0,0,1.0,0.0,True
+b0895,dmsB,dimethyl sulfoxide reductase subunit B,False,1,0,0,0,1.0,0.0,True
+b0896,dmsC,dimethyl sulfoxide reductase subunit C,False,1,0,0,0,1.0,0.0,True
+b0903,pflB,pyruvate formate-lyase,False,2,0,0,0,44.0,0.1606109230922754,False
+b0907,serC,phosphoserine/phosphohydroxythreonine aminotransferase,False,2,2,4,4,4.0,0.0019723962014313685,True
+b0908,aroA,3-phosphoshikimate 1-carboxyvinyltransferase,False,1,1,1,33,3.0,0.019889953073000868,True
+b0910,cmk,cytidylate kinase,False,2,2,0,0,6.0,0.001004340679723908,False
+b0915,lpxK,tetraacyldisaccharide 4'-kinase,True,1,1,16,16,4.0,0.0013824517983426108,True
+b0918,kdsB,3-deoxy-manno-octulosonate cytidylyltransferase,True,1,1,13,13,3.0,0.0034418039061862348,True
+b0927,gloC,hydroxyacylglutathione hydrolase GloC,False,1,0,0,0,4.0,0.00026442131942582795,False
+b0928,aspC,aspartate aminotransferase,False,7,5,46,92,22.0,0.042012164998035374,True
+b0931,pncB,nicotinate phosphoribosyltransferase,False,1,1,0,0,7.0,0.001457769762548843,False
+b0932,pepN,aminopeptidase N,False,2,0,0,0,13.0,0.013291242948591917,True
+b0935,ssuD,FMNH2-dependent alkanesulfonate monooxygenase,False,2,0,0,0,8.0,0.005369661816911592,True
+b0937,ssuE,NADPH-dependent FMN reductase,False,4,2,3,2,8.0,0.005369661816911592,True
+b0945,pyrD,"dihydroorotate dehydrogenase, type 2",False,1,1,2,33,4.0,0.0028261288465234783,False
+b0954,fabA,beta-hydroxyacyl-acyl carrier protein dehydratase/isomerase,True,9,1,1,1,6.0,0.00770287871279756,True
+b0963,mgsA,methylglyoxal synthase,False,1,1,0,7,19.0,0.03149139248668933,False
+b0968,yccX,acylphosphatase,False,2,2,1,0,11.0,0.002114968891344002,True
+b0972,hyaA,hydrogenase 1 small subunit,False,1,0,0,0,1.0,0.0,True
+b0973,hyaB,hydrogenase 1 large subunit,False,1,0,0,0,1.0,0.0,True
+b0980,appA,periplasmic phosphoanhydride phosphatase/multiple inositol-polyphosphate phosphatase,False,2,1,1,0,4.0,0.002170761512510837,True
+b0996,torC,cytochrome c menaquinol dehydrogenase TorC,False,1,0,0,0,1.0,0.0,True
+b0997,torA,trimethylamine N-oxide reductase 1,False,1,0,0,0,1.0,0.0,True
+b0998,torD,trimethylamine-N-oxide reductase-specific chaperone,False,1,0,0,0,1.0,0.0,True
+b1002,agp,glucose-1-phosphatase,False,1,0,0,0,13.0,0.015759664701568418,False
+b1004,wrbA,NAD(P)H:quinone oxidoreductase,False,2,0,0,0,2.0,0.0,True
+b1007,rutF,FMN reductase RutF,False,1,0,0,0,12.0,0.01127745095100562,True
+b1008,rutE,putative malonic semialdehyde reductase,False,1,0,0,0,4.0,0.000588738473983598,True
+b1009,rutD,putative aminoacrylate hydrolase RutD,False,1,1,0,0,4.0,0.000588738473983598,True
+b1010,rutC,3-aminoacrylate deaminase,False,1,1,0,1,3.0,0.0006935872262624675,True
+b1011,rutB,ureidoacrylate amidohydrolase,False,2,2,2,2,5.0,0.0012339382174700862,True
+b1012,rutA,pyrimidine monooxygenase RutA,False,1,0,0,0,12.0,0.01127745095100562,True
+b1014,putA,fused DNA-binding transcriptional repressor/proline dehydrogenase/1-pyrroline-5-carboxylate dehydrogenase PutA,False,8,8,4,2,22.0,0.042012164998035374,True
+b1033,ghrA,glyoxylate/hydroxypyruvate reductase A,False,4,0,0,0,11.0,0.014720596101640544,True
+b1046,clsC,cardiolipin synthase C,False,1,1,0,0,2.0,0.00048253844466648795,False
+b1054,lpxL,lauroyl acyltransferase,False,2,2,9,8,4.0,0.002087771785697845,True
+b1062,pyrC,dihydroorotase,False,1,1,3,34,4.0,0.0024836096559429735,True
+b1090,plsX,putative phosphate acyltransferase,False,1,1,0,0,4.0,0.0021417720696350093,True
+b1091,fabH,3-oxoacyl-[acyl carrier protein] synthase 3,False,1,1,0,50,40.0,0.08874908525759842,False
+b1092,fabD,[acyl-carrier-protein] S-malonyltransferase,True,1,1,54,67,13.0,0.030595432011121835,True
+b1093,fabG,3-oxoacyl-[acyl-carrier-protein] reductase FabG,True,11,11,50,63,5.0,0.007649263330056838,True
+b1095,fabF,3-oxoacyl-[acyl carrier protein] synthase 2,False,11,0,0,0,13.0,0.02798857017522483,True
+b1096,pabC,aminodeoxychorismate lyase,False,1,1,2,2,2.0,0.003179025595617119,True
+b1098,tmk,Tmk,True,2,2,2,2,9.0,0.01654169776935381,False
+b1101,ptsG,glucose-specific PTS enzyme IIBC component,False,1,0,0,0,12.0,0.016122769257388394,False
+b1106,thiK,thiamine kinase,False,1,1,0,0,7.0,0.0047826816898052255,True
+b1107,nagZ,beta-N-acetylglucosaminidase,False,1,1,0,0,3.0,0.001075557071950219,True
+b1119,nagK,N-acetyl-D-glucosamine kinase,False,1,1,0,0,6.0,0.00482782150951673,False
+b1120,cobB,protein-lysine deacetylase/desuccinylase/lipoamidase,False,2,2,0,0,3.0,1.2185314259254748e-06,False
+b1131,purB,adenylosuccinate lyase,True,3,3,3,0,8.0,0.02427808153395598,True
+b1134,nudJ,phosphatase NudJ,False,1,0,0,0,5.0,0.0009974201948953977,False
+b1136,icd,isocitrate dehydrogenase,False,3,3,1,175,15.0,0.027609099184588475,False
+b1180,ycgM,putative isomerase/hydrolase,False,1,1,1,1,17.0,0.029012531228177797,True
+b1189,dadA,D-amino acid dehydrogenase,False,1,1,0,0,7.0,0.003325778438492596,True
+b1190,dadX,alanine racemase 2,False,1,0,0,0,7.0,0.014486262029407483,False
+b1197,treA,periplasmic trehalase,False,1,0,0,0,12.0,0.004324139698350699,False
+b1198,dhaM,dihydroxyacetone kinase subunit M,False,1,0,0,0,19.0,0.03149139248668933,False
+b1199,dhaL,dihydroxyacetone kinase subunit L,False,1,0,0,0,19.0,0.03149139248668933,False
+b1200,dhaK,dihydroxyacetone kinase subunit K,False,1,0,0,0,19.0,0.03149139248668933,False
+b1207,prs,ribose-phosphate diphosphokinase,True,1,1,0,55,13.0,0.031730100773638435,False
+b1208,ispE,4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase,True,1,1,15,14,2.0,0.0060575750296219194,True
+b1210,hemA,glutamyl-tRNA reductase,True,1,1,13,11,2.0,0.00626243917497299,True
+b1215,kdsA,3-deoxy-D-manno-octulosonate 8-phosphate synthase,True,1,1,15,15,3.0,0.0043825101670007,True
+b1218,chaC,glutathione-specific gamma-glutamylcyclotransferase,False,1,1,1,1,11.0,0.016636733922074515,True
+b1224,narG,nitrate reductase A subunit alpha,False,2,0,0,0,2.0,0.0,True
+b1225,narH,nitrate reductase A subunit beta,False,2,0,0,0,2.0,0.0,True
+b1227,narI,nitrate reductase A subunit gamma,False,2,0,0,0,2.0,0.0,True
+b1232,purU,formyltetrahydrofolate deformylase,False,1,1,0,0,7.0,0.03562722269294165,True
+b1236,galU,UTP--glucose-1-phosphate uridylyltransferase,False,1,0,0,0,13.0,0.015759664701568418,False
+b1238,tdk,thymidine/deoxyuridine kinase,False,2,2,0,0,9.0,0.01654169776935381,False
+b1241,adhE,fused acetaldehyde-CoA dehydrogenase and iron-dependent alcohol dehydrogenasealdehyde/alcohol dehydrogenase AdhE,False,9,0,0,0,40.0,0.08874908525759842,True
+b1249,clsA,cardiolipin synthase A,False,1,0,0,0,2.0,0.00048253844466648795,False
+b1253,yciA,acyl-CoA thioesterase YciA,False,1,0,0,0,3.0,0.0005353414731232585,False
+b1260,trpA,tryptophan synthase subunit alpha,False,2,1,0,0,15.0,0.04732546293481747,False
+b1261,trpB,tryptophan synthase subunit beta,False,2,1,0,0,15.0,0.04732546293481747,False
+b1262,trpC,fused indole-3-glycerol phosphate synthase/phosphoribosylanthranilate isomerase,False,2,2,4,4,6.0,0.009898622772833782,False
+b1263,trpD,anthranilate synthase subunit TrpD,False,3,1,5,5,10.0,0.027155981815947992,True
+b1264,trpE,anthranilate synthase subunit TrpE,False,2,0,0,0,9.0,0.026254748887751592,False
+b1270,btuR,cobinamide/cobalamin adenosyltransferase,False,4,3,4,0,3.0,2.4370628518509496e-06,True
+b1276,acnA,aconitate hydratase 1,False,3,0,0,0,7.0,0.004187934694485379,True
+b1277,ribA,GTP cyclohydrolase 2,True,1,1,11,11,9.0,0.014129169746843329,True
+b1278,pgpB,phosphatidylglycerophosphatase B,False,1,0,0,0,2.0,0.0009634521807650753,True
+b1281,pyrF,orotidine-5'-phosphate decarboxylase,False,1,1,0,31,8.0,0.00936269662615741,False
+b1288,fabI,enoyl-[acyl-carrier-protein] reductase,True,19,19,46,59,6.0,0.0077532446784024794,True
+b1297,puuA,glutamate-putrescine ligase,False,1,1,3,3,7.0,0.0052678552739550966,True
+b1298,puuD,gamma-glutamyl-gamma-aminobutyrate hydrolase,False,1,1,0,0,5.0,0.003157488346848131,True
+b1300,puuC,gamma-glutamyl-gamma-aminobutyraldehyde dehydrogenase,False,2,2,1,1,2.0,0.0010666211748267655,False
+b1301,puuB,gamma-glutamylputrescine oxidase,False,1,1,2,2,2.0,0.0010130057920860445,True
+b1302,puuE,4-aminobutyrate aminotransferase PuuE,False,2,0,0,0,5.0,0.0037456328484281594,True
+b1308,pspE,thiosulfate sulfurtransferase PspE,False,1,0,0,0,8.0,0.005369661816911592,False
+b1317,ycjU,beta-phosphoglucomutase,False,1,1,1,1,10.0,0.014624320711792552,True
+b1325,ycjG,L-Ala-D/L-Glu epimerase,False,1,1,0,0,3.0,0.0029220383593692883,True
+b1378,ydbK,putative pyruvate-flavodoxin oxidoreductase,False,2,2,0,0,44.0,0.1606109230922754,False
+b1380,ldhA,D-lactate dehydrogenase,False,1,1,0,0,44.0,0.1606109230922754,False
+b1385,feaB,phenylacetaldehyde dehydrogenase,False,3,3,11,0,3.0,0.0010836806147897222,True
+b1386,tynA,copper-containing amine oxidase,False,5,5,5,0,11.0,0.014720596101640544,True
+b1387,paaZ,"fused 3-oxo-5,6-dehydrosuberyl-CoA semialdehyde dehydrogenase and oxepin-CoA hydrolase",False,2,2,5,0,3.0,0.0037644497518257666,True
+b1388,paaA,"phenylacetyl-CoA 1,2-epoxidase, monooxygenase subunit",False,1,0,0,0,3.0,0.002160862395307842,True
+b1389,paaB,"phenylacetyl-CoA 1,2-epoxidase subunit B",False,1,0,0,0,3.0,0.002160862395307842,True
+b1390,paaC,"phenylacetyl-CoA 1,2-epoxidase, structural subunit",False,1,0,0,0,3.0,0.002160862395307842,True
+b1391,paaD,phenylacetate degradation protein,False,1,0,0,0,3.0,0.002160862395307842,True
+b1392,paaE,"phenylacetyl-CoA 1,2-epoxidase, reductase subunit",False,1,0,0,0,3.0,0.002160862395307842,True
+b1393,paaF,"putative 2,3-dehydroadipyl-CoA hydratase",False,15,0,0,0,6.0,0.00207962696691281,True
+b1394,paaG,"putative ring 1,2-epoxyphenylacetyl-CoA isomerase (oxepin-CoA forming)",False,2,1,6,0,40.0,0.08874908525759842,True
+b1395,paaH,3-hydroxyadipyl-CoA dehydrogenase,False,2,1,0,0,7.0,0.004586010717660853,True
+b1396,paaI,phenylacetyl-CoA thioesterase,False,1,1,0,0,3.0,0.0016230838593327324,False
+b1397,paaJ,beta-ketoadipyl-CoA thiolase,False,2,0,0,0,40.0,0.08874908525759842,True
+b1398,paaK,phenylacetate-CoA ligase,False,1,1,8,0,3.0,0.0016230838593327324,True
+b1406,pdxI,pyridoxal reductase,False,1,1,0,0,6.0,1.2997668543205063e-05,False
+b1409,ynbB,putative CDP-diglyceride synthase,False,1,0,0,0,5.0,0.006375762597584059,True
+b1415,aldA,aldehyde dehydrogenase A,False,3,3,1,1,44.0,0.1606109230922754,True
+b1423,ydcJ,DUF1338 domain-containing protein YdcJ,False,1,1,1,0,2.0,0.0005353414731232585,True
+b1444,patD,gamma-aminobutyraldehyde dehydrogenase,False,2,2,4,4,5.0,0.006213697917935971,True
+b1461,pptA,tautomerase PptA,False,2,2,2,0,1.0,0.0,True
+b1465,narV,nitrate reductase Z subunit gamma,False,2,0,0,0,2.0,0.0,True
+b1467,narY,nitrate reductase Z subunit beta,False,2,0,0,0,2.0,0.0,True
+b1468,narZ,nitrate reductase Z subunit alpha,False,2,0,0,0,2.0,0.0,True
+b1478,adhP,ethanol dehydrogenase/alcohol dehydrogenase,False,7,0,0,0,10.0,0.005868563397869079,True
+b1479,maeA,malate dehydrogenase (oxaloacetate-decarboxylating),False,1,1,0,0,44.0,0.1606109230922754,False
+b1493,gadB,glutamate decarboxylase B,False,4,0,0,0,22.0,0.042012164998035374,True
+b1521,uxaB,tagaturonate reductase,False,1,1,1,0,3.0,0.0016230838593327324,True
+b1524,glsB,glutaminase 2,False,2,0,0,0,22.0,0.042012164998035374,False
+b1525,sad,succinate semialdehyde dehydrogenase (NAD(P)(+)) Sad,False,2,0,0,0,13.0,0.009580485244737735,False
+b1539,ydfG,3-hydroxy acid dehydrogenase YdfG,False,2,1,0,0,4.0,0.000588738473983598,True
+b1542,ydfI,putative oxidoreductase YdfI,False,1,0,0,0,6.0,0.0021681735838633945,False
+b1580,rspB,putative zinc-binding dehydrogenase RspB,False,1,1,1,0,6.0,0.0016312074021722354,True
+b1581,rspA,mandelate racemase/muconate lactonizing enzyme family protein RspA,False,1,0,0,0,6.0,0.005922875084281757,False
+b1584,speG,spermidine N-acetyltransferase,False,1,1,1,1,7.0,0.0052678552739550966,True
+b1587,ynfE,putative selenate reductase YnfE,False,1,0,0,0,2.0,2.4370628518509496e-06,True
+b1588,ynfF,putative selenate reductase YnfF,False,1,0,0,0,2.0,2.4370628518509496e-06,True
+b1593,bidA,dethiobiotin synthetase BidA,False,2,0,0,0,3.0,0.001965897367159766,True
+b1602,pntB,pyridine nucleotide transhydrogenase subunit beta,False,1,0,0,0,0.0,0.0,False
+b1603,pntA,pyridine nucleotide transhydrogenase subunit alpha,False,1,0,0,0,0.0,0.0,False
+b1606,folM,dihydromonapterin reductase,False,3,1,1,1,7.0,0.012904871479236293,True
+b1611,fumC,fumarase C,False,1,0,0,0,10.0,0.03686422519795633,False
+b1612,fumA,fumarase A,False,1,0,0,0,10.0,0.03686422519795633,False
+b1613,manA,mannose-6-phosphate isomerase,False,1,1,5,5,24.0,0.05809127727302761,False
+b1617,uidA,beta-glucuronidase,False,2,2,1,0,3.0,0.0005402155988269605,True
+b1621,malX,PTS enzyme IIBC component MalX,False,2,0,0,0,12.0,0.016122769257388394,True
+b1622,malY,negative regulator of MalT activity/cystathionine beta-lyase,False,4,0,0,0,44.0,0.1606109230922754,True
+b1623,add,adenosine deaminase,False,2,1,0,0,5.0,0.0030020552563383945,False
+b1635,gstA,glutathione S-transferase GstA,False,1,0,0,0,11.0,0.016636733922074515,True
+b1636,pdxY,pyridoxal kinase 2,False,3,0,0,0,6.0,1.2997668543205063e-05,True
+b1638,pdxH,pyridoxine/pyridoxamine 5'-phosphate oxidase,False,4,4,2,0,6.0,1.2997668543205063e-05,True
+b1640,anmK,anhydro-N-acetylmuramic acid kinase,False,1,1,0,0,4.0,0.0010739323633823183,True
+b1650,nemA,N-ethylmaleimide reductase,False,3,0,0,0,2.0,0.0,True
+b1651,gloA,lactoylglutathione lyase,False,1,1,1,1,11.0,0.014720596101640544,True
+b1662,ribC,riboflavin synthase,True,1,1,6,6,4.0,0.0031000948133499987,True
+b1670,ydhU,putative cytochrome YdhU,False,1,1,1,1,8.0,0.0064240976774791025,True
+b1675,fumD,fumarase D,False,1,0,0,0,10.0,0.03686422519795633,False
+b1676,pykF,pyruvate kinase 1,False,2,0,0,0,44.0,0.1606109230922754,False
+b1680,sufS,L-cysteine desulfurase,False,1,1,0,0,7.0,0.014486262029407483,False
+b1686,menI,"1,4-dihydroxy-2-naphthoyl-CoA hydrolase",False,1,1,2,1,3.0,0.0014549265225550167,True
+b1687,ydiJ,putative FAD-linked oxidoreductase YdiJ,False,1,1,0,0,15.0,0.027609099184588475,True
+b1692,ydiB,quinate/shikimate dehydrogenase,False,4,3,1,1,5.0,0.020640568431370958,False
+b1693,aroD,3-dehydroquinate dehydratase,False,1,1,5,37,5.0,0.020640568431370958,False
+b1694,ydiF,putative acetate-CoA transferase YdiF,False,3,0,0,0,7.0,0.004586010717660853,True
+b1702,ppsA,phosphoenolpyruvate synthetase,False,1,1,0,0,44.0,0.1606109230922754,False
+b1704,aroH,"3-deoxy-7-phosphoheptulonate synthase, Trp-sensitive",False,1,0,0,0,10.0,0.020049174512655126,True
+b1710,btuE,thioredoxin/glutathione peroxidase BtuE,False,1,1,1,1,11.0,0.016636733922074515,True
+b1723,pfkB,6-phosphofructokinase 2,False,5,0,0,0,24.0,0.05809127727302761,False
+b1727,hxpB,hexitol phosphatase B,False,1,0,0,0,4.0,0.001013818146369995,True
+b1732,katE,catalase HPII,False,2,1,0,0,1.0,0.0,True
+b1734,chbF,monoacetylchitobiose-6-phosphate hydrolase,False,3,0,0,0,12.0,0.014624320711792552,True
+b1736,chbA,"N,N'-diacetylchitobiose-specific PTS enzyme IIA component",False,1,0,0,0,3.0,0.0001727606777201006,True
+b1737,chbC,"N,N'-diacetylchitobiose-specific PTS enzyme IIC component",False,1,0,0,0,3.0,0.0001727606777201006,True
+b1738,chbB,"N,N'-diacetylchitobiose-specific PTS enzyme IIB component",False,1,0,0,0,3.0,0.0001727606777201006,True
+b1740,nadE,NH3-dependent NAD(+) synthetase,True,1,1,0,0,2.0,0.0,False
+b1744,astE,succinylglutamate desuccinylase,False,1,1,0,0,22.0,0.042012164998035374,True
+b1745,astB,N-succinylarginine dihydrolase,False,1,1,3,3,2.0,0.00235812909392711,True
+b1746,astD,aldehyde dehydrogenase,False,1,1,1,1,2.0,0.002465359859408552,True
+b1747,astA,arginine N-succinyltransferase,False,1,1,4,4,5.0,0.0071729388968024745,True
+b1748,astC,succinylornithine transaminase,False,1,1,2,2,2.0,0.002411744476667831,True
+b1759,nudG,5-hydroxy-CTP diphosphatase,False,2,1,0,0,6.0,0.0040580752077596085,False
+b1761,gdhA,glutamate dehydrogenase,False,1,1,0,173,22.0,0.042012164998035374,False
+b1764,selD,"selenide, water dikinase",False,1,1,2,0,3.0,4.874125703701899e-06,True
+b1767,ansA,L-asparaginase 1,False,1,0,0,0,13.0,0.019239870997722112,False
+b1768,pncA,nicotinamidase,False,1,1,0,0,5.0,4.46794856172674e-06,False
+b1771,ydjG,NADH-dependent methylglyoxal reductase,False,1,1,0,0,11.0,0.014720596101640544,False
+b1774,ydjJ,putative zinc-binding dehydrogenase YdjJ,False,2,2,3,2,7.0,0.004873531339578844,True
+b1779,gapA,glyceraldehyde-3-phosphate dehydrogenase A,True,1,1,0,0,23.0,0.08797148487402456,False
+b1780,yeaD,putative aldose 1-epimerase YeaD,False,1,0,0,0,9.0,0.016122769257388394,False
+b1800,dmlA,D-malate/3-isopropylmalate dehydrogenase (decarboxylating),False,3,3,3,3,44.0,0.1606109230922754,True
+b1805,fadD,long-chain-fatty-acid--CoA ligase,False,2,2,1,0,3.0,0.0005353414731232585,True
+b1812,pabB,aminodeoxychorismate synthase subunit 1,False,1,0,0,0,9.0,0.026254748887751592,True
+b1814,sdaA,L-serine deaminase I,False,2,0,0,0,44.0,0.1606109230922754,True
+b1817,manX,mannose-specific PTS enzyme IIAB component,False,1,0,0,0,5.0,0.004632714693580338,False
+b1818,manY,mannose-specific PTS enzyme IIC component,False,1,0,0,0,5.0,0.004632714693580338,False
+b1819,manZ,mannose-specific PTS enzyme IID component,False,1,0,0,0,5.0,0.004632714693580338,False
+b1832,msrC,free methionine-(R)-sulfoxide reductase,False,1,1,0,0,7.0,0.007090921710610888,True
+b1849,purT,phosphoribosylglycinamide formyltransferase 2,False,1,1,0,0,5.0,0.011327361755675558,False
+b1850,eda,KHG/KDPG aldolase,False,2,2,1,1,44.0,0.1606109230922754,True
+b1851,edd,phosphogluconate dehydratase,False,1,1,0,0,6.0,0.038468928289256396,False
+b1852,zwf,NADP(+)-dependent glucose-6-phosphate dehydrogenase,False,2,2,1,2,6.0,0.0034076694390702774,False
+b1854,pykA,pyruvate kinase 2,False,2,0,0,0,44.0,0.1606109230922754,False
+b1855,lpxM,Lipid A biosynthesis myristoyltransferase,False,2,2,8,8,7.0,0.002970245783591141,True
+b1865,nudB,dihydroneopterin triphosphate diphosphatase,False,1,1,1,1,7.0,0.0084221642742833,True
+b1872,torZ,trimethylamine N-oxide reductase 2,False,1,0,0,0,1.0,0.0,True
+b1873,torY,cytochrome c quinol dehydrogenase TorY,False,1,0,0,0,1.0,0.0,True
+b1896,otsA,trehalose-6-phosphate synthase,False,1,1,2,2,10.0,0.014624320711792552,False
+b1897,otsB,trehalose-6-phosphate phosphatase,False,1,1,1,1,6.0,0.002112591963544066,True
+b1912,pgsA,CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase,True,1,1,3,0,4.0,0.006375762597584059,True
+b1919,dcyD,D-cysteine desulfhydrase,False,1,1,0,0,44.0,0.1606109230922754,False
+b1927,amyA,alpha-amylase,False,2,0,0,0,5.0,0.0019832275918840393,True
+b1955,yedP,putative mannosyl-3-phosphoglycerate phosphatase,False,1,1,1,0,1.0,0.0,True
+b1961,dcm,DNA-cytosine methyltransferase,False,1,1,2,2,3.0,0.006747185014304302,True
+b1967,hchA,protein/nucleic acid deglycase 1,False,1,1,0,0,11.0,0.014720596101640544,False
+b1970,hiuH,hydroxyisourate hydrolase/transthyretin-related protein,False,1,1,1,0,1.0,0.0,True
+b1982,amn,AMP nucleosidase,False,1,0,0,0,5.0,0.0010886901328740824,False
+b1991,cobT,nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase,False,1,1,2,0,2.0,1.624708567900633e-06,True
+b1992,cobS,cobalamin 5'-phosphate synthase,False,1,1,0,0,3.0,2.4370628518509496e-06,True
+b1993,cobU,cobinamide-P guanylyltransferase/cobinamide kinase,False,3,3,2,0,2.0,3.249417135801266e-06,True
+b2019,hisG,ATP phosphoribosyltransferase,False,1,1,10,10,10.0,0.027155981815947992,True
+b2020,hisD,histidinal/histidinol dehydrogenase,False,2,2,2,2,2.0,0.0009683263064687773,True
+b2021,hisC,histidinol-phosphate aminotransferase,False,3,1,4,4,7.0,0.003325778438492596,True
+b2022,hisB,imidazoleglycerol-phosphate dehydratase/histidinol-phosphatase,False,2,2,5,5,3.0,0.0024086304519126884,True
+b2023,hisH,imidazole glycerol phosphate synthase subunit HisH,False,1,0,0,0,7.0,0.00551145825717512,True
+b2024,hisA,1-(5-phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino]imidazole-4-carboxamide isomerase,False,1,1,7,7,3.0,0.004433318883273798,True
+b2025,hisF,imidazole glycerol phosphate synthase subunit HisF,False,1,0,0,0,7.0,0.00551145825717512,True
+b2026,hisI,putative bifunctional phosphoribosyl-AMP cyclohydrolase/phosphoribosyl-ATP pyrophosphatase,False,2,2,9,9,3.0,0.004756229711144049,True
+b2028,ugd,UDP-glucose 6-dehydrogenase,False,1,1,9,9,8.0,0.005684888273824284,True
+b2029,gnd,"6-phosphogluconate dehydrogenase, decarboxylating",False,2,2,0,0,11.0,0.01208727646575734,False
+b2036,glf,UDP-galactopyranose mutase,False,1,1,1,1,6.0,0.0010954936000021666,True
+b2038,rfbC,"dTDP-4-dehydrorhamnose 3,5-epimerase",False,1,1,2,2,3.0,0.0019301537786659518,True
+b2039,rfbA,glucose-1-phosphate thymidylyltransferase 1,False,1,0,0,0,13.0,0.015759664701568418,True
+b2040,rfbD,dTDP-4-dehydrorhamnose reductase,False,1,1,1,1,2.0,0.0004833507989504383,True
+b2041,rfbB,"dTDP-glucose 4,6-dehydratase 1",False,1,0,0,0,3.0,0.0024086304519126884,True
+b2042,galF,"UTP:glucose-1-phosphate uridylyltransferase, low activity",False,1,0,0,0,13.0,0.015759664701568418,False
+b2048,cpsG,phosphomannomutase,False,1,1,4,4,5.0,0.004632714693580338,False
+b2049,cpsB,mannose-1-phosphate guanylyltransferase,False,1,1,3,3,4.0,0.0019723962014313685,True
+b2052,fcl,GDP-L-fucose synthase,False,1,1,1,1,2.0,0.00048172609038253764,True
+b2053,gmd,"GDP-mannose 4,6-dehydratase",False,1,1,2,2,3.0,0.0009618274721971747,True
+b2065,dcd,dCTP deaminase,False,1,1,0,0,6.0,0.0038751194837759314,False
+b2066,udk,uridine/cytidine kinase,False,4,4,0,0,8.0,0.0081183287880114,False
+b2091,gatD,galactitol-1-phosphate 5-dehydrogenase,False,1,1,0,0,4.0,0.002138116475357233,True
+b2093,gatB,galactitol-specific PTS enzyme IIB component,False,1,0,0,0,2.0,0.0005353414731232585,True
+b2094,gatA,galactitol-specific PTS enzyme IIA component,False,1,0,0,0,2.0,0.0005353414731232585,True
+b2095,gatZ,"putative tagatose-1,6-bisphosphate aldolase 2 chaperone",False,1,0,0,0,23.0,0.08797148487402456,False
+b2096,gatY,"tagatose-1,6-bisphosphate aldolase 2",False,1,0,0,0,23.0,0.08797148487402456,False
+b2097,fbaB,fructose-bisphosphate aldolase class I,False,3,0,0,0,23.0,0.08797148487402456,True
+b2103,thiD,bifunctional hydroxymethylpyrimidine kinase/phosphomethylpyrimidine kinase,False,2,2,7,1,3.0,0.001646181799473053,True
+b2104,thiM,hydroxyethylthiazole kinase,False,2,2,1,0,3.0,0.0005353414731232585,True
+b2114,metG,methionine--tRNA ligase,True,1,1,1,0,2.0,2.4370628518509496e-06,True
+b2132,bglX,"beta-D-glucoside glucohydrolase, periplasmic",False,13,13,12,0,12.0,0.004324139698350699,True
+b2133,dld,quinone-dependent D-lactate dehydrogenase,False,1,1,0,0,44.0,0.1606109230922754,False
+b2143,cdd,cytidine/deoxycytidine deaminase,False,2,2,0,0,6.0,0.010600518834221695,True
+b2146,preT,dihydropyrimidine dehydrogenase (NAD(+)) subunit PreT,False,2,0,0,0,12.0,0.01127745095100562,False
+b2147,preA,dihydropyrimidine dehydrogenase (NAD(+)) subunit PreA,False,2,0,0,0,12.0,0.01127745095100562,False
+b2153,folE,GTP cyclohydrolase 1,True,4,4,18,18,9.0,0.014129169746843329,True
+b2154,yeiG,S-formylglutathione hydrolase/S-lactoylglutathione hydrolase,False,1,0,0,0,6.0,0.012269873875719105,True
+b2162,rihB,pyrimidine-specific ribonucleoside hydrolase RihB,False,2,0,0,0,12.0,0.01127745095100562,False
+b2165,psuG,pseudouridine-5'-phosphate glycosidase,False,1,1,0,1,12.0,0.01127745095100562,True
+b2166,psuK,putative pseudouridine kinase,False,1,1,0,0,3.0,0.0005345291188393082,True
+b2167,fruA,fructose-specific PTS multiphosphoryl transfer protein FruA,False,1,1,5,4,7.0,0.005647083684051865,False
+b2168,fruK,1-phosphofructokinase,False,1,1,0,0,7.0,0.005647083684051865,False
+b2174,lpxT,lipid A-core phosphotransferase,False,1,1,1,1,7.0,0.002970245783591141,True
+b2203,napB,periplasmic nitrate reductase cytochrome c550 protein,False,1,0,0,0,2.0,0.0,False
+b2206,napA,periplasmic nitrate reductase subunit NapA,False,1,0,0,0,2.0,0.0,False
+b2210,mqo,malate:quinone oxidoreductase,False,2,2,0,0,17.0,0.03686422519795633,False
+b2221,atoD,acetyl-CoA:acetoacetyl-CoA transferase subunit alpha,False,4,0,0,0,7.0,0.004586010717660853,True
+b2222,atoA,acetyl-CoA:acetoacetyl-CoA transferase subunit beta,False,4,0,0,0,7.0,0.004586010717660853,True
+b2224,atoB,acetyl-CoA acetyltransferase,False,2,0,0,0,40.0,0.08874908525759842,False
+b2232,ubiG,bifunctional 3-demethylubiquinone-8 3-O-methyltransferase and 2-octaprenyl-6-hydroxyphenol methylase,False,2,2,5,0,2.0,0.002420815766171943,True
+b2234,nrdA,ribonucleoside-diphosphate reductase 1 subunit alpha,True,4,0,0,0,7.0,0.01745830591637625,False
+b2235,nrdB,ribonucleoside-diphosphate reductase 1 subunit beta,True,4,0,0,0,7.0,0.01745830591637625,False
+b2239,glpQ,glycerophosphoryl diester phosphodiesterase GlpQ,False,2,0,0,0,6.0,0.010810409673611009,True
+b2241,glpA,anaerobic glycerol-3-phosphate dehydrogenase subunit A,False,1,0,0,0,19.0,0.03149139248668933,False
+b2242,glpB,anaerobic glycerol-3-phosphate dehydrogenase subunit B,False,1,0,0,0,19.0,0.03149139248668933,False
+b2243,glpC,anaerobic glycerol-3-phosphate dehydrogenase subunit C,False,1,0,0,0,19.0,0.03149139248668933,False
+b2245,yfaU,2-keto-3-deoxy-L-rhamnonate aldolase,False,1,1,0,0,8.0,0.0040121140455304785,True
+b2247,rhmD,L-rhamnonate dehydratase,False,1,1,1,0,2.0,0.0005353414731232585,True
+b2253,arnB,UDP-4-amino-4-deoxy-L-arabinose aminotransferase,False,1,1,7,7,2.0,0.0026052793309574965,True
+b2254,arnC,undecaprenyl-phosphate 4-deoxy-4-formamido-L-arabinose transferase,False,1,1,5,5,2.0,0.0016499506930319288,True
+b2255,arnA,fused UDP-4-amino-4-deoxy-L-arabinose formyltransferase/UDP-glucuronate dehydrogenase,False,2,2,8,8,3.0,0.0030805065870684284,True
+b2256,arnD,putative 4-deoxy-4-formamido-L-arabinose-phosphoundecaprenol deformylase ArnD,False,1,1,4,4,4.0,0.0011698493112172895,True
+b2257,arnT,lipid IVA 4-amino-4-deoxy-L-arabinosyltransferase,False,3,3,3,3,7.0,0.002970245783591141,True
+b2260,menE,o-succinylbenzoate--CoA ligase,False,1,1,4,3,3.0,0.0024167539947521914,True
+b2261,menC,o-succinylbenzoate synthase,False,1,1,5,4,2.0,0.002895230667998928,True
+b2262,menB,"1,4-dihydroxy-2-naphthoyl-CoA synthase",False,1,1,3,2,3.0,0.0019366526129375545,True
+b2263,menH,"2-succinyl-6-hydroxy-2,4-cyclohexadiene-1-carboxylate synthase",False,1,1,6,5,2.0,0.0033720826326777637,True
+b2264,menD,2-succinyl-5-enolpyruvyl-6-hydroxy-3-cyclohexene-1-carboxylate synthase,False,1,1,7,6,4.0,0.005290051097084461,True
+b2265,menF,isochorismate synthase MenF,False,1,0,0,0,9.0,0.026254748887751592,True
+b2290,alaA,glutamate--pyruvate aminotransferase AlaA,False,2,1,0,6,44.0,0.1606109230922754,False
+b2291,yfbR,dCMP phosphohydrolase,False,5,0,0,0,9.0,0.01654169776935381,True
+b2293,hxpA,hexitol phosphatase A,False,1,0,0,0,4.0,0.001013818146369995,True
+b2296,ackA,acetate kinase,False,2,1,0,0,11.0,0.002114968891344002,False
+b2297,pta,phosphate acetyltransferase,False,2,1,0,0,40.0,0.08874908525759842,False
+b2301,yfcF,glutathione S-transferase YfcF,False,1,0,0,0,11.0,0.016636733922074515,True
+b2303,folX,dihydroneopterin triphosphate 2'-epimerase,False,1,1,1,1,7.0,0.0084221642742833,True
+b2311,ubiX,flavin prenyltransferase,False,4,3,2,1,4.0,0.004375340173356404,True
+b2312,purF,amidophosphoribosyltransferase,False,1,1,5,7,10.0,0.027155981815947992,True
+b2315,folC,bifunctional folylpolyglutamate synthetase/dihydrofolate synthetase,True,3,3,1,1,7.0,0.012904871479236293,True
+b2316,accD,acetyl-CoA carboxyltransferase subunit beta,True,1,0,0,0,40.0,0.08874908525759842,True
+b2320,pdxB,erythronate-4-phosphate dehydrogenase,False,1,1,4,4,4.0,0.002979715513529761,False
+b2323,fabB,3-oxoacyl-[acyl carrier protein] synthase 1,True,11,0,0,0,13.0,0.02798857017522483,True
+b2329,aroC,chorismate synthase,False,1,1,0,32,9.0,0.026254748887751592,False
+b2341,fadJ,3-hydroxyacyl-CoA dehydrogenase FadJ,False,27,0,0,0,7.0,0.004586010717660853,True
+b2342,fadI,3-ketoacyl-CoA thiolase FadI,False,19,0,0,0,40.0,0.08874908525759842,True
+b2361,yfdR,5'-deoxynucleotidase,False,5,0,0,0,9.0,0.01654169776935381,True
+b2366,dsdA,D-serine ammonia-lyase,False,1,1,0,0,44.0,0.1606109230922754,False
+b2373,oxc,oxalyl-CoA decarboxylase,False,1,1,0,0,3.0,0.0005353414731232585,True
+b2374,frc,formyl-CoA transferase,False,1,1,0,0,6.0,0.012269873875719105,True
+b2378,lpxP,palmitoleoyl acyltransferase,False,1,1,2,2,4.0,0.002087771785697845,True
+b2388,glk,glucokinase,False,3,3,0,0,12.0,0.016122769257388394,False
+b2400,gltX,glutamate--tRNA ligase,True,1,1,14,12,22.0,0.042012164998035374,True
+b2407,xapA,xanthosine phosphorylase,False,9,0,0,0,7.0,0.004143954594811222,True
+b2414,cysK,cysteine synthase A,False,2,2,0,0,13.0,0.013291242948591917,False
+b2417,crr,Enzyme IIA(Glc),False,7,0,0,0,12.0,0.016122769257388394,True
+b2418,pdxK,pyridoxine/pyridoxal/pyridoxamine kinase,False,3,0,0,0,6.0,1.2997668543205063e-05,True
+b2421,cysM,cysteine synthase B,False,1,1,1,1,5.0,0.0008524497703938639,True
+b2428,murQ,N-acetylmuramic acid 6-phosphate etherase,False,1,1,0,0,6.0,0.00482782150951673,True
+b2429,murP,N-acetylmuramic acid-specific PTS enzyme IICB component/anhydro-N-acetylmuramic acid transporter,False,1,0,0,0,4.0,0.0010739323633823183,True
+b2436,hemF,coproporphyrinogen III oxidase,False,1,1,0,0,2.0,0.0019464008643449583,False
+b2440,eutC,ethanolamine ammonia-lyase subunit beta,False,1,0,0,0,10.0,0.005868563397869079,True
+b2441,eutB,ethanolamine ammonia-lyase subunit alpha,False,1,0,0,0,10.0,0.005868563397869079,True
+b2451,eutA,ethanolamine ammonia-lyase reactivase EutA,False,1,0,0,0,10.0,0.005868563397869079,True
+b2453,eutG,putative alcohol dehydrogenase EutG,False,1,0,0,0,10.0,0.005868563397869079,False
+b2455,eutE,acetaldehyde dehydrogenase (acetylating) EutE,False,1,0,0,0,40.0,0.08874908525759842,False
+b2458,eutD,phosphate acetyltransferase EutD,False,1,0,0,0,40.0,0.08874908525759842,False
+b2459,eutT,putative ethanolamine utilization cobalamin adenosyltransferase,False,1,0,0,0,3.0,0.0,True
+b2463,maeB,malate dehydrogenase (oxaloacetate-decarboxylating) (NADP(+)),False,1,1,0,0,44.0,0.1606109230922754,False
+b2464,talA,transaldolase A,False,1,0,0,0,24.0,0.08797148487402456,False
+b2465,tktB,transketolase 2,False,2,0,0,0,24.0,0.08797148487402456,False
+b2472,dapE,succinyl-diaminopimelate desuccinylase,True,1,1,15,15,3.0,0.006399909828674482,False
+b2476,purC,phosphoribosylaminoimidazole-succinocarboxamide synthase,False,1,1,0,0,4.0,0.001885921087904857,False
+b2478,dapA,4-hydroxy-tetrahydrodipicolinate synthase,True,1,1,19,19,44.0,0.1606109230922754,True
+b2498,upp,uracil phosphoribosyltransferase,False,1,1,0,0,12.0,0.01127745095100562,False
+b2499,purM,phosphoribosylformylglycinamide cyclo-ligase,False,1,1,1,3,3.0,0.0021161964489286402,True
+b2500,purN,phosphoribosylglycinamide formyltransferase 1,False,2,2,0,0,7.0,0.03562722269294165,False
+b2502,ppx,exopolyphosphatase,False,1,0,0,0,4.0,0.0007733612783207012,True
+b2507,guaA,GMP synthetase,False,2,2,0,48,8.0,0.02610072651551461,False
+b2508,guaB,inosine 5'-monophosphate dehydrogenase,False,1,1,0,0,9.0,0.036237384814932175,False
+b2515,ispG,(E)-4-hydroxy-3-methylbut-2-enyl-diphosphate synthase (flavodoxin),True,2,2,13,12,3.0,0.0051168687688074544,False
+b2518,ndk,nucleoside diphosphate kinase,False,13,13,44,51,9.0,0.01745830591637625,True
+b2521,sseA,3-mercaptopyruvate sulfurtransferase,False,2,1,0,0,44.0,0.1606109230922754,False
+b2523,pepB,aminopeptidase B,False,2,0,0,0,13.0,0.013291242948591917,True
+b2525,fdx,reduced ferredoxin,False,1,0,0,0,1.0,0.0,True
+b2530,iscS,cysteine desulfurase IscS,False,1,1,3,0,13.0,0.013291242948591917,True
+b2533,suhB,Nus factor SuhB,True,3,3,2,0,5.0,0.0016035873565179246,True
+b2538,hcaE,putative 3-phenylpropionate/cinnamate dioxygenase subunit alpha,False,2,0,0,0,2.0,0.0005377785359751096,True
+b2539,hcaF,putative 3-phenylpropionate/cinnamate dioxygenase subunit beta,False,2,0,0,0,2.0,0.0005377785359751096,True
+b2540,hcaC,putative 3-phenylpropionate/cinnamate dioxygenase ferredoxin subunit,False,2,0,0,0,2.0,0.0005377785359751096,True
+b2541,hcaB,"2,3-dihydroxy-2,3-dihydrophenylpropionate dehydrogenase",False,2,2,0,0,3.0,0.0016108985450734778,True
+b2542,hcaD,putative 3-phenylpropionate/cinnamate dioxygenase ferredoxin reductase subunit,False,4,1,0,0,2.0,0.0005377785359751096,True
+b2551,glyA,serine hydroxymethyltransferase,False,2,2,1,1,15.0,0.04732546293481747,True
+b2557,purL,phosphoribosylformylglycinamide synthetase,False,1,1,2,4,5.0,0.011327361755675558,True
+b2560,pgpC,phosphatidylglycerophosphatase C,False,1,0,0,0,2.0,0.0009634521807650753,True
+b2563,acpS,holo-[acyl-carrier-protein] synthase,True,1,0,0,0,1.0,0.0,True
+b2564,pdxJ,pyridoxine 5'-phosphate synthase,False,1,1,6,0,4.0,4.46794856172674e-06,True
+b2574,nadB,L-aspartate oxidase,False,2,2,2,2,17.0,0.029012531228177797,True
+b2585,pssA,phosphatidylserine synthase,True,1,1,6,0,15.0,0.04732546293481747,True
+b2593,yfiH,purine nucleoside phosphorylase YfiH,False,5,1,1,1,7.0,0.004143954594811222,True
+b2599,pheA,fused chorismate mutase/prephenate dehydratase,False,3,2,0,5,9.0,0.026254748887751592,True
+b2600,tyrA,fused chorismate mutase/prephenate dehydrogenase,False,2,1,5,4,9.0,0.026254748887751592,False
+b2601,aroF,"3-deoxy-7-phosphoheptulonate synthase, Tyr-sensitive",False,1,0,0,0,10.0,0.020049174512655126,True
+b2615,nadK,NAD kinase,True,1,1,0,0,0.0,0.0,False
+b2659,glaH,glutarate dioxygenase GlaH,False,1,1,1,1,15.0,0.027609099184588475,True
+b2660,lhgD,L-2-hydroxyglutarate dehydrogenase,False,1,1,0,0,15.0,0.027609099184588475,True
+b2661,gabD,succinate-semialdehyde dehydrogenase (NADP(+)) GabD,False,3,1,2,2,13.0,0.009580485244737735,True
+b2662,gabT,4-aminobutyrate aminotransferase GabT,False,4,2,3,3,5.0,0.006268938009244592,True
+b2675,nrdE,ribonucleoside-diphosphate reductase 2 subunit alpha,False,4,0,0,0,7.0,0.01745830591637625,False
+b2676,nrdF,ribonucleoside-diphosphate reductase 2 subunit beta,False,4,0,0,0,7.0,0.01745830591637625,False
+b2687,luxS,S-ribosylhomocysteine lyase,False,1,1,0,0,7.0,0.0023397936833464343,True
+b2688,gshA,glutamate--cysteine ligase,False,2,1,1,1,22.0,0.042012164998035374,True
+b2700,pncC,NMN aminohydrolase,False,1,1,0,0,7.0,0.001457769762548843,False
+b2702,srlA,sorbitol-specific PTS enzyme IIC2 component,False,1,0,0,0,5.0,0.0028634306474703236,False
+b2703,srlE,sorbitol-specific PTS enzyme IIBC1 component,False,1,0,0,0,5.0,0.0028634306474703236,False
+b2704,srlB,sorbitol-specific PTS enzyme IIA component,False,1,0,0,0,5.0,0.0028634306474703236,False
+b2705,srlD,sorbitol-6-phosphate 2-dehydrogenase,False,1,1,0,0,24.0,0.05809127727302761,False
+b2715,ascF,beta-glucoside specific PTS enzyme IIBC component,False,2,0,0,0,2.0,0.0005353414731232585,True
+b2716,ascB,6-phospho-beta-glucosidase AscB,False,4,0,0,0,12.0,0.014624320711792552,True
+b2744,umpG,broad specificity 5'(3')-nucleotidase and polyphosphatase,False,17,0,0,0,9.0,0.036237384814932175,True
+b2746,ispF,"2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase",True,1,1,14,13,2.0,0.005588034253498637,True
+b2747,ispD,2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase,True,1,1,16,15,2.0,0.006525491097177302,True
+b2750,cysC,adenylyl-sulfate kinase,False,1,1,0,4,4.0,0.001075557071950219,True
+b2751,cysN,sulfate adenylyltransferase subunit 1,False,2,0,0,0,4.0,0.0005394032445430101,True
+b2752,cysD,sulfate adenylyltransferase subunit 2,False,2,0,0,0,4.0,0.0005394032445430101,True
+b2762,cysH,phosphoadenosine phosphosulfate reductase,False,1,1,0,3,8.0,0.005369661816911592,False
+b2763,cysI,"sulfite reductase, hemoprotein subunit",False,1,0,0,0,8.0,0.0064240976774791025,False
+b2764,cysJ,"sulfite reductase, flavoprotein subunit",False,1,0,0,0,8.0,0.0064240976774791025,False
+b2765,queD,"6-carboxy-5,6,7,8-tetrahydropterin synthase",False,2,2,5,5,7.0,0.0084221642742833,True
+b2777,queE,putative 7-carboxy-7-deazaguanine synthase QueE,False,1,1,3,3,2.0,0.001445178271147613,True
+b2779,eno,enolase,True,1,1,0,0,7.0,0.018965631432020517,False
+b2780,pyrG,CTP synthetase,True,2,2,0,9,5.0,0.004589065636246453,False
+b2781,mazG,nucleoside triphosphate pyrophosphohydrolase,False,8,3,0,0,9.0,0.02610072651551461,False
+b2784,relA,GDP/GTP pyrophosphokinase,False,1,0,0,0,9.0,0.014129169746843329,False
+b2787,gudD,D-glucarate dehydratase,False,2,2,1,1,8.0,0.0025730524434904854,False
+b2794,queF,7-cyano-7-deazaguanine reductase,False,1,1,1,1,2.0,0.0004833507989504383,True
+b2795,ppnN,nucleotide 5'-monophosphate nucleosidase,False,4,3,0,0,12.0,0.01568021871143388,False
+b2797,sdaB,L-serine deaminase II,False,2,0,0,0,44.0,0.1606109230922754,True
+b2799,fucO,"L-1,2-propanediol oxidoreductase",False,2,2,1,1,8.0,0.005068311713938409,True
+b2800,fucA,L-fuculose-phosphate aldolase,False,2,2,0,0,19.0,0.03149139248668933,True
+b2802,fucI,L-fucose isomerase,False,2,2,0,0,4.0,0.001108776559633187,True
+b2803,fucK,L-fuculokinase,False,2,2,2,1,4.0,0.001108776559633187,True
+b2804,fucU,L-fucose mutarotase,False,1,1,0,0,2.0,0.0,True
+b2818,argA,N-acetylglutamate synthase,False,1,1,0,26,22.0,0.042012164998035374,False
+b2827,thyA,thymidylate synthase,False,1,1,0,7,12.0,0.045318838045725236,False
+b2836,aas,fused 2-acylglycerophospho-ethanolamine acyltransferase/acyl-acyl carrier protein synthetase,False,2,2,0,0,4.0,0.007285843101893598,True
+b2838,lysA,diaminopimelate decarboxylase,False,1,1,9,9,4.0,0.007013866887627032,False
+b2840,ygeA,amino acid racemase YgeA,False,6,6,5,5,15.0,0.04732546293481747,True
+b2842,kduD,putative 2-keto-3-deoxy-D-gluconate dehydrogenase,False,1,1,2,0,6.0,0.005922875084281757,False
+b2843,kduI,5-dehydro-4-deoxy-D-glucuronate isomerase,False,1,1,1,0,4.0,0.0005475267873825133,True
+b2844,yqeF,putative acyltransferase,False,2,0,0,0,40.0,0.08874908525759842,False
+b2866,xdhA,putative xanthine dehydrogenase molybdenum-binding subunit XdhA,False,2,0,0,0,7.0,0.004143954594811222,True
+b2867,xdhB,putative xanthine dehydrogenase FAD-binding subunit XdhB,False,2,0,0,0,7.0,0.004143954594811222,True
+b2868,xdhC,putative xanthine dehydrogenase iron-sulfur-binding subunit XdhC,False,2,0,0,0,7.0,0.004143954594811222,True
+b2873,hyuA,phenylhydantoinase,False,2,2,2,2,4.0,0.001013818146369995,True
+b2874,yqeA,putative amino acid kinase YqeA,False,2,0,0,0,7.0,0.004650901087277261,False
+b2877,mocA,molybdenum cofactor cytidylyltransferase,False,1,1,1,1,3.0,0.0009699510150366779,True
+b2878,ygfK,"putative oxidoreductase, Fe-S subunit",False,1,0,0,0,2.0,2.4370628518509496e-06,True
+b2880,ygfM,putative oxidoreductase,False,1,0,0,0,2.0,2.4370628518509496e-06,True
+b2881,xdhD,fused putative xanthine/hypoxanthine oxidase: molybdopterin-binding subunit and Fe-S binding subunit,False,1,0,0,0,2.0,2.4370628518509496e-06,True
+b2883,guaD,guanine deaminase,False,1,1,0,0,6.0,0.002618624034313845,False
+b2889,idi,isopentenyl-diphosphate Delta-isomerase,False,1,1,0,0,5.0,0.0026917359198693736,False
+b2901,bglA,6-phospho-beta-glucosidase A,False,4,0,0,0,12.0,0.014624320711792552,True
+b2903,gcvP,glycine decarboxylase,False,2,1,0,0,13.0,0.045318838045725236,False
+b2904,gcvH,glycine cleavage system H protein,False,1,0,0,0,13.0,0.045318838045725236,False
+b2905,gcvT,aminomethyltransferase,False,3,2,1,1,13.0,0.045318838045725236,True
+b2906,ubiI,2-octaprenylphenol 6-hydroxylase,False,1,1,0,0,2.0,0.00290010479370263,False
+b2907,ubiH,2-octaprenyl-6-methoxyphenol 4-hydroxylase,False,1,1,0,0,2.0,0.0019399020300733558,False
+b2912,fau,putative 5-formyltetrahydrofolate cyclo-ligase,False,1,1,0,0,6.0,0.019842338719705706,True
+b2913,serA,phosphoglycerate dehydrogenase,False,1,1,2,2,6.0,0.0018504216902489408,False
+b2914,rpiA,ribose-5-phosphate isomerase A,False,1,0,0,0,13.0,0.031730100773638435,False
+b2917,scpA,methylmalonyl-CoA mutase,False,1,1,1,1,8.0,0.0014874329436998515,True
+b2919,scpB,methylmalonyl-CoA decarboxylase,False,1,1,0,0,13.0,0.00982911073413911,True
+b2920,scpC,propionyl-CoA:succinate CoA transferase,False,1,1,0,0,13.0,0.00982911073413911,False
+b2925,fbaA,fructose-bisphosphate aldolase class II,True,3,0,0,0,23.0,0.08797148487402456,True
+b2926,pgk,phosphoglycerate kinase,True,1,1,0,0,6.0,0.0018504216902489408,False
+b2927,epd,D-erythrose-4-phosphate dehydrogenase,False,1,1,5,5,10.0,0.011478580848389349,False
+b2929,fumE,fumarase E,False,1,0,0,0,10.0,0.03686422519795633,False
+b2930,yggF,"fructose 1,6-bisphosphatase YggF",False,1,0,0,0,24.0,0.05809127727302761,False
+b2933,cmtA,mannitol-specific PTS enzyme IICB component CmtA,False,1,0,0,0,4.0,0.001013818146369995,False
+b2934,cmtB,mannitol-specific PTS enzyme IIA component CmtB,False,1,0,0,0,4.0,0.001013818146369995,False
+b2935,tktA,transketolase 1,False,2,0,0,0,24.0,0.08797148487402456,False
+b2937,speB,agmatinase,False,1,1,0,0,7.0,0.0052678552739550966,True
+b2938,speA,biosynthetic arginine decarboxylase,False,1,0,0,0,5.0,0.0071729388968024745,True
+b2942,metK,methionine adenosyltransferase,True,1,1,9,9,7.0,0.007090921710610888,True
+b2947,gshB,glutathione synthetase,False,1,1,9,5,13.0,0.016636733922074515,True
+b2954,rdgB,dITP/XTP pyrophosphatase,False,3,3,1,0,9.0,0.036237384814932175,True
+b2957,ansB,L-asparaginase 2,False,1,0,0,0,13.0,0.019239870997722112,False
+b2965,speC,constitutive ornithine decarboxylase,False,1,0,0,0,7.0,0.0052678552739550966,False
+b2976,glcB,malate synthase G,False,1,0,0,0,40.0,0.08874908525759842,False
+b2979,glcD,"glycolate dehydrogenase, putative FAD-linked subunit",False,1,0,0,0,10.0,0.00877377505442003,False
+b2981,yghO,putative DNA-binding transcriptional regulator YghO,False,1,1,1,0,1.0,0.0,True
+b2988,gss,fused glutathionylspermidine amidase/glutathionylspermidine synthetase,False,2,2,1,1,11.0,0.016636733922074515,True
+b2994,hybC,hydrogenase 2 large subunit,False,1,0,0,0,1.0,0.0,True
+b2997,hybO,hydrogenase 2 small subunit,False,1,0,0,0,1.0,0.0,True
+b3008,metC,cystathionine beta-lyase/L-cysteine desulfhydrase/alanine racemase,False,4,0,0,0,44.0,0.1606109230922754,True
+b3011,yqhD,NADPH-dependent aldehyde reductase YqhD,False,1,1,0,0,11.0,0.014720596101640544,False
+b3018,plsC,1-acylglycerol-3-phosphate O-acyltransferase PlsC,True,1,1,0,0,5.0,0.006322147214843338,True
+b3034,nudF,ADP-sugar pyrophosphatase,False,2,0,0,0,13.0,0.031730100773638435,True
+b3041,ribB,"3,4-dihydroxy-2-butanone-4-phosphate synthase",True,1,1,8,8,11.0,0.01208727646575734,True
+b3052,hldE,fused heptose 7-phosphate kinase/heptose 1-phosphate adenyltransferase,False,2,2,4,4,2.0,0.0019269043615301506,True
+b3057,bacA,undecaprenyl pyrophosphate phosphatase,False,1,0,0,0,4.0,0.0010073193120983925,True
+b3058,folB,dihydroneopterin aldolase,False,3,3,6,6,8.0,0.005638226143185566,True
+b3059,plsY,putative glycerol-3-phosphate acyltransferase,False,1,1,0,0,6.0,0.010810409673611009,True
+b3061,ttdA,L(+)-tartrate dehydratase subunit alpha,False,1,0,0,0,17.0,0.029012531228177797,False
+b3062,ttdB,L(+)-tartrate dehydratase subunit beta,False,1,0,0,0,17.0,0.029012531228177797,False
+b3073,patA,putrescine aminotransferase,False,2,2,6,6,7.0,0.0065865685342691655,True
+b3076,ebgA,evolved beta-D-galactosidase subunit alpha,False,1,0,0,0,16.0,0.0070851768900286145,True
+b3077,ebgC,DUF386 domain-containing evolved beta-D-galactosidase subunit beta,False,1,0,0,0,16.0,0.0070851768900286145,True
+b3085,ygjP,putative metal-dependent hydrolase,False,1,0,0,0,8.0,0.0081183287880114,False
+b3091,uxaA,D-altronate dehydratase,False,1,1,0,0,6.0,0.005922875084281757,True
+b3092,uxaC,D-glucoronate/D-galacturonate isomerase,False,2,2,0,0,6.0,0.0016312074021722354,True
+b3114,tdcE,2-ketobutyrate formate-lyase/pyruvate formate-lyase 4,False,2,0,0,0,44.0,0.1606109230922754,False
+b3115,tdcD,propionate kinase,False,1,0,0,0,4.0,0.0005060967189010471,False
+b3117,tdcB,catabolic threonine dehydratase,False,2,0,0,0,44.0,0.1606109230922754,False
+b3124,garK,glycerate 2-kinase 1,False,1,0,0,0,5.0,0.0017438141445070402,False
+b3125,garR,tartronate semialdehyde reductase,False,2,0,0,0,8.0,0.0016585275400708937,False
+b3126,garL,alpha-dehydro-beta-deoxy-D-glucarate aldolase,False,2,2,4,4,44.0,0.1606109230922754,False
+b3128,garD,GarD,False,1,1,1,1,8.0,0.0025730524434904854,True
+b3132,kbaZ,"putative tagatose-1,6-bisphosphate aldolase 1 chaperone",False,1,0,0,0,23.0,0.08797148487402456,False
+b3133,agaV,N-acetyl-D-galactosamine specific PTS enzyme IIB component,False,1,1,1,0,1.0,0.0,True
+b3136,agaS,putative galactosamine-6-phosphate deaminase/isomerase,False,1,1,0,0,4.0,0.002138116475357233,True
+b3137,kbaY,"tagatose-1,6-bisphosphate aldolase 1",False,1,0,0,0,23.0,0.08797148487402456,False
+b3138,agaB,galactosamine-specific PTS enzyme IIB component,False,1,0,0,0,2.0,0.0005353414731232585,True
+b3139,agaC,galactosamine-specific PTS enzyme IIC component,False,1,0,0,0,2.0,0.0005353414731232585,True
+b3140,agaD,galactosamine-specific PTS enzyme IID component,False,1,0,0,0,2.0,0.0005353414731232585,True
+b3157,ubiT,anaerobic ubiquinone biosynthesis accessory factor UbiT,False,3,0,0,0,2.0,0.00290010479370263,False
+b3158,ubiU,ubiquinone biosynthesis protein UbiU,False,3,0,0,0,2.0,0.00290010479370263,False
+b3159,ubiV,ubiquinone biosynthesis protein UbiV,True,3,0,0,0,2.0,0.00290010479370263,False
+b3172,argG,argininosuccinate synthetase,False,1,1,8,8,13.0,0.019239870997722112,True
+b3176,glmM,phosphoglucosamine mutase,False,1,1,34,34,7.0,0.027812741339953696,True
+b3177,folP,dihydropteroate synthase,False,2,2,1,1,4.0,0.0050689001410372005,True
+b3187,ispB,all-trans-octaprenyl-diphosphate synthase,True,1,1,1,1,4.0,0.001978895035702971,True
+b3189,murA,UDP-N-acetylglucosamine 1-carboxyvinyltransferase,True,1,1,8,8,4.0,0.006146909673711211,True
+b3197,kdsD,D-arabinose 5-phosphate isomerase KdsD,False,1,1,16,16,11.0,0.01208727646575734,True
+b3198,kdsC,3-deoxy-D-manno-octulosonate 8-phosphate phosphatase KdsC,False,1,1,14,14,2.0,0.003912969390877417,True
+b3212,gltB,glutamate synthase subunit GltB,False,1,0,0,0,22.0,0.042012164998035374,False
+b3213,gltD,glutamate synthase subunit GltD,False,1,0,0,0,22.0,0.042012164998035374,False
+b3222,nanK,N-acetylmannosamine kinase,False,1,1,0,0,3.0,0.0010739323633823183,True
+b3223,nanE,putative N-acetylmannosamine-6-phosphate 2-epimerase,False,1,1,0,0,6.0,0.00482782150951673,True
+b3225,nanA,N-acetylneuraminate lyase,False,1,1,1,0,2.0,0.0005377785359751095,True
+b3236,mdh,malate dehydrogenase,False,2,2,0,0,17.0,0.03686422519795633,True
+b3248,yhdE,nucleoside triphosphate pyrophosphatase YhdE,False,3,0,0,0,9.0,0.01568021871143388,False
+b3253,yhdH,acrylyl-CoA reductase,False,1,1,0,0,13.0,0.00982911073413911,False
+b3255,accB,biotin carboxyl carrier protein,True,1,0,0,0,40.0,0.08874908525759842,True
+b3256,accC,biotin carboxylase,True,1,0,0,0,40.0,0.08874908525759842,True
+b3281,aroE,shikimate dehydrogenase,False,2,1,1,1,5.0,0.02021651949514889,True
+b3336,bfr,bacterioferritin,False,1,1,1,0,3.0,0.0,True
+b3338,chiA,endochitinase,False,2,2,2,0,3.0,0.001075557071950219,True
+b3355,prkB,putative phosphoribulokinase,False,1,1,1,1,11.0,0.01208727646575734,True
+b3359,argD,N-acetylornithine aminotransferase/N-succinyldiaminopimelate aminotransferase,False,2,2,19,39,3.0,0.006346294445933761,True
+b3360,pabA,aminodeoxychorismate synthase subunit 2,False,1,0,0,0,9.0,0.026254748887751592,True
+b3365,nirB,nitrite reductase (NADH) large subunit,False,1,0,0,0,2.0,0.0,False
+b3366,nirD,nitrite reductase (NADH) small subunit,False,1,0,0,0,2.0,0.0,False
+b3368,cysG,siroheme synthase,False,3,2,2,2,3.0,0.003886302894418314,True
+b3380,yhfW,putative mutase YhfW,False,2,0,0,0,13.0,0.031730100773638435,True
+b3385,gph,phosphoglycolate phosphatase,False,1,1,0,0,5.0,0.003643939383344246,True
+b3386,rpe,ribulose-phosphate 3-epimerase,False,1,1,0,0,12.0,0.01656958575334959,False
+b3389,aroB,3-dehydroquinate synthase,False,1,1,7,39,5.0,0.020640568431370958,True
+b3390,aroK,shikimate kinase 1,False,1,0,0,0,3.0,0.019836337690260147,False
+b3397,nudE,ADP-sugar diphosphatase NudE,False,1,0,0,0,13.0,0.031730100773638435,True
+b3399,yrfG,purine nucleotidase,False,2,0,0,0,9.0,0.036237384814932175,False
+b3403,pck,phosphoenolpyruvate carboxykinase (ATP),False,1,1,0,0,17.0,0.029012531228177797,False
+b3412,bioH,pimeloyl-acyl carrier protein methyl ester esterase,False,1,1,1,7,2.0,0.003417574472578981,True
+b3416,malQ,4-alpha-glucanotransferase,False,2,1,0,0,13.0,0.015759664701568418,False
+b3417,malP,maltodextrin phosphorylase,False,1,0,0,0,13.0,0.015759664701568418,False
+b3425,glpE,thiosulfate sulfurtransferase GlpE,False,1,0,0,0,8.0,0.005369661816911592,False
+b3426,glpD,aerobic glycerol 3-phosphate dehydrogenase,False,1,0,0,0,19.0,0.03149139248668933,False
+b3428,glgP,glycogen phosphorylase,False,1,0,0,0,13.0,0.015759664701568418,False
+b3429,glgA,glycogen synthase,False,1,1,0,5,3.0,0.0023883215948139304,False
+b3430,glgC,glucose-1-phosphate adenylyltransferase,False,1,1,1,6,13.0,0.015759664701568418,True
+b3431,glgX,"limit dextrin alpha-1,6-glucohydrolase",False,1,0,0,0,13.0,0.015759664701568418,False
+b3432,glgB,"1,4-alpha-glucan branching enzyme",False,1,1,2,4,4.0,0.0019832275918840393,True
+b3433,asd,aspartate-semialdehyde dehydrogenase,True,1,1,25,36,4.0,0.0031355215192005142,True
+b3437,gntK,"D-gluconate kinase, thermostable",False,1,0,0,0,4.0,0.002992267183642562,False
+b3441,yhhY,N-acetyltransferase YhhY,False,1,1,1,1,5.0,0.001493919528184632,True
+b3447,ggt,glutathione hydrolase proenzyme,False,6,6,6,0,22.0,0.042012164998035374,True
+b3449,ugpQ,glycerophosphodiester phosphodiesterase UgpQ,False,2,0,0,0,6.0,0.010810409673611009,True
+b3475,acpT,holo-[acyl carrier protein] synthase 2,False,1,0,0,0,1.0,0.0,True
+b3500,gor,glutathione reductase (NADPH),False,1,1,0,0,11.0,0.016636733922074515,True
+b3517,gadA,glutamate decarboxylase A,False,4,0,0,0,22.0,0.042012164998035374,True
+b3519,treF,cytoplasmic trehalase,False,1,0,0,0,12.0,0.004324139698350699,False
+b3526,kdgK,2-dehydro-3-deoxygluconokinase,False,1,1,0,0,6.0,0.038468928289256396,False
+b3533,bcsA,cellulose synthase catalytic subunit,False,1,1,1,1,8.0,0.005684888273824284,True
+b3546,eptB,phosphoethanolamine transferase EptB,False,1,1,1,1,7.0,0.002970245783591141,True
+b3551,bisC,biotin sulfoxide reductase,False,1,1,0,0,3.0,0.0009894475178514855,True
+b3553,ghrB,glyoxylate reductase,False,5,1,0,0,11.0,0.014720596101640544,True
+b3564,xylB,xylulokinase,False,1,1,0,3,12.0,0.01656958575334959,False
+b3565,xylA,xylose isomerase,False,2,2,0,7,8.0,0.004873531339578844,True
+b3571,malS,alpha-amylase,False,2,0,0,0,5.0,0.0019832275918840393,True
+b3572,avtA,valine--pyruvate aminotransferase,False,1,0,0,0,5.0,0.0014833589224932779,False
+b3575,yiaK,"2,3-diketo-L-gulonate reductase",False,2,2,0,0,3.0,0.0005361538274072089,False
+b3580,lyxK,L-xylulose kinase,False,2,2,0,0,5.0,0.0027997286010599544,False
+b3581,sgbH,3-keto-L-gulonate-6-phosphate decarboxylase SgbH,False,1,0,0,0,5.0,0.0027997286010599544,True
+b3582,sgbU,putative L-xylulose 5-phosphate 3-epimerase,False,1,0,0,0,6.0,0.005077123962314649,False
+b3583,sgbE,L-ribulose-5-phosphate 4-epimerase SgbE,False,1,0,0,0,12.0,0.01656958575334959,False
+b3588,aldB,aldehyde dehydrogenase B,False,1,1,0,0,11.0,0.005868563397869079,False
+b3589,yiaY,L-threonine dehydrogenase,False,7,0,0,0,10.0,0.005868563397869079,True
+b3591,selA,selenocysteine synthase,False,1,1,1,0,2.0,3.249417135801266e-06,True
+b3599,mtlA,mannitol-specific PTS enzyme IICBA component,False,1,0,0,0,4.0,0.001013818146369995,False
+b3600,mtlD,mannitol-1-phosphate 5-dehydrogenase,False,1,1,2,2,24.0,0.05809127727302761,False
+b3605,lldD,L-lactate dehydrogenase,False,1,1,0,0,44.0,0.1606109230922754,True
+b3607,cysE,serine acetyltransferase,False,1,1,2,2,15.0,0.04732546293481747,True
+b3608,gpsA,glycerol-3-phosphate dehydrogenase,True,2,2,0,0,19.0,0.03149139248668933,False
+b3612,gpmM,"2,3-bisphosphoglycerate-independent phosphoglycerate mutase",False,1,0,0,0,6.0,0.0018504216902489408,False
+b3616,tdh,threonine dehydrogenase,False,1,1,0,0,5.0,0.002703441143079396,False
+b3617,kbl,2-amino-3-ketobutyrate CoA ligase,False,1,1,0,0,13.0,0.0112196734942731,True
+b3619,rfaD,ADP-L-glycero-D-mannoheptose 6-epimerase,False,1,1,1,1,2.0,0.00048416315323438863,True
+b3633,waaA,KDO transferase,True,2,2,12,12,4.0,0.0029690137129271496,True
+b3634,coaD,pantetheine-phosphate adenylyltransferase,True,1,1,0,0,4.0,0.0004963484674936434,False
+b3639,dfp,fused 4'-phosphopantothenoylcysteine decarboxylase and phosphopantothenoylcysteine synthetase,True,2,2,0,1,13.0,0.013291242948591917,True
+b3640,dut,dUTP diphosphatase,True,1,1,0,0,8.0,0.01654169776935381,False
+b3642,pyrE,orotate phosphoribosyltransferase,False,1,1,1,32,10.0,0.027155981815947992,True
+b3648,gmk,guanylate kinase,True,3,3,45,43,8.0,0.02610072651551461,True
+b3650,spoT,bifunctional (p)ppGpp synthase/hydrolase SpoT,True,2,1,0,0,9.0,0.01745830591637625,False
+b3665,adeD,adenine deaminase,False,1,1,0,0,7.0,0.004143954594811222,False
+b3670,ilvN,acetohydroxy acid synthase I subunit IlvN,False,2,0,0,0,44.0,0.1606109230922754,False
+b3671,ilvB,acetohydroxy acid synthase I subunit IlvB,False,2,0,0,0,44.0,0.1606109230922754,False
+b3682,glvB,putative PTS enzyme II component GlvB,False,1,0,0,0,5.0,0.0010192338415963302,True
+b3683,glvC,putative PTS enzyme II component GlvC,False,1,0,0,0,5.0,0.0010192338415963302,True
+b3693,dgoK,2-dehydro-3-deoxygalactonokinase,False,1,1,1,0,2.0,0.0010706829462465172,True
+b3708,tnaA,tryptophanase,False,1,1,0,0,6.0,0.004344059421535576,False
+b3721,bglB,6-phospho-beta-glucosidase B,False,4,0,0,0,12.0,0.014624320711792552,True
+b3722,bglF,beta-glucoside specific PTS enzyme II/BglG kinase/BglG phosphatase,False,1,1,2,0,2.0,8.123542839503165e-07,True
+b3729,glmS,L-glutamine--D-fructose-6-phosphate aminotransferase,True,1,1,0,35,24.0,0.05809127727302761,False
+b3730,glmU,fused N-acetylglucosamine-1-phosphate uridyltransferase and glucosamine-1-phosphate acetyltransferase,True,2,2,33,33,4.0,0.007067956960854078,True
+b3744,asnA,asparagine synthetase A,False,1,1,0,0,13.0,0.019239870997722112,False
+b3752,rbsK,ribokinase,False,2,2,2,2,13.0,0.031730100773638435,True
+b3769,ilvM,acetolactate synthase II subunit IlvM,False,2,0,0,0,44.0,0.1606109230922754,False
+b3770,ilvE,branched-chain-amino-acid aminotransferase,False,6,6,3,3,9.0,0.005059735986246356,True
+b3771,ilvD,dihydroxy-acid dehydratase,False,2,2,12,13,5.0,0.0019480255729128588,False
+b3772,ilvA,threonine deaminase,False,2,0,0,0,44.0,0.1606109230922754,False
+b3774,ilvC,ketol-acid reductoisomerase (NADP(+)),False,5,5,16,17,4.0,0.002890356542295226,True
+b3779,gpp,"guanosine-5'-triphosphate,3'-diphosphate phosphatase",False,1,0,0,0,4.0,0.0007733612783207012,True
+b3784,rfe,UDP-N-acetylglucosamine--undecaprenyl-phosphate N-acetylglucosaminephosphotransferase,False,1,1,1,0,4.0,0.0005223438045800535,True
+b3786,wecB,UDP-N-acetylglucosamine 2-epimerase,False,1,1,2,2,4.0,0.006146909673711211,True
+b3787,wecC,UDP-N-acetyl-D-mannosamine dehydrogenase,False,1,1,1,1,2.0,0.0004833507989504383,True
+b3788,rffG,"dTDP-glucose 4,6-dehydratase 2",False,1,0,0,0,3.0,0.0024086304519126884,True
+b3789,rffH,glucose-1-phosphate thymidylyltransferase 2,False,1,0,0,0,13.0,0.015759664701568418,True
+b3790,rffC,RffC,False,1,1,1,1,2.0,0.0004833507989504383,True
+b3791,wecE,dTDP-4-dehydro-6-deoxy-D-glucose transaminase,False,1,1,2,2,3.0,0.0019301537786659518,True
+b3801,aslA,putative sulfatase AslA,False,1,1,0,0,2.0,0.0,True
+b3803,hemX,PF04375 family protein HemX,False,1,0,0,0,3.0,0.003886302894418314,True
+b3804,hemD,uroporphyrinogen-III synthase,True,1,1,9,7,3.0,0.0043647795676650504,True
+b3805,hemC,hydroxymethylbilane synthase,True,1,1,10,8,2.0,0.004841631532343886,True
+b3806,cyaA,adenylate cyclase,False,1,1,1,1,9.0,0.014129169746843329,True
+b3809,dapF,diaminopimelate epimerase,False,1,1,14,14,4.0,0.006453525211415203,True
+b3812,yigB,5-amino-6-(5-phospho-D-ribitylamino)uracil phosphatase,False,2,0,0,0,4.0,0.002170761512510837,True
+b3821,pldA,outer membrane phospholipase A,False,9,9,13,0,4.0,0.007712329100967513,True
+b3825,pldB,lysophospholipase L2,False,4,4,5,0,4.0,0.00744506454154786,True
+b3826,yigL,phosphosugar phosphatase YigL,False,2,1,0,0,6.0,1.2997668543205063e-05,True
+b3829,metE,cobalamin-independent homocysteine transmethylase,False,2,1,0,0,7.0,0.007090921710610888,True
+b3830,ysgA,putative dienelactone hydrolase,False,10,10,7,0,4.0,0.0,True
+b3831,udp,uridine phosphorylase,False,2,0,0,0,12.0,0.01127745095100562,False
+b3833,ubiE,"bifunctional 2-octaprenyl-6-methoxy-1,4-benzoquinol methylase and demethylmenaquinone methyltransferase",False,2,2,3,0,3.0,0.0014573635854068677,True
+b3843,ubiD,3-octaprenyl-4-hydroxybenzoate decarboxylase,True,1,0,0,0,3.0,0.0033777691126654157,True
+b3844,fre,NAD(P)H-flavin reductase,False,2,2,1,1,4.0,0.002170761512510837,False
+b3845,fadA,3-ketoacyl-CoA thiolase,False,19,0,0,0,40.0,0.08874908525759842,True
+b3846,fadB,"multifunctional enoyl-CoA hydratase, 3-hydroxyacyl-CoA epimerase, Delta(3)-cis-Delta(2)-trans-enoyl-CoA isomerase, L-3-hydroxyacyl-CoA dehydrogenase",False,28,1,0,0,7.0,0.004586010717660853,True
+b3850,hemG,protoporphyrinogen oxidase,True,1,1,3,1,2.0,0.0014622377111105696,True
+b3857,mobA,molybdenum cofactor guanylyltransferase,False,1,1,1,1,3.0,0.0009699510150366779,True
+b3867,hemN,coproporphyrinogen III dehydrogenase,False,1,1,0,0,2.0,0.0019464008643449583,False
+b3870,glnA,glutamine synthetase,False,1,1,0,44,22.0,0.042012164998035374,False
+b3878,yihQ,sulfoquinovosidase,False,1,1,6,0,3.0,4.061771419751582e-06,True
+b3879,yihR,putative sulfoquinovose mutarotase YihR,False,1,1,5,0,3.0,6.498834271602532e-06,True
+b3880,yihS,sulfoquinovose isomerase,False,1,1,4,0,3.0,7.311188555552848e-06,True
+b3881,yihT,6-deoxy-6-sulfofructose-1-phosphate aldolase,False,1,1,2,0,2.0,6.498834271602532e-06,True
+b3882,yihU,3-sulfolactaldehyde reductase,False,2,2,2,1,5.0,0.0037456328484281594,True
+b3883,yihV,6-deoxy-6-sulfofructose kinase,False,1,1,3,0,2.0,7.311188555552848e-06,True
+b3885,yihX,alpha-D-glucose-1-phosphate phosphatase YihX,False,1,0,0,0,13.0,0.015759664701568418,False
+b3892,fdoI,formate dehydrogenase O subunit gamma,False,1,0,0,0,6.0,0.012269873875719105,False
+b3893,fdoH,formate dehydrogenase O subunit beta,False,1,0,0,0,6.0,0.012269873875719105,False
+b3894,fdoG,formate dehydrogenase O subunit alpha,False,1,0,0,0,6.0,0.012269873875719105,False
+b3902,rhaD,rhamnulose-1-phosphate aldolase,False,2,2,0,0,19.0,0.03149139248668933,True
+b3903,rhaA,L-rhamnose isomerase,False,1,1,0,0,3.0,0.0005361538274072089,True
+b3904,rhaB,rhamnulokinase,False,2,2,1,0,6.0,0.00464247406882531,True
+b3916,pfkA,6-phosphofructokinase 1,False,5,0,0,0,24.0,0.05809127727302761,False
+b3918,cdh,CDP-diacylglycerol diphosphatase,False,1,1,0,0,5.0,0.006375762597584059,False
+b3919,tpiA,triose-phosphate isomerase,False,1,1,0,0,23.0,0.08797148487402456,False
+b3925,glpX,"fructose-1,6-bisphosphatase 2",False,1,0,0,0,24.0,0.05809127727302761,False
+b3926,glpK,glycerol kinase,False,1,1,0,0,7.0,0.010810409673611009,False
+b3930,menA,"1,4-dihydroxy-2-naphthoate octaprenyltransferase",False,1,1,1,0,3.0,0.0009715757236045785,True
+b3939,metB,O-succinylhomoserine(thiol)-lyase/O-succinylhomoserine lyase,False,7,7,5,12,13.0,0.009580485244737735,False
+b3940,metL,fused aspartate kinase/homoserine dehydrogenase 2,False,3,0,0,0,13.0,0.019239870997722112,True
+b3941,metF,"5,10-methylenetetrahydrofolate reductase",False,1,1,0,0,12.0,0.045318838045725236,False
+b3942,katG,catalase/hydroperoxidase HPI,False,2,1,1,1,5.0,0.001493919528184632,True
+b3945,gldA,"L-1,2-propanediol dehydrogenase/glycerol dehydrogenase",False,3,3,1,4,11.0,0.014720596101640544,True
+b3956,ppc,phosphoenolpyruvate carboxylase,False,1,1,0,0,17.0,0.029012531228177797,False
+b3957,argE,acetylornithine deacetylase,False,2,2,22,22,5.0,0.0038883912686490515,True
+b3958,argC,N-acetylglutamylphosphate reductase,False,1,1,4,24,2.0,0.0030292691248507302,True
+b3959,argB,acetylglutamate kinase,False,1,1,5,25,3.0,0.0029756537421100093,True
+b3960,argH,argininosuccinate lyase,False,1,1,7,7,8.0,0.02427808153395598,True
+b3962,sthA,soluble pyridine nucleotide transhydrogenase,False,1,1,0,0,0.0,0.0,False
+b3967,murI,glutamate racemase,True,1,1,0,0,22.0,0.042012164998035374,False
+b3972,murB,UDP-N-acetylenolpyruvoylglucosamine reductase,True,2,2,7,7,2.0,0.0009748251407403798,False
+b3973,birA,DNA-binding transcriptional repressor/biotin-[acetyl-CoA-carboxylase] ligase BirA,True,2,2,2,2,3.0,0.0009894475178514855,True
+b3974,coaA,pantothenate kinase,False,3,3,2,2,4.0,0.0009894475178514855,True
+b3990,thiH,2-iminoacetate synthase,False,1,1,2,1,3.0,0.0004963484674936434,True
+b3991,thiG,1-deoxy-D-xylulose 5-phosphate:thiol sulfurtransferase,False,1,1,1,0,6.0,0.03671177019079983,True
+b3992,thiF,sulfur carrier protein ThiS adenylyltransferase,False,1,1,3,0,2.0,1.624708567900633e-06,True
+b3993,thiE,thiamine phosphate synthase,False,2,2,6,0,7.0,0.0047826816898052255,True
+b3994,thiC,phosphomethylpyrimidine synthase,False,1,1,0,2,3.0,0.0021161964489286402,False
+b3996,nudC,RNA decapping hydrolase,False,2,0,0,0,7.0,0.001457769762548843,False
+b3997,hemE,uroporphyrinogen decarboxylase,False,2,2,6,3,3.0,0.003886302894418314,True
+b4005,purD,phosphoribosylamine--glycine ligase,False,1,1,4,6,3.0,0.010325876144180927,True
+b4006,purH,bifunctional AICAR transformylase/IMP cyclohydrolase,False,2,2,1,1,9.0,0.036237384814932175,False
+b4013,metA,homoserine O-succinyltransferase,False,2,2,3,14,6.0,0.003230034055101689,True
+b4014,aceB,malate synthase A,False,1,0,0,0,40.0,0.08874908525759842,False
+b4015,aceA,isocitrate lyase,False,2,1,0,0,13.0,0.009580485244737735,False
+b4019,metH,cobalamin-dependent methionine synthase,False,2,1,0,0,7.0,0.007090921710610888,True
+b4024,lysC,aspartate kinase III,False,1,0,0,0,13.0,0.019239870997722112,True
+b4025,pgi,glucose-6-phosphate isomerase,False,3,2,0,0,24.0,0.05809127727302761,False
+b4039,ubiC,chorismate lyase,False,1,1,0,1,9.0,0.026254748887751592,False
+b4040,ubiA,4-hydroxybenzoate octaprenyltransferase,True,1,1,8,0,4.0,0.004375340173356404,True
+b4041,plsB,glycerol-3-phosphate 1-O-acyltransferase,True,1,1,1,0,6.0,0.010810409673611009,False
+b4042,dgkA,diacylglycerol kinase,False,1,1,0,0,5.0,0.006322147214843338,True
+b4053,alr,alanine racemase 1,False,1,0,0,0,7.0,0.014486262029407483,False
+b4054,tyrB,tyrosine aminotransferase,False,4,2,1,1,7.0,0.008996011340465805,True
+b4055,aphA,acid phosphatase/phosphotransferase,False,1,0,0,0,4.0,0.002170761512510837,False
+b4069,acs,acetyl-CoA synthetase (AMP-forming),False,5,3,1,1,40.0,0.08874908525759842,False
+b4070,nrfA,cytochrome c552 nitrite reductase,False,1,1,0,0,2.0,0.0,False
+b4079,fdhF,formate dehydrogenase H,False,1,1,0,0,6.0,0.012269873875719105,False
+b4084,alsK,D-allose kinase,True,1,1,2,0,2.0,0.0005361538274072089,True
+b4085,alsE,D-allulose-6-phosphate 3-epimerase,False,1,1,0,0,24.0,0.05809127727302761,True
+b4090,rpiB,allose-6-phosphate isomerase/ribose-5-phosphate isomerase B,False,2,1,1,0,13.0,0.031730100773638435,True
+b4092,phnP,"5-phospho-alpha-D-ribosyl 1,2-cyclic phosphate phosphodiesterase",False,1,1,1,0,2.0,0.002141365892493034,True
+b4093,phnO,aminoalkylphosphonate N-acetyltransferase,False,1,1,1,0,1.0,0.0,True
+b4094,phnN,"ribose 1,5-bisphosphate phosphokinase",False,1,1,0,0,10.0,0.027155981815947992,True
+b4095,phnM,RPnTP hydrolase,False,1,1,4,0,3.0,0.001075557071950219,True
+b4096,phnL,methylphosphonate degradation complex subunit PhnL,False,1,0,0,0,2.0,0.0005385908902590599,True
+b4098,phnJ,carbon-phosphorus lyase core complex subunit PhnJ,False,1,1,3,0,3.0,0.0016084614822216266,True
+b4099,phnI,carbon-phosphorus lyase core complex subunit PhnI,False,1,0,0,0,2.0,0.0005385908902590599,True
+b4100,phnH,carbon-phosphorus lyase core complex subunit PhnH,False,1,0,0,0,2.0,0.0005385908902590599,True
+b4101,phnG,carbon-phosphorus lyase core complex subunit PhnG,False,1,0,0,0,2.0,0.0005385908902590599,True
+b4114,eptA,phosphoethanolamine transferase EptA,False,3,3,3,2,7.0,0.002970245783591141,True
+b4117,adiA,"arginine decarboxylase, degradative",False,1,0,0,0,5.0,0.0071729388968024745,True
+b4119,melA,alpha-galactosidase,False,11,11,9,0,16.0,0.0070851768900286145,True
+b4122,fumB,fumarase B,False,1,0,0,0,10.0,0.03686422519795633,False
+b4131,cadA,lysine decarboxylase 1,False,1,0,0,0,4.0,0.007013866887627032,True
+b4139,aspA,aspartate ammonia-lyase,False,1,1,0,0,13.0,0.02427808153395598,False
+b4151,frdD,fumarate reductase membrane protein FrdD,False,1,0,0,0,13.0,0.02427808153395598,False
+b4152,frdC,fumarate reductase membrane protein FrdC,False,1,0,0,0,13.0,0.02427808153395598,False
+b4153,frdB,fumarate reductase iron-sulfur protein,False,1,0,0,0,13.0,0.02427808153395598,False
+b4154,frdA,fumarate reductase flavoprotein subunit,False,1,0,0,0,13.0,0.02427808153395598,False
+b4160,psd,phosphatidylserine decarboxylase proenzyme,True,1,1,4,0,4.0,0.007712329100967513,False
+b4161,rsgA,ribosome small subunit-dependent GTPase A,False,2,1,0,0,8.0,0.006537570676434519,True
+b4177,purA,adenylosuccinate synthetase,False,1,1,1,1,13.0,0.036237384814932175,True
+b4192,ulaG,L-ascorbate-6-phosphate lactonase,False,1,1,0,0,3.0,0.002141365892493034,True
+b4193,ulaA,L-ascorbate specific PTS enzyme IIC component,False,1,0,0,0,2.0,0.0005361538274072089,True
+b4194,ulaB,L-ascorbate specific PTS enzyme IIB component,False,1,0,0,0,2.0,0.0005361538274072089,True
+b4195,ulaC,L-ascorbate specific PTS enzyme IIA component,False,1,0,0,0,2.0,0.0005361538274072089,True
+b4196,ulaD,3-keto-L-gulonate-6-phosphate decarboxylase UlaD,False,1,0,0,0,5.0,0.0027997286010599544,True
+b4197,ulaE,L-ribulose-5-phosphate 3-epimerase UlaE,False,1,0,0,0,6.0,0.005077123962314649,False
+b4198,ulaF,L-ribulose-5-phosphate 4-epimerase UlaF,False,1,0,0,0,12.0,0.01656958575334959,False
+b4211,qorB,NAD(P)H:quinone oxidoreductase,False,2,0,0,0,2.0,0.0,True
+b4213,cpdB,"2',3'-cyclic-nucleotide 2'-phosphodiesterase/3'-nucleotidase",False,8,4,4,0,6.0,0.0020231683441782632,True
+b4214,cysQ,"3'(2'),5'-bisphosphate nucleotidase",False,1,1,0,0,4.0,0.001075557071950219,False
+b4232,fbp,"fructose-1,6-bisphosphatase 1",False,1,0,0,0,24.0,0.05809127727302761,False
+b4238,nrdD,anaerobic ribonucleoside-triphosphate reductase,False,4,4,0,0,9.0,0.014129169746843329,False
+b4239,treC,trehalose-6-phosphate hydrolase,False,1,1,0,0,12.0,0.014624320711792552,False
+b4240,treB,trehalose-specific PTS enzyme IIBC component,False,1,0,0,0,6.0,0.002112591963544066,False
+b4244,pyrI,"aspartate carbamoyltransferase, PyrI subunit",False,1,0,0,0,13.0,0.019239870997722112,False
+b4245,pyrB,aspartate carbamoyltransferase catalytic subunit,False,1,0,0,0,13.0,0.019239870997722112,False
+b4254,argI,ornithine carbamoyltransferase ArgI,False,1,0,0,0,7.0,0.004650901087277261,False
+b4260,pepA,aminopeptidase A/I,False,2,0,0,0,13.0,0.013291242948591917,True
+b4268,idnK,"D-gluconate kinase, thermosensitive",False,1,0,0,0,4.0,0.002992267183642562,False
+b4269,ahr,NADPH-dependent aldehyde reductase Ahr,False,3,2,2,0,10.0,0.005868563397869079,True
+b4297,yjhG,D-xylonate dehydratase,False,1,0,0,0,4.0,0.001013818146369995,True
+b4298,yjhH,putative 2-dehydro-3-deoxy-D-pentonate aldolase,False,1,0,0,0,44.0,0.1606109230922754,False
+b4302,sgcA,putative PTS enzyme IIA component SgcA,False,1,0,0,0,2.0,0.0005353414731232585,True
+b4304,sgcC,putative PTS enzyme IIC component SgcC,False,1,0,0,0,2.0,0.0005353414731232585,True
+b4322,uxuA,D-mannonate dehydratase,False,1,0,0,0,6.0,0.005922875084281757,False
+b4323,uxuB,D-mannonate oxidoreductase,False,1,0,0,0,6.0,0.0021681735838633945,False
+b4358,lgoD,L-galactonate oxidoreductase,False,1,1,0,0,3.0,0.0010836806147897222,True
+b4374,yjjG,pyrimidine 5'-nucleotidase YjjG,False,5,0,0,0,9.0,0.01654169776935381,True
+b4381,deoC,deoxyribose-phosphate aldolase,False,1,1,0,0,23.0,0.08797148487402456,False
+b4382,deoA,thymidine phosphorylase,False,2,0,0,0,12.0,0.01127745095100562,False
+b4383,deoB,phosphopentomutase,False,2,0,0,0,13.0,0.031730100773638435,True
+b4384,deoD,purine nucleoside phosphorylase,False,9,0,0,0,7.0,0.004143954594811222,True
+b4386,lplA,lipoate--protein ligase A,False,4,4,1,0,6.0,0.0059969347165018914,True
+b4388,serB,phosphoserine phosphatase,False,1,1,0,0,15.0,0.04732546293481747,False
+b4390,nadR,DNA-binding transcriptional repressor/NMN adenylyltransferase NadR,False,3,1,0,0,7.0,0.001457769762548843,True
+b4394,yjjX,inosine/xanthosine triphosphatase,False,1,1,0,0,3.0,0.0005353414731232585,False
+b4395,ytjC,putative phosphatase,False,1,0,0,0,6.0,0.0018504216902489408,False
+b4465,yggP,putative zinc-binding dehydrogenase YggP,False,1,1,1,1,5.0,0.002119362952379895,True
+b4467,glcF,"glycolate dehydrogenase, putative iron-sulfur subunit",False,1,0,0,0,10.0,0.00877377505442003,False
+b4468,glcE,"glycolate dehydrogenase, putative FAD-binding subunit",False,1,0,0,0,10.0,0.00877377505442003,False
+b4471,tdcG,L-serine deaminase III,False,2,0,0,0,44.0,0.1606109230922754,True
+b4477,dgoA,2-dehydro-3-deoxy-6-phosphogalactonate aldolase,False,1,1,0,0,23.0,0.08797148487402456,True
+b4478,dgoD,D-galactonate dehydratase,False,1,1,2,0,2.0,0.000536153827407209,True
+b4565,sgcB,putative PTS enzyme IIB component SgcB,False,1,0,0,0,2.0,0.0005353414731232585,True
+b4572,ylbE,DUF1116 domain-containing protein YlbE,False,1,0,0,0,7.0,0.004650901087277261,True

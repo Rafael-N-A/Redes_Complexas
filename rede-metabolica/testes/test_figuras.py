@@ -183,7 +183,7 @@ def test_curvas_roc():
             "dano": pd.DataFrame({"fpr": [0, 0.2, 1], "tpr": [0, 0.8, 1]})}
     fig = figuras.curvas_roc(rocs, {"dano": 0.8, "grau": 0.55})
     rotulos = list(linhas_com_rotulo(fig.axes[0]))
-    assert rotulos == ["Ao acaso (AUC = 0,5)", "Dano simulado (cascata) (AUC = 0,80)", "Grau (AUC = 0,55)"]
+    assert rotulos == ["Ao acaso (AUC = 0,5)", "Dano na cascata (AUC = 0,80)", "Grau (AUC = 0,55)"]
 
 
 def test_avalanche_vs_grau():

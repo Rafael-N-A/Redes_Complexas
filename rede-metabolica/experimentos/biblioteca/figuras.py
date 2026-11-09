@@ -81,7 +81,7 @@ GRUPOS_EXP3 = {  # coluna "grupo" da tabela exp3_substancias -> (rótulo, cor, m
 }
 
 RANKINGS_EXP2 = {  # Exp 2: nome do ranking -> rótulo
-    "dano": "Dano simulado (cascata)",
+    "dano": "Dano na cascata",
     "grau": "Grau",
     "betweenness": "Betweenness",
 }
@@ -370,22 +370,21 @@ def curvas_roc(rocs: dict[str, pd.DataFrame], aucs: dict[str, float]) -> plt.Fig
     rocs: ranking -> tabela com colunas fpr, tpr (validacao.curva_roc).
     """
     estilo()
-    fig, ax = plt.subplots(figsize=(3.6, 3.4))
+    fig, ax = plt.subplots(figsize=(3.6, 4.3))
     ax.plot([0, 1], [0, 1], color=CINZA, linewidth=0.8, label="Ao acaso (AUC = 0,5)", zorder=2)
     for i, nome in enumerate(_ordenar(rocs, RANKINGS_EXP2)):
         rotulo = RANKINGS_EXP2.get(nome, nome)
         if nome in aucs:
             rotulo += f" (AUC = {num(aucs[nome])})"
         roc = rocs[nome]
-        ax.plot(roc["fpr"], roc["tpr"], color=CORES[i % len(CORES)], label=rotulo, zorder=3,
-                drawstyle="steps-post")
+        ax.plot(roc["fpr"], roc["tpr"], color=CORES[i % len(CORES)], label=rotulo, zorder=3)
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.set_aspect("equal")
     ax.set_xlabel("Taxa de falsos positivos")
     ax.set_ylabel("Taxa de verdadeiros positivos")
     _eixos_lineares_com_virgula(ax)
-    ax.legend(loc="lower right")
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.17), ncol=1)  # embaixo: não cobre as curvas
     fig.tight_layout()
     return fig
 

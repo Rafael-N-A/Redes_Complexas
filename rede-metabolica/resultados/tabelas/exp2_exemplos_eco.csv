@@ -1,0 +1,6 @@
+gene,simbolo,descricao,grau,percentil_grau,betweenness,percentil_betweenness,dano,n_reacoes_perdidas,choke
+b3433,asd,aspartate-semialdehyde dehydrogenase,4.0,0.32195378151260506,0.0031355215192005142,0.3918067226890756,25,1,True
+b0096,lpxC,UDP-3-O-acyl-N-acetylglucosamine deacetylase,2.0,0.09558823529411764,0.003263864319971554,0.39705882352941174,20,1,True
+b0179,lpxD,UDP-3-O-(3-hydroxymyristoyl)glucosamine N-acyltransferase,3.0,0.21638655462184875,0.002795948252416167,0.35714285714285715,19,1,True
+b0524,lpxH,"UDP-2,3-diacylglucosamine diphosphatase",3.0,0.21638655462184875,0.002326407476292881,0.3324579831932773,18,1,True
+b0182,lpxB,lipid A disaccharide synthase,3.0,0.21638655462184875,0.002326407476292881,0.3324579831932773,17,1,True

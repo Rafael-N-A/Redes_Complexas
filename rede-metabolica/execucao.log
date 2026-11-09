@@ -1,0 +1,915 @@
+
+=== Testes das regras
+........................................................................ [ 33%]
+........................................................................ [ 67%]
+.....................................................................    [100%]
+213 passed in 63.59s (0:01:03)
+
+=== Coleta: eco
+eco: 139 vias no KEGG, 97 metabólicas regulares (excluídas pela lista: eco00970)
+KGML eco:   0%|          | 0/97 [00:00<?, ?via/s]KGML eco: 100%|██████████| 97/97 [00:00<00:00, 23838.25via/s]
+Concluído: 0 baixadas agora, 97 do cache, 0 falhas.
+Metadados em dados/kgml/eco/_metadados.json
+{
+  "org": "eco",
+  "data_download": "2026-11-04T13:09:00-03:00",
+  "info_kegg": [
+    "eco\tEscherichia coli K-12 MG1655",
+    "T00007\t4288 proteins, 3243 proteins with KOs"
+  ],
+  "contagens": {
+    "vias_nos_metadados": 97,
+    "vias_lidas": 97,
+    "linhas_brutas_reacao": 1670,
+    "pares_linha_codigo": 1731,
+    "linhas_com_varios_codigos": 59,
+    "reacoes": 1244,
+    "reacoes_reversiveis": 402,
+    "metabolitos": 3471,
+    "metabolitos_em_reacao": 1128,
+    "metabolitos_fora_de_reacao": 2343,
+    "metabolitos_sem_nome": 0,
+    "entradas_de_gene": 1869,
+    "genes_na_tabela": 4639,
+    "genes_nas_reacoes": 952,
+    "genes_nas_reacoes_sem_cadastro": 0
+  },
+  "lacuna_reaction": {
+    "entradas_de_gene_que_citam_reacao": 1680,
+    "sem_reaction_na_mesma_via": 10,
+    "fracao": 0.006,
+    "limite": 0.1,
+    "reparo_necessario": false,
+    "codigos_citados_sem_reaction_em_nenhuma_via": 3,
+    "exemplos_codigos": [
+      "R00089",
+      "R00191",
+      "R06285"
+    ],
+    "vias_com_genes_e_nenhuma_reaction": []
+  },
+  "fusao": {
+    "conflito_reversibilidade": 77,
+    "orientacao_invertida": 35,
+    "reversiveis_por_sentidos_opostos": 2,
+    "exemplos_reversiveis_por_sentidos_opostos": [
+      "R00750",
+      "R00768"
+    ],
+    "irreversiveis_com_sentido_de_outra_via": 0,
+    "exemplos_irreversiveis_com_sentido_de_outra_via": [],
+    "lados_variam": 53,
+    "metabolito_dos_dois_lados": 1,
+    "exemplos_metabolito_dos_dois_lados": [
+      "R04241"
+    ],
+    "sem_substrato_ou_sem_produto": 0,
+    "exemplos_sem_substrato_ou_sem_produto": []
+  },
+  "conferencias": {
+    "soma_ocorrencias": {
+      "ok": true,
+      "soma_n_ocorrencias": 1731,
+      "pares": 1731
+    },
+    "metabolitos_completos": {
+      "ok": true,
+      "faltando": []
+    },
+    "genes_completos": {
+      "ok": true,
+      "faltando": []
+    },
+    "conflitos_reversiveis": {
+      "ok": true,
+      "conflitos_que_ficaram_irreversiveis": [],
+      "irreversiveis_com_sentido_de_outra_via": []
+    }
+  },
+  "mais_frequentes": [
+    {
+      "metabolito": "C00022",
+      "nome": "Pyruvate",
+      "n_reacoes": 31,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00024",
+      "nome": "Acetyl-CoA",
+      "n_reacoes": 26,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00025",
+      "nome": "L-Glutamate",
+      "n_reacoes": 20,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00111",
+      "nome": "Glycerone phosphate",
+      "n_reacoes": 15,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C01209",
+      "nome": "Malonyl-[acyl-carrier protein]",
+      "n_reacoes": 14,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00031",
+      "nome": "D-Glucose",
+      "n_reacoes": 13,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00085",
+      "nome": "D-Fructose 6-phosphate",
+      "n_reacoes": 13,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00101",
+      "nome": "Tetrahydrofolate",
+      "n_reacoes": 13,
+      "na_lista_de_moeda": true
+    },
+    {
+      "metabolito": "C00036",
+      "nome": "Oxaloacetate",
+      "n_reacoes": 12,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00049",
+      "nome": "L-Aspartate",
+      "n_reacoes": 12,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00026",
+      "nome": "2-Oxoglutarate",
+      "n_reacoes": 11,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00118",
+      "nome": "D-Glyceraldehyde 3-phosphate",
+      "n_reacoes": 11,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00124",
+      "nome": "D-Galactose",
+      "n_reacoes": 11,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00011",
+      "nome": "CO2",
+      "n_reacoes": 10,
+      "na_lista_de_moeda": true
+    },
+    {
+      "metabolito": "C00051",
+      "nome": "Glutathione",
+      "n_reacoes": 9,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00014",
+      "nome": "Ammonia",
+      "n_reacoes": 9,
+      "na_lista_de_moeda": true
+    },
+    {
+      "metabolito": "C00546",
+      "nome": "Methylglyoxal",
+      "n_reacoes": 9,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00065",
+      "nome": "L-Serine",
+      "n_reacoes": 9,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00037",
+      "nome": "Glycine",
+      "n_reacoes": 9,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00042",
+      "nome": "Succinate",
+      "n_reacoes": 9,
+      "na_lista_de_moeda": false
+    }
+  ],
+  "codigos_do_config": {
+    "nutrientes": {
+      "C00031": {
+        "nome_config": "D-Glicose",
+        "nome_kegg": "D-Glucose",
+        "na_rede": true
+      },
+      "C00014": {
+        "nome_config": "NH3",
+        "nome_kegg": "Ammonia",
+        "na_rede": true
+      },
+      "C00009": {
+        "nome_config": "Ortofosfato",
+        "nome_kegg": "Orthophosphate",
+        "na_rede": false
+      },
+      "C00059": {
+        "nome_config": "Sulfato",
+        "nome_kegg": "Sulfate",
+        "na_rede": true
+      }
+    },
+    "substancias_exp3": {
+      "C00022": {
+        "nome_config": "Piruvato",
+        "nome_kegg": "Pyruvate",
+        "na_rede": true
+      },
+      "C00024": {
+        "nome_config": "Acetil-CoA",
+        "nome_kegg": "Acetyl-CoA",
+        "na_rede": true
+      },
+      "C00036": {
+        "nome_config": "Oxaloacetato",
+        "nome_kegg": "Oxaloacetate",
+        "na_rede": true
+      },
+      "C00026": {
+        "nome_config": "2-Oxoglutarato",
+        "nome_kegg": "2-Oxoglutarate",
+        "na_rede": true
+      },
+      "C00025": {
+        "nome_config": "L-Glutamato",
+        "nome_kegg": "L-Glutamate",
+        "na_rede": true
+      },
+      "C00092": {
+        "nome_config": "Glicose-6-fosfato",
+        "nome_kegg": "D-Glucose 6-phosphate",
+        "na_rede": true
+      }
+    },
+    "moeda_fora_da_rede": [
+      "C00001",
+      "C00004",
+      "C00009",
+      "C00013",
+      "C00080"
+    ]
+  },
+  "falhas_leitura": [],
+  "falhas_download": []
+}
+
+Tabelas em dados/eco/, relatório em dados/eco/relatorio_extracao.json
+
+=== Coleta: bsu
+bsu: 129 vias no KEGG, 90 metabólicas regulares (excluídas pela lista: bsu00970)
+KGML bsu:   0%|          | 0/90 [00:00<?, ?via/s]KGML bsu: 100%|██████████| 90/90 [00:00<00:00, 29163.11via/s]
+Concluído: 0 baixadas agora, 90 do cache, 0 falhas.
+Metadados em dados/kgml/bsu/_metadados.json
+{
+  "org": "bsu",
+  "data_download": "2026-11-08T13:41:13-03:00",
+  "info_kegg": [
+    "bsu\tBacillus subtilis subsp. subtilis 168",
+    "T00010\t4174 proteins, 2465 proteins with KOs"
+  ],
+  "contagens": {
+    "vias_nos_metadados": 90,
+    "vias_lidas": 90,
+    "linhas_brutas_reacao": 1381,
+    "pares_linha_codigo": 1444,
+    "linhas_com_varios_codigos": 61,
+    "reacoes": 1051,
+    "reacoes_reversiveis": 357,
+    "metabolitos": 3312,
+    "metabolitos_em_reacao": 1011,
+    "metabolitos_fora_de_reacao": 2301,
+    "metabolitos_sem_nome": 0,
+    "entradas_de_gene": 1526,
+    "genes_na_tabela": 4420,
+    "genes_nas_reacoes": 751,
+    "genes_nas_reacoes_sem_cadastro": 0
+  },
+  "lacuna_reaction": {
+    "entradas_de_gene_que_citam_reacao": 1405,
+    "sem_reaction_na_mesma_via": 24,
+    "fracao": 0.0171,
+    "limite": 0.1,
+    "reparo_necessario": false,
+    "codigos_citados_sem_reaction_em_nenhuma_via": 4,
+    "exemplos_codigos": [
+      "R00025",
+      "R04218",
+      "R07270",
+      "R12868"
+    ],
+    "vias_com_genes_e_nenhuma_reaction": []
+  },
+  "fusao": {
+    "conflito_reversibilidade": 72,
+    "orientacao_invertida": 30,
+    "reversiveis_por_sentidos_opostos": 1,
+    "exemplos_reversiveis_por_sentidos_opostos": [
+      "R00768"
+    ],
+    "irreversiveis_com_sentido_de_outra_via": 0,
+    "exemplos_irreversiveis_com_sentido_de_outra_via": [],
+    "lados_variam": 45,
+    "metabolito_dos_dois_lados": 1,
+    "exemplos_metabolito_dos_dois_lados": [
+      "R04241"
+    ],
+    "sem_substrato_ou_sem_produto": 0,
+    "exemplos_sem_substrato_ou_sem_produto": []
+  },
+  "conferencias": {
+    "soma_ocorrencias": {
+      "ok": true,
+      "soma_n_ocorrencias": 1444,
+      "pares": 1444
+    },
+    "metabolitos_completos": {
+      "ok": true,
+      "faltando": []
+    },
+    "genes_completos": {
+      "ok": true,
+      "faltando": []
+    },
+    "conflitos_reversiveis": {
+      "ok": true,
+      "conflitos_que_ficaram_irreversiveis": [],
+      "irreversiveis_com_sentido_de_outra_via": []
+    }
+  },
+  "mais_frequentes": [
+    {
+      "metabolito": "C00024",
+      "nome": "Acetyl-CoA",
+      "n_reacoes": 23,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00022",
+      "nome": "Pyruvate",
+      "n_reacoes": 21,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00068",
+      "nome": "Thiamin diphosphate",
+      "n_reacoes": 16,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00025",
+      "nome": "L-Glutamate",
+      "n_reacoes": 16,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00101",
+      "nome": "Tetrahydrofolate",
+      "n_reacoes": 13,
+      "na_lista_de_moeda": true
+    },
+    {
+      "metabolito": "C01209",
+      "nome": "Malonyl-[acyl-carrier protein]",
+      "n_reacoes": 13,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00031",
+      "nome": "D-Glucose",
+      "n_reacoes": 12,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00133",
+      "nome": "D-Alanine",
+      "n_reacoes": 12,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00085",
+      "nome": "D-Fructose 6-phosphate",
+      "n_reacoes": 12,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00111",
+      "nome": "Glycerone phosphate",
+      "n_reacoes": 12,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00049",
+      "nome": "L-Aspartate",
+      "n_reacoes": 11,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00100",
+      "nome": "Propanoyl-CoA",
+      "n_reacoes": 11,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00118",
+      "nome": "D-Glyceraldehyde 3-phosphate",
+      "n_reacoes": 11,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00124",
+      "nome": "D-Galactose",
+      "n_reacoes": 11,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00065",
+      "nome": "L-Serine",
+      "n_reacoes": 10,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00097",
+      "nome": "L-Cysteine",
+      "n_reacoes": 10,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C15973",
+      "nome": "Enzyme N6-(dihydrolipoyl)lysine",
+      "n_reacoes": 10,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00092",
+      "nome": "D-Glucose 6-phosphate",
+      "n_reacoes": 9,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00036",
+      "nome": "Oxaloacetate",
+      "n_reacoes": 9,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00155",
+      "nome": "L-Homocysteine",
+      "n_reacoes": 9,
+      "na_lista_de_moeda": false
+    }
+  ],
+  "codigos_do_config": {
+    "nutrientes": {
+      "C00031": {
+        "nome_config": "D-Glicose",
+        "nome_kegg": "D-Glucose",
+        "na_rede": true
+      },
+      "C00014": {
+        "nome_config": "NH3",
+        "nome_kegg": "Ammonia",
+        "na_rede": true
+      },
+      "C00009": {
+        "nome_config": "Ortofosfato",
+        "nome_kegg": "Orthophosphate",
+        "na_rede": false
+      },
+      "C00059": {
+        "nome_config": "Sulfato",
+        "nome_kegg": "Sulfate",
+        "na_rede": true
+      }
+    },
+    "substancias_exp3": {
+      "C00022": {
+        "nome_config": "Piruvato",
+        "nome_kegg": "Pyruvate",
+        "na_rede": true
+      },
+      "C00024": {
+        "nome_config": "Acetil-CoA",
+        "nome_kegg": "Acetyl-CoA",
+        "na_rede": true
+      },
+      "C00036": {
+        "nome_config": "Oxaloacetato",
+        "nome_kegg": "Oxaloacetate",
+        "na_rede": true
+      },
+      "C00026": {
+        "nome_config": "2-Oxoglutarato",
+        "nome_kegg": "2-Oxoglutarate",
+        "na_rede": true
+      },
+      "C00025": {
+        "nome_config": "L-Glutamato",
+        "nome_kegg": "L-Glutamate",
+        "na_rede": true
+      },
+      "C00092": {
+        "nome_config": "Glicose-6-fosfato",
+        "nome_kegg": "D-Glucose 6-phosphate",
+        "na_rede": true
+      }
+    },
+    "moeda_fora_da_rede": [
+      "C00001",
+      "C00004",
+      "C00009",
+      "C00013",
+      "C00080"
+    ]
+  },
+  "falhas_leitura": [],
+  "falhas_download": []
+}
+
+Tabelas em dados/bsu/, relatório em dados/bsu/relatorio_extracao.json
+
+=== Coleta: mge
+mge: 59 vias no KEGG, 32 metabólicas regulares (excluídas pela lista: mge00970)
+KGML mge:   0%|          | 0/32 [00:00<?, ?via/s]KGML mge: 100%|██████████| 32/32 [00:00<00:00, 18027.90via/s]
+Concluído: 0 baixadas agora, 32 do cache, 0 falhas.
+Metadados em dados/kgml/mge/_metadados.json
+{
+  "org": "mge",
+  "data_download": "2026-11-08T13:41:50-03:00",
+  "info_kegg": [
+    "mge\tMycoplasmoides genitalium G37",
+    "T00002\t476 proteins, 345 proteins with KOs"
+  ],
+  "contagens": {
+    "vias_nos_metadados": 32,
+    "vias_lidas": 32,
+    "linhas_brutas_reacao": 210,
+    "pares_linha_codigo": 225,
+    "linhas_com_varios_codigos": 13,
+    "reacoes": 139,
+    "reacoes_reversiveis": 66,
+    "metabolitos": 1027,
+    "metabolitos_em_reacao": 178,
+    "metabolitos_fora_de_reacao": 849,
+    "metabolitos_sem_nome": 0,
+    "entradas_de_gene": 223,
+    "genes_na_tabela": 525,
+    "genes_nas_reacoes": 76,
+    "genes_nas_reacoes_sem_cadastro": 0
+  },
+  "lacuna_reaction": {
+    "entradas_de_gene_que_citam_reacao": 210,
+    "sem_reaction_na_mesma_via": 0,
+    "fracao": 0.0,
+    "limite": 0.1,
+    "reparo_necessario": false,
+    "codigos_citados_sem_reaction_em_nenhuma_via": 0,
+    "exemplos_codigos": [],
+    "vias_com_genes_e_nenhuma_reaction": []
+  },
+  "fusao": {
+    "conflito_reversibilidade": 18,
+    "orientacao_invertida": 10,
+    "reversiveis_por_sentidos_opostos": 0,
+    "exemplos_reversiveis_por_sentidos_opostos": [],
+    "irreversiveis_com_sentido_de_outra_via": 0,
+    "exemplos_irreversiveis_com_sentido_de_outra_via": [],
+    "lados_variam": 7,
+    "metabolito_dos_dois_lados": 0,
+    "exemplos_metabolito_dos_dois_lados": [],
+    "sem_substrato_ou_sem_produto": 0,
+    "exemplos_sem_substrato_ou_sem_produto": []
+  },
+  "conferencias": {
+    "soma_ocorrencias": {
+      "ok": true,
+      "soma_n_ocorrencias": 225,
+      "pares": 225
+    },
+    "metabolitos_completos": {
+      "ok": true,
+      "faltando": []
+    },
+    "genes_completos": {
+      "ok": true,
+      "faltando": []
+    },
+    "conflitos_reversiveis": {
+      "ok": true,
+      "conflitos_que_ficaram_irreversiveis": [],
+      "irreversiveis_com_sentido_de_outra_via": []
+    }
+  },
+  "mais_frequentes": [
+    {
+      "metabolito": "C00101",
+      "nome": "Tetrahydrofolate",
+      "n_reacoes": 6,
+      "na_lista_de_moeda": true
+    },
+    {
+      "metabolito": "C00118",
+      "nome": "D-Glyceraldehyde 3-phosphate",
+      "n_reacoes": 6,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00111",
+      "nome": "Glycerone phosphate",
+      "n_reacoes": 5,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00093",
+      "nome": "sn-Glycerol 3-phosphate",
+      "n_reacoes": 5,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00415",
+      "nome": "Dihydrofolate",
+      "n_reacoes": 5,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00068",
+      "nome": "Thiamin diphosphate",
+      "n_reacoes": 4,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00022",
+      "nome": "Pyruvate",
+      "n_reacoes": 4,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00105",
+      "nome": "UMP",
+      "n_reacoes": 4,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00085",
+      "nome": "D-Fructose 6-phosphate",
+      "n_reacoes": 4,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00037",
+      "nome": "Glycine",
+      "n_reacoes": 4,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00504",
+      "nome": "Folate",
+      "n_reacoes": 4,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00143",
+      "nome": "5,10-Methylenetetrahydrofolate",
+      "n_reacoes": 4,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C01097",
+      "nome": "D-Tagatose 6-phosphate",
+      "n_reacoes": 4,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C03785",
+      "nome": "D-Tagatose 1,6-bisphosphate",
+      "n_reacoes": 4,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00003",
+      "nome": "NAD+",
+      "n_reacoes": 3,
+      "na_lista_de_moeda": true
+    },
+    {
+      "metabolito": "C00455",
+      "nome": "Nicotinamide D-ribonucleotide",
+      "n_reacoes": 3,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00147",
+      "nome": "Adenine",
+      "n_reacoes": 3,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00074",
+      "nome": "Phosphoenolpyruvate",
+      "n_reacoes": 3,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00035",
+      "nome": "GDP",
+      "n_reacoes": 3,
+      "na_lista_de_moeda": false
+    },
+    {
+      "metabolito": "C00055",
+      "nome": "CMP",
+      "n_reacoes": 3,
+      "na_lista_de_moeda": false
+    }
+  ],
+  "codigos_do_config": {
+    "nutrientes": {
+      "C00031": {
+        "nome_config": "D-Glicose",
+        "nome_kegg": "D-Glucose",
+        "na_rede": true
+      },
+      "C00014": {
+        "nome_config": "NH3",
+        "nome_kegg": "Ammonia",
+        "na_rede": true
+      },
+      "C00009": {
+        "nome_config": "Ortofosfato",
+        "nome_kegg": "Orthophosphate",
+        "na_rede": false
+      },
+      "C00059": {
+        "nome_config": "Sulfato",
+        "nome_kegg": "Sulfate",
+        "na_rede": false
+      }
+    },
+    "substancias_exp3": {
+      "C00022": {
+        "nome_config": "Piruvato",
+        "nome_kegg": "Pyruvate",
+        "na_rede": true
+      },
+      "C00024": {
+        "nome_config": "Acetil-CoA",
+        "nome_kegg": "Acetyl-CoA",
+        "na_rede": true
+      },
+      "C00036": {
+        "nome_config": "Oxaloacetato",
+        "nome_kegg": "Oxaloacetate",
+        "na_rede": false
+      },
+      "C00026": {
+        "nome_config": "2-Oxoglutarato",
+        "nome_kegg": "2-Oxoglutarate",
+        "na_rede": false
+      },
+      "C00025": {
+        "nome_config": "L-Glutamato",
+        "nome_kegg": "L-Glutamate",
+        "na_rede": false
+      },
+      "C00092": {
+        "nome_config": "Glicose-6-fosfato",
+        "nome_kegg": "D-Glucose 6-phosphate",
+        "na_rede": true
+      }
+    },
+    "moeda_fora_da_rede": [
+      "C00001",
+      "C00004",
+      "C00005",
+      "C00007",
+      "C00009",
+      "C00011",
+      "C00013",
+      "C00080"
+    ]
+  },
+  "falhas_leitura": [],
+  "falhas_download": []
+}
+
+Tabelas em dados/mge/, relatório em dados/mge/relatorio_extracao.json
+
+=== Exp 0 — análise descritiva
+eco sem_moeda: 1111 nós, 1716 arestas, núcleo 415, caminho médio 9.13, clustering 0.049, lei de potência x log-normal R = -2.52 (p = 0.012)
+eco com_moeda: 1127 nós, 1824 arestas, núcleo 497, caminho médio 9.33, clustering 0.051, lei de potência x log-normal R = -5.38 (p = 0.000)
+Tabela 1 com as duas versões: resultados/tabelas/exp0_tabela1_eco.csv
+
+=== Exp 1 — robustez estrutural (só sem moeda; --versao ambas para as duas)
+aleatoria:   0%|          | 0/100 [00:00<?, ?rep/s]aleatoria:   1%|          | 1/100 [00:01<02:41,  1.63s/rep]aleatoria:   2%|▏         | 2/100 [00:03<02:39,  1.63s/rep]aleatoria:   3%|▎         | 3/100 [00:04<02:32,  1.57s/rep]aleatoria:   4%|▍         | 4/100 [00:06<02:33,  1.60s/rep]aleatoria:   5%|▌         | 5/100 [00:08<02:36,  1.64s/rep]aleatoria:   6%|▌         | 6/100 [00:09<02:38,  1.69s/rep]aleatoria:   7%|▋         | 7/100 [00:11<02:32,  1.64s/rep]aleatoria:   8%|▊         | 8/100 [00:13<02:30,  1.64s/rep]aleatoria:   9%|▉         | 9/100 [00:14<02:28,  1.64s/rep]aleatoria:  10%|█         | 10/100 [00:16<02:24,  1.61s/rep]aleatoria:  11%|█         | 11/100 [00:17<02:21,  1.59s/rep]aleatoria:  12%|█▏        | 12/100 [00:19<02:20,  1.59s/rep]aleatoria:  13%|█▎        | 13/100 [00:21<02:23,  1.65s/rep]aleatoria:  14%|█▍        | 14/100 [00:22<02:18,  1.61s/rep]aleatoria:  15%|█▌        | 15/100 [00:24<02:16,  1.61s/rep]aleatoria:  16%|█▌        | 16/100 [00:25<02:16,  1.62s/rep]aleatoria:  17%|█▋        | 17/100 [00:27<02:12,  1.60s/rep]aleatoria:  18%|█▊        | 18/100 [00:29<02:15,  1.65s/rep]aleatoria:  19%|█▉        | 19/100 [00:30<02:10,  1.61s/rep]aleatoria:  20%|██        | 20/100 [00:32<02:16,  1.71s/rep]aleatoria:  21%|██        | 21/100 [00:34<02:13,  1.69s/rep]aleatoria:  22%|██▏       | 22/100 [00:36<02:26,  1.88s/rep]aleatoria:  23%|██▎       | 23/100 [00:38<02:23,  1.87s/rep]aleatoria:  24%|██▍       | 24/100 [00:40<02:30,  1.98s/rep]aleatoria:  25%|██▌       | 25/100 [00:44<02:57,  2.36s/rep]aleatoria:  26%|██▌       | 26/100 [00:46<03:00,  2.43s/rep]aleatoria:  27%|██▋       | 27/100 [00:48<02:46,  2.28s/rep]aleatoria:  28%|██▊       | 28/100 [00:51<02:59,  2.49s/rep]aleatoria:  29%|██▉       | 29/100 [00:55<03:25,  2.90s/rep]aleatoria:  30%|███       | 30/100 [00:59<03:38,  3.12s/rep]aleatoria:  31%|███       | 31/100 [01:01<03:29,  3.04s/rep]aleatoria:  32%|███▏      | 32/100 [01:05<03:44,  3.30s/rep]aleatoria:  33%|███▎      | 33/100 [01:07<03:13,  2.89s/rep]aleatoria:  34%|███▍      | 34/100 [01:10<03:04,  2.80s/rep]aleatoria:  35%|███▌      | 35/100 [01:13<03:07,  2.88s/rep]aleatoria:  36%|███▌      | 36/100 [01:15<02:48,  2.64s/rep]aleatoria:  37%|███▋      | 37/100 [01:17<02:34,  2.45s/rep]aleatoria:  38%|███▊      | 38/100 [01:20<02:44,  2.66s/rep]aleatoria:  39%|███▉      | 39/100 [01:24<02:56,  2.89s/rep]aleatoria:  40%|████      | 40/100 [01:26<02:46,  2.77s/rep]aleatoria:  41%|████      | 41/100 [01:28<02:37,  2.67s/rep]aleatoria:  42%|████▏     | 42/100 [01:31<02:25,  2.50s/rep]aleatoria:  43%|████▎     | 43/100 [01:32<02:12,  2.33s/rep]aleatoria:  44%|████▍     | 44/100 [01:35<02:12,  2.37s/rep]aleatoria:  45%|████▌     | 45/100 [01:38<02:25,  2.64s/rep]aleatoria:  46%|████▌     | 46/100 [01:40<02:13,  2.47s/rep]aleatoria:  47%|████▋     | 47/100 [01:43<02:06,  2.39s/rep]aleatoria:  48%|████▊     | 48/100 [01:45<02:00,  2.31s/rep]aleatoria:  49%|████▉     | 49/100 [01:47<01:54,  2.25s/rep]aleatoria:  50%|█████     | 50/100 [01:49<01:56,  2.32s/rep]aleatoria:  51%|█████     | 51/100 [01:52<01:52,  2.30s/rep]aleatoria:  52%|█████▏    | 52/100 [01:55<02:04,  2.58s/rep]aleatoria:  53%|█████▎    | 53/100 [01:59<02:19,  2.97s/rep]aleatoria:  54%|█████▍    | 54/100 [02:02<02:19,  3.02s/rep]aleatoria:  55%|█████▌    | 55/100 [02:04<02:11,  2.93s/rep]aleatoria:  56%|█████▌    | 56/100 [02:07<01:58,  2.70s/rep]aleatoria:  57%|█████▋    | 57/100 [02:09<01:46,  2.47s/rep]aleatoria:  58%|█████▊    | 58/100 [02:11<01:40,  2.39s/rep]aleatoria:  59%|█████▉    | 59/100 [02:13<01:40,  2.46s/rep]aleatoria:  60%|██████    | 60/100 [02:16<01:40,  2.50s/rep]aleatoria:  61%|██████    | 61/100 [02:18<01:31,  2.34s/rep]aleatoria:  62%|██████▏   | 62/100 [02:20<01:27,  2.31s/rep]aleatoria:  63%|██████▎   | 63/100 [02:23<01:31,  2.47s/rep]aleatoria:  64%|██████▍   | 64/100 [02:25<01:22,  2.28s/rep]aleatoria:  65%|██████▌   | 65/100 [02:27<01:18,  2.25s/rep]aleatoria:  66%|██████▌   | 66/100 [02:29<01:18,  2.30s/rep]aleatoria:  67%|██████▋   | 67/100 [02:31<01:11,  2.16s/rep]aleatoria:  68%|██████▊   | 68/100 [02:34<01:09,  2.17s/rep]aleatoria:  69%|██████▉   | 69/100 [02:38<01:25,  2.76s/rep]aleatoria:  70%|███████   | 70/100 [02:40<01:21,  2.73s/rep]aleatoria:  71%|███████   | 71/100 [02:42<01:13,  2.54s/rep]aleatoria:  72%|███████▏  | 72/100 [02:45<01:11,  2.54s/rep]aleatoria:  73%|███████▎  | 73/100 [02:48<01:09,  2.57s/rep]aleatoria:  74%|███████▍  | 74/100 [02:50<01:05,  2.51s/rep]aleatoria:  75%|███████▌  | 75/100 [02:52<01:02,  2.51s/rep]aleatoria:  76%|███████▌  | 76/100 [02:54<00:53,  2.23s/rep]aleatoria:  77%|███████▋  | 77/100 [02:56<00:47,  2.07s/rep]aleatoria:  78%|███████▊  | 78/100 [02:58<00:43,  1.98s/rep]aleatoria:  79%|███████▉  | 79/100 [02:59<00:41,  1.96s/rep]aleatoria:  80%|████████  | 80/100 [03:02<00:40,  2.02s/rep]aleatoria:  81%|████████  | 81/100 [03:04<00:39,  2.05s/rep]aleatoria:  82%|████████▏ | 82/100 [03:05<00:34,  1.92s/rep]aleatoria:  83%|████████▎ | 83/100 [03:07<00:30,  1.80s/rep]aleatoria:  84%|████████▍ | 84/100 [03:08<00:27,  1.72s/rep]aleatoria:  85%|████████▌ | 85/100 [03:10<00:25,  1.69s/rep]aleatoria:  86%|████████▌ | 86/100 [03:12<00:24,  1.73s/rep]aleatoria:  87%|████████▋ | 87/100 [03:14<00:22,  1.75s/rep]aleatoria:  88%|████████▊ | 88/100 [03:15<00:20,  1.72s/rep]aleatoria:  89%|████████▉ | 89/100 [03:17<00:18,  1.72s/rep]aleatoria:  90%|█████████ | 90/100 [03:19<00:16,  1.70s/rep]aleatoria:  91%|█████████ | 91/100 [03:20<00:15,  1.68s/rep]aleatoria:  92%|█████████▏| 92/100 [03:22<00:13,  1.69s/rep]aleatoria:  93%|█████████▎| 93/100 [03:24<00:11,  1.71s/rep]aleatoria:  94%|█████████▍| 94/100 [03:25<00:10,  1.68s/rep]aleatoria:  95%|█████████▌| 95/100 [03:27<00:08,  1.65s/rep]aleatoria:  96%|█████████▌| 96/100 [03:29<00:06,  1.70s/rep]aleatoria:  97%|█████████▋| 97/100 [03:30<00:05,  1.68s/rep]aleatoria:  98%|█████████▊| 98/100 [03:33<00:03,  1.82s/rep]aleatoria:  99%|█████████▉| 99/100 [03:34<00:01,  1.86s/rep]aleatoria: 100%|██████████| 100/100 [03:37<00:00,  1.95s/rep]aleatoria: 100%|██████████| 100/100 [03:37<00:00,  2.17s/rep]
+eco sem_moeda: 1111 nós, 5 estratégias, 100 repetições aleatórias (231 s)
+  estratégia                R_fraco  R_forte  metade (fraco)
+  aleatoria                  0.2113   0.0756           24.0% ± 2.4%
+  grau                       0.0475   0.0070            3.4%
+  grau_adaptativo            0.0346   0.0057            3.4%
+  betweenness                0.0575   0.0083            6.3%
+  betweenness_adaptativo     0.0444   0.0064            5.5%
+
+=== Exp 2 — topologia vs. biologia
+eco: 952 genes na rede, 103 essenciais da Keio (197 dos 300 ficam fora da rede); 357 genes com dano > 0
+  ranking              AUC        IC 95%        p  prec@10  prec@50
+  dano               0.756 [0.70, 0.81]  1.2e-22     0.60     0.70
+  grau               0.417 [0.36, 0.47]  6.0e-03     0.10     0.06
+  betweenness        0.522 [0.46, 0.58]  4.7e-01     0.10     0.06
+  dano_meio_minimo   0.722 [0.66, 0.78]  2.1e-19     0.40     0.50
+  reacoes_perdidas   0.649 [0.59, 0.71]  9.5e-08     0.20     0.20
+  choke points: 12% essenciais (contra 8% fora), razão de chances 1.61, p = 4.0e-02; taxa base 11%
+
+=== Exp 3 — viés por substância
+eco: 1109 de 1116 metabólitos produzidos; 539 (49%) sem avalanche; maior 71 (C00025)
+  Spearman avalanche x grau = 0.35, x betweenness = 0.52; lei de potência x log-normal R = -3.35 (p = 0.001)
+  grupo       metabólito                   grau aval. prof. posição
+  substancia  Piruvato                       44    63    12       2
+  substancia  Acetil-CoA                     40    59     9       3
+  substancia  Oxaloacetato                   17    48    14       7
+  substancia  2-Oxoglutarato                 15     2     1     276
+  substancia  L-Glutamato                    22    71    14       1
+  substancia  Glicose-6-fosfato              10     3     2     233
+  hub         D-Fructose 6-phosphate         24     7     5     133
+  hub         D-Glyceraldehyde 3-phosphate   23    34    11      20
+  hub         Glycerone phosphate            19     2     1     276
+  hub         D-Galactose                    16     5     1     176
+  hub         L-Serine                       15    10     4      91
+  hub         Glycine                        13    10     4      91
+  baixo_grau  1,2-Diacyl-sn-glycerol          1     0     0     571
+  baixo_grau  1-Radyl-2-acyl-sn-glycero-3-    1     1     1     354
+  baixo_grau  Selenomethionyl-tRNA(Met)       1     0     0     571
+  baixo_grau  Sinigrin                        1     2     2     276
+  baixo_grau  L-Galactonate                   1     0     0     571
+  baixo_grau  3-Chloro-2-methyldienelacton    1     1     1     354
+
+=== Exp 4 — comparação com outras redes
+eco: 1111 nós, 1716 arestas
+aleatoria:   0%|          | 0/100 [00:00<?, ?rep/s]aleatoria:   1%|          | 1/100 [00:01<01:55,  1.17s/rep]aleatoria:   2%|▏         | 2/100 [00:02<01:47,  1.10s/rep]aleatoria:   3%|▎         | 3/100 [00:03<01:57,  1.21s/rep]aleatoria:   4%|▍         | 4/100 [00:04<01:58,  1.24s/rep]aleatoria:   5%|▌         | 5/100 [00:05<01:52,  1.19s/rep]aleatoria:   6%|▌         | 6/100 [00:06<01:47,  1.14s/rep]aleatoria:   7%|▋         | 7/100 [00:08<01:42,  1.10s/rep]aleatoria:   8%|▊         | 8/100 [00:09<01:44,  1.13s/rep]aleatoria:   9%|▉         | 9/100 [00:10<01:41,  1.11s/rep]aleatoria:  10%|█         | 10/100 [00:11<01:42,  1.14s/rep]aleatoria:  11%|█         | 11/100 [00:13<01:51,  1.26s/rep]aleatoria:  12%|█▏        | 12/100 [00:14<02:03,  1.40s/rep]aleatoria:  13%|█▎        | 13/100 [00:15<01:56,  1.34s/rep]aleatoria:  14%|█▍        | 14/100 [00:17<01:49,  1.27s/rep]aleatoria:  15%|█▌        | 15/100 [00:18<01:43,  1.22s/rep]aleatoria:  16%|█▌        | 16/100 [00:19<01:37,  1.17s/rep]aleatoria:  17%|█▋        | 17/100 [00:20<01:33,  1.13s/rep]aleatoria:  18%|█▊        | 18/100 [00:21<01:36,  1.18s/rep]aleatoria:  19%|█▉        | 19/100 [00:22<01:33,  1.16s/rep]aleatoria:  20%|██        | 20/100 [00:23<01:29,  1.12s/rep]aleatoria:  21%|██        | 21/100 [00:24<01:27,  1.11s/rep]aleatoria:  22%|██▏       | 22/100 [00:25<01:26,  1.11s/rep]aleatoria:  23%|██▎       | 23/100 [00:27<01:29,  1.17s/rep]aleatoria:  24%|██▍       | 24/100 [00:28<01:27,  1.16s/rep]aleatoria:  25%|██▌       | 25/100 [00:29<01:24,  1.13s/rep]aleatoria:  26%|██▌       | 26/100 [00:30<01:22,  1.11s/rep]aleatoria:  27%|██▋       | 27/100 [00:31<01:22,  1.13s/rep]aleatoria:  28%|██▊       | 28/100 [00:32<01:23,  1.16s/rep]aleatoria:  29%|██▉       | 29/100 [00:34<01:22,  1.16s/rep]aleatoria:  30%|███       | 30/100 [00:35<01:20,  1.15s/rep]aleatoria:  31%|███       | 31/100 [00:36<01:20,  1.16s/rep]aleatoria:  32%|███▏      | 32/100 [00:37<01:19,  1.16s/rep]aleatoria:  33%|███▎      | 33/100 [00:38<01:15,  1.13s/rep]aleatoria:  34%|███▍      | 34/100 [00:39<01:13,  1.11s/rep]aleatoria:  35%|███▌      | 35/100 [00:40<01:12,  1.12s/rep]aleatoria:  36%|███▌      | 36/100 [00:41<01:12,  1.13s/rep]aleatoria:  37%|███▋      | 37/100 [00:43<01:12,  1.15s/rep]aleatoria:  38%|███▊      | 38/100 [00:44<01:10,  1.13s/rep]aleatoria:  39%|███▉      | 39/100 [00:45<01:09,  1.13s/rep]aleatoria:  40%|████      | 40/100 [00:46<01:07,  1.13s/rep]aleatoria:  41%|████      | 41/100 [00:47<01:06,  1.13s/rep]aleatoria:  42%|████▏     | 42/100 [00:48<01:05,  1.13s/rep]aleatoria:  43%|████▎     | 43/100 [00:49<01:04,  1.14s/rep]aleatoria:  44%|████▍     | 44/100 [00:50<01:03,  1.13s/rep]aleatoria:  45%|████▌     | 45/100 [00:52<01:03,  1.16s/rep]aleatoria:  46%|████▌     | 46/100 [00:53<01:12,  1.34s/rep]aleatoria:  47%|████▋     | 47/100 [00:55<01:16,  1.44s/rep]aleatoria:  48%|████▊     | 48/100 [00:57<01:21,  1.57s/rep]aleatoria:  49%|████▉     | 49/100 [00:58<01:13,  1.44s/rep]aleatoria:  50%|█████     | 50/100 [00:59<01:07,  1.36s/rep]aleatoria:  51%|█████     | 51/100 [01:01<01:06,  1.37s/rep]aleatoria:  52%|█████▏    | 52/100 [01:02<01:02,  1.29s/rep]aleatoria:  53%|█████▎    | 53/100 [01:03<00:58,  1.25s/rep]aleatoria:  54%|█████▍    | 54/100 [01:04<00:55,  1.21s/rep]aleatoria:  55%|█████▌    | 55/100 [01:05<00:55,  1.23s/rep]aleatoria:  56%|█████▌    | 56/100 [01:06<00:52,  1.19s/rep]aleatoria:  57%|█████▋    | 57/100 [01:07<00:49,  1.14s/rep]aleatoria:  58%|█████▊    | 58/100 [01:09<00:47,  1.13s/rep]aleatoria:  59%|█████▉    | 59/100 [01:10<00:46,  1.13s/rep]aleatoria:  60%|██████    | 60/100 [01:11<00:47,  1.18s/rep]aleatoria:  61%|██████    | 61/100 [01:12<00:45,  1.18s/rep]aleatoria:  62%|██████▏   | 62/100 [01:13<00:43,  1.13s/rep]aleatoria:  63%|██████▎   | 63/100 [01:14<00:41,  1.12s/rep]aleatoria:  64%|██████▍   | 64/100 [01:15<00:39,  1.11s/rep]aleatoria:  65%|██████▌   | 65/100 [01:16<00:38,  1.11s/rep]aleatoria:  66%|██████▌   | 66/100 [01:18<00:37,  1.11s/rep]aleatoria:  67%|██████▋   | 67/100 [01:19<00:36,  1.10s/rep]aleatoria:  68%|██████▊   | 68/100 [01:20<00:35,  1.12s/rep]aleatoria:  69%|██████▉   | 69/100 [01:21<00:37,  1.21s/rep]aleatoria:  70%|███████   | 70/100 [01:22<00:35,  1.19s/rep]aleatoria:  71%|███████   | 71/100 [01:24<00:33,  1.16s/rep]aleatoria:  72%|███████▏  | 72/100 [01:25<00:31,  1.13s/rep]aleatoria:  73%|███████▎  | 73/100 [01:26<00:29,  1.10s/rep]aleatoria:  74%|███████▍  | 74/100 [01:27<00:30,  1.16s/rep]aleatoria:  75%|███████▌  | 75/100 [01:28<00:30,  1.21s/rep]aleatoria:  76%|███████▌  | 76/100 [01:29<00:29,  1.22s/rep]aleatoria:  77%|███████▋  | 77/100 [01:31<00:28,  1.24s/rep]aleatoria:  78%|███████▊  | 78/100 [01:32<00:27,  1.25s/rep]aleatoria:  79%|███████▉  | 79/100 [01:33<00:27,  1.31s/rep]aleatoria:  80%|████████  | 80/100 [01:35<00:25,  1.29s/rep]aleatoria:  81%|████████  | 81/100 [01:36<00:24,  1.31s/rep]aleatoria:  82%|████████▏ | 82/100 [01:37<00:23,  1.31s/rep]aleatoria:  83%|████████▎ | 83/100 [01:38<00:20,  1.23s/rep]aleatoria:  84%|████████▍ | 84/100 [01:40<00:19,  1.19s/rep]aleatoria:  85%|████████▌ | 85/100 [01:41<00:17,  1.15s/rep]aleatoria:  86%|████████▌ | 86/100 [01:42<00:15,  1.14s/rep]aleatoria:  87%|████████▋ | 87/100 [01:43<00:14,  1.12s/rep]aleatoria:  88%|████████▊ | 88/100 [01:44<00:13,  1.13s/rep]aleatoria:  89%|████████▉ | 89/100 [01:45<00:12,  1.15s/rep]aleatoria:  90%|█████████ | 90/100 [01:46<00:11,  1.12s/rep]aleatoria:  91%|█████████ | 91/100 [01:48<00:10,  1.18s/rep]aleatoria:  92%|█████████▏| 92/100 [01:49<00:09,  1.16s/rep]aleatoria:  93%|█████████▎| 93/100 [01:50<00:08,  1.22s/rep]aleatoria:  94%|█████████▍| 94/100 [01:51<00:07,  1.17s/rep]aleatoria:  95%|█████████▌| 95/100 [01:52<00:05,  1.15s/rep]aleatoria:  96%|█████████▌| 96/100 [01:53<00:04,  1.17s/rep]aleatoria:  97%|█████████▋| 97/100 [01:54<00:03,  1.15s/rep]aleatoria:  98%|█████████▊| 98/100 [01:56<00:02,  1.16s/rep]aleatoria:  99%|█████████▉| 99/100 [01:57<00:01,  1.12s/rep]aleatoria: 100%|██████████| 100/100 [01:58<00:00,  1.11s/rep]aleatoria: 100%|██████████| 100/100 [01:58<00:00,  1.18s/rep]
+bsu: 995 nós, 1513 arestas
+aleatoria:   0%|          | 0/100 [00:00<?, ?rep/s]aleatoria:   1%|          | 1/100 [00:00<01:28,  1.12rep/s]aleatoria:   2%|▏         | 2/100 [00:01<01:37,  1.00rep/s]aleatoria:   3%|▎         | 3/100 [00:03<01:40,  1.04s/rep]aleatoria:   4%|▍         | 4/100 [00:03<01:34,  1.02rep/s]aleatoria:   5%|▌         | 5/100 [00:04<01:28,  1.07rep/s]aleatoria:   6%|▌         | 6/100 [00:05<01:33,  1.00rep/s]aleatoria:   7%|▋         | 7/100 [00:07<01:44,  1.12s/rep]aleatoria:   8%|▊         | 8/100 [00:08<01:44,  1.13s/rep]aleatoria:   9%|▉         | 9/100 [00:09<01:37,  1.08s/rep]aleatoria:  10%|█         | 10/100 [00:10<01:32,  1.03s/rep]aleatoria:  11%|█         | 11/100 [00:11<01:27,  1.01rep/s]aleatoria:  12%|█▏        | 12/100 [00:12<01:24,  1.04rep/s]aleatoria:  13%|█▎        | 13/100 [00:12<01:19,  1.09rep/s]aleatoria:  14%|█▍        | 14/100 [00:13<01:18,  1.10rep/s]aleatoria:  15%|█▌        | 15/100 [00:14<01:16,  1.12rep/s]aleatoria:  16%|█▌        | 16/100 [00:15<01:13,  1.15rep/s]aleatoria:  17%|█▋        | 17/100 [00:16<01:15,  1.10rep/s]aleatoria:  18%|█▊        | 18/100 [00:17<01:16,  1.07rep/s]aleatoria:  19%|█▉        | 19/100 [00:18<01:14,  1.09rep/s]aleatoria:  20%|██        | 20/100 [00:19<01:11,  1.12rep/s]aleatoria:  21%|██        | 21/100 [00:20<01:14,  1.07rep/s]aleatoria:  22%|██▏       | 22/100 [00:21<01:14,  1.05rep/s]aleatoria:  23%|██▎       | 23/100 [00:22<01:14,  1.03rep/s]aleatoria:  24%|██▍       | 24/100 [00:23<01:12,  1.05rep/s]aleatoria:  25%|██▌       | 25/100 [00:23<01:08,  1.09rep/s]aleatoria:  26%|██▌       | 26/100 [00:24<01:07,  1.09rep/s]aleatoria:  27%|██▋       | 27/100 [00:25<01:05,  1.11rep/s]aleatoria:  28%|██▊       | 28/100 [00:26<01:05,  1.11rep/s]aleatoria:  29%|██▉       | 29/100 [00:27<01:03,  1.13rep/s]aleatoria:  30%|███       | 30/100 [00:28<01:02,  1.11rep/s]aleatoria:  31%|███       | 31/100 [00:29<01:01,  1.12rep/s]aleatoria:  32%|███▏      | 32/100 [00:30<00:59,  1.14rep/s]aleatoria:  33%|███▎      | 33/100 [00:31<01:00,  1.11rep/s]aleatoria:  34%|███▍      | 34/100 [00:32<00:58,  1.12rep/s]aleatoria:  35%|███▌      | 35/100 [00:33<01:00,  1.07rep/s]aleatoria:  36%|███▌      | 36/100 [00:34<01:02,  1.02rep/s]aleatoria:  37%|███▋      | 37/100 [00:35<01:02,  1.01rep/s]aleatoria:  38%|███▊      | 38/100 [00:35<00:58,  1.06rep/s]aleatoria:  39%|███▉      | 39/100 [00:36<00:56,  1.09rep/s]aleatoria:  40%|████      | 40/100 [00:37<00:55,  1.09rep/s]aleatoria:  41%|████      | 41/100 [00:38<00:59,  1.00s/rep]aleatoria:  42%|████▏     | 42/100 [00:39<00:58,  1.01s/rep]aleatoria:  43%|████▎     | 43/100 [00:40<00:55,  1.04rep/s]aleatoria:  44%|████▍     | 44/100 [00:41<00:53,  1.04rep/s]aleatoria:  45%|████▌     | 45/100 [00:42<00:53,  1.03rep/s]aleatoria:  46%|████▌     | 46/100 [00:43<00:55,  1.03s/rep]aleatoria:  47%|████▋     | 47/100 [00:44<00:52,  1.01rep/s]aleatoria:  48%|████▊     | 48/100 [00:45<00:49,  1.05rep/s]aleatoria:  49%|████▉     | 49/100 [00:46<00:47,  1.08rep/s]aleatoria:  50%|█████     | 50/100 [00:47<00:48,  1.04rep/s]aleatoria:  51%|█████     | 51/100 [00:48<00:46,  1.06rep/s]aleatoria:  52%|█████▏    | 52/100 [00:49<00:45,  1.06rep/s]aleatoria:  53%|█████▎    | 53/100 [00:50<00:44,  1.05rep/s]aleatoria:  54%|█████▍    | 54/100 [00:51<00:44,  1.04rep/s]aleatoria:  55%|█████▌    | 55/100 [00:52<00:42,  1.06rep/s]aleatoria:  56%|█████▌    | 56/100 [00:53<00:39,  1.11rep/s]aleatoria:  57%|█████▋    | 57/100 [00:54<00:38,  1.12rep/s]aleatoria:  58%|█████▊    | 58/100 [00:54<00:38,  1.09rep/s]aleatoria:  59%|█████▉    | 59/100 [00:56<00:39,  1.03rep/s]aleatoria:  60%|██████    | 60/100 [00:56<00:38,  1.05rep/s]aleatoria:  61%|██████    | 61/100 [00:57<00:36,  1.08rep/s]aleatoria:  62%|██████▏   | 62/100 [00:59<00:38,  1.02s/rep]aleatoria:  63%|██████▎   | 63/100 [01:00<00:39,  1.08s/rep]aleatoria:  64%|██████▍   | 64/100 [01:01<00:38,  1.07s/rep]aleatoria:  65%|██████▌   | 65/100 [01:02<00:36,  1.03s/rep]aleatoria:  66%|██████▌   | 66/100 [01:03<00:33,  1.01rep/s]aleatoria:  67%|██████▋   | 67/100 [01:04<00:31,  1.06rep/s]aleatoria:  68%|██████▊   | 68/100 [01:04<00:29,  1.08rep/s]aleatoria:  69%|██████▉   | 69/100 [01:05<00:27,  1.11rep/s]aleatoria:  70%|███████   | 70/100 [01:06<00:27,  1.10rep/s]aleatoria:  71%|███████   | 71/100 [01:07<00:25,  1.12rep/s]aleatoria:  72%|███████▏  | 72/100 [01:08<00:24,  1.16rep/s]aleatoria:  73%|███████▎  | 73/100 [01:09<00:24,  1.12rep/s]aleatoria:  74%|███████▍  | 74/100 [01:10<00:23,  1.11rep/s]aleatoria:  75%|███████▌  | 75/100 [01:11<00:22,  1.11rep/s]aleatoria:  76%|███████▌  | 76/100 [01:12<00:21,  1.11rep/s]aleatoria:  77%|███████▋  | 77/100 [01:13<00:21,  1.08rep/s]aleatoria:  78%|███████▊  | 78/100 [01:13<00:19,  1.12rep/s]aleatoria:  79%|███████▉  | 79/100 [01:14<00:19,  1.09rep/s]aleatoria:  80%|████████  | 80/100 [01:15<00:18,  1.09rep/s]aleatoria:  81%|████████  | 81/100 [01:16<00:17,  1.07rep/s]aleatoria:  82%|████████▏ | 82/100 [01:17<00:16,  1.08rep/s]aleatoria:  83%|████████▎ | 83/100 [01:18<00:15,  1.08rep/s]aleatoria:  84%|████████▍ | 84/100 [01:19<00:15,  1.04rep/s]aleatoria:  85%|████████▌ | 85/100 [01:20<00:14,  1.02rep/s]aleatoria:  86%|████████▌ | 86/100 [01:21<00:13,  1.01rep/s]aleatoria:  87%|████████▋ | 87/100 [01:22<00:12,  1.05rep/s]aleatoria:  88%|████████▊ | 88/100 [01:23<00:11,  1.06rep/s]aleatoria:  89%|████████▉ | 89/100 [01:24<00:10,  1.09rep/s]aleatoria:  90%|█████████ | 90/100 [01:25<00:08,  1.13rep/s]aleatoria:  91%|█████████ | 91/100 [01:25<00:08,  1.11rep/s]aleatoria:  92%|█████████▏| 92/100 [01:26<00:07,  1.14rep/s]aleatoria:  93%|█████████▎| 93/100 [01:27<00:06,  1.14rep/s]aleatoria:  94%|█████████▍| 94/100 [01:28<00:05,  1.15rep/s]aleatoria:  95%|█████████▌| 95/100 [01:29<00:04,  1.15rep/s]aleatoria:  96%|█████████▌| 96/100 [01:30<00:03,  1.15rep/s]aleatoria:  97%|█████████▋| 97/100 [01:31<00:02,  1.16rep/s]aleatoria:  98%|█████████▊| 98/100 [01:32<00:01,  1.14rep/s]aleatoria:  99%|█████████▉| 99/100 [01:32<00:00,  1.16rep/s]aleatoria: 100%|██████████| 100/100 [01:33<00:00,  1.19rep/s]aleatoria: 100%|██████████| 100/100 [01:33<00:00,  1.07rep/s]
+mge: 168 nós, 217 arestas
+aleatoria:   0%|          | 0/100 [00:00<?, ?rep/s]aleatoria:   3%|▎         | 3/100 [00:00<00:03, 28.76rep/s]aleatoria:   6%|▌         | 6/100 [00:00<00:03, 27.83rep/s]aleatoria:   9%|▉         | 9/100 [00:00<00:03, 28.47rep/s]aleatoria:  12%|█▏        | 12/100 [00:00<00:03, 27.85rep/s]aleatoria:  15%|█▌        | 15/100 [00:00<00:03, 27.10rep/s]aleatoria:  18%|█▊        | 18/100 [00:00<00:02, 27.46rep/s]aleatoria:  21%|██        | 21/100 [00:00<00:02, 27.81rep/s]aleatoria:  24%|██▍       | 24/100 [00:00<00:02, 27.19rep/s]aleatoria:  27%|██▋       | 27/100 [00:00<00:02, 27.72rep/s]aleatoria:  30%|███       | 30/100 [00:01<00:02, 25.40rep/s]aleatoria:  33%|███▎      | 33/100 [00:01<00:02, 25.70rep/s]aleatoria:  36%|███▌      | 36/100 [00:01<00:02, 25.74rep/s]aleatoria:  39%|███▉      | 39/100 [00:01<00:02, 25.98rep/s]aleatoria:  42%|████▏     | 42/100 [00:01<00:02, 24.88rep/s]aleatoria:  45%|████▌     | 45/100 [00:01<00:02, 26.18rep/s]aleatoria:  48%|████▊     | 48/100 [00:01<00:02, 25.04rep/s]aleatoria:  51%|█████     | 51/100 [00:01<00:01, 24.77rep/s]aleatoria:  55%|█████▌    | 55/100 [00:02<00:01, 28.30rep/s]aleatoria:  59%|█████▉    | 59/100 [00:02<00:01, 29.77rep/s]aleatoria:  63%|██████▎   | 63/100 [00:02<00:01, 31.37rep/s]aleatoria:  68%|██████▊   | 68/100 [00:02<00:00, 34.54rep/s]aleatoria:  72%|███████▏  | 72/100 [00:02<00:00, 31.85rep/s]aleatoria:  76%|███████▌  | 76/100 [00:02<00:00, 31.15rep/s]aleatoria:  80%|████████  | 80/100 [00:02<00:00, 29.54rep/s]aleatoria:  83%|████████▎ | 83/100 [00:02<00:00, 29.31rep/s]aleatoria:  86%|████████▌ | 86/100 [00:03<00:00, 29.13rep/s]aleatoria:  90%|█████████ | 90/100 [00:03<00:00, 30.99rep/s]aleatoria:  94%|█████████▍| 94/100 [00:03<00:00, 29.87rep/s]aleatoria:  98%|█████████▊| 98/100 [00:03<00:00, 30.58rep/s]aleatoria: 100%|██████████| 100/100 [00:03<00:00, 28.50rep/s]
+rewiring:   0%|          | 0/10 [00:00<?, ?rede/s]rewiring:  10%|█         | 1/10 [00:23<03:30, 23.44s/rede]rewiring:  20%|██        | 2/10 [00:50<03:22, 25.37s/rede]rewiring:  30%|███       | 3/10 [01:19<03:09, 27.02s/rede]rewiring:  40%|████      | 4/10 [01:50<02:51, 28.55s/rede]rewiring:  50%|█████     | 5/10 [02:22<02:29, 29.80s/rede]rewiring:  60%|██████    | 6/10 [02:51<01:58, 29.62s/rede]rewiring:  70%|███████   | 7/10 [03:15<01:23, 27.76s/rede]rewiring:  80%|████████  | 8/10 [03:38<00:52, 26.23s/rede]rewiring:  90%|█████████ | 9/10 [04:01<00:25, 25.39s/rede]rewiring: 100%|██████████| 10/10 [04:25<00:00, 24.83s/rede]rewiring: 100%|██████████| 10/10 [04:25<00:00, 26.53s/rede]
+rewiring_reciproco:   0%|          | 0/10 [00:00<?, ?rede/s]rewiring_reciproco:  10%|█         | 1/10 [00:36<05:25, 36.12s/rede]rewiring_reciproco:  20%|██        | 2/10 [01:02<04:02, 30.28s/rede]rewiring_reciproco:  30%|███       | 3/10 [01:29<03:20, 28.69s/rede]rewiring_reciproco:  40%|████      | 4/10 [01:59<02:55, 29.30s/rede]rewiring_reciproco:  50%|█████     | 5/10 [02:23<02:17, 27.54s/rede]rewiring_reciproco:  60%|██████    | 6/10 [02:52<01:51, 27.97s/rede]rewiring_reciproco:  70%|███████   | 7/10 [03:17<01:20, 26.98s/rede]rewiring_reciproco:  80%|████████  | 8/10 [03:45<00:54, 27.20s/rede]rewiring_reciproco:  90%|█████████ | 9/10 [04:09<00:26, 26.44s/rede]rewiring_reciproco: 100%|██████████| 10/10 [04:34<00:00, 25.73s/rede]rewiring_reciproco: 100%|██████████| 10/10 [04:34<00:00, 27.41s/rede]
+erdos_renyi:   0%|          | 0/10 [00:00<?, ?rede/s]erdos_renyi:  10%|█         | 1/10 [00:23<03:31, 23.54s/rede]erdos_renyi:  20%|██        | 2/10 [00:54<03:44, 28.00s/rede]erdos_renyi:  30%|███       | 3/10 [01:25<03:25, 29.37s/rede]erdos_renyi:  40%|████      | 4/10 [01:54<02:55, 29.31s/rede]erdos_renyi:  50%|█████     | 5/10 [02:26<02:30, 30.11s/rede]erdos_renyi:  60%|██████    | 6/10 [02:48<01:49, 27.45s/rede]erdos_renyi:  70%|███████   | 7/10 [03:18<01:24, 28.33s/rede]erdos_renyi:  80%|████████  | 8/10 [03:43<00:54, 27.13s/rede]erdos_renyi:  90%|█████████ | 9/10 [04:05<00:25, 25.47s/rede]erdos_renyi: 100%|██████████| 10/10 [04:26<00:00, 24.11s/rede]erdos_renyi: 100%|██████████| 10/10 [04:26<00:00, 26.63s/rede]
+Exp 4: 33 redes em 1029 s
+rede                   S0 núcleo recipr.         aleatoria              grau        grau_adapt
+                                             Rnorm  metade     Rnorm  metade     Rnorm  metade
+eco                  0.80    415   0.512     0.265   24.0%     0.060    3.4%     0.043    3.4%
+bsu                  0.77    386   0.513     0.271   25.0%     0.055    3.2%     0.043    3.5%
+mge                  0.31     21   0.654     0.256   16.3%     0.111    2.4%     0.067    1.8%
+rewiring             0.97    615   0.004     0.363   35.4%     0.106   11.3%     0.092   10.2%
+rewiring_reciproco   0.89    466   0.512     0.290   27.5%     0.059    5.5%     0.051    4.9%
+erdos_renyi          0.94    419   0.001     0.371   38.6%     0.179   19.6%     0.151   16.8%
+
+escores z de eco contra os nulos (|z| > 2: o nulo não explica)
+  métrica                              real           rewiring rewiring_reciproco        erdos_renyi
+  maior_fraco                         0.797              -18.7               -9.8              -19.9
+  componentes_fracos                 94.000               18.9               12.6                5.0
+  nucleo                            415.000              -12.7               -3.1               -0.1
+  entrada                           178.000               -4.4               -2.7               -4.1
+  saida                             244.000                3.1                3.4               -0.5
+  restante                          274.000               17.1                2.2                4.2
+  caminho_medio                       9.131                8.9                3.1               -3.0
+  diametro                           33.000                6.2                2.0               -0.2
+  clustering_medio                    0.049               23.7               25.5               25.5
+  assortatividade                     0.116                8.7                5.3               10.5
+  reciprocidade                       0.512              264.0                nan              536.4
+  R_fraco_norm (aleatoria)            0.265              -39.4               -7.2              -34.7
+  R_forte_norm (aleatoria)            0.202               -4.3               -2.0                3.2
+  metade_fraco (aleatoria)            0.240              -35.6              -12.1              -38.5
+  metade_forte (aleatoria)            0.161               -6.6               -3.0                1.5
+  R_alcance_norm (aleatoria)          0.170               -2.2                0.2                nan
+  R_fraco_norm (grau)                 0.060              -13.2                0.2              -22.5
+  R_forte_norm (grau)                 0.019               -8.8               -0.0               -3.1
+  metade_fraco (grau)                 0.034              -19.4               -4.6              -30.8
+  metade_forte (grau)                 0.010               -7.3               -1.6               -2.8
+  R_alcance_norm (grau)               0.014               -0.8               -0.1                nan
+  R_fraco_norm (grau_adaptativo)      0.043              -27.5               -2.2              -30.0
+  R_forte_norm (grau_adaptativo)      0.015               -8.0               -0.7               -3.7
+  metade_fraco (grau_adaptativo)      0.034              -13.6               -4.4              -38.5
+  metade_forte (grau_adaptativo)      0.009               -8.0               -2.1               -2.6
+  R_alcance_norm (grau_adaptativo)    0.011               -0.9               -0.3                nan
+
+Pronto. Resultados em resultados/tabelas/ e resultados/figuras/.

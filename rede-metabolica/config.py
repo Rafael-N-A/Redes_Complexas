@@ -203,7 +203,8 @@ QUANTIL_BAIXO_GRAU = 0.25   # os de baixo grau são sorteados entre os 25% de me
 # ---------------------------------------------------------------------------
 ESTRATEGIAS_COMPARACAO = ("aleatoria", "grau", "grau_adaptativo")
 VERSAO_COMPARACAO = "sem_moeda"  # o Exp 4 roda numa versão só, para caber no tempo
-N_MODELOS_NULOS = 10        # redes sorteadas por tipo de modelo nulo
+# Tipos de modelo nulo: modelos_nulos.TIPOS (rewiring recíproco, rewiring, Erdős–Rényi).
+N_MODELOS_NULOS = 10        # redes sorteadas por tipo de modelo nulo (30 no total, ~14 s cada)
 N_REPETICOES_NULOS = 20     # repetições da remoção aleatória em cada rede nula
-TROCAS_POR_ARESTA = 10      # rewiring: nswap = TROCAS_POR_ARESTA * número de arestas
-MEDIR_EFICIENCIA_EXP4 = False  # corta o Exp 4 de ~75 para ~20 min; o índice R não depende dela
+TROCAS_POR_ARESTA = 10      # rewiring: TROCAS_POR_ARESTA * número de arestas trocas aceitas
+MEDIR_EFICIENCIA_EXP4 = False  # o índice R não depende dela; sem ela, o Exp 4 leva ~9 min

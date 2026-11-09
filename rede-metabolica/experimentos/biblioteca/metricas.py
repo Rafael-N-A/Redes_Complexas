@@ -200,13 +200,23 @@ def assortatividade(G: nx.DiGraph) -> float:
     return float(valor) if valor is not None else math.nan
 
 
+def reciprocidade(G: nx.DiGraph) -> float:
+    """Fração das arestas u→v que têm a volta v→u (Garlaschelli e Loffredo, 2004); nan sem arestas.
+
+    Na rede metabólito-cêntrica, cada reação reversível vira um par desses.
+    """
+    if G.number_of_edges() == 0:
+        return math.nan
+    return float(nx.reciprocity(G))
+
+
 def tabela_descritiva(G: nx.DiGraph) -> dict:
     """Uma linha da Tabela 1 do artigo para o grafo simples dirigido G.
 
     Chaves: nos, arestas, densidade, grau_medio, clustering_medio (na versão
     não dirigida), caminho_medio, diametro, bow-tie (núcleo, entrada, saída,
-    restante) e assortatividade. É reaproveitada pelo exp4 para os outros
-    organismos e para os modelos nulos.
+    restante), assortatividade e reciprocidade. É reaproveitada pelo exp4
+    para os outros organismos e para os modelos nulos.
 
     grau_medio é a média do grau de saída (igual à de entrada, = arestas/nós).
     maior_fraco é a fração dos nós no maior componente fraco.
@@ -230,6 +240,7 @@ def tabela_descritiva(G: nx.DiGraph) -> dict:
         "saida": tamanhos["saida"],
         "restante": tamanhos["restante"],
         "assortatividade": assortatividade(G),
+        "reciprocidade": reciprocidade(G),
     }
 
 

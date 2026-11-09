@@ -52,12 +52,31 @@ ESTRATEGIAS = {  # nome -> (rótulo, cor, tracejada?)
     "betweenness_adaptativo": ("Betweenness (adaptativo)", CORES[4], True),
 }
 
-REDES = {  # Exp 4: nome -> (rótulo, cor)
-    "eco": ("E. coli", CORES[0]),
-    "bsu": ("B. subtilis", CORES[1]),
-    "mge": ("M. genitalium", CORES[2]),
-    "rewiring": ("Rewiring (mesmos graus)", CORES[3]),
-    "erdos_renyi": ("Erdős–Rényi", CORES[4]),
+REDES = {  # Exp 4: nome -> (rótulo, cor, estilo de linha); os modelos nulos tracejados
+    "eco": ("E. coli", CORES[0], "-"),
+    "bsu": ("B. subtilis", CORES[1], "-"),
+    "mge": ("M. genitalium", CORES[2], "-"),
+    "rewiring": ("Rewiring (mesmos graus)", CORES[3], "--"),
+    "rewiring_reciproco": ("Rewiring (graus e reciprocidade)", CORES[5], "-."),
+    "erdos_renyi": ("Erdős–Rényi", CORES[4], ":"),
+}
+# As cores que aparecem juntas foram validadas entre todos os pares: os três
+# organismos (CORES[0:3]) e a E. coli com os três nulos (CORES[0], [3], [5], [4]).
+# M. genitalium e Erdős–Rényi nunca dividem uma figura de linhas.
+
+ROTULOS_CURTOS_REDES = {  # eixo x das barras do Exp 4, onde não cabe o rótulo inteiro
+    "rewiring": "Rewiring\n(graus)",
+    "rewiring_reciproco": "Rewiring\n(graus e\nreciprocidade)",
+}
+
+ROTULOS_INDICES = {  # coluna da tabela de índices do Exp 4 -> rótulo do eixo y
+    "R_fraco": "Índice R\n(componente fraco)",
+    "R_forte": "Índice R\n(componente forte)",
+    "R_fraco_norm": "R normalizado\n(componente fraco)",
+    "R_forte_norm": "R normalizado\n(componente forte)",
+    "metade_fraco": "Fração removida até o\ncomponente fraco cair à metade",
+    "metade_forte": "Fração removida até o\ncomponente forte cair à metade",
+    "R_alcance_norm": "R normalizado\n(alcance topológico)",
 }
 
 METRICAS_ROBUSTEZ = {  # coluna das curvas -> rótulo do eixo y
@@ -65,6 +84,10 @@ METRICAS_ROBUSTEZ = {  # coluna das curvas -> rótulo do eixo y
     "maior_forte": "Maior componente forte\n(fração dos nós)",
     "eficiencia": "Eficiência global",
     "alcance": "Alcance topológico a partir\ndo meio mínimo (fração)",
+    # Exp 4: divididas pelo valor na rede intacta, para comparar redes que já começam partidas
+    "maior_fraco_rel": "Maior componente fraco\n(relativo à rede intacta)",
+    "maior_forte_rel": "Maior componente forte\n(relativo à rede intacta)",
+    "alcance_rel": "Alcance topológico\n(relativo à rede intacta)",
 }
 
 TITULOS_ROBUSTEZ = {  # títulos curtos dos painéis
@@ -72,6 +95,9 @@ TITULOS_ROBUSTEZ = {  # títulos curtos dos painéis
     "maior_forte": "Maior componente forte",
     "eficiencia": "Eficiência global",
     "alcance": "Alcance topológico",
+    "maior_fraco_rel": "Maior componente fraco",
+    "maior_forte_rel": "Maior componente forte",
+    "alcance_rel": "Alcance topológico",
 }
 
 GRUPOS_EXP3 = {  # coluna "grupo" da tabela exp3_substancias -> (rótulo, cor, marcador)
@@ -113,8 +139,7 @@ def _cor_e_estilo(grupo: str, valor: str, posicao: int) -> tuple[str, str, str]:
         rotulo, cor, tracejada = ESTRATEGIAS[valor]
         return rotulo, cor, "--" if tracejada else "-"
     if grupo == "rede" and valor in REDES:
-        rotulo, cor = REDES[valor]
-        return rotulo, cor, "-"
+        return REDES[valor]
     return str(valor), CORES[posicao % len(CORES)], "-"
 
 
@@ -270,8 +295,9 @@ def _desenhar_curvas(ax: plt.Axes, curvas: pd.DataFrame, metrica: str, grupo: st
         coluna_dp = f"{metrica}_dp"
         if coluna_dp in curva and curva[coluna_dp].notna().any():
             dp = curva[coluna_dp].fillna(0)
+            # Todas as métricas são frações (de 0 a 1), e a faixa não passa disso.
             ax.fill_between(curva["fracao_removida"], (curva[metrica] - dp).clip(lower=0),
-                            curva[metrica] + dp, color=cor, alpha=0.15, linewidth=0, zorder=2)
+                            (curva[metrica] + dp).clip(upper=1), color=cor, alpha=0.15, linewidth=0, zorder=2)
     ax.set_xlim(0, 1)
     ax.set_ylim(bottom=0)
     _eixos_lineares_com_virgula(ax)
@@ -327,19 +353,11 @@ def painel_robustez(curvas: pd.DataFrame, metricas: tuple[str, ...] = tuple(METR
     return fig
 
 
-def indices_por_rede(indices: pd.DataFrame, coluna: str = "R_fraco") -> plt.Figure:
-    """Exp 4. Índice R por rede (eco, bsu, mge, nulos) e estratégia.
-
-    Barras agrupadas por rede, uma por estratégia. Nas redes nulas (várias
-    linhas por rede, coluna "indice"), a barra é a média entre as redes
-    sorteadas e o traço é ±1 desvio padrão entre elas. coluna: qual índice
-    mostrar (R_fraco, R_forte, metade_fraco, metade_forte...).
-    """
-    estilo()
+def _desenhar_indices(ax: plt.Axes, indices: pd.DataFrame, coluna: str) -> None:
+    """Barras agrupadas por rede, uma por estratégia; nas redes nulas, média e ±1 dp entre as sorteadas."""
     redes = _ordenar(indices["rede"], REDES)
     estrategias = _ordenar(indices["estrategia"], ESTRATEGIAS)
     resumo = indices.groupby(["rede", "estrategia"])[coluna].agg(["mean", "std", "count"])
-    fig, ax = plt.subplots(figsize=(LARGURA, 3.0))
     largura = 0.8 / max(len(estrategias), 1)
     x = np.arange(len(redes))
     for j, estrategia in enumerate(estrategias):
@@ -349,14 +367,103 @@ def indices_por_rede(indices: pd.DataFrame, coluna: str = "R_fraco") -> plt.Figu
                  and resumo.loc[(r, estrategia), "count"] > 1 else 0 for r in redes]
         posicoes = x - 0.4 + largura * (j + 0.5)
         ax.bar(posicoes, medias, width=largura * 0.88, color=cor, label=rotulo, zorder=3)
-        if any(e > 0 for e in erros):
-            ax.errorbar(posicoes, medias, yerr=erros, fmt="none", ecolor=TINTA_SECUNDARIA,
-                        elinewidth=0.8, capsize=2, zorder=4)
-    ax.set_xticks(x, [_cor_e_estilo("rede", r, i)[0] for i, r in enumerate(redes)])
+        com_erro = [i for i, e in enumerate(erros) if e > 0]  # só nas redes nulas: sem traço vazio nas outras
+        if com_erro:
+            ax.errorbar(posicoes[com_erro], np.array(medias)[com_erro], yerr=np.array(erros)[com_erro],
+                        fmt="none", ecolor=TINTA_SECUNDARIA, elinewidth=0.8, capsize=2, zorder=4)
+    ax.set_xticks(x, [ROTULOS_CURTOS_REDES.get(r, _cor_e_estilo("rede", r, i)[0]) for i, r in enumerate(redes)])
     ax.grid(axis="x", visible=False)
-    ax.set_ylabel(coluna.replace("_", " "))
+    ax.set_ylabel(ROTULOS_INDICES.get(coluna, coluna.replace("_", " ")))
+    ax.set_ylim(bottom=0)
     _eixos_lineares_com_virgula(ax, x=False)
-    ax.legend(loc="upper right", ncol=min(len(estrategias), 3))
+
+
+def indices_por_rede(indices: pd.DataFrame, coluna: str = "R_fraco") -> plt.Figure:
+    """Exp 4. Índice R por rede (eco, bsu, mge, nulos) e estratégia.
+
+    Barras agrupadas por rede, uma por estratégia. Nas redes nulas (várias
+    linhas por rede, coluna "indice"), a barra é a média entre as redes
+    sorteadas e o traço é ±1 desvio padrão entre elas. coluna: qual índice
+    mostrar (R_fraco, R_forte, metade_fraco, metade_forte...).
+    """
+    estilo()
+    fig, ax = plt.subplots(figsize=(LARGURA, 3.0))
+    _desenhar_indices(ax, indices, coluna)
+    ax.legend(loc="upper right", ncol=min(indices["estrategia"].nunique(), 3))
+    fig.tight_layout()
+    return fig
+
+
+def painel_indices_redes(indices: pd.DataFrame,
+                         colunas: tuple[str, ...] = ("R_fraco_norm", "metade_fraco")) -> plt.Figure:
+    """Exp 4. Um painel por índice, um embaixo do outro, com as mesmas redes no eixo x.
+
+    Mesmo desenho de indices_por_rede; a legenda das estratégias fica uma vez só, em cima.
+    """
+    estilo()
+    fig, eixos = plt.subplots(len(colunas), 1, figsize=(LARGURA, 2.3 * len(colunas) + 0.6),
+                              sharex=True, squeeze=False)
+    for ax, coluna, letra in zip(eixos[:, 0], colunas, "abcdef"):
+        _desenhar_indices(ax, indices, coluna)
+        ax.set_title(f"({letra})")
+    handles, labels = eixos[0, 0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="upper center", ncol=len(labels), bbox_to_anchor=(0.5, 1.0))
+    fig.tight_layout(rect=(0, 0, 1, 0.95))
+    return fig
+
+
+def painel_curvas_redes(curvas: pd.DataFrame,
+                        metricas: tuple[str, ...] = ("maior_fraco_rel", "maior_forte_rel"),
+                        estrategias: tuple[str, ...] = ("aleatoria", "grau_adaptativo"),
+                        limites_x: dict[str, float] | None = None) -> plt.Figure:
+    """Exp 4. Grade de curvas: uma linha por métrica, uma coluna por estratégia, uma curva por rede.
+
+    curvas: a tabela exp4_curvas (coluna "rede"), já filtrada nas redes que
+    devem aparecer. O título de cada painel é a estratégia; a métrica fica no eixo y. A faixa é ±1 desvio padrão (<metrica>_dp): entre as
+    repetições na aleatória dos organismos e entre as redes sorteadas nos
+    modelos nulos. limites_x: estratégia -> fim do eixo x (os ataques
+    derrubam a rede nos primeiros nós; o padrão corta o grau adaptativo em 0,4).
+    """
+    estilo()
+    limites_x = {"grau_adaptativo": 0.4, "grau": 0.4} if limites_x is None else limites_x
+    fig, eixos = plt.subplots(len(metricas), len(estrategias),
+                              figsize=(LARGURA, 2.4 * len(metricas) + 0.7), squeeze=False)
+    letras = iter("abcdefghij")
+    for i, metrica in enumerate(metricas):
+        for j, estrategia in enumerate(estrategias):
+            ax = eixos[i, j]
+            _desenhar_curvas(ax, curvas[curvas["estrategia"] == estrategia], metrica, "rede")
+            ax.set_xlim(0, limites_x.get(estrategia, 1))
+            ax.set_title(f"({next(letras)}) {ESTRATEGIAS.get(estrategia, (estrategia,))[0]}")
+            if j == 0:
+                ax.set_ylabel(METRICAS_ROBUSTEZ.get(metrica, metrica))
+            if i == len(metricas) - 1:
+                ax.set_xlabel(ROTULO_FRACAO_REMOVIDA)
+    handles, labels = eixos[0, 0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=min(len(labels), 4), bbox_to_anchor=(0.5, -0.01))
+    fig.tight_layout(rect=(0, 0.06, 1, 1))
+    return fig
+
+
+def ccdf_por_rede(ccdf: pd.DataFrame) -> plt.Figure:
+    """Exp 4. CCDF do grau total de cada rede (colunas rede, grau, n_nos, ccdf_empirica), em log-log.
+
+    Só os graus observados, como no Exp 0. Mostra se a cauda pesada da E. coli
+    se repete nos outros organismos (Jeong et al., 2000).
+    """
+    estilo()
+    fig, ax = plt.subplots(figsize=(LARGURA * 0.62, 3.0))
+    marcadores = itertools.cycle("os^Dv")
+    for i, rede in enumerate(_ordenar(ccdf["rede"], REDES)):
+        parte = ccdf[(ccdf["rede"] == rede) & (ccdf["n_nos"] > 0) & (ccdf["ccdf_empirica"] > 0)]
+        rotulo, cor, estilo_linha = _cor_e_estilo("rede", rede, i)
+        ax.plot(parte["grau"], parte["ccdf_empirica"], color=cor, linestyle=estilo_linha, linewidth=1,
+                marker=next(marcadores), markeredgecolor="white", markeredgewidth=0.5, label=rotulo)
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlabel("Grau total k")
+    ax.set_ylabel("P(K ≥ k)")
+    ax.legend(loc="lower left")
     fig.tight_layout()
     return fig
 

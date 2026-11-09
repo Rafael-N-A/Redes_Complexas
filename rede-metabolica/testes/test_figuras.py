@@ -175,6 +175,65 @@ def test_indices_por_rede():
     assert len(ax.containers) >= 3                                      # barras + traços de erro dos nulos
 
 
+def indices_exemplo() -> pd.DataFrame:
+    linhas = [{"rede": "eco", "estrategia": e, "R_fraco_norm": v, "metade_fraco": v / 2}
+              for e, v in (("aleatoria", 0.26), ("grau", 0.06))]
+    for tipo in ("rewiring", "rewiring_reciproco"):
+        for i, desvio in enumerate((-0.01, 0.01)):
+            linhas += [{"rede": tipo, "indice": i, "estrategia": e, "R_fraco_norm": v + desvio,
+                        "metade_fraco": (v + desvio) / 2} for e, v in (("aleatoria", 0.3), ("grau", 0.1))]
+    return pd.DataFrame(linhas)
+
+
+def test_painel_indices_redes():
+    fig = figuras.painel_indices_redes(indices_exemplo())
+    eixos = [ax for ax in fig.axes if ax.patches]
+    assert len(eixos) == 2
+    assert [t.get_text() for t in eixos[1].get_xticklabels()] == [
+        "E. coli", "Rewiring\n(graus)", "Rewiring\n(graus e\nreciprocidade)"]
+    assert "R normalizado" in eixos[0].get_ylabel() and "metade" in eixos[1].get_ylabel()
+    assert [t.get_text() for t in fig.legends[0].get_texts()] == ["Aleatória", "Grau"]   # legenda uma vez só
+    alturas = sorted(round(b.get_height(), 3) for b in eixos[0].patches)
+    assert alturas == [0.06, 0.1, 0.1, 0.26, 0.3, 0.3]                     # nulos: média das redes
+
+
+def test_painel_curvas_redes():
+    base = curvas_exemplo(("aleatoria", "grau_adaptativo"))
+    base["maior_fraco_rel"] = base["maior_fraco"] / 0.8
+    base["maior_forte_rel"] = base["maior_forte"] / 0.4
+    curvas = pd.concat([base.assign(rede=r) for r in ("eco", "rewiring", "rewiring_reciproco", "erdos_renyi")])
+    fig = figuras.painel_curvas_redes(curvas)
+    assert len(fig.axes) == 4
+    assert [ax.get_title(loc="left") for ax in fig.axes] == [
+        "(a) Aleatória", "(b) Grau (adaptativo)", "(c) Aleatória", "(d) Grau (adaptativo)"]
+    assert fig.axes[1].get_xlim() == (0, 0.4) and fig.axes[0].get_xlim() == (0, 1)
+    assert "relativo à rede intacta" in fig.axes[0].get_ylabel()
+    linhas = linhas_com_rotulo(fig.axes[0])
+    assert linhas["E. coli"].get_linestyle() == "-"
+    assert linhas["Rewiring (mesmos graus)"].get_linestyle() == "--"            # nulos tracejados
+    assert linhas["Rewiring (graus e reciprocidade)"].get_color() == figuras.CORES[5]
+    assert [t.get_text() for t in fig.legends[0].get_texts()][0] == "E. coli"
+
+
+def test_faixa_nao_passa_de_um():
+    curvas = curvas_exemplo(("aleatoria",))
+    curvas["maior_fraco_dp"] = 0.5
+    ax = figuras.curvas_robustez(curvas, zoom=None).axes[0]
+    faixa = ax.collections[0].get_paths()[0].vertices
+    assert faixa[:, 1].max() <= 1 and faixa[:, 1].min() >= 0
+
+
+def test_ccdf_por_rede():
+    ccdf = pd.DataFrame([{"rede": r, "grau": k, "n_nos": n, "ccdf_empirica": c}
+                         for r in ("mge", "eco")
+                         for k, n, c in ((1, 5, 1.0), (2, 3, 0.5), (8, 0, 0.2), (9, 2, 0.2))])
+    ax = figuras.ccdf_por_rede(ccdf).axes[0]
+    linhas = linhas_com_rotulo(ax)
+    assert list(linhas) == ["E. coli", "M. genitalium"]                      # na ordem de REDES
+    assert list(linhas["E. coli"].get_xdata()) == [1, 2, 9]                  # só os graus observados
+    assert ax.get_xscale() == "log" and ax.get_yscale() == "log"
+
+
 # ---------------------------------------------------------------------------
 # Exp 2 e 3
 # ---------------------------------------------------------------------------

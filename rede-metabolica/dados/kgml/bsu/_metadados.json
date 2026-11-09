@@ -2,7 +2,7 @@
   "org": "bsu",
   "fonte": "https://rest.kegg.jp",
   "data_download": "2026-11-08T13:41:13-03:00",
-  "ultima_execucao": "2026-11-08T13:41:13-03:00",
+  "ultima_execucao": "2026-11-09T20:18:18-03:00",
   "info_kegg": "bsu\tBacillus subtilis subsp. subtilis 168\nT00010\t4174 proteins, 2465 proteins with KOs\n\t2107 RNAs, 178 RNAs with KOs\n\tKanehisa Laboratories\n\nlinked db\tpathway\n\tbrite\n\tmodule\n\tko\n\tgenome\n\tenzyme\n\tncbi-geneid\n\tncbi-proteinid\n\tuniprot",
   "criterio": {
     "limite_vias_regulares": "01100",
@@ -11,8 +11,8 @@
     }
   },
   "n_vias_regulares": 90,
-  "n_baixadas_nesta_execucao": 90,
-  "n_reaproveitadas_do_cache": 0,
+  "n_baixadas_nesta_execucao": 0,
+  "n_reaproveitadas_do_cache": 90,
   "vias": [
     {
       "codigo": "bsu00010",

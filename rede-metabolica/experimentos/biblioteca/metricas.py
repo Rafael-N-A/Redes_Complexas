@@ -124,6 +124,20 @@ def bow_tie(G: nx.DiGraph) -> dict[str, int]:
     return {nome: len(nos) for nome, nos in componentes_bow_tie(G).items()}
 
 
+_MINIMO_AJUSTE = 10  # abaixo disso, o ajuste não faz sentido
+
+
+def _ajustar(dados: np.ndarray):
+    """powerlaw.Fit discreto (Clauset et al., 2009), sem avisos; None se houver poucos dados."""
+    import powerlaw  # só aqui: o pacote é opcional e demora para importar
+
+    if len(dados) < _MINIMO_AJUSTE:
+        return None
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        return powerlaw.Fit(dados, discrete=True, verbose=False)
+
+
 def ajuste_lei_potencia(valores_grau: Iterable[int]) -> dict:
     """Opcional: teste de Clauset et al. com o pacote powerlaw.
 
@@ -131,18 +145,49 @@ def ajuste_lei_potencia(valores_grau: Iterable[int]) -> dict:
     comparação com a log-normal: R > 0 favorece a lei de potência, R < 0 a
     log-normal, e p < 0,1 indica que a diferença é significativa.
     """
-    import powerlaw  # só aqui: o pacote é opcional e demora para importar
-
     dados = np.array([v for v in valores_grau if v > 0])
-    if len(dados) < 10:
+    ajuste = _ajustar(dados)
+    if ajuste is None:
         return {"alpha": math.nan, "xmin": math.nan, "n_cauda": 0, "R_vs_lognormal": math.nan, "p": math.nan}
-    with warnings.catch_warnings():
+    with warnings.catch_warnings():  # o powerlaw ajusta as distribuições quando são acessadas
         warnings.simplefilter("ignore")
-        ajuste = powerlaw.Fit(dados, discrete=True, verbose=False)
         R, p = ajuste.distribution_compare("power_law", "lognormal", normalized_ratio=True)
-    xmin = float(ajuste.power_law.xmin)
-    return {"alpha": float(ajuste.power_law.alpha), "xmin": xmin,
+        xmin, alpha = float(ajuste.power_law.xmin), float(ajuste.power_law.alpha)
+    return {"alpha": alpha, "xmin": xmin,
             "n_cauda": int((dados >= xmin).sum()), "R_vs_lognormal": float(R), "p": float(p)}
+
+
+def ccdf_com_ajustes(valores_grau: Iterable[int]) -> pd.DataFrame:
+    """CCDF empírica P(K >= k) e as dos ajustes de lei de potência e log-normal.
+
+    Uma linha por grau k de 1 ao máximo. Colunas: grau, n_nos (quantos nós têm
+    exatamente esse grau; a figura só desenha a empírica onde n_nos > 0),
+    ccdf_empirica, ccdf_lei_potencia, ccdf_lognormal. Os ajustes são os mesmos de
+    ajuste_lei_potencia (mesmo xmin) e só existem de xmin em diante (NaN antes);
+    estão multiplicados pela fração dos dados na cauda, para coincidirem com a
+    empírica em xmin, como nas figuras de Clauset et al. (2009). Graus 0 ficam
+    de fora, como no ajuste.
+    """
+    dados = np.array([v for v in valores_grau if v > 0], dtype=int)
+    colunas = ["grau", "n_nos", "ccdf_empirica", "ccdf_lei_potencia", "ccdf_lognormal"]
+    if len(dados) == 0:
+        return pd.DataFrame(columns=colunas)
+    ks = np.arange(1, dados.max() + 1)
+    ordenados = np.sort(dados)
+    empirica = 1.0 - np.searchsorted(ordenados, ks, side="left") / len(dados)
+    n_nos = np.bincount(dados, minlength=dados.max() + 1)[1:]
+    tabela = pd.DataFrame({"grau": ks, "n_nos": n_nos, "ccdf_empirica": empirica,
+                           "ccdf_lei_potencia": math.nan, "ccdf_lognormal": math.nan})
+    ajuste = _ajustar(dados)
+    if ajuste is not None:
+        with warnings.catch_warnings(), np.errstate(all="ignore"):
+            warnings.simplefilter("ignore")
+            xmin = int(ajuste.power_law.xmin)
+            cauda = ks >= xmin
+            fracao_cauda = float((dados >= xmin).mean())
+            tabela.loc[cauda, "ccdf_lei_potencia"] = fracao_cauda * ajuste.power_law.ccdf(ks[cauda])
+            tabela.loc[cauda, "ccdf_lognormal"] = fracao_cauda * ajuste.lognormal.ccdf(ks[cauda])
+    return tabela[colunas]
 
 
 def assortatividade(G: nx.DiGraph) -> float:

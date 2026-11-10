@@ -139,14 +139,14 @@
       "na_lista_de_moeda": false
     },
     {
-      "metabolito": "C01097",
-      "nome": "D-Tagatose 6-phosphate",
+      "metabolito": "C03785",
+      "nome": "D-Tagatose 1,6-bisphosphate",
       "n_reacoes": 4,
       "na_lista_de_moeda": false
     },
     {
-      "metabolito": "C03785",
-      "nome": "D-Tagatose 1,6-bisphosphate",
+      "metabolito": "C01097",
+      "nome": "D-Tagatose 6-phosphate",
       "n_reacoes": 4,
       "na_lista_de_moeda": false
     },

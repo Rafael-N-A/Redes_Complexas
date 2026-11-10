@@ -1,0 +1,11 @@
+grupo,metabolito,nome,nome_curto,grau,dano_forte,dano_eficiencia,avalanche,posicao_grau,posicao_dano_forte,posicao_avalanche,discordancia,motivo
+exemplo,C04734,1-(5'-Phosphoribosyl)-5-formamido-4-imidazolecarboxamide,FAICAR,6,36,0.050831929521671815,0.0,80,1,571,0.7576992753623188,síntese de purinas: tira dezenas de metabólitos do núcleo e não interrompe nenhuma produção
+exemplo,C00130,IMP,IMP,9,27,0.05345354680521484,1.0,34,3,354,,tira dezenas de metabólitos do núcleo e interrompe só uma produção
+exemplo,C00083,Malonyl-CoA,Malonil-CoA,5,7,0.05567468347304404,54.0,130,67,5,,"grau baixo, mas uma das maiores avalanches (síntese de ácidos graxos)"
+exemplo,C00024,Acetyl-CoA,Acetil-CoA,40,31,0.15454008841108155,59.0,2,2,3,,alta nas duas medidas
+estrutural_sem_funcional,C04734,1-(5'-Phosphoribosyl)-5-formamido-4-imidazolecarboxamide,FAICAR,6,36,0.050831929521671815,0.0,80,1,571,0.7576992753623188,quebra o núcleo sem interromper produção
+estrutural_sem_funcional,C00655,Xanthosine 5'-phosphate,XMP,5,23,0.03546792824607482,0.0,130,4,571,0.7545289855072463,quebra o núcleo sem interromper produção
+estrutural_sem_funcional,C00365,dUMP,dUMP,8,21,0.034153738630451125,0.0,40,6,571,0.7531702898550725,quebra o núcleo sem interromper produção
+funcional_sem_estrutural,C04501,N-Acetyl-alpha-D-glucosamine 1-phosphate,GlcNAc-1P,2,0,0.0153029374477802,32.0,503,416,25,-0.6621376811594204,interrompe produção sem quebrar o núcleo
+funcional_sem_estrutural,C00043,UDP-N-acetyl-alpha-D-glucosamine,UDP-GlcNAc,4,0,0.013945155498801026,31.0,179,416,27,-0.6603260869565217,interrompe produção sem quebrar o núcleo
+funcional_sem_estrutural,C05753,3-Oxodecanoyl-[acp],3-Oxodecanoil-ACP,4,0,0.006779356155177203,29.0,179,416,29,-0.6589673913043479,interrompe produção sem quebrar o núcleo

@@ -1,2 +1,2 @@
-org,versao,medida_dano,agregacao_centralidade,genes_rede,essenciais_keio,essenciais_na_rede,essenciais_fora_da_rede,genes_com_reacao_perdida,genes_com_dano,reacoes_choke,reacoes_total
-eco,sem_moeda,avalanche,max,952,300,103,197,574,357,729,1244
+org,versao,medida_dano,agregacao_centralidade,genes_rede,essenciais_keio,essenciais_na_rede,essenciais_fora_da_rede,genes_com_reacao_perdida,essenciais_com_reacao_perdida,genes_com_dano,genes_com_dano_forte,genes_com_dano_eficiencia,reacoes_choke,reacoes_total,metabolitos_grafo,arestas_grafo,nucleo_intacto,maior_fraco_intacto,eficiencia_intacta
+eco,sem_moeda,avalanche,max,952,300,103,197,574,88,357,190,534,729,1244,1111,1716,415,885,0.03932929026809045

@@ -45,16 +45,16 @@ fi
 etapa "Exp 0 — análise descritiva"
 "$PY" -m experimentos.exp0_descritiva --versao ambas "${FIGURAS[@]}"
 
-etapa "Exp 1 — robustez estrutural (só sem moeda; --versao ambas para as duas)"
+etapa "Exp 1 — robustez: remoção por centralidade (só sem moeda; --versao ambas para as duas)"
 "$PY" -m experimentos.exp1_robustez "${FIGURAS[@]}"
 
-etapa "Exp 2 — topologia vs. biologia"
+etapa "Exp 2 — dano x essencialidade dos genes (Keio)"
 "$PY" -m experimentos.exp2_biologia "${FIGURAS[@]}"
 
-etapa "Exp 3 — viés por substância"
+etapa "Exp 3 — dano individual dos metabólitos"
 "$PY" -m experimentos.exp3_vies "${FIGURAS[@]}"
 
-etapa "Exp 4 — comparação com outras redes"
+etapa "Exp 4 — comparação com outras redes, modelos nulos e modelos clássicos"
 "$PY" -m experimentos.exp4_comparacao "${FIGURAS[@]}"
 
 echo

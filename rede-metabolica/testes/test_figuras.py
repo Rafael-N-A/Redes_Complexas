@@ -289,3 +289,83 @@ def test_ccdf_sem_ajuste_so_desenha_os_dados():
     ax = figuras.distribuicao_avalanches(tamanhos, metricas.ccdf_com_ajustes(tamanhos),
                                          metricas.ajuste_lei_potencia(tamanhos)).axes[0]
     assert list(linhas_com_rotulo(ax)) == ["Dados (avalanches ≥ 1)"] and not ax.texts
+
+
+# ---------------------------------------------------------------------------
+# Figuras novas (P1, P2 e P3)
+# ---------------------------------------------------------------------------
+def test_estrategias_novas_tem_cor_e_traco():
+    """No painel do Exp 1 (aleatória + as quatro adaptativas), cores distintas e traços distintos."""
+    painel = ("aleatoria", "grau_adaptativo", "betweenness_adaptativo", "harmonica_adaptativo", "pagerank_adaptativo")
+    cores = [figuras.ESTRATEGIAS[e][1] for e in painel]
+    tracos = [str(figuras.ESTRATEGIAS[e][2]) for e in painel]
+    assert len(set(cores)) == len(painel) and len(set(tracos)) == len(painel)
+    for centralidade in ("harmonica", "pagerank"):   # mesma cor nas duas versões, traço diferente
+        estatica, adaptativa = figuras.ESTRATEGIAS[centralidade], figuras.ESTRATEGIAS[f"{centralidade}_adaptativo"]
+        assert estatica[1] == adaptativa[1] and estatica[2] == "-" and adaptativa[2] != "-"
+
+
+def test_estatica_vs_adaptativa():
+    curvas = curvas_exemplo(("aleatoria", "grau", "grau_adaptativo", "harmonica", "harmonica_adaptativo"))
+    fig = figuras.estatica_vs_adaptativa(curvas, ["grau", "harmonica"])
+    visiveis = [ax for ax in fig.axes if ax.get_visible()]
+    assert [ax.get_title(loc="left") for ax in visiveis] == ["(a) Grau", "(b) Harmônica"]
+    assert list(linhas_com_rotulo(visiveis[1])) == ["Aleatória", "Harmônica", "Harmônica (adaptativo)"]
+
+
+def genes_exemplo() -> pd.DataFrame:
+    return pd.DataFrame({"gene": ["g1", "g2", "g3", "g4"], "simbolo": ["aroA", "aroB", "fabG", "xyz"],
+                         "essencial": [False, False, True, True], "dano": [1, 7, 50, 0],
+                         "dano_forte": [20, 20, 20, 0], "dano_eficiencia": [0.03, 0.04, 0.07, 0.0]})
+
+
+def test_dispersao_dano_genes():
+    correlacao = pd.DataFrame({"subconjunto": "perde_reacao", "medida_x": "dano",
+                               "medida_y": ["dano_forte", "dano_eficiencia"], "spearman": [0.23, 0.47]})
+    fig = figuras.dispersao_dano_genes(genes_exemplo(), {"aroA–aroB": ["aroA", "aroB"], "fabG": ["fabG"]},
+                                       correlacao)
+    assert len(fig.axes) == 2
+    for ax in fig.axes:
+        assert sorted(t.get_text() for t in ax.texts) == ["aroA–aroB", "fabG"]
+    assert [t.get_text() for t in fig.legends[0].get_texts()] == ["Não essencial", "Essencial (Keio)"]
+    assert "0,23" in fig.texts[0].get_text() and "0,47" in fig.texts[0].get_text()
+
+
+def test_barras_auc():
+    avaliacao = pd.DataFrame([{"subconjunto": s, "ranking": r, "auc": a, "auc_ic_inf": a - 0.05, "auc_ic_sup": a + 0.05}
+                              for s, r, a in (("todos", "dano", 0.76), ("todos", "grau", 0.42),
+                                              ("perde_reacao", "dano", 0.77), ("perde_reacao", "grau", 0.41))])
+    ax = figuras.barras_auc(avaliacao, ["dano", "grau"]).axes[0]
+    assert sorted(round(b.get_width(), 2) for b in ax.patches) == [0.41, 0.42, 0.76, 0.77]
+    assert [t.get_text() for t in ax.get_yticklabels()] == ["Dano na cascata", "Grau"]   # de cima para baixo
+    assert any(np.allclose(l.get_xdata(), 0.5) for l in ax.get_lines())                 # a linha do acaso
+
+
+def test_dano_vs_avalanche():
+    dano = pd.DataFrame({"metabolito": ["C1", "C2", "C3", "C4"], "grau": [40, 6, 5, 1],
+                         "dano_forte": [31, 36, 7, 0], "avalanche": [59.0, 0.0, 54.0, np.nan]})
+    exemplos = pd.DataFrame({"metabolito": ["C1", "C2", "C4"], "nome_curto": ["Acetil-CoA", "FAICAR", "fora"]})
+    correlacoes = pd.DataFrame({"medida": ["dano_forte", "dano_eficiencia"], "outra": "avalanche",
+                                "spearman": [0.2, 0.42]})
+    fig = figuras.dano_vs_avalanche(dano, exemplos, correlacoes)
+    ax = fig.axes[0]
+    assert len(ax.collections[0].get_offsets()) == 3                        # C4 não é produzido: fica de fora
+    assert sorted(t.get_text() for t in ax.texts) == ["Acetil-CoA", "FAICAR"]
+    assert len(fig.axes) == 2                                               # a barra de cores do grau
+
+
+def test_figuras_dos_modelos_classicos():
+    indices = pd.DataFrame([{"modelo": m, "indice": i, "estrategia": e, "R_norm": v, "metade": v}
+                            for m, reps in (("eco", [None]), ("erdos_renyi", [0, 1]), ("ba_misto", [0, 1]))
+                            for i in reps for e, v in (("aleatoria", 0.3), ("grau", 0.1), ("harmonica", 0.2))])
+    fig = figuras.painel_indices_redes(indices, ("R_norm", "metade"), grupo="modelo")
+    eixos = [ax for ax in fig.axes if ax.patches]
+    assert [t.get_text() for t in eixos[1].get_xticklabels()] == ["E. coli", "Erdős–\nRényi", "BA misto\n(m = 1 ou 2)"]
+    assert [t.get_text() for t in fig.legends[0].get_texts()] == ["Aleatória", "Grau", "Harmônica"]
+    ccdf = pd.DataFrame([{"modelo": m, "grau": k, "n_nos": 1, "ccdf_empirica": c}
+                         for m in ("eco", "configuracao", "erdos_renyi")
+                         for k, c in ((0, 1.0), (1, 0.9), (2, 0.5))])
+    ax = figuras.ccdf_por_rede(ccdf, grupo="modelo").axes[0]
+    linhas = linhas_com_rotulo(ax)
+    assert list(linhas) == ["E. coli (= configuração)", "Erdős–Rényi"]      # a configuração coincide com a E. coli
+    assert list(linhas["Erdős–Rényi"].get_xdata()) == [1, 2]                # grau 0 não vai ao log-log

@@ -10,14 +10,25 @@ Convenções (iguais em todas as figuras):
   - cores categóricas numa ordem fixa, testada para daltonismo (CORES); cada
     entidade tem sempre a mesma cor: a estratégia aleatória é sempre azul, a
     E. coli é sempre azul no Exp 4;
-  - estratégias adaptativas em linha tracejada, além da cor, para a figura
-    continuar legível impressa em preto e branco;
+  - estratégias adaptativas em linha não contínua, cada uma com o seu traço,
+    além da cor, para a figura continuar legível impressa em preto e branco (e
+    para separar o par aqua x magenta, que fica perto sob deuteranopia); a
+    harmônica e o PageRank usam a mesma cor nas versões estática e adaptativa,
+    que só se distinguem pelo traço;
   - grade e eixos em cinza claro, sem bordas de cima e da direita; legenda
     sempre que há mais de uma série.
+
+As combinações de cores que aparecem juntas foram conferidas com o validador
+de paletas (deltaE em OKLab sob protanopia e deuteranopia): aleatória e as
+quatro adaptativas (CORES[0], [2], [4], [6], [7]; o par aqua x magenta fica na
+faixa de 6 a 8 e por isso as adaptativas têm traços diferentes); as estratégias
+dos modelos clássicos (CORES[0:4], [6], [7]); e os modelos clássicos (CORES[0:7],
+na ordem da paleta).
 """
 from __future__ import annotations
 
 import itertools
+import math
 from pathlib import Path
 
 import matplotlib
@@ -26,6 +37,7 @@ matplotlib.use("Agg")  # gera arquivos sem precisar de janela
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
+from matplotlib import patheffects  # noqa: E402
 from matplotlib.ticker import FuncFormatter  # noqa: E402
 
 import config  # noqa: E402
@@ -44,12 +56,35 @@ EIXO = "#c3c2b7"
 
 LARGURA = 6.3              # polegadas (~16 cm)
 
-ESTRATEGIAS = {  # nome -> (rótulo, cor, tracejada?)
-    "aleatoria": ("Aleatória", CORES[0], False),
-    "grau": ("Grau", CORES[1], False),
-    "grau_adaptativo": ("Grau (adaptativo)", CORES[2], True),
-    "betweenness": ("Betweenness", CORES[3], False),
-    "betweenness_adaptativo": ("Betweenness (adaptativo)", CORES[4], True),
+ESTRATEGIAS = {  # nome -> (rótulo, cor, estilo de linha); as adaptativas, cada uma com o seu traço
+    "aleatoria": ("Aleatória", CORES[0], "-"),
+    "grau": ("Grau", CORES[1], "-"),
+    "grau_adaptativo": ("Grau (adaptativo)", CORES[2], "--"),
+    "betweenness": ("Betweenness", CORES[3], "-"),
+    "betweenness_adaptativo": ("Betweenness (adaptativo)", CORES[4], "-."),
+    "harmonica": ("Harmônica", CORES[6], "-"),
+    "harmonica_adaptativo": ("Harmônica (adaptativo)", CORES[6], (0, (1.2, 1.6))),
+    "pagerank": ("PageRank", CORES[7], "-"),
+    "pagerank_adaptativo": ("PageRank (adaptativo)", CORES[7], (0, (5, 1.6, 1.2, 1.6, 1.2, 1.6))),
+}
+
+MODELOS = {  # Exp 4, modelos clássicos (não dirigidos): nome -> (rótulo, cor, estilo); cores na ordem da paleta
+    "eco": ("E. coli", CORES[0], "-"),
+    "configuracao": ("Configuração", CORES[1], "--"),
+    "erdos_renyi": ("Erdős–Rényi", CORES[2], "--"),
+    "ba_misto": ("BA misto (m = 1 ou 2)", CORES[3], "-."),
+    "ba_m1": ("BA m = 1 (árvore)", CORES[4], ":"),
+    "newman_watts": ("Newman–Watts (k = 2)", CORES[5], "-."),
+    "watts_strogatz": ("Watts–Strogatz (k = 4)", CORES[6], ":"),
+}
+
+ROTULOS_CURTOS_MODELOS = {  # eixo x das barras dos modelos clássicos
+    "configuracao": "Configu-\nração",
+    "erdos_renyi": "Erdős–\nRényi",
+    "ba_misto": "BA misto\n(m = 1 ou 2)",
+    "ba_m1": "BA m = 1\n(árvore)",
+    "newman_watts": "Newman–\nWatts (k = 2)",
+    "watts_strogatz": "WS (k = 4,\np = 0,1)",
 }
 
 REDES = {  # Exp 4: nome -> (rótulo, cor, estilo de linha); os modelos nulos tracejados
@@ -77,6 +112,10 @@ ROTULOS_INDICES = {  # coluna da tabela de índices do Exp 4 -> rótulo do eixo 
     "metade_fraco": "Fração removida até o\ncomponente fraco cair à metade",
     "metade_forte": "Fração removida até o\ncomponente forte cair à metade",
     "R_alcance_norm": "R normalizado\n(alcance topológico)",
+    # modelos clássicos (não dirigidos: um componente só)
+    "R": "Índice R\n(maior componente)",
+    "R_norm": "R normalizado\n(maior componente)",
+    "metade": "Fração removida até o\nmaior componente cair à metade",
 }
 
 METRICAS_ROBUSTEZ = {  # coluna das curvas -> rótulo do eixo y
@@ -88,6 +127,9 @@ METRICAS_ROBUSTEZ = {  # coluna das curvas -> rótulo do eixo y
     "maior_fraco_rel": "Maior componente fraco\n(relativo à rede intacta)",
     "maior_forte_rel": "Maior componente forte\n(relativo à rede intacta)",
     "alcance_rel": "Alcance topológico\n(relativo à rede intacta)",
+    # modelos clássicos (não dirigidos)
+    "maior_componente": "Maior componente\n(fração dos nós)",
+    "maior_componente_rel": "Maior componente\n(relativo à rede intacta)",
 }
 
 TITULOS_ROBUSTEZ = {  # títulos curtos dos painéis
@@ -98,6 +140,8 @@ TITULOS_ROBUSTEZ = {  # títulos curtos dos painéis
     "maior_fraco_rel": "Maior componente fraco",
     "maior_forte_rel": "Maior componente forte",
     "alcance_rel": "Alcance topológico",
+    "maior_componente": "Maior componente",
+    "maior_componente_rel": "Maior componente",
 }
 
 GRUPOS_EXP3 = {  # coluna "grupo" da tabela exp3_substancias -> (rótulo, cor, marcador)
@@ -106,10 +150,22 @@ GRUPOS_EXP3 = {  # coluna "grupo" da tabela exp3_substancias -> (rótulo, cor, m
     "baixo_grau": ("Controle: baixo grau", CORES[2], "^"),
 }
 
-RANKINGS_EXP2 = {  # Exp 2: nome do ranking -> rótulo
+RANKINGS_EXP2 = {  # Exp 2: nome do ranking -> rótulo (a ordem é a das figuras)
     "dano": "Dano na cascata",
+    "dano_forte": "Queda do núcleo",
+    "dano_fraco": "Queda do componente fraco",
+    "dano_eficiencia": "Queda da eficiência",
     "grau": "Grau",
     "betweenness": "Betweenness",
+    "harmonica": "Harmônica",
+    "pagerank": "PageRank",
+    "dano_meio_minimo": "Cascata (meio mínimo)",
+    "reacoes_perdidas": "Reações perdidas",
+}
+
+SUBCONJUNTOS_EXP2 = {  # Exp 2: coluna subconjunto -> (rótulo, cor)
+    "todos": ("Todos os genes da rede", CORES[0]),
+    "perde_reacao": ("Só os que perdem alguma reação", CORES[1]),
 }
 
 ROTULO_FRACAO_REMOVIDA = "Fração de nós removidos"
@@ -133,13 +189,18 @@ def _eixos_lineares_com_virgula(ax: plt.Axes, x: bool = True, y: bool = True) ->
         ax.yaxis.set_major_formatter(FuncFormatter(_virgula))
 
 
+_REFERENCIAS = {"estrategia": ESTRATEGIAS, "rede": REDES, "modelo": MODELOS}
+_ROTULOS_CURTOS = {"rede": ROTULOS_CURTOS_REDES, "modelo": ROTULOS_CURTOS_MODELOS}
+
+
 def _cor_e_estilo(grupo: str, valor: str, posicao: int) -> tuple[str, str, str]:
-    """(rótulo, cor, estilo de linha) de uma série; cai na ordem de CORES se o valor for novo."""
-    if grupo == "estrategia" and valor in ESTRATEGIAS:
-        rotulo, cor, tracejada = ESTRATEGIAS[valor]
-        return rotulo, cor, "--" if tracejada else "-"
-    if grupo == "rede" and valor in REDES:
-        return REDES[valor]
+    """(rótulo, cor, estilo de linha) de uma série; cai na ordem de CORES se o valor for novo.
+
+    grupo: "estrategia" (ESTRATEGIAS), "rede" (REDES, Exp 4) ou "modelo" (MODELOS, modelos clássicos).
+    """
+    referencia = _REFERENCIAS.get(grupo, {})
+    if valor in referencia:
+        return referencia[valor]
     return str(valor), CORES[posicao % len(CORES)], "-"
 
 
@@ -281,7 +342,7 @@ def _desenhar_ccdf(ax: plt.Axes, ccdf: pd.DataFrame, ajuste: dict | None, rotulo
 # Exp 1 e 4
 # ---------------------------------------------------------------------------
 def _desenhar_curvas(ax: plt.Axes, curvas: pd.DataFrame, metrica: str, grupo: str) -> None:
-    ordem = _ordenar(curvas[grupo], ESTRATEGIAS if grupo == "estrategia" else REDES)
+    ordem = _ordenar(curvas[grupo], _REFERENCIAS.get(grupo, {}))
     for i, valor in enumerate(ordem):
         curva = curvas[curvas[grupo] == valor].sort_values("fracao_removida")
         curva = curva.dropna(subset=[metrica])  # a eficiência só existe nos marcos
@@ -353,11 +414,44 @@ def painel_robustez(curvas: pd.DataFrame, metricas: tuple[str, ...] = tuple(METR
     return fig
 
 
-def _desenhar_indices(ax: plt.Axes, indices: pd.DataFrame, coluna: str) -> None:
-    """Barras agrupadas por rede, uma por estratégia; nas redes nulas, média e ±1 dp entre as sorteadas."""
-    redes = _ordenar(indices["rede"], REDES)
+def estatica_vs_adaptativa(curvas: pd.DataFrame, centralidades: list[str],
+                           metrica: str = "maior_fraco", ate: float = 0.25) -> plt.Figure:
+    """Exp 1. Um painel por centralidade: a versão estática x a adaptativa, com a aleatória de referência.
+
+    curvas: a tabela exp1_curvas (todas as estratégias). Em cada painel, a
+    aleatória (com a faixa de ±1 dp), a estática (linha contínua) e a adaptativa
+    (com o traço dela), na cor de cada estratégia. ate: fim do eixo x (os ataques
+    derrubam a rede nos primeiros nós). Legenda em cada painel.
+    """
+    estilo()
+    colunas = 2 if len(centralidades) > 1 else 1
+    linhas_painel = math.ceil(len(centralidades) / colunas)
+    fig, eixos = plt.subplots(linhas_painel, colunas, figsize=(LARGURA, 2.5 * linhas_painel + 0.4),
+                              sharex=True, sharey=True, squeeze=False)
+    for ax, centralidade, letra in zip(eixos.flat, centralidades, "abcdefgh"):
+        nomes = ["aleatoria", centralidade, f"{centralidade}_adaptativo"]
+        _desenhar_curvas(ax, curvas[curvas["estrategia"].isin(nomes)], metrica, "estrategia")
+        ax.set_xlim(0, ate)
+        ax.set_title(f"({letra}) {ESTRATEGIAS.get(centralidade, (centralidade,))[0]}")
+        ax.legend(loc="upper right", fontsize=7.5)
+    for ax in eixos.flat[len(centralidades):]:
+        ax.set_visible(False)
+    for ax in eixos[-1]:
+        ax.set_xlabel(ROTULO_FRACAO_REMOVIDA)
+    for ax in eixos[:, 0]:
+        ax.set_ylabel(METRICAS_ROBUSTEZ.get(metrica, metrica))
+    fig.tight_layout()
+    return fig
+
+
+def _desenhar_indices(ax: plt.Axes, indices: pd.DataFrame, coluna: str, grupo: str = "rede") -> None:
+    """Barras agrupadas por rede, uma por estratégia; nas redes nulas, média e ±1 dp entre as sorteadas.
+
+    grupo: a coluna das redes ("rede" no Exp 4, "modelo" nos modelos clássicos).
+    """
+    redes = _ordenar(indices[grupo], _REFERENCIAS.get(grupo, {}))
     estrategias = _ordenar(indices["estrategia"], ESTRATEGIAS)
-    resumo = indices.groupby(["rede", "estrategia"])[coluna].agg(["mean", "std", "count"])
+    resumo = indices.groupby([grupo, "estrategia"])[coluna].agg(["mean", "std", "count"])
     largura = 0.8 / max(len(estrategias), 1)
     x = np.arange(len(redes))
     for j, estrategia in enumerate(estrategias):
@@ -371,7 +465,8 @@ def _desenhar_indices(ax: plt.Axes, indices: pd.DataFrame, coluna: str) -> None:
         if com_erro:
             ax.errorbar(posicoes[com_erro], np.array(medias)[com_erro], yerr=np.array(erros)[com_erro],
                         fmt="none", ecolor=TINTA_SECUNDARIA, elinewidth=0.8, capsize=2, zorder=4)
-    ax.set_xticks(x, [ROTULOS_CURTOS_REDES.get(r, _cor_e_estilo("rede", r, i)[0]) for i, r in enumerate(redes)])
+    curtos = _ROTULOS_CURTOS.get(grupo, {})
+    ax.set_xticks(x, [curtos.get(r, _cor_e_estilo(grupo, r, i)[0]) for i, r in enumerate(redes)])
     ax.grid(axis="x", visible=False)
     ax.set_ylabel(ROTULOS_INDICES.get(coluna, coluna.replace("_", " ")))
     ax.set_ylim(bottom=0)
@@ -395,27 +490,31 @@ def indices_por_rede(indices: pd.DataFrame, coluna: str = "R_fraco") -> plt.Figu
 
 
 def painel_indices_redes(indices: pd.DataFrame,
-                         colunas: tuple[str, ...] = ("R_fraco_norm", "metade_fraco")) -> plt.Figure:
+                         colunas: tuple[str, ...] = ("R_fraco_norm", "metade_fraco"),
+                         grupo: str = "rede") -> plt.Figure:
     """Exp 4. Um painel por índice, um embaixo do outro, com as mesmas redes no eixo x.
 
     Mesmo desenho de indices_por_rede; a legenda das estratégias fica uma vez só, em cima.
+    grupo: "rede" (organismos e nulos) ou "modelo" (modelos clássicos, colunas R_norm e metade).
     """
     estilo()
     fig, eixos = plt.subplots(len(colunas), 1, figsize=(LARGURA, 2.3 * len(colunas) + 0.6),
                               sharex=True, squeeze=False)
     for ax, coluna, letra in zip(eixos[:, 0], colunas, "abcdef"):
-        _desenhar_indices(ax, indices, coluna)
+        _desenhar_indices(ax, indices, coluna, grupo)
         ax.set_title(f"({letra})")
     handles, labels = eixos[0, 0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="upper center", ncol=len(labels), bbox_to_anchor=(0.5, 1.0))
-    fig.tight_layout(rect=(0, 0, 1, 0.95))
+    ncol = len(labels) if len(labels) <= 4 else math.ceil(len(labels) / 2)
+    fig.legend(handles, labels, loc="upper center", ncol=ncol, bbox_to_anchor=(0.5, 1.0))
+    fig.tight_layout(rect=(0, 0, 1, 0.95 if len(labels) <= 4 else 0.92))
     return fig
 
 
 def painel_curvas_redes(curvas: pd.DataFrame,
                         metricas: tuple[str, ...] = ("maior_fraco_rel", "maior_forte_rel"),
                         estrategias: tuple[str, ...] = ("aleatoria", "grau_adaptativo"),
-                        limites_x: dict[str, float] | None = None) -> plt.Figure:
+                        limites_x: dict[str, float] | None = None,
+                        grupo: str = "rede") -> plt.Figure:
     """Exp 4. Grade de curvas: uma linha por métrica, uma coluna por estratégia, uma curva por rede.
 
     curvas: a tabela exp4_curvas (coluna "rede"), já filtrada nas redes que
@@ -423,6 +522,7 @@ def painel_curvas_redes(curvas: pd.DataFrame,
     repetições na aleatória dos organismos e entre as redes sorteadas nos
     modelos nulos. limites_x: estratégia -> fim do eixo x (os ataques
     derrubam a rede nos primeiros nós; o padrão corta o grau adaptativo em 0,4).
+    grupo: "rede" ou "modelo" (a tabela exp4_classicos_curvas).
     """
     estilo()
     limites_x = {"grau_adaptativo": 0.4, "grau": 0.4} if limites_x is None else limites_x
@@ -432,7 +532,7 @@ def painel_curvas_redes(curvas: pd.DataFrame,
     for i, metrica in enumerate(metricas):
         for j, estrategia in enumerate(estrategias):
             ax = eixos[i, j]
-            _desenhar_curvas(ax, curvas[curvas["estrategia"] == estrategia], metrica, "rede")
+            _desenhar_curvas(ax, curvas[curvas["estrategia"] == estrategia], metrica, grupo)
             ax.set_xlim(0, limites_x.get(estrategia, 1))
             ax.set_title(f"({next(letras)}) {ESTRATEGIAS.get(estrategia, (estrategia,))[0]}")
             if j == 0:
@@ -440,30 +540,51 @@ def painel_curvas_redes(curvas: pd.DataFrame,
             if i == len(metricas) - 1:
                 ax.set_xlabel(ROTULO_FRACAO_REMOVIDA)
     handles, labels = eixos[0, 0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", ncol=min(len(labels), 4), bbox_to_anchor=(0.5, -0.01))
-    fig.tight_layout(rect=(0, 0.06, 1, 1))
+    ncol = min(len(labels), 4) if len(labels) <= 4 else math.ceil(len(labels) / 2)
+    linhas_legenda = math.ceil(len(labels) / max(ncol, 1))
+    fig.legend(handles, labels, loc="lower center", ncol=ncol, bbox_to_anchor=(0.5, -0.01),
+               fontsize=8 if linhas_legenda == 1 else 7.5)
+    fig.tight_layout(rect=(0, 0.06 + 0.035 * max(linhas_legenda - 1, 0), 1, 1))
     return fig
 
 
-def ccdf_por_rede(ccdf: pd.DataFrame) -> plt.Figure:
+def ccdf_por_rede(ccdf: pd.DataFrame, grupo: str = "rede") -> plt.Figure:
     """Exp 4. CCDF do grau total de cada rede (colunas rede, grau, n_nos, ccdf_empirica), em log-log.
 
     Só os graus observados, como no Exp 0. Mostra se a cauda pesada da E. coli
-    se repete nos outros organismos (Jeong et al., 2000).
+    se repete nos outros organismos (Jeong et al., 2000). grupo="modelo": a
+    tabela exp4_classicos_ccdf (a E. coli não dirigida e os modelos clássicos,
+    com os graus das redes sorteadas de cada modelo juntos). O modelo de
+    configuração tem por construção os mesmos graus da rede real, e a curva dele
+    ficaria escondida embaixo da dela: não é desenhado, e o rótulo da rede real
+    diz isso. Graus 0 (nós isolados dos modelos) não vão ao log-log.
     """
     estilo()
-    fig, ax = plt.subplots(figsize=(LARGURA * 0.62, 3.0))
-    marcadores = itertools.cycle("os^Dv")
-    for i, rede in enumerate(_ordenar(ccdf["rede"], REDES)):
-        parte = ccdf[(ccdf["rede"] == rede) & (ccdf["n_nos"] > 0) & (ccdf["ccdf_empirica"] > 0)]
-        rotulo, cor, estilo_linha = _cor_e_estilo("rede", rede, i)
+    classicos = grupo == "modelo"
+    fig, ax = plt.subplots(figsize=(LARGURA * (0.8 if classicos else 0.62), 3.3 if classicos else 3.0))
+    marcadores = itertools.cycle("os^Dv<>")
+    redes = _ordenar(ccdf[grupo], _REFERENCIAS.get(grupo, {}))
+    com_configuracao = classicos and "configuracao" in redes
+    if classicos:  # a rede real (o que não é modelo) primeiro, com a cor da E. coli
+        redes = [r for r in redes if r not in config.MODELOS_CLASSICOS] + [r for r in redes if r in config.MODELOS_CLASSICOS]
+    for i, rede in enumerate(redes):
+        if com_configuracao and rede == "configuracao":
+            continue
+        parte = ccdf[(ccdf[grupo] == rede) & (ccdf["n_nos"] > 0) & (ccdf["ccdf_empirica"] > 0) & (ccdf["grau"] > 0)]
+        rotulo, cor, estilo_linha = _cor_e_estilo(grupo, rede, i)
+        if com_configuracao and rede not in config.MODELOS_CLASSICOS:
+            rotulo += " (= configuração)"
         ax.plot(parte["grau"], parte["ccdf_empirica"], color=cor, linestyle=estilo_linha, linewidth=1,
-                marker=next(marcadores), markeredgecolor="white", markeredgewidth=0.5, label=rotulo)
+                marker=next(marcadores), markersize=3.5 if classicos else 4.5,
+                markeredgecolor="white", markeredgewidth=0.5, label=rotulo)
     ax.set_xscale("log")
     ax.set_yscale("log")
-    ax.set_xlabel("Grau total k")
+    ax.set_xlabel("Grau k" if classicos else "Grau total k")
     ax.set_ylabel("P(K ≥ k)")
-    ax.legend(loc="lower left")
+    if classicos:
+        ax.legend(loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=7.5)
+    else:
+        ax.legend(loc="lower left")
     fig.tight_layout()
     return fig
 
@@ -496,6 +617,103 @@ def curvas_roc(rocs: dict[str, pd.DataFrame], aucs: dict[str, float]) -> plt.Fig
     return fig
 
 
+_EIXOS_DISPERSAO_EXP2 = {  # medida estrutural no eixo x -> rótulo
+    "dano_forte": "Metabólitos que deixam o núcleo\n(queda do maior componente forte)",
+    "dano_eficiencia": "Queda relativa da eficiência global",
+}
+
+
+def dispersao_dano_genes(genes: pd.DataFrame, rotulos: dict[str, list[str]] | None = None,
+                         correlacao: pd.DataFrame | None = None,
+                         estruturais: tuple[str, ...] = ("dano_forte", "dano_eficiencia")) -> plt.Figure:
+    """Exp 2 (b). Dano estrutural (eixo x) x dano funcional (a cascata, eixo y) de cada gene.
+
+    genes: a tabela exp2_genes (colunas essencial, dano e as de estruturais). Um
+    painel por medida estrutural; os genes não essenciais em cinza, ao fundo, e os
+    essenciais da Keio destacados. rotulos: texto -> símbolos dos genes; o texto vai
+    ao lado do ponto médio desses genes (ex.: "aroA–aroD" para os quatro da via do
+    chiquimato, que caem quase no mesmo lugar). correlacao: a tabela
+    exp2_correlacoes; o Spearman de cada medida com a cascata, nos genes que
+    perdem reação, vai numa nota embaixo da legenda.
+    """
+    estilo()
+    fig, eixos = plt.subplots(1, len(estruturais), figsize=(LARGURA, 3.5), squeeze=False)
+    essencial = genes["essencial"].astype(bool)
+    por_simbolo = genes.set_index("simbolo")
+    rho = {}
+    if correlacao is not None:
+        perde = correlacao[correlacao["subconjunto"] == "perde_reacao"]
+        rho = {linha["medida_y"]: linha["spearman"] for linha in perde.to_dict("records") if linha["medida_x"] == "dano"}
+    for ax, coluna, letra in zip(eixos[0], estruturais, "abcd"):
+        ax.scatter(genes.loc[~essencial, coluna], genes.loc[~essencial, "dano"], s=12, color=CINZA, alpha=0.45,
+                   linewidths=0, label="Não essencial", zorder=2)
+        ax.scatter(genes.loc[essencial, coluna], genes.loc[essencial, "dano"], s=22, color=CORES[1],
+                   edgecolors="white", linewidths=0.6, label="Essencial (Keio)", zorder=3)
+        ax.set_xlabel(_EIXOS_DISPERSAO_EXP2.get(coluna, coluna))
+        ax.set_title(f"({letra}) {RANKINGS_EXP2.get(coluna, coluna)}")
+        ax.set_xlim(left=0)
+        ax.set_ylim(bottom=0)
+        ax.margins(x=0.06, y=0.06)
+        _eixos_lineares_com_virgula(ax)
+    eixos[0, 0].set_ylabel("Metabólitos que deixam de ser\nproduzidos (cascata)")
+    handles, labels = eixos[0, 0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=2, bbox_to_anchor=(0.5, 0.035))
+    nota = " · ".join(f"{RANKINGS_EXP2.get(c, c).lower()} {num(rho[c])}" for c in estruturais if c in rho)
+    if nota:
+        fig.text(0.5, 0.0, f"Spearman com a cascata nos genes que perdem alguma reação: {nota}",
+                 ha="center", va="bottom", fontsize=7.5, color=TINTA_SECUNDARIA)
+    fig.tight_layout(rect=(0, 0.1, 1, 1))
+    for ax, coluna in zip(eixos[0], estruturais):
+        pontos = []
+        for texto, simbolos in (rotulos or {}).items():
+            presentes = [s for s in simbolos if s in por_simbolo.index]
+            if presentes:
+                pontos.append((float(por_simbolo.loc[presentes, coluna].mean()),
+                               float(por_simbolo.loc[presentes, "dano"].mean()), texto))
+        _rotular_sem_sobrepor(ax, pontos)
+    return fig
+
+
+def barras_auc(avaliacao: pd.DataFrame, rankings: list[str] | None = None) -> plt.Figure:
+    """Exp 2 (c). AUC de cada ranking contra a Keio, com o intervalo de 95%, nos dois subconjuntos.
+
+    avaliacao: a tabela exp2_rankings (colunas subconjunto, ranking, auc,
+    auc_ic_inf, auc_ic_sup). Barras horizontais, uma por subconjunto em cada
+    ranking (todos os genes x só os que perdem alguma reação: a checagem das
+    isoenzimas), e a linha do acaso em 0,5. rankings: quais e em que ordem (de
+    cima para baixo); padrão: os da tabela, na ordem de RANKINGS_EXP2.
+    """
+    estilo()
+    rankings = rankings or _ordenar(avaliacao["ranking"], RANKINGS_EXP2)
+    subconjuntos = _ordenar(avaliacao["subconjunto"], SUBCONJUNTOS_EXP2)
+    tabela = avaliacao.set_index(["subconjunto", "ranking"])
+    fig, ax = plt.subplots(figsize=(LARGURA * 0.8, 0.42 * len(rankings) + 1.1))
+    y = np.arange(len(rankings))[::-1]
+    altura = 0.8 / max(len(subconjuntos), 1)
+    for j, subconjunto in enumerate(subconjuntos):
+        rotulo, cor = SUBCONJUNTOS_EXP2.get(subconjunto, (subconjunto, CORES[j % len(CORES)]))
+        linhas = [tabela.loc[(subconjunto, r)] if (subconjunto, r) in tabela.index else None for r in rankings]
+        valores = np.array([l["auc"] if l is not None else np.nan for l in linhas])
+        inferior = np.array([l["auc"] - l["auc_ic_inf"] if l is not None else 0 for l in linhas])
+        superior = np.array([l["auc_ic_sup"] - l["auc"] if l is not None else 0 for l in linhas])
+        posicoes = y + 0.4 - altura * (j + 0.5)
+        ax.barh(posicoes, valores, height=altura * 0.86, color=cor, label=rotulo, zorder=3)
+        ax.errorbar(valores, posicoes, xerr=[inferior, superior], fmt="none", ecolor=TINTA_SECUNDARIA,
+                    elinewidth=0.8, capsize=2, zorder=4)
+    ax.axvline(0.5, color=CINZA, linewidth=1, zorder=2)
+    ax.text(0.5, 1.0, " acaso", transform=ax.get_xaxis_transform(), ha="left", va="bottom",
+            fontsize=7.5, color=TINTA_SECUNDARIA)
+    ax.set_yticks(y, [RANKINGS_EXP2.get(r, r) for r in rankings])
+    ax.grid(axis="y", visible=False)
+    ax.set_xlim(0, 1)
+    ax.set_xlabel("AUC contra a Keio (com IC de 95%)")
+    _eixos_lineares_com_virgula(ax, y=False)
+    handles, labels = ax.get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=2, bbox_to_anchor=(0.5, 0.0))
+    fig.tight_layout(rect=(0, 0.07, 1, 1))
+    return fig
+
+
 # ---------------------------------------------------------------------------
 # Exp 3
 # ---------------------------------------------------------------------------
@@ -503,13 +721,17 @@ _POSICOES_ROTULO = ((5, 3, "left"), (5, -10, "left"), (-5, 3, "right"), (-5, -10
                     (0, 9, "center"), (0, -14, "center"))  # deslocamento em pontos e alinhamento
 
 
-def _rotular_sem_sobrepor(ax: plt.Axes, pontos: list[tuple[float, float, str]]) -> None:
+def _rotular_sem_sobrepor(ax: plt.Axes, pontos: list[tuple[float, float, str]],
+                          obstaculos: np.ndarray | None = None) -> None:
     """Escreve cada nome ao lado do seu ponto sem que os nomes se cruzem ou saiam do gráfico.
 
     Mede a caixa de cada nome em cada posição de _POSICOES_ROTULO e escolhe a
-    combinação com menos sobreposições, depois menos nomes para fora, depois as
-    posições mais à frente na lista. Com até 8 nomes testa todas as
-    combinações; acima disso, escolhe nome a nome.
+    combinação com menos sobreposições, depois menos nomes para fora, depois
+    menos pontos de obstaculos cobertos (coordenadas de dados, uma linha por
+    ponto; ex.: os outros pontos de uma dispersão), depois as posições mais à
+    frente na lista. Com até 6 nomes testa todas as combinações; acima disso
+    (6^7 combinações já levam vários segundos), escolhe nome a nome e depois
+    revê cada escolha com as outras fixas, até nada melhorar (no máximo 5 rodadas).
     """
     if not pontos:
         return
@@ -517,11 +739,19 @@ def _rotular_sem_sobrepor(ax: plt.Axes, pontos: list[tuple[float, float, str]]) 
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
     area = ax.get_window_extent(renderer)
+    tela = (ax.transData.transform(np.asarray(obstaculos, dtype=float))
+            if obstaculos is not None and len(obstaculos) else np.empty((0, 2)))
+
+    def cobre(caixa) -> int:
+        dentro = ((tela[:, 0] >= caixa.x0) & (tela[:, 0] <= caixa.x1)
+                  & (tela[:, 1] >= caixa.y0) & (tela[:, 1] <= caixa.y1))
+        return int(dentro.sum())
 
     def anotar(x, y, texto, posicao):
         dx, dy, alinhamento = _POSICOES_ROTULO[posicao]
         return ax.annotate(texto, (x, y), xytext=(dx, dy), textcoords="offset points",
-                           ha=alinhamento, fontsize=7.5, color=TINTA_SECUNDARIA, zorder=4)
+                           ha=alinhamento, fontsize=7.5, color=TINTA_SECUNDARIA, zorder=4,
+                           path_effects=[patheffects.withStroke(linewidth=2.4, foreground="white")])
 
     caixas = []  # caixas[i][j]: caixa do nome i na posição j
     for x, y, texto in pontos:
@@ -535,21 +765,29 @@ def _rotular_sem_sobrepor(ax: plt.Axes, pontos: list[tuple[float, float, str]]) 
     def fora(caixa) -> bool:
         return caixa.x0 < area.x0 or caixa.x1 > area.x1 or caixa.y0 < area.y0 or caixa.y1 > area.y1
 
-    def custo(escolha) -> tuple[int, int, int]:
+    cobertos = [[cobre(caixa) for caixa in linha] for linha in caixas]
+
+    def custo(escolha) -> tuple[int, int, int, int]:
         escolhidas = [caixas[i][j] for i, j in enumerate(escolha)]
         cruzam = sum(a.overlaps(b) for k, a in enumerate(escolhidas) for b in escolhidas[k + 1:])
-        return cruzam, sum(map(fora, escolhidas)), sum(escolha)
+        return cruzam, sum(map(fora, escolhidas)), sum(cobertos[i][j] for i, j in enumerate(escolha)), sum(escolha)
 
     opcoes = range(len(_POSICOES_ROTULO))
-    if len(pontos) <= 8:
+    if len(pontos) <= 6:
         melhor = min(itertools.product(opcoes, repeat=len(pontos)), key=custo)
     else:
         melhor = []
         for i in range(len(pontos)):
             def custo_do_nome(j, i=i):
                 cruzam = sum(caixas[i][j].overlaps(caixas[k][melhor[k]]) for k in range(i))
-                return cruzam, fora(caixas[i][j]), j
+                return cruzam, fora(caixas[i][j]), cobertos[i][j], j
             melhor.append(min(opcoes, key=custo_do_nome))
+        for _ in range(5):  # revê cada nome com os outros fixos
+            antes = list(melhor)
+            for i in range(len(pontos)):
+                melhor[i] = min(opcoes, key=lambda j, i=i: custo([*melhor[:i], j, *melhor[i + 1:]]))
+            if melhor == antes:
+                break
     for (x, y, texto), posicao in zip(pontos, melhor):
         anotar(x, y, texto, posicao)
 
@@ -582,6 +820,73 @@ def avalanche_vs_grau(avalanches: pd.DataFrame, todos: pd.DataFrame | None = Non
     fig.tight_layout()
     escolhidas = avalanches[avalanches["grupo"] == "substancia"]
     _rotular_sem_sobrepor(ax, list(zip(escolhidas["grau"], escolhidas["avalanche"], escolhidas["nome"])))
+    return fig
+
+
+# Rampa sequencial azul da paleta (passos 250 a 700): o passo mais claro ainda aparece no fundo branco.
+AZUL_SEQUENCIAL = ("#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6", "#256abf",
+                   "#1c5cab", "#184f95", "#104281", "#0d366b")
+
+
+def dano_vs_avalanche(dano: pd.DataFrame, exemplos: pd.DataFrame | None = None,
+                      correlacoes: pd.DataFrame | None = None, separacao_rotulos: float = 0.05) -> plt.Figure:
+    """Exp 3. Dano estrutural (queda do núcleo) x dano funcional (avalanche) de cada metabólito.
+
+    dano: a tabela exp3_dano (colunas metabolito, grau, dano_forte, avalanche);
+    só entram os metabólitos produzidos (com avalanche). A cor é o grau, numa
+    rampa sequencial de um tom só em escala log (a distribuição de graus tem
+    cauda pesada); os de grau maior ficam por cima. exemplos: a tabela
+    exp3_exemplos (metabolito, nome_curto): esses levam o nome ao lado do ponto
+    (os casos da discussão e os mais discordantes entre as duas medidas), na
+    ordem da tabela; um nome cujo ponto fica a menos de separacao_rotulos (em
+    fração dos eixos) de um ponto já nomeado fica de fora, para os nomes não se
+    amontoarem (continua na tabela). correlacoes: a tabela exp3_correlacoes; o
+    Spearman do dano estrutural com a avalanche vai numa nota embaixo do gráfico.
+    """
+    from matplotlib.colors import LinearSegmentedColormap, LogNorm
+
+    estilo()
+    pontos = dano.dropna(subset=["avalanche"]).sort_values("grau")
+    fig, ax = plt.subplots(figsize=(LARGURA * 0.85, 3.9))
+    mapa = LinearSegmentedColormap.from_list("azul", AZUL_SEQUENCIAL)
+    graus = pontos["grau"].clip(lower=1)
+    maior_grau = max(float(graus.max()), 2.0)
+    dispersao = ax.scatter(pontos["dano_forte"], pontos["avalanche"], c=graus, cmap=mapa,
+                           norm=LogNorm(vmin=1, vmax=maior_grau), s=16,
+                           edgecolors="white", linewidths=0.4, zorder=3)
+    barra = fig.colorbar(dispersao, ax=ax, pad=0.02, fraction=0.05)
+    barra.set_label("Grau total (escala log)")
+    barra.outline.set_visible(False)
+    marcas = [v for v in (1, 2, 5, 10, 20, 50, 100) if v <= maior_grau]
+    barra.set_ticks(marcas, labels=[str(v) for v in marcas])
+    barra.ax.minorticks_off()
+    ax.set_xlabel("Metabólitos que deixam o núcleo (queda do maior componente forte)")
+    ax.set_ylabel("Tamanho da avalanche\n(metabólitos que deixam de ser produzidos)")
+    ax.set_xlim(left=0)
+    ax.set_ylim(bottom=0)
+    ax.margins(x=0.06, y=0.06)
+    _eixos_lineares_com_virgula(ax)
+    if correlacoes is not None and len(correlacoes):
+        rho = correlacoes.set_index(["medida", "outra"])["spearman"]
+        partes = [f"{texto} {num(rho[(medida, 'avalanche')])}"
+                  for medida, texto in (("dano_forte", "queda do núcleo"), ("dano_eficiencia", "queda da eficiência"))
+                  if (medida, "avalanche") in rho.index]
+        if partes:
+            fig.text(0.02, 0.0, "Spearman com a avalanche: " + " · ".join(partes), ha="left", va="bottom",
+                     fontsize=7.5, color=TINTA_SECUNDARIA)
+    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    if exemplos is not None and len(exemplos):
+        por_codigo = pontos.set_index("metabolito")
+        escala_x = max(float(pontos["dano_forte"].max()), 1.0)
+        escala_y = max(float(pontos["avalanche"].max()), 1.0)
+        rotulos: list[tuple[float, float, str]] = []
+        for m, nome in zip(exemplos["metabolito"], exemplos["nome_curto"]):
+            if m not in por_codigo.index:
+                continue
+            x, y = float(por_codigo.loc[m, "dano_forte"]), float(por_codigo.loc[m, "avalanche"])
+            if all(math.hypot((x - a) / escala_x, (y - b) / escala_y) >= separacao_rotulos for a, b, _ in rotulos):
+                rotulos.append((x, y, str(nome)))
+        _rotular_sem_sobrepor(ax, rotulos, pontos[["dano_forte", "avalanche"]].to_numpy())
     return fig
 
 

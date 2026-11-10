@@ -10,6 +10,7 @@ Quatro tipos de teste:
 from __future__ import annotations
 
 import math
+from fractions import Fraction
 
 import networkx as nx
 import numpy as np
@@ -70,7 +71,7 @@ def test_erros_de_uso():
     with pytest.raises(ValueError):
         robustez.ordem_inicial(G, "grau_adaptativo")  # não é estática
     with pytest.raises(ValueError):
-        robustez.simular_remocao(G, "pagerank")
+        robustez.simular_remocao(G, "autovetor")  # não existe (ver o docstring de robustez.py)
     with pytest.raises(ValueError):
         robustez.simular_remocao(G, "betweenness_adaptativo", passo_betweenness=0)
 
@@ -79,13 +80,13 @@ def test_erros_de_uso():
 # 2. Curva feita à mão
 # ---------------------------------------------------------------------------
 def test_curva_grau_feita_a_mao():
-    """Ordem h, x1, x2, x3, x4, x5.
+    """Ordem h, x1, x2, x3, x4, x5 (sem proteger a fonte h).
 
     Passo 0: fraco {h,x1,x2,x3}=4, forte {h,x1,x2}=3, alcance a partir de h = 4.
     Sem h: sobra só o par x4 -> x5 (fraco 2, forte 1) até x4 sair.
     """
     curva = robustez.simular_remocao(estrela_com_par_solto(), "grau", nutrientes=["h"],
-                                     medir_eficiencia=False)
+                                     medir_eficiencia=False, proteger_fontes=False)
     assert list(curva["n_removidos"]) == list(range(7))
     assert np.allclose(curva["fracao_removida"], np.arange(7) / 6)
     assert np.allclose(curva["maior_fraco"] * 6, [4, 2, 2, 2, 2, 1, 0])
@@ -230,7 +231,8 @@ def test_comparar_estrategias_formato_e_reprodutibilidade():
     assert list(curvas.columns) == ["estrategia", *robustez.COLUNAS, *robustez.COLUNAS_DP]
     assert list(indices.columns) == list(robustez.COLUNAS_INDICES)
     assert list(indices["estrategia"]) == list(robustez.ESTATICAS[:1]) + [
-        "grau", "grau_adaptativo", "betweenness", "betweenness_adaptativo"]
+        "grau", "grau_adaptativo", "betweenness", "betweenness_adaptativo",
+        "harmonica", "harmonica_adaptativo", "pagerank", "pagerank_adaptativo"]
     assert (curvas.groupby("estrategia").size() == G.number_of_nodes() + 1).all()
     for linha in indices.to_dict("records"):
         curva = curvas[curvas["estrategia"] == linha["estrategia"]]
@@ -246,9 +248,23 @@ def test_comparar_estrategias_formato_e_reprodutibilidade():
 # ---------------------------------------------------------------------------
 # 4. Implementação ingênua
 # ---------------------------------------------------------------------------
+def _harmonica_exata(H: nx.DiGraph) -> dict:
+    """Soma de 1/d(v, u) com frações exatas: empates exatos e nada depende da ordem da soma."""
+    valores = {no: Fraction(0) for no in H}
+    for _, distancias in nx.all_pairs_shortest_path_length(H):
+        for destino, d in distancias.items():
+            if d > 0:
+                valores[destino] += Fraction(1, d)
+    return valores
+
+
 def _ranking_ingenuo(H: nx.DiGraph, criterio: str) -> list:
     if criterio == "grau":
         valores = {no: H.in_degree(no) + H.out_degree(no) for no in H}
+    elif criterio == "harmonica":
+        valores = _harmonica_exata(H)
+    elif criterio == "pagerank":
+        valores = {no: round(v, 12) for no, v in nx.pagerank(H).items()} if len(H) else {}
     else:
         valores = {no: round(v, 12) for no, v in nx.betweenness_centrality(H).items()}
     return sorted(H, key=lambda no: (-valores[no], no))
@@ -271,19 +287,26 @@ def _medidas_ingenuas(G: nx.DiGraph, restantes: set, n: int, nutrientes: list, e
 
 
 def simulacao_ingenua(G: nx.DiGraph, estrategia: str, nutrientes: list, passo_eficiencia: float,
-                      passo_betweenness: int, rng=None, ate: int | None = None) -> pd.DataFrame:
+                      passo_betweenness: int, rng=None, ate: int | None = None,
+                      proteger_fontes: bool = True) -> pd.DataFrame:
     """Refaz cada passo do zero a partir de G, sem copiar nem remover nós de um grafo.
 
     ate: para depois de tantas remoções (o verificar_cascata_robustez usa na
     rede real, onde a versão adaptativa da betweenness feita assim é lenta).
+    proteger_fontes: como em robustez.simular_remocao (o mesmo padrão), os
+    nutrientes presentes em G só saem quando não sobra mais nenhum outro nó.
     """
     n = G.number_of_nodes()
     restantes = set(G)
+    protegidos = {f for f in nutrientes if f in G} if proteger_fontes else set()
+    criterio = estrategia.removesuffix("_adaptativo")
     if estrategia == "aleatoria":
         nos = sorted(G)
         ordem = [nos[i] for i in rng.permutation(n)]
-    elif estrategia in ("grau", "betweenness"):
+    elif estrategia == criterio:
         ordem = _ranking_ingenuo(G, estrategia)
+    if estrategia == criterio:  # estáticas: os protegidos vão para o fim, sem mudar a ordem dos outros
+        ordem = [no for no in ordem if no not in protegidos] + [no for no in ordem if no in protegidos]
     multiplos = range(math.floor(1 / passo_eficiencia + 1e-9) + 1)
     marcos = {min(n, math.ceil(round(m * passo_eficiencia * n, 9))) for m in multiplos}
     linhas = [{"n_removidos": 0, "fracao_removida": 0.0,
@@ -291,11 +314,12 @@ def simulacao_ingenua(G: nx.DiGraph, estrategia: str, nutrientes: list, passo_ef
     fila = []
     for k in range(1, (n if ate is None else min(n, ate)) + 1):
         H = G.subgraph(restantes)
+        livres = (restantes - protegidos) or restantes
         if estrategia == "grau_adaptativo":
-            no = _ranking_ingenuo(H, "grau")[0]
-        elif estrategia == "betweenness_adaptativo":
+            no = [m for m in _ranking_ingenuo(H, "grau") if m in livres][0]
+        elif estrategia != criterio:
             if not fila:
-                fila = _ranking_ingenuo(H, "betweenness")[:passo_betweenness]
+                fila = [m for m in _ranking_ingenuo(H, criterio) if m in livres][:passo_betweenness]
             no = fila.pop(0)
         else:
             no = ordem[k - 1]
@@ -333,3 +357,108 @@ def test_betweenness_adaptativo_nos_extremos():
     esperada = simulacao_ingenua(G, "betweenness_adaptativo", [], 1.0, 1)
     pd.testing.assert_frame_equal(a_cada_uma[["n_removidos", "maior_fraco", "maior_forte"]],
                                   esperada[["n_removidos", "maior_fraco", "maior_forte"]], check_dtype=False)
+
+
+# ---------------------------------------------------------------------------
+# 5. Novas centralidades (harmônica e PageRank) e proteção das fontes
+# ---------------------------------------------------------------------------
+NOVAS = ("harmonica", "harmonica_adaptativo", "pagerank", "pagerank_adaptativo")
+
+
+def estrela_de_mao_dupla(folhas=("f1", "f2", "f3", "f4"), inverter: bool = False) -> nx.DiGraph:
+    """c <-> cada folha. Harmônica: c = 4 (todas a 1); cada folha = 1 + 3/2 = 2,5 (empatadas)."""
+    G = nx.DiGraph()
+    nos = ["c", *folhas]
+    G.add_nodes_from(reversed(nos) if inverter else nos)
+    for f in folhas:
+        G.add_edges_from([("c", f), (f, "c")])
+    return G
+
+
+@pytest.mark.parametrize("estrategia", ["harmonica", "pagerank"])
+def test_novas_centralidades_desempatam_pelo_codigo(estrategia):
+    """As folhas empatam; a ordem é a do código e não depende da ordem em que os nós entraram."""
+    esperada = ["c", "f1", "f2", "f3", "f4"]
+    assert robustez.ordem_inicial(estrela_de_mao_dupla(), estrategia) == esperada
+    assert robustez.ordem_inicial(estrela_de_mao_dupla(inverter=True), estrategia) == esperada
+    assert robustez.ordem_de_remocao(estrela_de_mao_dupla(inverter=True), f"{estrategia}_adaptativo") == esperada
+
+
+def test_ordem_harmonica_no_caminho():
+    """a -> b -> c -> d -> e: harmônica de entrada a=0, b=1, c=1,5, d=1,83, e=2,08."""
+    assert robustez.ordem_inicial(caminho_dirigido(), "harmonica") == ["e", "d", "c", "b", "a"]
+
+
+@pytest.mark.parametrize("estrategia", NOVAS)
+def test_novas_centralidades_iguais_a_implementacao_ingenua(estrategia):
+    for semente in range(8):
+        G = grafo_sorteado(300 + semente, n=30, p=0.07)
+        nutrientes = ["n00", "n05"]
+        curva = robustez.simular_remocao(G, estrategia, nutrientes=nutrientes,
+                                         passo_eficiencia=0.1, passo_betweenness=3)
+        esperada = simulacao_ingenua(G, estrategia, nutrientes, 0.1, 3)
+        pd.testing.assert_frame_equal(curva, esperada, check_dtype=False, rtol=1e-12,
+                                      obj=f"{estrategia}, semente={semente}")
+
+
+@pytest.mark.parametrize("estrategia", [*robustez.ESTATICAS, *robustez.ADAPTATIVAS])
+def test_fontes_protegidas_ficam_no_fim_em_todas_as_estrategias(estrategia):
+    """Os nutrientes (aqui o hub e um nó do meio) só saem depois de todos os outros."""
+    for semente in range(5):
+        G = grafo_sorteado(500 + semente, n=25, p=0.12)
+        hub = max(sorted(G), key=G.degree)
+        protegidos = [hub, "n07", "nao_esta_no_grafo"]
+        rng = np.random.default_rng([semente, 0]) if estrategia == "aleatoria" else None
+        ordem = robustez.ordem_de_remocao(G, estrategia, rng, protegidos=protegidos, passo_betweenness=4)
+        assert sorted(ordem) == sorted(G)                       # todos os nós, uma vez cada
+        assert set(ordem[-2:]) == {hub, "n07"}
+        if estrategia in ("grau", "grau_adaptativo"):
+            assert robustez.ordem_de_remocao(G, estrategia)[0] == hub   # sem proteção, o hub sai primeiro
+
+
+def test_protecao_nao_muda_a_ordem_dos_outros_nas_estaticas():
+    G = grafo_sorteado(9, n=25, p=0.12)
+    for estrategia in robustez.ESTATICAS:
+        rng = (lambda: np.random.default_rng([3, 0])) if estrategia == "aleatoria" else (lambda: None)
+        livre = robustez.ordem_de_remocao(G, estrategia, rng())
+        protegida = robustez.ordem_de_remocao(G, estrategia, rng(), protegidos=["n03"])
+        assert protegida == [no for no in livre if no != "n03"] + ["n03"]
+
+
+def test_curva_com_a_fonte_protegida_feita_a_mao():
+    """Com h protegido, a ordem por grau vira x1, x2, x3, x4, x5, h.
+
+    Sem x1: fraco {h,x2,x3}=3, forte {h,x2}=2, alcance {h,x2,x3}=3. Sem x2: o fraco
+    empata em 2 ({h,x3} e {x4,x5}), o forte cai a 1, o alcance a 2. Sem x3: alcance
+    só {h}. O alcance só zera quando a própria fonte sai, no último passo.
+    """
+    curva = robustez.simular_remocao(estrela_com_par_solto(), "grau", nutrientes=["h"], medir_eficiencia=False)
+    assert np.allclose(curva["maior_fraco"] * 6, [4, 3, 2, 2, 1, 1, 0])
+    assert np.allclose(curva["maior_forte"] * 6, [3, 2, 1, 1, 1, 1, 0])
+    assert np.allclose(curva["alcance"] * 6, [4, 3, 2, 1, 1, 1, 0])
+
+
+def test_proximo_adaptativo_com_protegidos():
+    G = estrela_com_par_solto()
+    assert robustez.proximo_adaptativo(G, "grau_adaptativo", protegidos={"h"}) == "x1"
+    assert robustez.proximo_adaptativo(G, "harmonica_adaptativo", protegidos={"h"}) != "h"
+    so_h = nx.DiGraph()
+    so_h.add_node("h")
+    assert robustez.proximo_adaptativo(so_h, "grau_adaptativo", protegidos={"h"}) == "h"  # não sobrou outro
+
+
+def test_r_normalizado_feito_a_mao():
+    """Estrela com par solto: S0_fraco = 4/6, R_fraco = 1/4 -> 3/8; S0_forte = 3/6, R_forte = 5/36 -> 5/18."""
+    _, indices = robustez.comparar_estrategias(estrela_com_par_solto(), ["grau"], medir_eficiencia=False)
+    linha = indices.iloc[0]
+    assert math.isclose(linha["S0_fraco"], 4 / 6) and math.isclose(linha["S0_forte"], 3 / 6)
+    assert math.isclose(linha["R_fraco_norm"], 3 / 8) and math.isclose(linha["R_forte_norm"], 5 / 18)
+
+
+def test_r_normalizado_da_aleatoria():
+    G = grafo_sorteado(6)
+    _, indices = robustez.comparar_estrategias(G, ["aleatoria"], n_rep=4, semente=3, medir_eficiencia=False)
+    linha = indices.iloc[0]
+    s0 = metricas.fracao_maior_componente(G, G.number_of_nodes())
+    assert math.isclose(linha["S0_fraco"], s0)
+    assert math.isclose(linha["R_fraco_norm"], linha["R_fraco"] / s0)

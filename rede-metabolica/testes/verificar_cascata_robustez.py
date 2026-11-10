@@ -221,8 +221,12 @@ def plausibilidade(placar: Placar, B: nx.DiGraph, fontes: set, intactos: set, av
 def robustez_contra_ingenua(placar: Placar, G: nx.DiGraph) -> None:
     print("\n== 5. Robustez contra a implementação ingênua (sem moeda)")
     nutrientes = list(config.NUTRIENTES)
+    # Os nutrientes vão para o fim da ordem nas duas implementações (proteger_fontes, o padrão).
+    # A harmônica ingênua soma frações exatas: na rede inteira é lenta, então a adaptativa só
+    # confere os primeiros passos, como a da betweenness.
     casos = [("aleatoria", None), ("grau", None), ("grau_adaptativo", None),
-             ("betweenness", None), ("betweenness_adaptativo", 100)]
+             ("betweenness", None), ("betweenness_adaptativo", 100),
+             ("harmonica", None), ("harmonica_adaptativo", 30), ("pagerank", None), ("pagerank_adaptativo", 100)]
     for estrategia, ate in casos:
         inicio = time.perf_counter()
         rng = (lambda: np.random.default_rng([config.SEMENTE, 0])) if estrategia == "aleatoria" else (lambda: None)
@@ -277,9 +281,11 @@ def robustez_completa(placar: Placar, G: nx.DiGraph, n_rep: int) -> None:
                   all(metade["aleatoria"] > metade[e] for e in direcionadas),
                   f"aleatória {metade['aleatoria']:.1%}, direcionadas de {metade[direcionadas].min():.1%}"
                   f" a {metade[direcionadas].max():.1%}")
-    placar.avisar("recalcular o grau causa pelo menos o mesmo dano", R["grau_adaptativo"] <= R["grau"] + 1e-12)
-    placar.avisar("recalcular a betweenness causa pelo menos o mesmo dano",
-                  R["betweenness_adaptativo"] <= R["betweenness"] + 1e-12)
+    for centralidade in ("grau", "betweenness", "harmonica", "pagerank"):
+        if centralidade in R.index and f"{centralidade}_adaptativo" in R.index:
+            placar.avisar(f"recalcular a centralidade ({centralidade}) causa pelo menos o mesmo dano",
+                          R[f"{centralidade}_adaptativo"] <= R[centralidade] + 1e-12,
+                          f"estática {R[centralidade]:.4f}, adaptativa {R[f'{centralidade}_adaptativo']:.4f}")
     por_rep = tempos["aleatoria"] / n_rep
     estimativa = sum(tempos.values()) - tempos["aleatoria"] + por_rep * config.N_REPETICOES_ALEATORIAS
     print(f"  [info] {por_rep:.2f} s por repetição aleatória; o Exp 1 com "

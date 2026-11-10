@@ -1,13 +1,22 @@
-"""Experimento 4 — Comparação com outras redes.
+"""Experimento 4 — Comparação com outras redes (P3: a rede se parece com Erdős–Rényi, Watts–Strogatz ou Barabási–Albert?).
 
 Pergunta: os padrões da E. coli se repetem em outros organismos e diferem de
-redes aleatórias que preservam parte da sua estrutura?
+redes aleatórias que preservam parte da sua estrutura? E de qual modelo
+clássico de rede ela fica mais perto?
 
-Duas camadas, com as mesmas funções da base (exp0) e do Exp 1:
+Três camadas, com as mesmas funções da base (exp0) e do Exp 1:
   - outros organismos (config.ORGANISMOS_COMPARACAO), pelo mesmo pipeline de coleta;
-  - modelos nulos da E. coli (modelos_nulos.TIPOS): rewiring recíproco (mesmos
-    graus e pares recíprocos), rewiring (mesmos graus) e Erdős–Rényi (mesmos n e m).
-Nos modelos nulos só rodam métricas e robustez: eles não têm reações.
+  - modelos nulos da E. coli (modelos_nulos.TIPOS), dirigidos: rewiring recíproco
+    (mesmos graus e pares recíprocos), rewiring (mesmos graus) e Erdős–Rényi (mesmos n e m);
+  - modelos clássicos (config.MODELOS_CLASSICOS), na versão NÃO dirigida, porque os
+    modelos clássicos são não dirigidos: configuração, Erdős–Rényi G(N, M), Barabási–Albert
+    misto (m = 1 ou 2) e com m = 1, Newman–Watts (k = 2) e Watts–Strogatz (k = 4), todos
+    com o N e o M da E. coli não dirigida ou o mais perto possível (ver modelos_classicos.py).
+    Robustez pelo maior componente conexo, por percolação reversa (union-find), com as
+    estratégias de config.ESTRATEGIAS_CLASSICOS; caminho médio no maior componente de
+    cada rede; escore z da E. coli contra cada modelo e o sigma de mundo pequeno
+    (C/C_ER)/(L/L_ER), com C_ER e L_ER as médias das redes Erdős–Rényi.
+Nos modelos nulos e clássicos só rodam métricas e robustez: eles não têm reações.
 
 Comparar redes de tamanhos e conectividades diferentes. O índice R de
 Schneider et al. (2011) é a área sob a curva do maior componente em fração dos
@@ -35,15 +44,25 @@ Grava em resultados/tabelas/ (<v> = config.VERSAO_COMPARACAO):
                                       (os _dp dos nulos são entre as redes sorteadas)
        exp4_nulos_redes_<v>.csv       E. coli x cada modelo nulo: média, dp e escore z
        exp4_ccdf_redes_<v>.csv        CCDF do grau total de cada organismo
+       exp4_classicos_descritiva_redes_<v>.csv  modelos clássicos, uma linha por rede: M, grau médio e
+                                      máximo, clustering, maior componente, caminho médio
+                                      (no maior componente), assortatividade, sigma
+       exp4_classicos_indices_redes_<v>.csv     uma linha por rede e estratégia: S0, R, R normalizado, metade
+       exp4_classicos_curvas_redes_<v>.csv      curvas do maior componente; nos modelos, média das redes
+       exp4_classicos_z_redes_<v>.csv           E. coli x cada modelo clássico: média, dp e escore z
+       exp4_classicos_ccdf_redes_<v>.csv        CCDF do grau (não dirigido) da E. coli e de cada modelo
 e em resultados/figuras/:
        exp4_indices_redes_<v>.png     R normalizado e metade, por rede e estratégia
        exp4_curvas_nulos_<v>.png      E. coli x modelos nulos
        exp4_curvas_organismos_<v>.png E. coli x B. subtilis x M. genitalium
        exp4_graus_redes_<v>.png       CCDF do grau dos organismos
+       exp4_classicos_indices_redes_<v>.png  R normalizado e metade, por modelo clássico e estratégia
+       exp4_classicos_curvas_redes_<v>.png   remoção aleatória x ataque por grau, E. coli e modelos
+       exp4_classicos_graus_redes_<v>.png    CCDF dos graus, E. coli e modelos sobrepostos
 
 Uso, na raiz:
     python -m experimentos.exp4_comparacao
-    python -m experimentos.exp4_comparacao --orgs eco bsu --sem-nulos
+    python -m experimentos.exp4_comparacao --orgs eco bsu --sem-nulos --sem-classicos
     python -m experimentos.exp4_comparacao --so-figuras
 """
 from __future__ import annotations
@@ -57,7 +76,7 @@ import numpy as np
 import pandas as pd
 
 import config
-from experimentos.biblioteca import figuras, grafo, metricas, modelos_nulos, robustez
+from experimentos.biblioteca import figuras, grafo, metricas, modelos_classicos, modelos_nulos, robustez
 
 TIPOS_NULOS = modelos_nulos.TIPOS
 ESTRATEGIAS_FIGURA = ("aleatoria", "grau_adaptativo")  # aleatória x o ataque mais forte
@@ -78,6 +97,12 @@ DESCRITIVAS_NULOS = ("maior_fraco", "componentes_fracos", "nucleo", "entrada", "
 INDICES_NULOS = ("R_fraco_norm", "R_forte_norm", "metade_fraco", "metade_forte", "R_alcance_norm")
 
 COLUNAS_CCDF = ("rede", "grau", "n_nos", "ccdf_empirica")
+
+# Modelos clássicos: o que entra no confronto (escores z) e nas figuras.
+DESCRITIVAS_CLASSICOS = ("arestas", "grau_medio", "grau_max", "clustering_medio", "maior_componente",
+                         "caminho_medio", "diametro", "assortatividade", "sigma")
+INDICES_CLASSICOS = ("R_norm", "R", "metade")
+ESTRATEGIAS_FIGURA_CLASSICOS = ("aleatoria", "grau")  # remoção aleatória x ataque por grau
 
 
 # ---------------------------------------------------------------------------
@@ -214,6 +239,101 @@ def _em_ordem(valores, referencia) -> list:
 
 
 # ---------------------------------------------------------------------------
+# Modelos clássicos (não dirigidos)
+# ---------------------------------------------------------------------------
+def acrescentar_sigma(descritiva: pd.DataFrame) -> pd.DataFrame:
+    """Coluna sigma: (C/C_ER)/(L/L_ER) de cada rede, com C_ER e L_ER as médias das redes erdos_renyi.
+
+    NaN em tudo se não houver redes Erdős–Rényi (modelos_classicos.sigma_mundo_pequeno).
+    """
+    descritiva = descritiva.copy()
+    er = descritiva[descritiva["modelo"] == "erdos_renyi"]
+    c_er = float(er["clustering_medio"].mean()) if len(er) else math.nan
+    l_er = float(er["caminho_medio"].mean()) if len(er) else math.nan
+    descritiva["sigma"] = [modelos_classicos.sigma_mundo_pequeno(c, l, c_er, l_er)
+                           for c, l in zip(descritiva["clustering_medio"], descritiva["caminho_medio"])]
+    return descritiva
+
+
+def confronto_classicos(descritiva: pd.DataFrame, indices: pd.DataFrame, real: str) -> pd.DataFrame:
+    """Como confronto_nulos, para os modelos clássicos: uma linha por métrica (e estratégia, nos
+    índices), com o valor da rede real e, para cada modelo, <modelo>_media, <modelo>_dp e <modelo>_z.
+
+    O z é o de escore_z: NaN quando o modelo preserva a métrica por construção
+    (as arestas no Erdős–Rényi e na configuração, o grau máximo na configuração).
+    """
+    modelos = [m for m in config.MODELOS_CLASSICOS if m in set(descritiva["modelo"])]
+    linhas = []
+
+    def linha_de(metrica: str, estrategia: str, tabela: pd.DataFrame) -> dict:
+        valor = float(tabela.loc[tabela["modelo"] == real, metrica].iloc[0])
+        linha = {"rede_real": real, "metrica": metrica, "estrategia": estrategia, "real": valor}
+        for modelo in modelos:
+            amostra = tabela.loc[tabela["modelo"] == modelo, metrica]
+            linha[f"{modelo}_media"], linha[f"{modelo}_dp"], linha[f"{modelo}_z"] = escore_z(valor, amostra)
+        return linha
+
+    for metrica in DESCRITIVAS_CLASSICOS:
+        linhas.append(linha_de(metrica, "", descritiva))
+    for estrategia in _em_ordem(indices["estrategia"], config.ESTRATEGIAS_CLASSICOS):
+        da_estrategia = indices[indices["estrategia"] == estrategia]
+        for metrica in INDICES_CLASSICOS:
+            linhas.append(linha_de(metrica, estrategia, da_estrategia))
+    return pd.DataFrame(linhas)
+
+
+def rodar_classicos(org: str) -> pd.DataFrame:
+    """A E. coli (não dirigida) contra os modelos clássicos. Grava as tabelas exp4_classicos_*.
+
+    Passos:
+      1. U = modelos_classicos.rede_nao_dirigida(grafo_do_organismo(org)).
+      2. Na rede real: modelos_classicos.descritiva e robustez_rede com
+         config.N_REPETICOES_ALEATORIAS repetições da aleatória (as mesmas ordens do
+         Exp 1: o maior componente não dirigido é o maior componente fraco, então o R da
+         aleatória é o R_fraco do Exp 1 sem proteger os nutrientes).
+      3. Para cada modelo de config.MODELOS_CLASSICOS, config.N_MODELOS_NULOS redes
+         (modelos_classicos.gerar_modelos, semente config.SEMENTE * 1000 + i), cada uma com
+         config.N_REPETICOES_NULOS repetições da aleatória e a semente da própria rede.
+      4. sigma de mundo pequeno (acrescentar_sigma) e o confronto (escores z).
+    Devolve a tabela descritiva.
+    """
+    inicio = time.perf_counter()
+    U = modelos_classicos.rede_nao_dirigida(grafo_do_organismo(org))
+    descritivas, indices, curvas, ccdfs = [], [], [], []
+
+    def medir(rede: nx.Graph, modelo: str, indice, n_rep: int, semente: int) -> pd.DataFrame:
+        descritivas.append({"modelo": modelo, "indice": indice,
+                            "parametros": rede.graph.get("parametros", "rede real"),
+                            **modelos_classicos.descritiva(rede)})
+        curva, ind = modelos_classicos.robustez_rede(rede, config.ESTRATEGIAS_CLASSICOS, n_rep, semente)
+        indices.append(ind.assign(modelo=modelo, indice=indice))
+        return curva
+
+    curvas.append(medir(U, org, pd.NA, config.N_REPETICOES_ALEATORIAS, config.SEMENTE).assign(modelo=org, n_redes=1))
+    ccdfs.append(modelos_classicos.ccdf_graus([U]).assign(modelo=org))
+    from tqdm import tqdm  # import tardio, como no robustez.py
+    for modelo in config.MODELOS_CLASSICOS:
+        redes = list(modelos_classicos.gerar_modelos(U, modelo, config.N_MODELOS_NULOS, config.SEMENTE))
+        curvas_modelo = [medir(rede, modelo, i, config.N_REPETICOES_NULOS, config.SEMENTE * 1000 + i)
+                         for i, rede in enumerate(tqdm(redes, desc=modelo, unit="rede"))]
+        curvas.append(modelos_classicos.media_das_redes(curvas_modelo).assign(modelo=modelo))
+        ccdfs.append(modelos_classicos.ccdf_graus(redes).assign(modelo=modelo))
+
+    descritiva = acrescentar_sigma(pd.DataFrame(descritivas))
+    tabela_indices = pd.concat(indices, ignore_index=True)
+    tabela_indices = tabela_indices[["modelo", "indice", *modelos_classicos.COLUNAS_INDICES]]
+    tabela_curvas = pd.concat(curvas, ignore_index=True)
+    tabela_curvas = tabela_curvas[["modelo", "n_redes", *modelos_classicos.COLUNAS_CURVA]]
+    _gravar(descritiva, "classicos_descritiva")
+    _gravar(tabela_indices, "classicos_indices")
+    _gravar(tabela_curvas, "classicos_curvas")
+    _gravar(confronto_classicos(descritiva, tabela_indices, org), "classicos_z")
+    _gravar(pd.concat(ccdfs, ignore_index=True)[["modelo", "grau", "n_nos", "ccdf_empirica"]], "classicos_ccdf")
+    print(f"Exp 4, modelos clássicos: {len(descritiva)} redes em {time.perf_counter() - inicio:.0f} s")
+    return descritiva
+
+
+# ---------------------------------------------------------------------------
 # Experimento
 # ---------------------------------------------------------------------------
 def _gravar(tabela: pd.DataFrame, conteudo: str) -> None:
@@ -227,9 +347,10 @@ def _ler(conteudo: str) -> pd.DataFrame | None:
     return pd.read_csv(caminho, keep_default_na=True) if caminho.exists() else None
 
 
-def rodar(orgs: list[str], com_nulos: bool = True) -> pd.DataFrame:
+def rodar(orgs: list[str], com_nulos: bool = True, com_classicos: bool = True) -> pd.DataFrame:
     """Calcula métricas e robustez de cada rede e grava as tabelas. Devolve a descritiva.
 
+    com_classicos: no fim, rodar_classicos(orgs[0]) (a seção dos modelos clássicos).
     Passos:
       1. Para cada org: G = grafo_do_organismo(org); medir_rede(G, config.NUTRIENTES,
          config.N_REPETICOES_ALEATORIAS, config.SEMENTE) (as mesmas repetições do Exp 1,
@@ -288,11 +409,14 @@ def rodar(orgs: list[str], com_nulos: bool = True) -> pd.DataFrame:
     if com_nulos:
         _gravar(confronto_nulos(descritiva, tabela_indices, orgs[0]), "nulos")
     print(f"Exp 4: {len(descritiva)} redes em {time.perf_counter() - inicio:.0f} s")
+    if com_classicos:
+        rodar_classicos(orgs[0])
     return descritiva
 
 
 def plotar() -> None:
-    """Lê as tabelas e grava as quatro figuras (a dos nulos só se eles foram rodados)."""
+    """Lê as tabelas e grava as figuras: as quatro das redes (a dos nulos só se eles foram rodados)
+    e as três dos modelos clássicos, se as tabelas deles existirem."""
     figuras.estilo()
     descritiva, indices, curvas, ccdf = (_ler(c) for c in ("descritiva", "indices", "curvas", "ccdf"))
     if descritiva is None or indices is None or curvas is None or ccdf is None:
@@ -311,6 +435,17 @@ def plotar() -> None:
                                                    estrategias=ESTRATEGIAS_FIGURA),
                        config.arquivo_figura("exp4", "curvas", "nulos", versao))
     figuras.salvar(figuras.ccdf_por_rede(ccdf), config.arquivo_figura("exp4", "graus", "redes", versao))
+
+    classicos = {c: _ler(f"classicos_{c}") for c in ("indices", "curvas", "ccdf")}
+    if all(tabela is not None for tabela in classicos.values()):
+        figuras.salvar(figuras.painel_indices_redes(classicos["indices"], ("R_norm", "metade"), grupo="modelo"),
+                       config.arquivo_figura("exp4", "classicos_indices", "redes", versao))
+        figuras.salvar(figuras.painel_curvas_redes(classicos["curvas"], ("maior_componente", "maior_componente_rel"),
+                                                   ESTRATEGIAS_FIGURA_CLASSICOS, limites_x={"grau": 0.5},
+                                                   grupo="modelo"),
+                       config.arquivo_figura("exp4", "classicos_curvas", "redes", versao))
+        figuras.salvar(figuras.ccdf_por_rede(classicos["ccdf"], grupo="modelo"),
+                       config.arquivo_figura("exp4", "classicos_graus", "redes", versao))
 
 
 def _resumo() -> str:
@@ -334,20 +469,59 @@ def _resumo() -> str:
             nome = linha["metrica"] + (f" ({linha['estrategia']})" if linha["estrategia"] else "")
             linhas.append(f"  {nome:32s} {linha['real']:8.3f} "
                           + " ".join(f"{linha[f'{t}_z']:18.1f}" for t in tipos))
+    classicos = _resumo_classicos()
+    if classicos:
+        linhas.append("\n" + classicos)
+    return "\n".join(linhas)
+
+
+def _resumo_classicos() -> str:
+    """A tabela dos modelos clássicos (médias das redes de cada modelo) e os escores z da rede real."""
+    descritiva, indices, confronto = (_ler(f"classicos_{c}") for c in ("descritiva", "indices", "z"))
+    if descritiva is None or indices is None:
+        return ""
+    media = descritiva.groupby("modelo", sort=False)[
+        ["arestas", "grau_max", "clustering_medio", "maior_componente", "caminho_medio", "assortatividade",
+         "sigma"]].mean()
+    por = indices.groupby(["modelo", "estrategia"], sort=False)[["R", "R_norm", "metade"]].mean()
+    linhas = ["modelos clássicos (não dirigidos; média das redes de cada modelo; R sem normalizar e normalizado)",
+              f"  {'rede':15s} {'M':>6s} {'kmax':>5s} {'C':>6s} {'%comp':>6s} {'L':>6s} {'assort':>7s} {'sigma':>6s}"
+              f" {'R aleat':>8s} {'Rn aleat':>8s} {'metade':>7s} {'R grau':>7s} {'Rn grau':>7s} {'metade':>7s}"
+              f" {'R betw':>7s}"]
+    for modelo, d in media.iterrows():
+        def valor(estrategia, coluna):
+            return por.loc[(modelo, estrategia), coluna] if (modelo, estrategia) in por.index else math.nan
+        linhas.append(f"  {str(modelo):15s} {d['arestas']:6.0f} {d['grau_max']:5.1f} {d['clustering_medio']:6.3f}"
+                      f" {100 * d['maior_componente']:6.1f} {d['caminho_medio']:6.2f} {d['assortatividade']:7.3f}"
+                      f" {d['sigma']:6.1f} {valor('aleatoria', 'R'):8.3f} {valor('aleatoria', 'R_norm'):8.3f}"
+                      f" {valor('aleatoria', 'metade'):7.3f} {valor('grau', 'R'):7.3f} {valor('grau', 'R_norm'):7.3f}"
+                      f" {valor('grau', 'metade'):7.3f} {valor('betweenness', 'R'):7.3f}")
+    if confronto is not None:
+        modelos = [m for m in config.MODELOS_CLASSICOS if f"{m}_z" in confronto]
+        linhas.append(f"  escores z de {confronto['rede_real'].iloc[0]} (R normalizado e descritivas)")
+        linhas.append(f"    {'métrica':28s} {'real':>8s} " + " ".join(f"{m[:14]:>14s}" for m in modelos))
+        escolhidas = confronto[(confronto["metrica"] == "R_norm")
+                               | confronto["estrategia"].fillna("").eq("")]
+        for linha in escolhidas.fillna({"estrategia": ""}).to_dict("records"):
+            nome = linha["metrica"] + (f" ({linha['estrategia']})" if linha["estrategia"] else "")
+            linhas.append(f"    {nome:28s} {linha['real']:8.3f} "
+                          + " ".join(f"{linha[f'{m}_z']:14.1f}" for m in modelos))
     return "\n".join(linhas)
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Exp 4: comparação com outros organismos e modelos nulos.")
+    parser = argparse.ArgumentParser(description="Exp 4: comparação com outros organismos, modelos nulos "
+                                                 "e modelos clássicos.")
     parser.add_argument("--orgs", nargs="+",
                         default=[config.ORGANISMO_PRINCIPAL, *config.ORGANISMOS_COMPARACAO],
-                        help="códigos KEGG; o primeiro é a referência dos modelos nulos")
+                        help="códigos KEGG; o primeiro é a referência dos modelos nulos e clássicos")
     parser.add_argument("--sem-nulos", action="store_true", help="pula os modelos nulos (teste rápido)")
+    parser.add_argument("--sem-classicos", action="store_true", help="pula os modelos clássicos")
     parser.add_argument("--so-figuras", action="store_true", help="refaz só as figuras, sem recalcular")
     args = parser.parse_args()
 
     if not args.so_figuras:
-        rodar(args.orgs, com_nulos=not args.sem_nulos)
+        rodar(args.orgs, com_nulos=not args.sem_nulos, com_classicos=not args.sem_classicos)
         print(_resumo())
     plotar()
 

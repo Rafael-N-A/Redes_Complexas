@@ -139,3 +139,82 @@ def test_toda_perda_descende_do_removido(redes):
         perdidos = cascata.cascata(B, [m], fontes=fontes)
         if perdidos:
             assert perdidos <= nx.descendants(G, m), m
+
+
+# ---------------------------------------------------------------------------
+# Dano estrutural de cada metabólito (P2 sem gabarito)
+# ---------------------------------------------------------------------------
+def test_exp3_dano_estrutural_de_ponta_a_ponta(resultados_temporarios, redes):
+    B, G = redes
+    escolhidos = exp3_vies.rodar(ORG)
+    dano = pd.read_csv(config.arquivo_tabela("exp3", "dano", ORG))
+    assert list(dano.columns) == exp3_vies.COLUNAS_DANO
+    assert set(dano["metabolito"]) == set(G.nodes)                       # todos os nós do grafo, uma vez cada
+    direto = metricas.dano_remocao_individual(G).set_index("metabolito")
+    por = dano.set_index("metabolito")
+    for coluna in ("dano_forte", "dano_fraco", "dano_eficiencia"):
+        assert np.allclose(por[coluna], direto[coluna].reindex(por.index)), coluna
+    avalanches = pd.read_csv(config.arquivo_tabela("exp3", "avalanches", ORG)).set_index("metabolito")["avalanche"]
+    produzidos = por[por["produzido"]]
+    assert (produzidos["avalanche"] == avalanches.reindex(produzidos.index)).all()
+    assert por.loc[~por["produzido"], "avalanche"].isna().all()
+    assert dano["dano_forte"].is_monotonic_decreasing
+
+    correlacoes = pd.read_csv(config.arquivo_tabela("exp3", "correlacoes", ORG)).set_index(["medida", "outra"])
+    assert len(correlacoes) == len(exp3_vies.MEDIDAS_DANO) * len(exp3_vies.CENTRALIDADES) + 3
+    parte = dano.dropna(subset=["avalanche"])
+    assert math.isclose(correlacoes.loc[("dano_eficiencia", "avalanche"), "spearman"],
+                        exp3_vies._spearman(parte["dano_eficiencia"], parte["avalanche"])[0])
+    assert correlacoes.loc[("dano_forte", "grau"), "n"] == G.number_of_nodes()
+
+    no_grafo = escolhidos.dropna(subset=["dano_forte"])
+    assert (no_grafo["dano_forte"].astype(int) == direto["dano_forte"].reindex(no_grafo["metabolito"]).to_numpy()).all()
+    exemplos = pd.read_csv(config.arquivo_tabela("exp3", "exemplos", ORG))
+    assert list(exemplos.columns) == exp3_vies.COLUNAS_EXEMPLOS
+    assert {"estrutural_sem_funcional", "funcional_sem_estrutural"} <= set(exemplos["grupo"])
+    resumo = pd.read_csv(config.arquivo_tabela("exp3", "resumo", ORG)).iloc[0]
+    assert resumo["nucleo_intacto"] == len(metricas.maior_componente_forte(G))
+    assert resumo["nucleo_quebra"] == (dano["dano_forte"] >= 2).sum()
+
+    exp3_vies.plotar(ORG)
+    assert config.arquivo_figura("exp3", "dano_vs_avalanche", ORG).exists()
+    assert "dano estrutural" in exp3_vies._resumo(escolhidos, ORG)
+
+
+def dano_de_brinquedo() -> pd.DataFrame:
+    return pd.DataFrame({
+        "metabolito": ["C1", "C2", "C3", "C4", "C5", "C6"], "nome": ["um", "dois", "tres", "quatro", "cinco", "seis"],
+        "produzido": [True, True, True, True, True, False],
+        "grau": [10, 2, 5, 3, 1, 1], "betweenness": [0.5, 0.0, 0.2, 0.1, 0.0, 0.0],
+        "harmonica": [9.0, 1.0, 4.0, 2.0, 0.5, 0.0], "pagerank": [0.3, 0.1, 0.2, 0.2, 0.1, 0.1],
+        "dano_forte": [30, 25, 10, 0, 0, 0], "dano_fraco": [5, 1, 2, 0, 1, 0],
+        "dano_forte_fracao": 0.0, "dano_fraco_fracao": 0.0,
+        "dano_eficiencia": [0.2, 0.05, 0.06, 0.01, 0.0, 0.0],
+        "avalanche": [40.0, 0.0, 12.0, 30.0, 1.0, np.nan],
+    })
+
+
+def test_discordantes():
+    """C2 quebra o núcleo (25) e não para nada; C4 para 30 sem tocar o núcleo; C6 não é produzido e fica de fora."""
+    tabela = exp3_vies.discordantes(dano_de_brinquedo(), k=1)
+    assert tabela.set_index("grupo")["metabolito"].to_dict() == {"estrutural_sem_funcional": "C2",
+                                                                 "funcional_sem_estrutural": "C4"}
+    assert (tabela["discordancia"] > 0).tolist() == [True, False]
+    assert "C6" not in set(exp3_vies.discordantes(dano_de_brinquedo(), k=6)["metabolito"])
+
+
+def test_correlacoes_dano_usam_os_pares_definidos():
+    tabela = exp3_vies.correlacoes_dano(dano_de_brinquedo()).set_index(["medida", "outra"])
+    assert tabela.loc[("dano_forte", "grau"), "n"] == 6                    # estrutural: todos
+    assert tabela.loc[("dano_forte", "avalanche"), "n"] == 5               # com avalanche: só os produzidos
+    assert ("avalanche", "avalanche") not in tabela.index
+
+
+def test_exemplos_dano_metabolitos(capsys):
+    exemplos = exp3_vies.exemplos_dano(dano_de_brinquedo(), {"C1": "alto nos dois", "C9": "não existe"}, k=1)
+    assert "C9" in capsys.readouterr().out                                 # avisa o que não está no grafo
+    assert list(exemplos["grupo"]) == ["exemplo", "estrutural_sem_funcional", "funcional_sem_estrutural"]
+    primeiro = exemplos.iloc[0]
+    assert primeiro["metabolito"] == "C1" and primeiro["motivo"] == "alto nos dois"
+    assert primeiro["posicao_dano_forte"] == 1 and primeiro["posicao_avalanche"] == 1
+    assert exemplos.set_index("metabolito").loc["C2", "nome_curto"] == "dois"   # sem nome curto: o do KEGG

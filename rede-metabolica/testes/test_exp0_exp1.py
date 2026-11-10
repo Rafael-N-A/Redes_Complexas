@@ -98,3 +98,14 @@ def test_exp1_roda_so_sem_moeda_por_padrao(monkeypatch):
     monkeypatch.setattr("sys.argv", ["exp1_robustez", "--org", ORG])
     exp1_robustez.main()
     assert chamadas == [config.VERSAO_ROBUSTEZ]
+
+
+def test_exp1_centralidades_novas_e_r_normalizado(resultados_temporarios, monkeypatch):
+    monkeypatch.setattr(config, "N_REPETICOES_ALEATORIAS", 2)
+    indices = exp1_robustez.rodar(ORG, "sem_moeda")
+    assert {"harmonica", "harmonica_adaptativo", "pagerank", "pagerank_adaptativo"} <= set(indices["estrategia"])
+    assert (indices["R_fraco_norm"] == indices["R_fraco"] / indices["S0_fraco"]).all()
+    assert (indices["R_forte_norm"] == indices["R_forte"] / indices["S0_forte"]).all()
+    exp1_robustez.plotar(ORG, "sem_moeda")
+    assert config.arquivo_figura("exp1", "estatica_adaptativa", ORG, "sem_moeda").exists()
+    assert "R_fraco_norm" in exp1_robustez._resumo(indices)

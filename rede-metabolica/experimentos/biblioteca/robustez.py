@@ -1,17 +1,40 @@
 """Estratégias de remoção de nós e curvas de robustez (Albert, Jeong e Barabási, 2000).
 
-Estratégias (nomes usados em config.ESTRATEGIAS):
+Estratégias (nomes usados em config.ESTRATEGIAS), cada centralidade nas versões
+estática (calculada uma vez, na rede intacta) e adaptativa (recalculada na rede
+que sobrou):
     aleatoria               ordem sorteada; média de várias repetições
     grau                    maior grau primeiro, calculado uma vez
     grau_adaptativo         recalcula o grau depois de cada remoção
     betweenness             maior betweenness primeiro, calculada uma vez
-    betweenness_adaptativo  recalcula a cada config.PASSO_BETWEENNESS remoções
+    betweenness_adaptativo  recalcula a cada config.PASSO_BETWEENNESS (10) remoções
+    harmonica               maior centralidade harmônica primeiro, calculada uma vez
+    harmonica_adaptativo    recalcula a cada config.PASSO_BETWEENNESS remoções
+    pagerank                maior PageRank primeiro, calculado uma vez
+    pagerank_adaptativo     recalcula a cada config.PASSO_BETWEENNESS remoções
 
-O grau é o total (entrada + saída) no grafo simples, o mesmo de
-metricas.graus. A betweenness é a exata de metricas.betweenness.
+O grau é o total (entrada + saída) no grafo simples, o mesmo de metricas.graus:
+um vizinho ligado por uma reação reversível (u -> v e v -> u) conta duas vezes.
+A betweenness é a exata de metricas.betweenness. A harmônica é a de
+metricas.harmonica (a nx.harmonic_centrality calculada de forma determinística):
+é a versão da proximidade (closeness) que funciona em rede desconexa, e conta as
+distâncias que chegam ao nó. O PageRank é o nx.pagerank com os parâmetros padrão
+(amortecimento 0,85), com peso = número de reações entre o par: o passeio
+aleatório segue cada reação com a mesma chance, como no multigrafo de reações (no
+grafo não dirigido dos modelos clássicos não há peso). A centralidade de
+autovetor fica de fora: numa rede dirigida que não é fortemente conexa ela não é
+bem definida (quase todos os nós ficam com zero).
+
+Fontes protegidas (proteger_fontes=True, o padrão de simular_remocao): os
+nutrientes de onde parte o alcance vão para o fim da ordem em todas as
+estratégias. Sem isso, o ataque por grau removia a glicose (grau 12, entre os
+22 mais conectados da eco sem moeda) e o alcance caía a zero por isso, e não
+pelo dano à rede.
 
 Índices por estratégia (comparar_estrategias), para a tabela do Exp 1 e o Exp 4:
     R_fraco, R_forte            índice R (Schneider et al., 2011) do maior componente
+    R_fraco_norm, R_forte_norm  o mesmo R dividido pelo maior componente na rede
+                                intacta (S0_fraco, S0_forte), como no Exp 4
     metade_fraco, metade_forte  fração removida até o maior componente cair à metade
 
 As métricas de dano vêm de metricas.py; este módulo só decide a ordem e
@@ -30,17 +53,21 @@ import pandas as pd
 import config
 from experimentos.biblioteca import metricas
 
-ESTATICAS = ("aleatoria", "grau", "betweenness")
-ADAPTATIVAS = ("grau_adaptativo", "betweenness_adaptativo")
+ESTATICAS = ("aleatoria", "grau", "betweenness", "harmonica", "pagerank")
+ADAPTATIVAS = ("grau_adaptativo", "betweenness_adaptativo", "harmonica_adaptativo", "pagerank_adaptativo")
+# As adaptativas que recalculam em lote: removem em sequência os
+# config.PASSO_BETWEENNESS primeiros do ranking e só então recalculam.
+EM_LOTE = ("betweenness_adaptativo", "harmonica_adaptativo", "pagerank_adaptativo")
 METRICAS = ("maior_fraco", "maior_forte", "alcance", "eficiencia")
 COLUNAS = ("n_removidos", "fracao_removida", *METRICAS)
 COLUNAS_DP = tuple(f"{m}_dp" for m in METRICAS)
 COLUNAS_INDICES = ("estrategia", "R_fraco", "R_forte", "R_fraco_dp", "R_forte_dp",
-                   "metade_fraco", "metade_forte", "metade_fraco_dp", "metade_forte_dp", "n_rep")
+                   "metade_fraco", "metade_forte", "metade_fraco_dp", "metade_forte_dp", "n_rep",
+                   "S0_fraco", "S0_forte", "R_fraco_norm", "R_forte_norm")
 
-# A betweenness é arredondada antes de ordenar: dois nós com o mesmo valor
-# exato podem diferir na 17ª casa pela ordem da soma, e o desempate pelo
-# código só funciona se o empate aparecer.
+# As centralidades contínuas são arredondadas antes de ordenar: dois nós com o
+# mesmo valor exato podem diferir na 17ª casa pela ordem da soma, e o desempate
+# pelo código só funciona se o empate aparecer.
 _CASAS_BETWEENNESS = 12
 
 
@@ -49,51 +76,117 @@ def _por_valor(valores: dict) -> list:
     return sorted(valores, key=lambda no: (-valores[no], no))
 
 
+def _arredondar(valores) -> dict:
+    return {no: round(float(v), _CASAS_BETWEENNESS) for no, v in valores.items()}
+
+
 def _betweenness(G: nx.DiGraph) -> dict:
-    exata = metricas.betweenness(G)
-    return {no: round(float(v), _CASAS_BETWEENNESS) for no, v in exata.items()}
+    return _arredondar(metricas.betweenness(G))
+
+
+def _harmonica(G: nx.DiGraph) -> dict:
+    return _arredondar(metricas.harmonica(G))
+
+
+def _pagerank(G: nx.DiGraph) -> dict:
+    return _arredondar(nx.pagerank(G)) if G.number_of_nodes() else {}
+
+
+_CENTRALIDADES = {
+    "grau": lambda G: dict(G.degree()),
+    "betweenness": _betweenness,
+    "harmonica": _harmonica,
+    "pagerank": _pagerank,
+}
 
 
 def _ranking_atual(G: nx.DiGraph, estrategia: str) -> list:
-    if estrategia in ("grau", "grau_adaptativo"):
-        return _por_valor(dict(G.degree()))
-    if estrategia in ("betweenness", "betweenness_adaptativo"):
-        return _por_valor(_betweenness(G))
-    raise ValueError(f"estratégia desconhecida: {estrategia!r}")
+    """Nós de G do mais para o menos central, na centralidade da estratégia (estática ou adaptativa)."""
+    criterio = estrategia.removesuffix("_adaptativo")
+    if criterio not in _CENTRALIDADES:
+        raise ValueError(f"estratégia desconhecida: {estrategia!r}")
+    return _por_valor(_CENTRALIDADES[criterio](G))
 
 
 def ordem_inicial(G: nx.DiGraph, estrategia: str,
                   rng: np.random.Generator | None = None) -> list[str]:
-    """Ordem de remoção das estratégias estáticas (aleatoria, grau, betweenness).
+    """Ordem de remoção das estratégias estáticas (aleatoria, grau, betweenness, harmonica, pagerank).
 
-    Empates no grau ou na betweenness são desfeitos pelo código do nó, para
-    que a ordem seja sempre a mesma. Na aleatória, o sorteio parte dos nós em
-    ordem de código, então a mesma semente dá a mesma ordem em qualquer máquina.
+    Empates na centralidade são desfeitos pelo código do nó, para que a ordem
+    seja sempre a mesma. Na aleatória, o sorteio parte dos nós em ordem de
+    código, então a mesma semente dá a mesma ordem em qualquer máquina.
+    Não protege nenhum nó (ver ordem_de_remocao).
     """
     if estrategia == "aleatoria":
         if rng is None:
             raise ValueError("a estratégia aleatória precisa de um rng")
         nos = sorted(G.nodes)
         return [nos[i] for i in rng.permutation(len(nos))]
-    if estrategia in ("grau", "betweenness"):
+    if estrategia in ESTATICAS:
         return _ranking_atual(G, estrategia)
     raise ValueError(f"estratégia estática desconhecida: {estrategia!r} (use uma de {ESTATICAS})")
 
 
-def proximo_adaptativo(G: nx.DiGraph, estrategia: str) -> str:
+def proximo_adaptativo(G: nx.DiGraph, estrategia: str, protegidos: Iterable = ()) -> str:
     """Próximo nó a remover nas estratégias adaptativas, no estado atual de G.
 
-    grau_adaptativo: maior grau total agora. betweenness_adaptativo: maior
-    betweenness agora (quem chama decide recalcular só a cada passo_betweenness).
+    grau_adaptativo: maior grau total agora. As de EM_LOTE: o primeiro do ranking
+    atual (quem chama decide recalcular só a cada passo_betweenness).
+    protegidos: só são escolhidos quando não sobra nenhum outro nó.
     Empates pelo código do nó.
     """
     if G.number_of_nodes() == 0:
         raise ValueError("o grafo está vazio")
+    protegidos = set(protegidos)
     if estrategia == "grau_adaptativo":
-        return min(G.nodes, key=lambda no: (-G.degree(no), no))
-    if estrategia == "betweenness_adaptativo":
-        return _ranking_atual(G, estrategia)[0]
+        candidatos = [no for no in G.nodes if no not in protegidos] or list(G.nodes)
+        return min(candidatos, key=lambda no: (-G.degree(no), no))
+    if estrategia in EM_LOTE:
+        ranking = _ranking_atual(G, estrategia)
+        return next((no for no in ranking if no not in protegidos), ranking[0])
     raise ValueError(f"estratégia adaptativa desconhecida: {estrategia!r} (use uma de {ADAPTATIVAS})")
+
+
+def ordem_de_remocao(G: nx.DiGraph, estrategia: str, rng: np.random.Generator | None = None,
+                     protegidos: Iterable = (),
+                     passo_betweenness: int = config.PASSO_BETWEENNESS) -> list:
+    """A sequência completa de remoção dos nós de G (todos), em qualquer estratégia.
+
+    Estáticas: ordem_inicial. Adaptativas: remove os nós de uma cópia de G, um a
+    um, escolhendo cada próximo no grafo que sobrou; as de EM_LOTE removem em
+    sequência os passo_betweenness primeiros do ranking e só então recalculam.
+    A curva de uma remoção só depende dessa sequência: simular_remocao mede ao
+    longo dela, e modelos_classicos.maior_componente_por_ordem a percorre ao contrário.
+
+    protegidos: os presentes em G vão para o fim, em todas as estratégias. Nas
+    estáticas, a ordem dos outros não muda e os protegidos vêm depois, na ordem
+    da própria estratégia. Nas adaptativas, nunca são escolhidos enquanto
+    sobrar outro nó; no fim, saem na ordem da estratégia no que restou.
+    """
+    if estrategia not in ESTATICAS + ADAPTATIVAS:
+        raise ValueError(f"estratégia desconhecida: {estrategia!r}")
+    if passo_betweenness < 1:
+        raise ValueError("passo_betweenness tem que ser pelo menos 1")
+    restantes = {no for no in protegidos if no in G}
+    if estrategia in ESTATICAS:
+        ordem = ordem_inicial(G, estrategia, rng)
+        return [no for no in ordem if no not in restantes] + [no for no in ordem if no in restantes]
+    H = G.copy()
+    ordem: list = []
+    fila: deque = deque()
+    while H.number_of_nodes():
+        if estrategia == "grau_adaptativo":
+            no = proximo_adaptativo(H, estrategia, restantes)
+        else:
+            if not fila:
+                ranking = _ranking_atual(H, estrategia)
+                livres = [n for n in ranking if n not in restantes] or ranking
+                fila.extend(livres[:passo_betweenness])
+            no = fila.popleft()
+        H.remove_node(no)
+        restantes.discard(no)
+        ordem.append(no)
+    return ordem
 
 
 def marcos_eficiencia(n: int, passo: float) -> set[int]:
@@ -124,7 +217,8 @@ def simular_remocao(G: nx.DiGraph, estrategia: str,
                     nutrientes: Iterable[str] = (),
                     passo_eficiencia: float = config.PASSO_EFICIENCIA,
                     passo_betweenness: int = config.PASSO_BETWEENNESS,
-                    medir_eficiencia: bool = True) -> pd.DataFrame:
+                    medir_eficiencia: bool = True,
+                    proteger_fontes: bool = True) -> pd.DataFrame:
     """Remove os nós de G um a um, na ordem da estratégia, até não sobrar nenhum.
 
     Uma linha por passo (de 0 a N nós removidos), colunas:
@@ -135,39 +229,36 @@ def simular_remocao(G: nx.DiGraph, estrategia: str,
         eficiencia                (só nos passos em que a fração removida cruza
                                    um múltiplo de passo_eficiencia; NaN nos demais
                                    e em todos os passos se medir_eficiencia=False)
-    Trabalha numa cópia de G. rng é obrigatório na estratégia aleatória.
-    Na betweenness_adaptativo, remove em sequência os passo_betweenness
-    primeiros do ranking e só então recalcula.
+    Trabalha numa cópia de G. rng é obrigatório na estratégia aleatória. A ordem
+    vem de ordem_de_remocao: nas de EM_LOTE, remove em sequência os
+    passo_betweenness primeiros do ranking e só então recalcula.
+    proteger_fontes=True (o padrão): os nutrientes presentes em G, que são as
+    fontes do alcance, vão para o fim da ordem em todas as estratégias, para o
+    alcance não cair a zero só porque a própria fonte foi removida. Na eco sem
+    moeda são 2 dos 1.111 nós (glicose e sulfato; NH3 e ortofosfato são moeda).
     """
     if estrategia not in ESTATICAS + ADAPTATIVAS:
         raise ValueError(f"estratégia desconhecida: {estrategia!r}")
     if passo_betweenness < 1:
         raise ValueError("passo_betweenness tem que ser pelo menos 1")
-    H = G.copy()
-    n = H.number_of_nodes()
+    n = G.number_of_nodes()
     if n == 0:
         raise ValueError("o grafo está vazio")
     nutrientes = list(nutrientes)
+    ordem = ordem_de_remocao(G, estrategia, rng, nutrientes if proteger_fontes else (), passo_betweenness)
     marcos = marcos_eficiencia(n, passo_eficiencia) if medir_eficiencia else set()
 
-    fila = deque(ordem_inicial(H, estrategia, rng)) if estrategia in ESTATICAS else deque()
+    H = G.copy()
     linhas = [_medir(H, 0, n, nutrientes, 0 in marcos)]
-    for k in range(1, n + 1):
-        if estrategia == "grau_adaptativo":
-            no = proximo_adaptativo(H, estrategia)
-        elif estrategia == "betweenness_adaptativo":
-            if not fila:
-                fila.extend(_ranking_atual(H, estrategia)[:passo_betweenness])
-            no = fila.popleft()
-        else:
-            no = fila.popleft()
+    for k, no in enumerate(ordem, start=1):
         H.remove_node(no)
         linhas.append(_medir(H, k, n, nutrientes, k in marcos))
     return pd.DataFrame(linhas, columns=list(COLUNAS))
 
 
 def _repeticoes_aleatorias(G: nx.DiGraph, n_rep: int, semente: int, nutrientes: Iterable[str],
-                           medir_eficiencia: bool, progresso: bool = False) -> list[pd.DataFrame]:
+                           medir_eficiencia: bool, progresso: bool = False,
+                           proteger_fontes: bool = True) -> list[pd.DataFrame]:
     if n_rep < 1:
         raise ValueError("n_rep tem que ser pelo menos 1")
     nutrientes = list(nutrientes)
@@ -176,7 +267,8 @@ def _repeticoes_aleatorias(G: nx.DiGraph, n_rep: int, semente: int, nutrientes: 
         from tqdm import tqdm  # import tardio: só quem pede a barra precisa do tqdm
         repeticoes = tqdm(repeticoes, desc="aleatoria", unit="rep")
     return [simular_remocao(G, "aleatoria", rng=np.random.default_rng([semente, i]),
-                            nutrientes=nutrientes, medir_eficiencia=medir_eficiencia)
+                            nutrientes=nutrientes, medir_eficiencia=medir_eficiencia,
+                            proteger_fontes=proteger_fontes)
             for i in repeticoes]
 
 
@@ -192,16 +284,18 @@ def _media_das_repeticoes(repeticoes: list[pd.DataFrame]) -> pd.DataFrame:
 def curva_aleatoria(G: nx.DiGraph, n_rep: int, semente: int,
                     nutrientes: Iterable[str] = (),
                     medir_eficiencia: bool = True,
-                    progresso: bool = False) -> pd.DataFrame:
+                    progresso: bool = False,
+                    proteger_fontes: bool = True) -> pd.DataFrame:
     """Média e desvio padrão de n_rep simulações aleatórias, por fração removida.
 
     Colunas: as de simular_remocao, mais <metrica>_dp para cada métrica
     (desvio padrão amostral; NaN com n_rep=1).
     Cada repetição usa np.random.default_rng([semente, i]), para ser reprodutível.
     progresso=True mostra uma barra (tqdm) com as repetições.
+    proteger_fontes: o de simular_remocao.
     """
     return _media_das_repeticoes(
-        _repeticoes_aleatorias(G, n_rep, semente, nutrientes, medir_eficiencia, progresso))
+        _repeticoes_aleatorias(G, n_rep, semente, nutrientes, medir_eficiencia, progresso, proteger_fontes))
 
 
 def _indice(curva: pd.DataFrame, coluna: str) -> float:
@@ -233,7 +327,8 @@ def comparar_estrategias(G: nx.DiGraph, estrategias: Iterable[str] = config.ESTR
                          semente: int = config.SEMENTE,
                          nutrientes: Iterable[str] = (),
                          medir_eficiencia: bool = True,
-                         progresso: bool = False) -> tuple[pd.DataFrame, pd.DataFrame]:
+                         progresso: bool = False,
+                         proteger_fontes: bool = True) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Roda todas as estratégias em G. É o que o exp1 e o exp4 chamam.
 
     Retorna (curvas, indices):
@@ -246,12 +341,17 @@ def comparar_estrategias(G: nx.DiGraph, estrategias: Iterable[str] = config.ESTR
                  média (o índice é linear); a metade não é, então metade_* pode
                  diferir um pouco do ponto em que a curva média cruza a metade.
                  Nas determinísticas, *_dp é NaN e n_rep é 1.
+                 S0_fraco e S0_forte: o maior componente na rede intacta (fração dos
+                 nós); R_fraco_norm = R_fraco / S0_fraco e R_forte_norm = R_forte / S0_forte
+                 (a área sob a curva relativa ao início, como no Exp 4; NaN se S0 = 0).
+    proteger_fontes: o de simular_remocao (os nutrientes vão para o fim da ordem).
     """
     nutrientes = list(nutrientes)
     curvas, indices = [], []
     for estrategia in estrategias:
         if estrategia == "aleatoria":
-            repeticoes = _repeticoes_aleatorias(G, n_rep, semente, nutrientes, medir_eficiencia, progresso)
+            repeticoes = _repeticoes_aleatorias(G, n_rep, semente, nutrientes, medir_eficiencia, progresso,
+                                                proteger_fontes)
             curva = _media_das_repeticoes(repeticoes)
             linha = {"estrategia": estrategia, "n_rep": n_rep}
             for nome, funcao in (("R", _indice), ("metade", fracao_ate_metade)):
@@ -259,15 +359,20 @@ def comparar_estrategias(G: nx.DiGraph, estrategias: Iterable[str] = config.ESTR
                     valores = np.array([funcao(r, f"maior_{componente}") for r in repeticoes])
                     linha[f"{nome}_{componente}"] = float(valores.mean())
                     linha[f"{nome}_{componente}_dp"] = _desvio(valores)
-            indices.append(linha)
         else:
-            curva = simular_remocao(G, estrategia, nutrientes=nutrientes, medir_eficiencia=medir_eficiencia)
+            curva = simular_remocao(G, estrategia, nutrientes=nutrientes, medir_eficiencia=medir_eficiencia,
+                                    proteger_fontes=proteger_fontes)
             linha = {"estrategia": estrategia, "n_rep": 1}
             for nome, funcao in (("R", _indice), ("metade", fracao_ate_metade)):
                 for componente in ("fraco", "forte"):
                     linha[f"{nome}_{componente}"] = funcao(curva, f"maior_{componente}")
                     linha[f"{nome}_{componente}_dp"] = math.nan
-            indices.append(linha)
+        inicio = curva.loc[curva["n_removidos"] == 0].iloc[0]
+        for componente in ("fraco", "forte"):
+            s0 = float(inicio[f"maior_{componente}"])
+            linha[f"S0_{componente}"] = s0
+            linha[f"R_{componente}_norm"] = linha[f"R_{componente}"] / s0 if s0 > 0 else math.nan
+        indices.append(linha)
         curva = curva.reindex(columns=[*COLUNAS, *COLUNAS_DP])
         curva.insert(0, "estrategia", estrategia)
         curvas.append(curva)

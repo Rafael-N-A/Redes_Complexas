@@ -1,4 +1,4 @@
-"""Exp 2 de ponta a ponta na E. coli (o único organismo com gabarito; roda em segundos).
+"""Exp 2 de ponta a ponta na E. coli (o único organismo com gabarito; ~40 s, quase tudo nos nocautes estruturais).
 
 As tabelas vão para uma pasta temporária; os valores são conferidos contra
 as funções da biblioteca chamadas à parte.
@@ -9,6 +9,7 @@ import math
 
 import pandas as pd
 import pytest
+from scipy.stats import spearmanr
 
 import config
 from experimentos import exp2_biologia
@@ -31,7 +32,8 @@ def ler(conteudo: str) -> pd.DataFrame:
 def test_exp2_de_ponta_a_ponta(resultados_temporarios):
     avaliacao = exp2_biologia.rodar(ORG)
     reacoes = grafo.carregar_tabelas(ORG)["reacoes"]
-    B = grafo.grafo_bipartido(reacoes, remover_moeda=config.VERSOES_MOEDA[config.VERSAO_CASCATA])
+    remover = config.VERSOES_MOEDA[config.VERSAO_CASCATA]
+    B = grafo.grafo_bipartido(reacoes, remover_moeda=remover)
     essenciais = validacao.carregar_keio()
 
     genes = ler("genes")
@@ -39,13 +41,55 @@ def test_exp2_de_ponta_a_ponta(resultados_temporarios):
     assert genes["essencial"].sum() == len(essenciais & set(genes["gene"]))
     dano = nocaute.dano_todos_genes(B, reacoes).set_index("gene")["dano"]
     assert (genes.set_index("gene")["dano"] == dano).all()
+    # Dano estrutural: alguns genes refeitos à parte (grafo sem as reações perdidas, medido do zero).
+    M = grafo.grafo_metabolitos(reacoes, remover_moeda=remover)
+    G = grafo.grafo_simples(M)
+    n = G.number_of_nodes()
+    antes = metricas.medidas_estruturais(G, n)
+    por_gene = genes.set_index("gene")
+    amostra = por_gene[por_gene["simbolo"].isin(["fabG", "purH", "thyA", "aroA", "lpxC", "eno", "accA"])].index
+    for gene in [*amostra, *por_gene.index[::97]]:
+        H = nocaute.grafo_sem_reacoes(M, nocaute.reacoes_perdidas([gene], reacoes), G.nodes)
+        queda = metricas.queda_estrutural(antes, metricas.medidas_estruturais(H, n), n)
+        for coluna in ("dano_forte", "dano_fraco", "dano_eficiencia"):
+            assert por_gene.loc[gene, coluna] == pytest.approx(queda[coluna]), (gene, coluna)
+    # Quem não perde nenhuma reação (toda reação tem isoenzima) tem dano estrutural 0.
+    sem_perda = genes[genes["n_reacoes_perdidas"] == 0]
+    assert len(sem_perda) == len(genes) - 574
+    assert (sem_perda[["arestas_perdidas", "dano_forte", "dano_fraco", "dano_eficiencia"]] == 0).all().all()
 
-    assert list(avaliacao["ranking"]) == ["dano", "grau", "betweenness", "dano_meio_minimo", "reacoes_perdidas"]
+    # Os rankings saem para os dois subconjuntos: todos os genes e só os que perdem reação.
+    assert list(dict.fromkeys(avaliacao["subconjunto"])) == ["todos", "perde_reacao"]
+    todos = avaliacao[avaliacao["subconjunto"] == "todos"]
+    assert list(todos["ranking"]) == ["dano", "dano_forte", "dano_fraco", "dano_eficiencia", "grau", "betweenness",
+                                      "harmonica", "pagerank", "dano_meio_minimo", "reacoes_perdidas"]
     assert avaliacao["papel"].notna().all()
     y = genes.set_index("gene")["essencial"]
-    for nome, coluna in (("dano", "dano"), ("grau", "grau"), ("reacoes_perdidas", "n_reacoes_perdidas")):
+    for nome, coluna in (("dano", "dano"), ("dano_forte", "dano_forte"), ("dano_eficiencia", "dano_eficiencia"),
+                         ("grau", "grau"), ("reacoes_perdidas", "n_reacoes_perdidas")):
         esperado = validacao.auc(y, genes.set_index("gene")[coluna])
-        assert math.isclose(avaliacao.set_index("ranking").loc[nome, "auc"], esperado)
+        assert math.isclose(todos.set_index("ranking").loc[nome, "auc"], esperado)
+    perde = genes[genes["n_reacoes_perdidas"] > 0].set_index("gene")
+    subconjunto = avaliacao[avaliacao["subconjunto"] == "perde_reacao"].set_index("ranking")
+    assert (subconjunto["n_genes"] == len(perde)).all()
+    assert math.isclose(subconjunto.loc["dano", "auc"], validacao.auc(perde["essencial"], perde["dano"]))
+    # Valores de referência dos protótipos (Seção 8 do plano)
+    assert round(todos.set_index("ranking").loc["dano", "auc"], 3) == 0.756
+    assert round(subconjunto.loc["dano_forte", "auc"], 3) == 0.513
+
+    correlacoes = ler("correlacoes").set_index(["subconjunto", "medida_x", "medida_y"])
+    rho = correlacoes.loc[("perde_reacao", "dano", "dano_eficiencia"), "spearman"]
+    assert math.isclose(rho, spearmanr(perde["dano"], perde["dano_eficiencia"]).statistic)
+
+    casos = ler("exemplos_dano")
+    assert list(dict.fromkeys(casos["grupo"])) == list(config.EXEMPLOS_DANO_EXP2)
+    grupo = casos.set_index("simbolo")["essencial"]
+    assert not grupo[["aroA", "purH", "thyA"]].any() and grupo[["fabG", "lpxC", "accA", "eno"]].all()
+    assert (casos.loc[casos["grupo"] == "essencial_dano_zero", ["dano", "dano_forte"]] == 0).all().all()
+
+    resumo_rede = ler("resumo").iloc[0]
+    assert (resumo_rede["nucleo_intacto"], resumo_rede["maior_fraco_intacto"]) == (415, 885)
+    assert resumo_rede["genes_com_reacao_perdida"] == 574
 
     choke = ler("choke").iloc[0]
     assert choke["genes_choke"] == genes["choke"].sum()
@@ -64,8 +108,11 @@ def test_exp2_de_ponta_a_ponta(resultados_temporarios):
 
     roc = ler("roc")
     assert set(roc["ranking"]) == set(avaliacao["ranking"])
+    assert set(roc["subconjunto"]) == {"todos", "perde_reacao"}
     exp2_biologia.plotar(ORG)
-    assert config.arquivo_figura("exp2", "roc", ORG).exists()
+    for conteudo in ("roc", "dispersao", "auc"):
+        assert config.arquivo_figura("exp2", conteudo, ORG).exists(), conteudo
+    assert "Spearman" in exp2_biologia._resumo(avaliacao, ORG)
 
 
 def test_exemplos_de_baixa_centralidade():
@@ -82,6 +129,57 @@ def test_exemplos_de_baixa_centralidade():
     exemplos = exp2_biologia.exemplos_baixa_centralidade(genes, n=5)
     # g3: grau alto; g4: betweenness alta; g5: não essencial; g6: sem dano
     assert list(exemplos["gene"]) == ["g2", "g1"]
+
+
+def genes_de_brinquedo() -> pd.DataFrame:
+    return pd.DataFrame({
+        "gene": [f"g{i}" for i in range(1, 9)],
+        "simbolo": ["aroA", "aroB", "fabG", "accA", "xyzA", "xyzB", "xyzC", "xyzD"],
+        "descricao": "",
+        "essencial": [False, False, True, True, False, True, False, False],
+        "n_reacoes": 1, "n_reacoes_perdidas": [1, 1, 1, 0, 1, 1, 0, 1],
+        "dano": [1, 7, 50, 0, 3, 9, 0, 2], "dano_forte": [20, 20, 20, 0, 1, 0, 0, 5],
+        "dano_fraco": [0, 0, 18, 0, 1, 2, 0, 0], "dano_eficiencia": [0.03, 0.04, 0.07, 0.0, 0.01, 0.02, 0.0, 0.005],
+        "grau": [3, 5, 5, 40, 2, 2, 1, 1],
+    })
+
+
+def test_exemplos_dano():
+    grupos = {"estrutural": (("aroA", "aroB", "naoExiste"), "quebram o núcleo"),
+              "zero": (("accA",), "complexo")}
+    casos = exp2_biologia.exemplos_dano(genes_de_brinquedo(), grupos)
+    assert list(casos.columns) == exp2_biologia.COLUNAS_EXEMPLOS_DANO
+    assert list(casos["simbolo"]) == ["aroA", "aroB", "accA"]          # o que não está na rede fica de fora
+    assert list(casos["motivo"]) == ["quebram o núcleo", "quebram o núcleo", "complexo"]
+    por = casos.set_index("simbolo")
+    assert por.loc["aroA", "posicao_dano_forte"] == 1 and por.loc["aroB", "posicao_dano"] == 3   # fabG 50, xyzB 9, aroB 7
+
+
+def test_avaliar_subconjuntos():
+    genes = genes_de_brinquedo().set_index("gene")
+    y = genes["essencial"]
+    perde = genes["n_reacoes_perdidas"] > 0
+    avaliacao = exp2_biologia.avaliar_subconjuntos(y, genes, {"dano": "dano", "grau": "grau"}, perde)
+    assert list(avaliacao.columns[:3]) == ["subconjunto", "ranking", "papel"]
+    sub = avaliacao.set_index(["subconjunto", "ranking"])
+    assert sub.loc[("todos", "dano"), "n_genes"] == 8 and sub.loc[("perde_reacao", "dano"), "n_genes"] == 6
+    assert math.isclose(sub.loc[("perde_reacao", "grau"), "auc"], validacao.auc(y[perde], genes.loc[perde, "grau"]))
+
+
+def test_correlacoes_entre_as_medidas():
+    genes = genes_de_brinquedo()
+    tabela = exp2_biologia.correlacoes(genes).set_index(["subconjunto", "medida_x", "medida_y"])
+    perde = genes[genes["n_reacoes_perdidas"] > 0]
+    assert tabela.loc[("perde_reacao", "dano", "dano_forte"), "n_genes"] == len(perde)
+    assert math.isclose(tabela.loc[("todos", "dano", "dano_eficiencia"), "spearman"],
+                        spearmanr(genes["dano"], genes["dano_eficiencia"]).statistic)
+
+
+def test_rotulos_da_dispersao_juntam_os_genes_no_mesmo_ponto():
+    casos = exp2_biologia.exemplos_dano(genes_de_brinquedo(), {
+        "estrutural_alto_nao_essencial": (("aroA", "aroB"), ""), "funcional_alto_essencial": (("fabG",), ""),
+        "essencial_dano_zero": (("accA",), "")})
+    assert exp2_biologia.rotulos_dispersao(casos) == {"aroA–aroB": ["aroA", "aroB"], "fabG": ["fabG"]}
 
 
 def test_exp2_so_para_a_ecoli(monkeypatch):

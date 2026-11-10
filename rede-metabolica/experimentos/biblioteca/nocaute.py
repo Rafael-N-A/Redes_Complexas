@@ -8,6 +8,14 @@ Limitação: o KGML não diz se os genes de uma reação são
 alternativas (isoenzimas, OU) ou peças do mesmo complexo (E). Aqui todos
 valem como OU, o que subestima a fragilidade nos complexos.
 
+Duas medidas do dano de um nocaute, as mesmas usadas para os metabólitos no Exp 3:
+    funcional  (dano_todos_genes)            metabólitos que a rede intacta produz e
+               deixam de ser produzidos (a avalanche da cascata, na rede bipartida);
+    estrutural (dano_estrutural_todos_genes) metabólitos que deixam o maior componente
+               forte e o maior fraco, e a queda da eficiência, no grafo metabólito-cêntrico
+               sem as arestas das reações perdidas.
+O nocaute remove arestas (reações), nunca metabólitos.
+
 Também ficam aqui as pontuações por gene usadas nos rankings do Exp 2
 (dano simulado, grau, betweenness, choke points).
 """
@@ -20,7 +28,7 @@ import networkx as nx
 import pandas as pd
 
 import config
-from experimentos.biblioteca import cascata, grafo
+from experimentos.biblioteca import cascata, grafo, metricas
 
 MEDIDAS = ("avalanche", "alcance")
 
@@ -96,6 +104,67 @@ def dano_todos_genes(B: nx.DiGraph, reacoes: pd.DataFrame,
         linhas.append({"gene": gene, "n_reacoes": len(por_gene[gene]),
                        "n_reacoes_perdidas": len(perdidas), "dano": dano})
     return pd.DataFrame(linhas, columns=["gene", "n_reacoes", "n_reacoes_perdidas", "dano"])
+
+
+def grafo_sem_reacoes(M: nx.MultiDiGraph, perdidas: Iterable[str], nos: Iterable[str] | None = None) -> nx.DiGraph:
+    """O grafo simples de M sem as arestas das reações perdidas, com todos os nós.
+
+    Copia M, tira as arestas cuja key (o código R#####) está em perdidas, nos dois
+    sentidos das reversíveis, e colapsa as paralelas (grafo.grafo_simples): um par
+    só perde a aresta se todas as reações entre os dois se perderam. nos: os nós
+    que o resultado precisa ter (padrão: os de M); quem ficou sem nenhuma aresta
+    continua lá, isolado, para continuar contando em N.
+    """
+    perdidas = set(perdidas)
+    copia = M.copy()
+    copia.remove_edges_from([(u, v, k) for u, v, k in M.edges(keys=True) if k in perdidas])
+    H = grafo.grafo_simples(copia)
+    H.add_nodes_from(M.nodes if nos is None else nos)
+    return H
+
+
+COLUNAS_DANO_ESTRUTURAL = ("gene", "n_reacoes", "n_reacoes_perdidas", "arestas_perdidas",
+                           *metricas.COLUNAS_DANO_ESTRUTURAL)
+
+
+def dano_estrutural_todos_genes(M: nx.MultiDiGraph, reacoes: pd.DataFrame) -> pd.DataFrame:
+    """Nocaute de cada gene da rede, um de cada vez, medido na estrutura do grafo.
+
+    M é o grafo metabólito-cêntrico (grafo.grafo_metabolitos, sem moeda no Exp 2).
+    Para cada gene:
+      1. as reações perdidas, pela regra OU e com a mesma lógica de dano_todos_genes;
+      2. grafo_sem_reacoes(M, perdidas): o grafo simples sem as arestas delas, com
+         todos os nós de M (N fica igual ao da rede intacta);
+      3. metricas.queda_estrutural em relação ao grafo simples intacto.
+    Gene que não perde nenhuma reação tem dano 0, sem recalcular nada. Reação
+    perdida que só liga metabólitos-moeda não tem aresta no grafo e não muda nada.
+
+    Uma linha por gene, ordenada, colunas:
+        gene, n_reacoes, n_reacoes_perdidas (como em dano_todos_genes),
+        arestas_perdidas (do grafo simples),
+        dano_forte, dano_fraco, dano_forte_fracao, dano_fraco_fracao, dano_eficiencia
+    (ver metricas.queda_estrutural). Leva ~30 s na eco (574 dos 952 genes perdem reação).
+    """
+    G = grafo.grafo_simples(M)
+    nos = list(G.nodes)
+    n = len(nos)
+    antes = metricas.medidas_estruturais(G, n)
+    por_gene = reacoes_por_gene(reacoes)
+    genes_da_reacao = {codigo: set(genes) for codigo, genes in zip(reacoes["reacao"], reacoes["genes"])}
+    zero = {coluna: 0 for coluna in ("dano_forte", "dano_fraco")}
+    zero.update({coluna: 0.0 for coluna in ("dano_forte_fracao", "dano_fraco_fracao", "dano_eficiencia")})
+    linhas = []
+    for gene in sorted(por_gene):
+        perdidas = {c for c in por_gene[gene] if genes_da_reacao[c] <= {gene}}
+        linha = {"gene": gene, "n_reacoes": len(por_gene[gene]), "n_reacoes_perdidas": len(perdidas)}
+        if perdidas:
+            H = grafo_sem_reacoes(M, perdidas, nos)
+            linha["arestas_perdidas"] = G.number_of_edges() - H.number_of_edges()
+            linha.update(metricas.queda_estrutural(antes, metricas.medidas_estruturais(H, n), n))
+        else:
+            linha.update(arestas_perdidas=0, **zero)
+        linhas.append(linha)
+    return pd.DataFrame(linhas, columns=list(COLUNAS_DANO_ESTRUTURAL))
 
 
 def centralidade_por_gene(reacoes: pd.DataFrame, valores_metabolito: pd.Series,

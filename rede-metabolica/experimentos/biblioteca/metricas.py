@@ -2,10 +2,15 @@
 
 Descritivas (exp0, exp4): tamanho, graus, clustering, caminhos, bow-tie.
 De dano (exp1, exp4): maior componente, índice R, eficiência, alcance.
-Topológicas para o exp2: centralidades e choke points.
+Dano estrutural de uma remoção (exp2, exp3): queda do maior componente forte,
+do maior componente fraco e da eficiência (medidas_estruturais, queda_estrutural,
+dano_remocao_individual).
+Topológicas para o exp2: centralidades (betweenness, harmônica) e choke points.
 
 Todas recebem o grafo simples dirigido (grafo.grafo_simples), exceto
-choke_points, que trabalha direto na tabela de reações.
+choke_points, que trabalha direto na tabela de reações. matriz_distancias,
+harmonica e assortatividade aceitam também o grafo não dirigido dos modelos
+clássicos (modelos_classicos.py).
 """
 from __future__ import annotations
 
@@ -17,6 +22,8 @@ from collections.abc import Iterable
 import networkx as nx
 import numpy as np
 import pandas as pd
+from scipy.sparse import csr_matrix
+from scipy.sparse.csgraph import shortest_path
 
 import config
 from experimentos.biblioteca import grafo
@@ -282,6 +289,119 @@ def eficiencia_global_dirigida(G: nx.DiGraph, n_original: int) -> float:
             if d > 0:
                 soma += 1.0 / d
     return soma / (n_original * (n_original - 1))
+
+
+def matriz_distancias(G: nx.Graph, nos: list | None = None) -> np.ndarray:
+    """Distâncias (número de arestas) entre todos os pares, D[i, j] = d(nos[i], nos[j]).
+
+    scipy.sparse.csgraph.shortest_path(method="D", unweighted=True), dirigida se G
+    for dirigido. inf onde não há caminho e 0 na diagonal. nos: a ordem das linhas
+    e colunas (padrão: a de G.nodes). Ocupa N² números (~10 MB na eco).
+    """
+    nos = list(G.nodes) if nos is None else list(nos)
+    posicao = {no: i for i, no in enumerate(nos)}
+    origem = [posicao[u] for u, _ in G.edges()]
+    destino = [posicao[v] for _, v in G.edges()]
+    A = csr_matrix((np.ones(len(origem)), (origem, destino)), shape=(len(nos), len(nos)))
+    return shortest_path(A, method="D", directed=G.is_directed(), unweighted=True)
+
+
+def eficiencia_global_dirigida_rapida(G: nx.DiGraph, n_original: int) -> float:
+    """A mesma eficiência de eficiencia_global_dirigida, com as distâncias calculadas pela scipy.
+
+    Soma 1/d(i, j) sobre os pares ordenados com caminho (matriz_distancias) e divide
+    pelo mesmo n_original*(n_original-1). Dá o mesmo valor da versão em Python
+    puro (até ~1e-11 relativo, a diferença de arredondamento das duas somas; ver
+    testes/test_dano_estrutural.py) em menos da metade do tempo: é a usada nos
+    ~1.700 nocautes e remoções individuais dos Exps 2 e 3.
+    """
+    if n_original < 2 or G.number_of_edges() == 0:
+        return 0.0
+    D = matriz_distancias(G)
+    com_caminho = D[np.isfinite(D) & (D > 0)]
+    return float((1.0 / com_caminho).sum()) / (n_original * (n_original - 1))
+
+
+def harmonica(G: nx.Graph) -> pd.Series:
+    """Centralidade harmônica de cada nó: soma de 1/d(v, u) sobre os nós v que alcançam u.
+
+    É a nx.harmonic_centrality (Marchiori e Latora, 2000; Boldi e Vigna, 2014), a
+    versão da proximidade (closeness) que funciona em rede desconexa: par sem
+    caminho conta 0. Num grafo dirigido, conta as distâncias que chegam ao nó.
+    Calculada pelas contagens de distância (quantos v estão a 1, 2, 3... arestas
+    de u), e não somando 1/d na ordem em que a NetworkX visita as origens: assim
+    dois nós com a mesma contagem têm exatamente o mesmo valor (o empate aparece e
+    é desfeito pelo código do nó) e o resultado não muda de uma execução para
+    outra. Os valores batem com os da NetworkX (testado). Índice = nó, ordenado.
+    """
+    nos = sorted(G.nodes)
+    if not nos:
+        return pd.Series(dtype=float, name="harmonica")
+    D = matriz_distancias(G, nos)
+    finitas = D[np.isfinite(D)]
+    maior = int(finitas.max()) if finitas.size else 0
+    valores = np.zeros(len(nos))
+    for d in range(1, maior + 1):
+        valores += (D == d).sum(axis=0) / d   # coluna u: os v com d(v, u) = d
+    return pd.Series(valores, index=nos, name="harmonica")
+
+
+# ---------------------------------------------------------------------------
+# Dano estrutural de uma remoção (Exps 2 e 3)
+# ---------------------------------------------------------------------------
+def medidas_estruturais(G: nx.DiGraph, n_original: int) -> dict:
+    """Tamanho (em nós) do maior componente forte e do maior fraco, e a eficiência global dirigida.
+
+    A eficiência é a de eficiencia_global_dirigida_rapida, normalizada por n_original.
+    """
+    return {
+        "maior_forte": max((len(c) for c in nx.strongly_connected_components(G)), default=0),
+        "maior_fraco": max((len(c) for c in nx.weakly_connected_components(G)), default=0),
+        "eficiencia": eficiencia_global_dirigida_rapida(G, n_original),
+    }
+
+
+COLUNAS_DANO_ESTRUTURAL = ("dano_forte", "dano_fraco", "dano_forte_fracao", "dano_fraco_fracao",
+                           "dano_eficiencia")
+
+
+def queda_estrutural(antes: dict, depois: dict, n_original: int) -> dict:
+    """Dano estrutural de uma remoção, a partir de duas medidas_estruturais.
+
+    dano_forte, dano_fraco: nós que deixam o maior componente forte (o núcleo) e o
+        maior componente fraco, calculados como tamanho antes menos tamanho depois
+        (a mesma régua das curvas do Exp 1);
+    dano_forte_fracao, dano_fraco_fracao: os mesmos, divididos por n_original;
+    dano_eficiencia: queda relativa da eficiência global, (E0 - E)/E0 (NaN se E0 = 0).
+    """
+    e0 = antes["eficiencia"]
+    forte = antes["maior_forte"] - depois["maior_forte"]
+    fraco = antes["maior_fraco"] - depois["maior_fraco"]
+    return {"dano_forte": forte, "dano_fraco": fraco,
+            "dano_forte_fracao": forte / n_original if n_original else math.nan,
+            "dano_fraco_fracao": fraco / n_original if n_original else math.nan,
+            "dano_eficiencia": (e0 - depois["eficiencia"]) / e0 if e0 > 0 else math.nan}
+
+
+def dano_remocao_individual(G: nx.DiGraph) -> pd.DataFrame:
+    """Remove cada nó de G sozinho e mede o dano estrutural (queda_estrutural) em relação a G.
+
+    N é o número de nós de G, o mesmo antes e depois: a eficiência depois da
+    remoção também é dividida por N*(N-1), então os pares do próprio nó removido
+    contam como perdidos, como nas curvas do Exp 1. Uma linha por nó, em ordem de
+    código. Colunas: metabolito e COLUNAS_DANO_ESTRUTURAL. Leva ~30 s na eco.
+    """
+    n = G.number_of_nodes()
+    simples = nx.DiGraph()
+    simples.add_nodes_from(G.nodes)
+    simples.add_edges_from(G.edges())   # sem atributos: a cópia a cada remoção fica mais leve
+    antes = medidas_estruturais(simples, n)
+    linhas = []
+    for no in sorted(simples.nodes):
+        H = simples.copy()
+        H.remove_node(no)
+        linhas.append({"metabolito": no, **queda_estrutural(antes, medidas_estruturais(H, n), n)})
+    return pd.DataFrame(linhas, columns=["metabolito", *COLUNAS_DANO_ESTRUTURAL])
 
 
 def alcancaveis(G: nx.DiGraph, fontes: Iterable[str]) -> set:

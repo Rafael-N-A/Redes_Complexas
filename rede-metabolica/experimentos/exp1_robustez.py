@@ -4,7 +4,7 @@ Pergunta: a rede da E. coli tolera remoções aleatórias e é frágil a remoç�
 direcionadas aos nós mais centrais, como prevê a teoria de redes livres de escala?
 
 Estratégias (config.ESTRATEGIAS; ver robustez.py): a remoção aleatória (média de
-config.N_REPETICOES_ALEATORIAS = 100 repetições) e quatro centralidades, cada uma
+config.N_REPETICOES_ALEATORIAS = 100 repetições) e três centralidades, cada uma
 nas versões estática (calculada uma vez, na rede intacta) e adaptativa
 (recalculada na rede que sobrou):
   grau          o grau total (entrada + saída) no grafo simples: um vizinho
@@ -12,8 +12,6 @@ nas versões estática (calculada uma vez, na rede intacta) e adaptativa
                 a versão adaptativa recalcula depois de cada remoção
   betweenness   a exata (metricas.betweenness); a adaptativa recalcula a cada
                 config.PASSO_BETWEENNESS = 10 remoções
-  harmonica     a centralidade harmônica, a versão da proximidade (closeness) que
-                funciona em rede desconexa; a adaptativa recalcula a cada 10 remoções
   pagerank      o PageRank (amortecimento 0,85, peso = número de reações entre o par);
                 a adaptativa recalcula a cada 10 remoções
 A centralidade de autovetor fica de fora: numa rede dirigida que não é
@@ -42,6 +40,8 @@ Grava: resultados/tabelas/exp1_curvas_<org>_<versao>.csv   (formato longo, uma l
            aleatória e a versão adaptativa de cada centralidade (curva inteira e um
            detalhe dos primeiros 10% removidos; a eficiência, medida só a cada 5%,
            fica sem o detalhe)
+       resultados/figuras/exp1_maior_fraco_inteira_<org>_<versao>.png  (a figura do artigo: as mesmas
+                                                           curvas do maior componente fraco, sem o detalhe)
        resultados/figuras/exp1_painel_<org>_<versao>.png  (as quatro métricas num painel 2x2, com as
                                                            mesmas curvas)
        resultados/figuras/exp1_estatica_adaptativa_<org>_<versao>.png  (para cada centralidade, a
@@ -74,9 +74,8 @@ METRICAS_FIGURA = ("maior_fraco", "maior_forte", "eficiencia", "alcance")
 # O painel e as figuras de cada métrica: a remoção aleatória e uma curva por
 # centralidade, a versão adaptativa (a mais danosa). As estáticas ficam na
 # tabela e na figura estática x adaptativa.
-ESTRATEGIAS_PAINEL = ("aleatoria", "grau_adaptativo", "betweenness_adaptativo",
-                      "harmonica_adaptativo", "pagerank_adaptativo")
-CENTRALIDADES = ("grau", "betweenness", "harmonica", "pagerank")
+ESTRATEGIAS_PAINEL = ("aleatoria", "grau_adaptativo", "betweenness_adaptativo", "pagerank_adaptativo")
+CENTRALIDADES = ("grau", "betweenness", "pagerank")
 ZOOM = 0.1  # detalhe das figuras individuais: os ataques derrubam a rede nos primeiros 10%
 
 
@@ -115,10 +114,11 @@ def plotar(org: str, versao: str) -> None:
 
     Uma por métrica de METRICAS_FIGURA e o painel 2x2 com as quatro, todas com
     as estratégias de ESTRATEGIAS_PAINEL (a remoção aleatória e a versão
-    adaptativa de cada centralidade); e a figura estática x adaptativa de cada
-    centralidade (maior componente fraco). A figura principal do artigo é a de
-    maior_fraco (curva clássica de Albert, Jeong e Barabási, 2000); a eficiência
-    só tem pontos a cada 5%.
+    adaptativa de cada centralidade); a figura do artigo (exp1_maior_fraco_inteira:
+    o maior componente fraco com as mesmas curvas, a curva inteira sem o detalhe;
+    é a curva clássica de Albert, Jeong e Barabási, 2000); e a figura estática x
+    adaptativa de cada centralidade (maior componente fraco). A eficiência só tem
+    pontos a cada 5%.
     """
     figuras.estilo()
     todas = pd.read_csv(config.arquivo_tabela("exp1", "curvas", org, versao))
@@ -127,6 +127,8 @@ def plotar(org: str, versao: str) -> None:
         # A eficiência só tem pontos a cada 5%: no detalhe sobrariam três.
         fig = figuras.curvas_robustez(curvas, metrica, zoom=None if metrica == "eficiencia" else ZOOM)
         figuras.salvar(fig, config.arquivo_figura("exp1", metrica, org, versao))
+    figuras.salvar(figuras.curvas_robustez(curvas, "maior_fraco", zoom=None),
+                   config.arquivo_figura("exp1", "maior_fraco_inteira", org, versao))
     figuras.salvar(figuras.painel_robustez(curvas, METRICAS_FIGURA),
                    config.arquivo_figura("exp1", "painel", org, versao))
     centralidades = [c for c in CENTRALIDADES if c in set(todas["estrategia"])]

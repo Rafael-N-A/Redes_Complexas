@@ -12,18 +12,19 @@ Convenções (iguais em todas as figuras):
     E. coli é sempre azul no Exp 4;
   - estratégias adaptativas em linha não contínua, cada uma com o seu traço,
     além da cor, para a figura continuar legível impressa em preto e branco (e
-    para separar o par aqua x magenta, que fica perto sob deuteranopia); a
-    harmônica e o PageRank usam a mesma cor nas versões estática e adaptativa,
-    que só se distinguem pelo traço;
+    para separar o par aqua x magenta, que fica perto sob deuteranopia); o
+    PageRank usa a mesma cor nas versões estática e adaptativa, que só se
+    distinguem pelo traço;
   - grade e eixos em cinza claro, sem bordas de cima e da direita; legenda
     sempre que há mais de uma série.
 
 As combinações de cores que aparecem juntas foram conferidas com o validador
 de paletas (deltaE em OKLab sob protanopia e deuteranopia): aleatória e as
-quatro adaptativas (CORES[0], [2], [4], [6], [7]; o par aqua x magenta fica na
-faixa de 6 a 8 e por isso as adaptativas têm traços diferentes); as estratégias
-dos modelos clássicos (CORES[0:4], [6], [7]); e os modelos clássicos (CORES[0:7],
-na ordem da paleta).
+três adaptativas (CORES[0], [2], [4], [6]; o par aqua x magenta fica na faixa
+de 6 a 8 e por isso as adaptativas têm traços diferentes; o PageRank fica no
+violeta porque o vermelho, ao lado do magenta, reprova até para visão normal);
+as estratégias dos modelos clássicos (CORES[0:4], [6]); e os modelos clássicos
+(CORES[0:7], na ordem da paleta).
 """
 from __future__ import annotations
 
@@ -62,10 +63,8 @@ ESTRATEGIAS = {  # nome -> (rótulo, cor, estilo de linha); as adaptativas, cada
     "grau_adaptativo": ("Grau (adaptativo)", CORES[2], "--"),
     "betweenness": ("Betweenness", CORES[3], "-"),
     "betweenness_adaptativo": ("Betweenness (adaptativo)", CORES[4], "-."),
-    "harmonica": ("Harmônica", CORES[6], "-"),
-    "harmonica_adaptativo": ("Harmônica (adaptativo)", CORES[6], (0, (1.2, 1.6))),
-    "pagerank": ("PageRank", CORES[7], "-"),
-    "pagerank_adaptativo": ("PageRank (adaptativo)", CORES[7], (0, (5, 1.6, 1.2, 1.6, 1.2, 1.6))),
+    "pagerank": ("PageRank", CORES[6], "-"),
+    "pagerank_adaptativo": ("PageRank (adaptativo)", CORES[6], (0, (5, 1.6, 1.2, 1.6, 1.2, 1.6))),
 }
 
 MODELOS = {  # Exp 4, modelos clássicos (não dirigidos): nome -> (rótulo, cor, estilo); cores na ordem da paleta
@@ -161,6 +160,11 @@ RANKINGS_EXP2 = {  # Exp 2: nome do ranking -> rótulo (a ordem é a das figuras
     "pagerank": "PageRank",
     "dano_meio_minimo": "Cascata (meio mínimo)",
     "reacoes_perdidas": "Reações perdidas",
+}
+
+FAIXAS_EXP2 = {  # Exp 2 (d): medida -> (rótulo, cor); a ordem é a das barras em cada faixa
+    "dano_forte": ("Quebrar a rede\n(saem do núcleo)", CORES[1]),
+    "dano": ("Deixar de produzir\n(cascata)", CORES[0]),
 }
 
 SUBCONJUNTOS_EXP2 = {  # Exp 2: coluna subconjunto -> (rótulo, cor)
@@ -436,8 +440,12 @@ def estatica_vs_adaptativa(curvas: pd.DataFrame, centralidades: list[str],
         ax.legend(loc="upper right", fontsize=7.5)
     for ax in eixos.flat[len(centralidades):]:
         ax.set_visible(False)
-    for ax in eixos[-1]:
-        ax.set_xlabel(ROTULO_FRACAO_REMOVIDA)
+    # O eixo x vai no painel mais baixo de cada coluna: com um número ímpar de
+    # centralidades, a coluna da direita termina uma linha antes.
+    for coluna in range(colunas):
+        visiveis = [ax for ax in eixos[:, coluna] if ax.get_visible()]
+        visiveis[-1].set_xlabel(ROTULO_FRACAO_REMOVIDA)
+        visiveis[-1].tick_params(axis="x", labelbottom=True)
     for ax in eixos[:, 0]:
         ax.set_ylabel(METRICAS_ROBUSTEZ.get(metrica, metrica))
     fig.tight_layout()
@@ -711,6 +719,42 @@ def barras_auc(avaliacao: pd.DataFrame, rankings: list[str] | None = None) -> pl
     handles, labels = ax.get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", ncol=2, bbox_to_anchor=(0.5, 0.0))
     fig.tight_layout(rect=(0, 0.07, 1, 1))
+    return fig
+
+
+def barras_essenciais_por_faixa(faixas: pd.DataFrame) -> plt.Figure:
+    """Exp 2 (d), a Figura 4 do artigo. % de genes essenciais por faixa de dano, por medida.
+
+    faixas: a tabela de exp2_biologia.essenciais_por_faixa (medida, faixa, genes,
+    essenciais, taxa). Barras lado a lado em cada faixa, uma por medida (cores e
+    rótulos de FAIXAS_EXP2), com o valor em cima, e a linha tracejada da média
+    (a fração de essenciais entre todos os genes da tabela, a mesma em toda medida).
+    """
+    estilo()
+    medidas = _ordenar(faixas["medida"], FAIXAS_EXP2)
+    rotulos = list(dict.fromkeys(faixas["faixa"]))
+    fig, ax = plt.subplots(figsize=(3.6, 3.0))
+    x = np.arange(len(rotulos))
+    largura = 0.38
+    for i, medida in enumerate(medidas):
+        parte = faixas[faixas["medida"] == medida].set_index("faixa").reindex(rotulos)
+        nome, cor = FAIXAS_EXP2.get(medida, (medida, CORES[i % len(CORES)]))
+        taxa = 100 * parte["taxa"].to_numpy(dtype=float)
+        posicoes = x + (i - (len(medidas) - 1) / 2) * largura
+        ax.bar(posicoes, taxa, largura, label=nome, color=cor, zorder=3)
+        for xi, v in zip(posicoes, taxa):
+            if not np.isnan(v):
+                ax.text(xi, v + 1.5, f"{v:.0f}%", ha="center", va="bottom", fontsize=7)
+    primeira = faixas[faixas["medida"] == medidas[0]]
+    base = 100 * primeira["essenciais"].sum() / primeira["genes"].sum()
+    ax.axhline(base, color="0.4", ls="--", lw=0.8, zorder=2)
+    ax.text(1.0, base + 1.5, f"média ({base:.0f}%)", ha="center", va="bottom", fontsize=7, color="0.3")
+    ax.set_xticks(x, rotulos)
+    ax.set_xlabel("Tamanho do dano (nº de metabólitos)")
+    ax.set_ylabel("Genes essenciais na Keio (%)")
+    ax.set_ylim(0, max(80.0, float(np.nanmax(100 * faixas["taxa"].to_numpy(dtype=float))) + 10))
+    ax.legend(loc="upper left", fontsize=7, frameon=False)
+    fig.tight_layout()
     return fig
 
 

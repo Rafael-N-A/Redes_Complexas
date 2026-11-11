@@ -169,10 +169,10 @@ NUTRIENTES = {
 # fim da ordem (robustez.simular_remocao, proteger_fontes=True).
 # ---------------------------------------------------------------------------
 ESTRATEGIAS = ("aleatoria", "grau", "grau_adaptativo", "betweenness", "betweenness_adaptativo",
-               "harmonica", "harmonica_adaptativo", "pagerank", "pagerank_adaptativo")
+               "pagerank", "pagerank_adaptativo")
 N_REPETICOES_ALEATORIAS = 100
 PASSO_EFICIENCIA = 0.05     # mede a eficiência a cada 5% da rede removida
-PASSO_BETWEENNESS = 10      # nas adaptativas de betweenness, harmônica e PageRank, recalcula a cada k remoções
+PASSO_BETWEENNESS = 10      # nas adaptativas de betweenness e PageRank, recalcula a cada k remoções
 
 # ---------------------------------------------------------------------------
 # Experimento 2 — Dano x essencialidade dos genes (gabarito: Keio)
@@ -205,6 +205,11 @@ EXEMPLOS_DANO_EXP2 = {
         "OU trata como isoenzimas (nenhum gene sozinho derruba a reação); eno e pgk perdem a sua "
         "reação, mas a rede tem um desvio entre os mesmos metabólitos, sem garantia de fluxo"),
 }
+
+# Faixas de dano da figura de barras do Exp 2 (exp2_essenciais_por_faixa): rótulo ->
+# maior dano da faixa (inclusive); a primeira começa em 0 e a última não tem teto.
+# Só os genes que perdem pelo menos uma reação (os outros têm dano 0 em tudo).
+FAIXAS_DANO_EXP2 = (("0", 0), ("1–2", 2), ("3–9", 9), ("10 ou mais", float("inf")))
 
 # ---------------------------------------------------------------------------
 # Experimento 3 — Dano individual dos metabólitos (não há gabarito para metabólitos)
@@ -260,6 +265,20 @@ MODELOS_CLASSICOS = ("configuracao", "erdos_renyi", "ba_misto", "ba_m1", "newman
 # Estratégias de remoção nos modelos clássicos (maior componente conexo). As estáticas
 # e a aleatória saem por percolação reversa (union-find); o grau adaptativo, da
 # sequência calculada passo a passo.
-ESTRATEGIAS_CLASSICOS = ("aleatoria", "grau", "grau_adaptativo", "betweenness", "harmonica", "pagerank")
+ESTRATEGIAS_CLASSICOS = ("aleatoria", "grau", "grau_adaptativo", "betweenness", "pagerank")
 K_WATTS_STROGATZ = 4        # WS de clustering alto: com k = 4 tem o dobro das arestas da E. coli
 P_WATTS_STROGATZ = 0.1
+
+# ---------------------------------------------------------------------------
+# Checagem das inferências do artigo (experimentos/checar_inferencias.py)
+# Só na E. coli: a parte dos genes usa a tabela do Exp 2 (gabarito da Keio).
+# ---------------------------------------------------------------------------
+# Os primeiros k metabólitos de cada ranking, com k = round(fração * N): 3,5% (na
+# E. coli, os 39 que a remoção por grau leva para derrubar o maior componente fraco
+# à metade, metade_fraco do Exp 1) e 10% (111 de 1111).
+TOPS_INFERENCIAS = (0.035, 0.10)
+N_PRIMEIROS_INFERENCIAS = 10     # quantos nomes do topo de cada ranking vão para o resumo
+MINIMOS_LADO_INFERENCIAS = (1, 5)  # genes que tiram pelo menos n metabólitos do maior fraco
+# Via do chiquimato: os genes conferidos e os aminoácidos aromáticos acompanhados.
+GENES_CHIQUIMATO = ("aroA", "aroB", "aroC", "aroD")
+AROMATICOS = {"C00079": "Phe", "C00082": "Tyr", "C00078": "Trp"}

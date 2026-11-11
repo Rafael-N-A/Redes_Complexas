@@ -9,9 +9,10 @@ dano das mesmas duas formas do Exp 2 (genes):
   funcional   a avalanche da cascata: quantos metabólitos que a rede intacta produz
               deixam de ser produzidos (cascata.avalanches_todos, na rede bipartida).
 Não há gabarito experimental de essencialidade para metabólitos, então a
-comparação é entre as medidas: Spearman de cada uma com o grau, a betweenness,
-a harmônica e o PageRank (os nós que o Exp 1 remove primeiro são os que,
-sozinhos, mais danificam a rede?) e entre o dano estrutural e o funcional.
+comparação é entre as medidas: Spearman de cada uma com o grau, a betweenness
+e o PageRank (os nós que o Exp 1 remove primeiro são os que, sozinhos, mais
+danificam a rede?), com a harmônica como centralidade de referência, e entre
+o dano estrutural e o funcional.
 Cobre também o item "spreading" do roteiro (a avalanche se espalha até onde?).
 
 Roda numa versão só (config.VERSAO_CASCATA): com a moeda sempre disponível,
@@ -127,9 +128,10 @@ def tabela_dano(G: nx.DiGraph, estrutural: pd.DataFrame, avalanches: pd.Series,
 
     estrutural: metricas.dano_remocao_individual(G); avalanches: cascata.avalanches_todos
     (só os produzidos na rede intacta; avalanche NaN e produzido=False para os outros).
-    Centralidades no grafo simples, as mesmas do Exp 1: grau total, betweenness,
-    harmônica (metricas.harmonica) e PageRank (nx.pagerank). Ordenada pela queda
-    do núcleo, depois pela da eficiência (maiores primeiro) e pelo código.
+    Centralidades no grafo simples: as do Exp 1 (grau total, betweenness e PageRank,
+    nx.pagerank) e a harmônica (metricas.harmonica), que não entra na remoção.
+    Ordenada pela queda do núcleo, depois pela da eficiência (maiores primeiro) e
+    pelo código.
     """
     tabela = estrutural.set_index("metabolito").reindex(sorted(G.nodes))
     tabela.index.name = "metabolito"

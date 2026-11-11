@@ -46,7 +46,7 @@ def ecoli():
 # ---------------------------------------------------------------------------
 # Percolação reversa
 # ---------------------------------------------------------------------------
-@pytest.mark.parametrize("estrategia", ["aleatoria", "grau", "betweenness", "harmonica", "pagerank",
+@pytest.mark.parametrize("estrategia", ["aleatoria", "grau", "betweenness", "pagerank",
                                         "grau_adaptativo"])
 def test_union_find_igual_a_simulacao_ingenua(estrategia):
     for semente in range(10):

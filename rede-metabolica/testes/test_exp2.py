@@ -109,10 +109,44 @@ def test_exp2_de_ponta_a_ponta(resultados_temporarios):
     roc = ler("roc")
     assert set(roc["ranking"]) == set(avaliacao["ranking"])
     assert set(roc["subconjunto"]) == {"todos", "perde_reacao"}
+
+    # (d) essenciais por faixa de dano: só os 574 que perdem reação, cada um numa faixa por medida
+    faixas = ler("essenciais_por_faixa")
+    assert list(faixas.columns) == exp2_biologia.COLUNAS_FAIXAS
+    assert list(dict.fromkeys(faixas["medida"])) == list(exp2_biologia.MEDIDAS_FAIXAS)
+    for medida, parte in faixas.groupby("medida"):
+        assert parte["genes"].sum() == 574 and parte["essenciais"].sum() == perde["essencial"].sum()
+        dez_ou_mais = parte.set_index("faixa").loc["10 ou mais"]
+        assert dez_ou_mais["genes"] == (perde[medida] >= 10).sum()
+        assert dez_ou_mais["essenciais"] == perde.loc[perde[medida] >= 10, "essencial"].sum()
+    # Os números da Figura 4 do artigo
+    cascata = faixas[faixas["medida"] == "dano"].set_index("faixa")
+    assert (cascata.loc["10 ou mais", "essenciais"], cascata.loc["10 ou mais", "genes"]) == (36, 52)
+
     exp2_biologia.plotar(ORG)
-    for conteudo in ("roc", "dispersao", "auc"):
+    for conteudo in ("roc", "dispersao", "auc", "essenciais_por_faixa"):
         assert config.arquivo_figura("exp2", conteudo, ORG).exists(), conteudo
-    assert "Spearman" in exp2_biologia._resumo(avaliacao, ORG)
+    texto = exp2_biologia._resumo(avaliacao, ORG)
+    assert "Spearman" in texto and "36/52 (69%)" in texto
+
+
+def test_essenciais_por_faixa_feito_a_mao():
+    """Faixas 0, 1–2, 3–9 e 10+; quem não perde reação fica de fora; faixa vazia com taxa NaN."""
+    genes = pd.DataFrame({"gene": [f"g{i}" for i in range(7)],
+                          "n_reacoes_perdidas": [1, 1, 1, 1, 1, 1, 0],
+                          "essencial": [True, False, False, True, True, False, True],
+                          "dano":       [0, 0, 2, 3, 12, 40, 99],
+                          "dano_forte": [0, 1, 1, 0, 0, 10, 99]})
+    faixas = exp2_biologia.essenciais_por_faixa(genes).set_index(["medida", "faixa"])
+    assert faixas.loc[("dano", "0"), ["genes", "essenciais"]].tolist() == [2, 1]
+    assert faixas.loc[("dano", "1–2"), ["genes", "essenciais"]].tolist() == [1, 0]
+    assert faixas.loc[("dano", "3–9"), ["genes", "essenciais", "taxa"]].tolist() == [1, 1, 1.0]
+    assert faixas.loc[("dano", "10 ou mais"), ["genes", "essenciais"]].tolist() == [2, 1]   # g6 (99) fica de fora
+    assert faixas.loc[("dano_forte", "1–2"), "genes"] == 2
+    assert faixas.loc[("dano_forte", "3–9"), "genes"] == 0 and math.isnan(faixas.loc[("dano_forte", "3–9"), "taxa"])
+    assert faixas.loc[("dano", "1–2"), ["minimo", "maximo"]].tolist() == [1, 2]
+    assert pd.isna(faixas.loc[("dano", "10 ou mais"), "maximo"])
+    assert list(faixas.index.get_level_values("medida").unique()) == ["dano_forte", "dano"]
 
 
 def test_exemplos_de_baixa_centralidade():

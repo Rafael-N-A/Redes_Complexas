@@ -25,7 +25,7 @@ Rankings (maior pontuação = mais provável de ser essencial):
   dano_fraco         metabólitos que deixam o maior componente fraco      [estrutural]
   dano_eficiencia    queda relativa da eficiência global dirigida         [complementar]
   grau, betweenness  centralidade dos metabólitos das reações do gene     [centralidade]
-  harmonica, pagerank  idem, com as centralidades novas do Exp 1          [centralidade]
+  harmonica, pagerank  idem, com a harmônica e o PageRank                  [centralidade]
   dano_meio_minimo   a cascata partindo só do meio mínimo                 [sensibilidade]
   reacoes_perdidas   só quantas reações o gene derruba, sem a cascata    [linha de base]
 A linha de base mostra quanto a propagação pela rede acrescenta à perda direta.
@@ -46,10 +46,14 @@ Grava: resultados/tabelas/exp2_genes_eco.csv        (uma linha por gene: essenci
        resultados/tabelas/exp2_correlacoes_eco.csv  (Spearman entre o dano estrutural e o funcional)
        resultados/tabelas/exp2_exemplos_eco.csv     (essenciais de baixa centralidade que o dano acerta)
        resultados/tabelas/exp2_exemplos_dano_eco.csv (os três grupos de casos de config.EXEMPLOS_DANO_EXP2)
+       resultados/tabelas/exp2_essenciais_por_faixa_eco.csv (genes e essenciais por faixa de dano, nos que
+                                                     perdem reação; estrutural e funcional)
        resultados/tabelas/exp2_resumo_eco.csv       (cobertura da Keio na rede e a rede intacta)
        resultados/figuras/exp2_roc_eco.png          (a) ROC da cascata, do núcleo, da eficiência e do grau
        resultados/figuras/exp2_dispersao_eco.png    (b) dano estrutural x funcional por gene
        resultados/figuras/exp2_auc_eco.png          (c) AUC de cada ranking, todos os genes x os 574
+       resultados/figuras/exp2_essenciais_por_faixa_eco.png  (d) % de essenciais por faixa de dano,
+                                                     estrutural x funcional (Figura 4 do artigo)
 
 Uso, na raiz:
     python -m experimentos.exp2_biologia
@@ -58,6 +62,7 @@ Uso, na raiz:
 from __future__ import annotations
 
 import argparse
+import math
 import time
 
 import networkx as nx
@@ -84,6 +89,9 @@ SUBCONJUNTOS = ("todos", "perde_reacao")
 PARES_CORRELACAO = (("dano", "dano_forte"), ("dano", "dano_fraco"), ("dano", "dano_eficiencia"),
                     ("dano_forte", "dano_eficiencia"), ("dano_forte", "dano_fraco"))
 N_EXEMPLOS = 5
+# (d) % de essenciais por faixa de dano: a principal estrutural e a funcional, nesta ordem.
+MEDIDAS_FAIXAS = ("dano_forte", "dano")
+COLUNAS_FAIXAS = ["medida", "faixa", "minimo", "maximo", "genes", "essenciais", "taxa"]
 
 
 def _gravar(tabela: pd.DataFrame, conteudo: str, org: str) -> None:
@@ -193,6 +201,34 @@ def correlacoes(genes: pd.DataFrame, pares=PARES_CORRELACAO) -> pd.DataFrame:
     return pd.DataFrame(linhas)
 
 
+def essenciais_por_faixa(genes: pd.DataFrame, medidas=MEDIDAS_FAIXAS,
+                         faixas=config.FAIXAS_DANO_EXP2) -> pd.DataFrame:
+    """Quantos genes e quantos essenciais em cada faixa de dano, por medida.
+
+    Só os genes que perdem pelo menos uma reação (os outros têm dano 0 em
+    qualquer medida). faixas: (rótulo, maior dano da faixa) em ordem crescente;
+    a faixa vai do teto da anterior + 1 até o seu (a primeira começa em 0).
+    Uma linha por medida e faixa (COLUNAS_FAIXAS); taxa = essenciais / genes
+    (NaN numa faixa vazia). minimo e maximo são os limites inteiros da faixa
+    (maximo vazio na última, sem teto).
+    """
+    perdem = genes[genes["n_reacoes_perdidas"] > 0]
+    limites = [-1, *(teto for _, teto in faixas)]
+    rotulos = [rotulo for rotulo, _ in faixas]
+    linhas = []
+    for medida in medidas:
+        faixa = pd.cut(perdem[medida], limites, labels=rotulos)
+        contagem = perdem.groupby(faixa, observed=False)["essencial"].agg(["size", "sum"])
+        for (rotulo, teto), anterior in zip(faixas, limites):
+            n, essenciais = int(contagem.loc[rotulo, "size"]), int(contagem.loc[rotulo, "sum"])
+            linhas.append({"medida": medida, "faixa": rotulo, "minimo": int(anterior) + 1,
+                           "maximo": None if math.isinf(teto) else int(teto), "genes": n,
+                           "essenciais": essenciais, "taxa": essenciais / n if n else float("nan")})
+    tabela = pd.DataFrame(linhas, columns=COLUNAS_FAIXAS)
+    tabela["maximo"] = tabela["maximo"].astype("Int64")
+    return tabela
+
+
 def rodar(org: str) -> pd.DataFrame:
     """Simula o nocaute de cada gene, mede o dano de três formas e compara os rankings com a Keio.
 
@@ -212,6 +248,7 @@ def rodar(org: str) -> pd.DataFrame:
       7. Choke points: metricas.choke_points -> nocaute.genes_em_choke_points;
          tabela 2x2 (choke x essencial) e scipy.stats.fisher_exact.
       8. Exemplos: exemplos_baixa_centralidade e exemplos_dano (config.EXEMPLOS_DANO_EXP2).
+         Essenciais por faixa de dano (essenciais_por_faixa, config.FAIXAS_DANO_EXP2).
       9. Grave as tabelas com config.arquivo_tabela("exp2", <conteudo>, org).
     Devolve a tabela de rankings (os dois subconjuntos).
     """
@@ -295,19 +332,23 @@ def rodar(org: str) -> pd.DataFrame:
     _gravar(correlacoes(genes), "correlacoes", org)
     _gravar(exemplos_baixa_centralidade(genes), "exemplos", org)
     _gravar(exemplos_dano(genes), "exemplos_dano", org)
+    _gravar(essenciais_por_faixa(genes), "essenciais_por_faixa", org)
     _gravar(resumo, "resumo", org)
     print(f"{org}: nocautes de {len(y)} genes ({time.perf_counter() - inicio:.0f} s)")
     return avaliacao
 
 
 def plotar(org: str) -> None:
-    """Lê as tabelas e grava as três figuras.
+    """Lê as tabelas e grava as quatro figuras.
 
     (a) exp2_roc: curvas ROC da cascata, da queda do núcleo, da queda da
         eficiência e do grau, em todos os genes (as outras ficam só na tabela);
     (b) exp2_dispersao: dano estrutural (núcleo e eficiência) x funcional por
         gene, com os essenciais destacados e os casos de exemplos_dano com nome;
-    (c) exp2_auc: AUC de cada ranking com o IC de 95%, todos os genes x os que perdem reação.
+    (c) exp2_auc: AUC de cada ranking com o IC de 95%, todos os genes x os que perdem reação;
+    (d) exp2_essenciais_por_faixa: % de essenciais por faixa de dano, estrutural (queda do
+        núcleo) x funcional (cascata), nos genes que perdem reação (a Figura 4 do artigo).
+        Refeita da tabela de genes, para --so-figuras funcionar com resultados antigos.
     """
     figuras.estilo()
     roc = pd.read_csv(config.arquivo_tabela("exp2", "roc", org))
@@ -325,6 +366,8 @@ def plotar(org: str) -> None:
                    config.arquivo_figura("exp2", "dispersao", org))
     ordem = [r for r in [*RANKINGS, "reacoes_perdidas"] if r in set(avaliacao["ranking"])]
     figuras.salvar(figuras.barras_auc(avaliacao, ordem), config.arquivo_figura("exp2", "auc", org))
+    figuras.salvar(figuras.barras_essenciais_por_faixa(essenciais_por_faixa(genes)),
+                   config.arquivo_figura("exp2", "essenciais_por_faixa", org))
 
 
 def rotulos_dispersao(exemplos: pd.DataFrame) -> dict[str, list[str]]:
@@ -354,6 +397,7 @@ def _resumo(avaliacao: pd.DataFrame, org: str) -> str:
     choke = pd.read_csv(config.arquivo_tabela("exp2", "choke", org)).iloc[0]
     correlacao = pd.read_csv(config.arquivo_tabela("exp2", "correlacoes", org))
     exemplos = pd.read_csv(config.arquivo_tabela("exp2", "exemplos_dano", org))
+    faixas = pd.read_csv(config.arquivo_tabela("exp2", "essenciais_por_faixa", org))
     linhas = [f"{org}: {resumo['genes_rede']} genes na rede, {resumo['essenciais_na_rede']} essenciais da Keio "
               f"({resumo['essenciais_fora_da_rede']} dos {resumo['essenciais_keio']} ficam fora da rede); "
               f"{resumo['genes_com_reacao_perdida']} genes perdem pelo menos uma reação, "
@@ -382,6 +426,11 @@ def _resumo(avaliacao: pd.DataFrame, org: str) -> str:
     for linha in exemplos.to_dict("records"):
         linhas.append(f"  {linha['grupo']:30s} {linha['simbolo']:6s} {str(bool(linha['essencial'])):>9s} "
                       f"{linha['dano']:7d} {linha['dano_forte']:6d} {linha['dano_eficiencia']:10.3f}")
+    linhas.append(f"  essenciais por faixa de dano ({resumo['genes_com_reacao_perdida']} genes que perdem reação;"
+                  f" faixas {', '.join(faixas['faixa'].drop_duplicates())}):")
+    for medida, parte in faixas.groupby("medida", sort=False):
+        linhas.append(f"    {medida:12s} " + "   ".join(
+            f"{f['essenciais']}/{f['genes']} ({f['taxa']:.0%})" for f in parte.to_dict("records")))
     return "\n".join(linhas)
 
 

@@ -8,22 +8,19 @@ que sobrou):
     grau_adaptativo         recalcula o grau depois de cada remoção
     betweenness             maior betweenness primeiro, calculada uma vez
     betweenness_adaptativo  recalcula a cada config.PASSO_BETWEENNESS (10) remoções
-    harmonica               maior centralidade harmônica primeiro, calculada uma vez
-    harmonica_adaptativo    recalcula a cada config.PASSO_BETWEENNESS remoções
     pagerank                maior PageRank primeiro, calculado uma vez
     pagerank_adaptativo     recalcula a cada config.PASSO_BETWEENNESS remoções
 
 O grau é o total (entrada + saída) no grafo simples, o mesmo de metricas.graus:
 um vizinho ligado por uma reação reversível (u -> v e v -> u) conta duas vezes.
-A betweenness é a exata de metricas.betweenness. A harmônica é a de
-metricas.harmonica (a nx.harmonic_centrality calculada de forma determinística):
-é a versão da proximidade (closeness) que funciona em rede desconexa, e conta as
-distâncias que chegam ao nó. O PageRank é o nx.pagerank com os parâmetros padrão
-(amortecimento 0,85), com peso = número de reações entre o par: o passeio
-aleatório segue cada reação com a mesma chance, como no multigrafo de reações (no
-grafo não dirigido dos modelos clássicos não há peso). A centralidade de
-autovetor fica de fora: numa rede dirigida que não é fortemente conexa ela não é
-bem definida (quase todos os nós ficam com zero).
+A betweenness é a exata de metricas.betweenness. O PageRank é o nx.pagerank
+com os parâmetros padrão (amortecimento 0,85), com peso = número de reações
+entre o par: o passeio aleatório segue cada reação com a mesma chance, como no
+multigrafo de reações (no grafo não dirigido dos modelos clássicos não há peso).
+A centralidade de autovetor fica de fora: numa rede dirigida que não é
+fortemente conexa ela não é bem definida (quase todos os nós ficam com zero).
+A harmônica (metricas.harmonica) também não é estratégia de remoção: continua só
+como centralidade de referência nos Exps 2 e 3.
 
 Fontes protegidas (proteger_fontes=True, o padrão de simular_remocao): os
 nutrientes de onde parte o alcance vão para o fim da ordem em todas as
@@ -53,11 +50,11 @@ import pandas as pd
 import config
 from experimentos.biblioteca import metricas
 
-ESTATICAS = ("aleatoria", "grau", "betweenness", "harmonica", "pagerank")
-ADAPTATIVAS = ("grau_adaptativo", "betweenness_adaptativo", "harmonica_adaptativo", "pagerank_adaptativo")
+ESTATICAS = ("aleatoria", "grau", "betweenness", "pagerank")
+ADAPTATIVAS = ("grau_adaptativo", "betweenness_adaptativo", "pagerank_adaptativo")
 # As adaptativas que recalculam em lote: removem em sequência os
 # config.PASSO_BETWEENNESS primeiros do ranking e só então recalculam.
-EM_LOTE = ("betweenness_adaptativo", "harmonica_adaptativo", "pagerank_adaptativo")
+EM_LOTE = ("betweenness_adaptativo", "pagerank_adaptativo")
 METRICAS = ("maior_fraco", "maior_forte", "alcance", "eficiencia")
 COLUNAS = ("n_removidos", "fracao_removida", *METRICAS)
 COLUNAS_DP = tuple(f"{m}_dp" for m in METRICAS)
@@ -84,10 +81,6 @@ def _betweenness(G: nx.DiGraph) -> dict:
     return _arredondar(metricas.betweenness(G))
 
 
-def _harmonica(G: nx.DiGraph) -> dict:
-    return _arredondar(metricas.harmonica(G))
-
-
 def _pagerank(G: nx.DiGraph) -> dict:
     return _arredondar(nx.pagerank(G)) if G.number_of_nodes() else {}
 
@@ -95,7 +88,6 @@ def _pagerank(G: nx.DiGraph) -> dict:
 _CENTRALIDADES = {
     "grau": lambda G: dict(G.degree()),
     "betweenness": _betweenness,
-    "harmonica": _harmonica,
     "pagerank": _pagerank,
 }
 
@@ -110,7 +102,7 @@ def _ranking_atual(G: nx.DiGraph, estrategia: str) -> list:
 
 def ordem_inicial(G: nx.DiGraph, estrategia: str,
                   rng: np.random.Generator | None = None) -> list[str]:
-    """Ordem de remoção das estratégias estáticas (aleatoria, grau, betweenness, harmonica, pagerank).
+    """Ordem de remoção das estratégias estáticas (aleatoria, grau, betweenness, pagerank).
 
     Empates na centralidade são desfeitos pelo código do nó, para que a ordem
     seja sempre a mesma. Na aleatória, o sorteio parte dos nós em ordem de

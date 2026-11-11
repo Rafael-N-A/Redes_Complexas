@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import math
 
+import matplotlib.colors
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -295,22 +296,52 @@ def test_ccdf_sem_ajuste_so_desenha_os_dados():
 # Figuras novas (P1, P2 e P3)
 # ---------------------------------------------------------------------------
 def test_estrategias_novas_tem_cor_e_traco():
-    """No painel do Exp 1 (aleatória + as quatro adaptativas), cores distintas e traços distintos."""
-    painel = ("aleatoria", "grau_adaptativo", "betweenness_adaptativo", "harmonica_adaptativo", "pagerank_adaptativo")
+    """No painel do Exp 1 (aleatória + as três adaptativas), cores distintas e traços distintos."""
+    painel = ("aleatoria", "grau_adaptativo", "betweenness_adaptativo", "pagerank_adaptativo")
     cores = [figuras.ESTRATEGIAS[e][1] for e in painel]
     tracos = [str(figuras.ESTRATEGIAS[e][2]) for e in painel]
     assert len(set(cores)) == len(painel) and len(set(tracos)) == len(painel)
-    for centralidade in ("harmonica", "pagerank"):   # mesma cor nas duas versões, traço diferente
+    assert "harmonica" not in figuras.ESTRATEGIAS and "harmonica_adaptativo" not in figuras.ESTRATEGIAS
+    for centralidade in ("pagerank",):   # mesma cor nas duas versões, traço diferente
         estatica, adaptativa = figuras.ESTRATEGIAS[centralidade], figuras.ESTRATEGIAS[f"{centralidade}_adaptativo"]
         assert estatica[1] == adaptativa[1] and estatica[2] == "-" and adaptativa[2] != "-"
 
 
 def test_estatica_vs_adaptativa():
-    curvas = curvas_exemplo(("aleatoria", "grau", "grau_adaptativo", "harmonica", "harmonica_adaptativo"))
-    fig = figuras.estatica_vs_adaptativa(curvas, ["grau", "harmonica"])
+    curvas = curvas_exemplo(("aleatoria", "grau", "grau_adaptativo", "pagerank", "pagerank_adaptativo"))
+    fig = figuras.estatica_vs_adaptativa(curvas, ["grau", "pagerank"])
     visiveis = [ax for ax in fig.axes if ax.get_visible()]
-    assert [ax.get_title(loc="left") for ax in visiveis] == ["(a) Grau", "(b) Harmônica"]
-    assert list(linhas_com_rotulo(visiveis[1])) == ["Aleatória", "Harmônica", "Harmônica (adaptativo)"]
+    assert [ax.get_title(loc="left") for ax in visiveis] == ["(a) Grau", "(b) PageRank"]
+    assert list(linhas_com_rotulo(visiveis[1])) == ["Aleatória", "PageRank", "PageRank (adaptativo)"]
+
+
+def test_estatica_vs_adaptativa_com_tres_centralidades():
+    """Grade 2x2 com um painel a menos: o (b), sem painel embaixo, ganha o eixo x."""
+    curvas = curvas_exemplo(("aleatoria", "grau", "grau_adaptativo", "betweenness", "betweenness_adaptativo",
+                             "pagerank", "pagerank_adaptativo"))
+    fig = figuras.estatica_vs_adaptativa(curvas, ["grau", "betweenness", "pagerank"])
+    a, b, c = [ax for ax in fig.axes if ax.get_visible()]
+    assert [ax.get_title(loc="left") for ax in (a, b, c)] == ["(a) Grau", "(b) Betweenness", "(c) PageRank"]
+    assert a.get_xlabel() == "" and b.get_xlabel() == c.get_xlabel() == figuras.ROTULO_FRACAO_REMOVIDA
+    fig.canvas.draw()
+    assert any(t.get_text() for t in b.get_xticklabels()) and not any(t.get_text() for t in a.get_xticklabels())
+
+
+def test_barras_essenciais_por_faixa():
+    faixas = pd.DataFrame({"medida": ["dano_forte"] * 3 + ["dano"] * 3, "faixa": ["0", "1–2", "3 ou mais"] * 2,
+                           "genes": [10, 6, 4, 8, 8, 4], "essenciais": [1, 0, 3, 0, 1, 3]})
+    faixas["taxa"] = faixas["essenciais"] / faixas["genes"]
+    fig = figuras.barras_essenciais_por_faixa(faixas)
+    ax = fig.axes[0]
+    assert [t.get_text() for t in ax.get_xticklabels()] == ["0", "1–2", "3 ou mais"]
+    assert [t.get_text() for t in ax.get_legend().get_texts()] == ["Quebrar a rede\n(saem do núcleo)",
+                                                                   "Deixar de produzir\n(cascata)"]
+    alturas = [round(p.get_height(), 6) for p in ax.patches]
+    assert alturas == [10.0, 0.0, 75.0, 0.0, 12.5, 75.0]              # estrutural primeiro, depois a cascata
+    assert [p.get_facecolor() for p in ax.patches[:1]] == [matplotlib.colors.to_rgba(figuras.CORES[1])]
+    textos = [t.get_text() for t in ax.texts]
+    assert "média (20%)" in textos and textos.count("75%") == 2       # 4 de 20 essenciais
+    assert ax.get_ylim()[1] >= 85                                      # o maior valor e o rótulo cabem
 
 
 def genes_exemplo() -> pd.DataFrame:
@@ -357,11 +388,11 @@ def test_dano_vs_avalanche():
 def test_figuras_dos_modelos_classicos():
     indices = pd.DataFrame([{"modelo": m, "indice": i, "estrategia": e, "R_norm": v, "metade": v}
                             for m, reps in (("eco", [None]), ("erdos_renyi", [0, 1]), ("ba_misto", [0, 1]))
-                            for i in reps for e, v in (("aleatoria", 0.3), ("grau", 0.1), ("harmonica", 0.2))])
+                            for i in reps for e, v in (("aleatoria", 0.3), ("grau", 0.1), ("pagerank", 0.2))])
     fig = figuras.painel_indices_redes(indices, ("R_norm", "metade"), grupo="modelo")
     eixos = [ax for ax in fig.axes if ax.patches]
     assert [t.get_text() for t in eixos[1].get_xticklabels()] == ["E. coli", "Erdős–\nRényi", "BA misto\n(m = 1 ou 2)"]
-    assert [t.get_text() for t in fig.legends[0].get_texts()] == ["Aleatória", "Grau", "Harmônica"]
+    assert [t.get_text() for t in fig.legends[0].get_texts()] == ["Aleatória", "Grau", "PageRank"]
     ccdf = pd.DataFrame([{"modelo": m, "grau": k, "n_nos": 1, "ccdf_empirica": c}
                          for m in ("eco", "configuracao", "erdos_renyi")
                          for k, c in ((0, 1.0), (1, 0.9), (2, 0.5))])

@@ -10,13 +10,13 @@ Quatro tipos de teste:
 from __future__ import annotations
 
 import math
-from fractions import Fraction
 
 import networkx as nx
 import numpy as np
 import pandas as pd
 import pytest
 
+import config
 from experimentos.biblioteca import metricas, robustez
 
 
@@ -232,7 +232,7 @@ def test_comparar_estrategias_formato_e_reprodutibilidade():
     assert list(indices.columns) == list(robustez.COLUNAS_INDICES)
     assert list(indices["estrategia"]) == list(robustez.ESTATICAS[:1]) + [
         "grau", "grau_adaptativo", "betweenness", "betweenness_adaptativo",
-        "harmonica", "harmonica_adaptativo", "pagerank", "pagerank_adaptativo"]
+        "pagerank", "pagerank_adaptativo"]
     assert (curvas.groupby("estrategia").size() == G.number_of_nodes() + 1).all()
     for linha in indices.to_dict("records"):
         curva = curvas[curvas["estrategia"] == linha["estrategia"]]
@@ -248,21 +248,9 @@ def test_comparar_estrategias_formato_e_reprodutibilidade():
 # ---------------------------------------------------------------------------
 # 4. Implementação ingênua
 # ---------------------------------------------------------------------------
-def _harmonica_exata(H: nx.DiGraph) -> dict:
-    """Soma de 1/d(v, u) com frações exatas: empates exatos e nada depende da ordem da soma."""
-    valores = {no: Fraction(0) for no in H}
-    for _, distancias in nx.all_pairs_shortest_path_length(H):
-        for destino, d in distancias.items():
-            if d > 0:
-                valores[destino] += Fraction(1, d)
-    return valores
-
-
 def _ranking_ingenuo(H: nx.DiGraph, criterio: str) -> list:
     if criterio == "grau":
         valores = {no: H.in_degree(no) + H.out_degree(no) for no in H}
-    elif criterio == "harmonica":
-        valores = _harmonica_exata(H)
     elif criterio == "pagerank":
         valores = {no: round(v, 12) for no, v in nx.pagerank(H).items()} if len(H) else {}
     else:
@@ -360,13 +348,13 @@ def test_betweenness_adaptativo_nos_extremos():
 
 
 # ---------------------------------------------------------------------------
-# 5. Novas centralidades (harmônica e PageRank) e proteção das fontes
+# 5. PageRank e proteção das fontes
 # ---------------------------------------------------------------------------
-NOVAS = ("harmonica", "harmonica_adaptativo", "pagerank", "pagerank_adaptativo")
+NOVAS = ("pagerank", "pagerank_adaptativo")
 
 
 def estrela_de_mao_dupla(folhas=("f1", "f2", "f3", "f4"), inverter: bool = False) -> nx.DiGraph:
-    """c <-> cada folha. Harmônica: c = 4 (todas a 1); cada folha = 1 + 3/2 = 2,5 (empatadas)."""
+    """c <-> cada folha: c é o mais central e as folhas empatam."""
     G = nx.DiGraph()
     nos = ["c", *folhas]
     G.add_nodes_from(reversed(nos) if inverter else nos)
@@ -375,8 +363,8 @@ def estrela_de_mao_dupla(folhas=("f1", "f2", "f3", "f4"), inverter: bool = False
     return G
 
 
-@pytest.mark.parametrize("estrategia", ["harmonica", "pagerank"])
-def test_novas_centralidades_desempatam_pelo_codigo(estrategia):
+@pytest.mark.parametrize("estrategia", ["pagerank", "betweenness"])
+def test_centralidades_desempatam_pelo_codigo(estrategia):
     """As folhas empatam; a ordem é a do código e não depende da ordem em que os nós entraram."""
     esperada = ["c", "f1", "f2", "f3", "f4"]
     assert robustez.ordem_inicial(estrela_de_mao_dupla(), estrategia) == esperada
@@ -384,9 +372,13 @@ def test_novas_centralidades_desempatam_pelo_codigo(estrategia):
     assert robustez.ordem_de_remocao(estrela_de_mao_dupla(inverter=True), f"{estrategia}_adaptativo") == esperada
 
 
-def test_ordem_harmonica_no_caminho():
-    """a -> b -> c -> d -> e: harmônica de entrada a=0, b=1, c=1,5, d=1,83, e=2,08."""
-    assert robustez.ordem_inicial(caminho_dirigido(), "harmonica") == ["e", "d", "c", "b", "a"]
+def test_harmonica_nao_e_estrategia_de_remocao():
+    """A harmônica saiu da remoção de nós (continua só como centralidade nos Exps 2 e 3)."""
+    assert "harmonica" not in robustez.ESTATICAS and "harmonica_adaptativo" not in robustez.ADAPTATIVAS
+    assert not any("harmonica" in e for e in (*config.ESTRATEGIAS, *config.ESTRATEGIAS_CLASSICOS))
+    for estrategia in ("harmonica", "harmonica_adaptativo"):
+        with pytest.raises(ValueError):
+            robustez.simular_remocao(caminho_dirigido(), estrategia)
 
 
 @pytest.mark.parametrize("estrategia", NOVAS)
@@ -441,7 +433,7 @@ def test_curva_com_a_fonte_protegida_feita_a_mao():
 def test_proximo_adaptativo_com_protegidos():
     G = estrela_com_par_solto()
     assert robustez.proximo_adaptativo(G, "grau_adaptativo", protegidos={"h"}) == "x1"
-    assert robustez.proximo_adaptativo(G, "harmonica_adaptativo", protegidos={"h"}) != "h"
+    assert robustez.proximo_adaptativo(G, "pagerank_adaptativo", protegidos={"h"}) != "h"
     so_h = nx.DiGraph()
     so_h.add_node("h")
     assert robustez.proximo_adaptativo(so_h, "grau_adaptativo", protegidos={"h"}) == "h"  # não sobrou outro

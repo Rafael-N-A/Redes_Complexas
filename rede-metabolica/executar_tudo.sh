@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Roda o pipeline completo: testes, coleta e experimentos.
 # Uso, na raiz do projeto:
-#   bash executar_tudo.sh                # testes, coleta, exp0 a exp4
+#   bash executar_tudo.sh                # testes, coleta, exp0 a exp4 e a checagem das inferências
 #   bash executar_tudo.sh --sem-testes   # pula o pytest do início
 #   bash executar_tudo.sh --so-figuras   # refaz só as figuras, a partir de resultados/tabelas/
 set -euo pipefail
@@ -56,6 +56,12 @@ etapa "Exp 3 — dano individual dos metabólitos"
 
 etapa "Exp 4 — comparação com outras redes, modelos nulos e modelos clássicos"
 "$PY" -m experimentos.exp4_comparacao "${FIGURAS[@]}"
+
+# 4. Checagem das inferências do artigo (só tabelas; precisa da tabela do Exp 2)
+if [ ${#FIGURAS[@]} -eq 0 ]; then
+  etapa "Checagem das inferências do artigo"
+  "$PY" -m experimentos.checar_inferencias
+fi
 
 echo
 echo "Pronto. Resultados em resultados/tabelas/ e resultados/figuras/."

@@ -1,0 +1,31 @@
+centralidade,posicao,metabolito,nome,lado,grau_entrada,grau_saida
+grau,1,C00022,Pyruvate,nucleo,22,22
+grau,2,C00024,Acetyl-CoA,nucleo,22,18
+grau,3,C00085,D-Fructose 6-phosphate,nucleo,13,11
+grau,4,C00118,D-Glyceraldehyde 3-phosphate,nucleo,12,11
+grau,5,C00025,L-Glutamate,nucleo,11,11
+grau,6,C00111,Glycerone phosphate,nucleo,10,9
+grau,7,C00036,Oxaloacetate,nucleo,9,8
+grau,8,C00124,D-Galactose,nucleo,10,6
+grau,9,C00026,2-Oxoglutarate,nucleo,7,8
+grau,10,C00065,L-Serine,nucleo,6,9
+betweenness,1,C00022,Pyruvate,nucleo,22,22
+betweenness,2,C00024,Acetyl-CoA,nucleo,22,18
+betweenness,3,C00118,D-Glyceraldehyde 3-phosphate,nucleo,12,11
+betweenness,4,C00085,D-Fructose 6-phosphate,nucleo,13,11
+betweenness,5,C00065,L-Serine,nucleo,6,9
+betweenness,6,C00143,"5,10-Methylenetetrahydrofolate",nucleo,6,6
+betweenness,7,C00025,L-Glutamate,nucleo,11,11
+betweenness,8,C04442,2-Dehydro-3-deoxy-6-phospho-D-gluconate,nucleo,4,2
+betweenness,9,C00149,(S)-Malate,nucleo,5,5
+betweenness,10,C11437,1-Deoxy-D-xylulose 5-phosphate,nucleo,2,4
+pagerank,1,C00022,Pyruvate,nucleo,22,22
+pagerank,2,C00024,Acetyl-CoA,nucleo,22,18
+pagerank,3,C00042,Succinate,nucleo,10,3
+pagerank,4,C00091,Succinyl-CoA,nucleo,5,3
+pagerank,5,C00085,D-Fructose 6-phosphate,nucleo,13,11
+pagerank,6,C01134,Pantetheine 4'-phosphate,saida,3,1
+pagerank,7,C00118,D-Glyceraldehyde 3-phosphate,nucleo,12,11
+pagerank,8,C00882,Dephospho-CoA,saida,1,1
+pagerank,9,C00073,L-Methionine,nucleo,4,3
+pagerank,10,C00025,L-Glutamate,nucleo,11,11

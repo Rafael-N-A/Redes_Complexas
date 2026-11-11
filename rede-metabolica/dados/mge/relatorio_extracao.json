@@ -97,14 +97,14 @@
       "na_lista_de_moeda": false
     },
     {
-      "metabolito": "C00068",
-      "nome": "Thiamin diphosphate",
+      "metabolito": "C00022",
+      "nome": "Pyruvate",
       "n_reacoes": 4,
       "na_lista_de_moeda": false
     },
     {
-      "metabolito": "C00022",
-      "nome": "Pyruvate",
+      "metabolito": "C00068",
+      "nome": "Thiamin diphosphate",
       "n_reacoes": 4,
       "na_lista_de_moeda": false
     },

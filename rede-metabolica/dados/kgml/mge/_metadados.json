@@ -2,7 +2,7 @@
   "org": "mge",
   "fonte": "https://rest.kegg.jp",
   "data_download": "2026-11-08T13:41:50-03:00",
-  "ultima_execucao": "2026-11-10T17:48:32-03:00",
+  "ultima_execucao": "2026-11-11T01:04:02-03:00",
   "info_kegg": "mge\tMycoplasmoides genitalium G37\nT00002\t476 proteins, 345 proteins with KOs\n\t334 RNAs, 43 RNAs with KOs\n\tKanehisa Laboratories\n\nlinked db\tpathway\n\tbrite\n\tmodule\n\tko\n\tgenome\n\tenzyme\n\tncbi-proteinid\n\tuniprot",
   "criterio": {
     "limite_vias_regulares": "01100",

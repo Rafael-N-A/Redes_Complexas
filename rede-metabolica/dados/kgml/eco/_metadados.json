@@ -2,7 +2,7 @@
   "org": "eco",
   "fonte": "https://rest.kegg.jp",
   "data_download": "2026-11-04T13:09:00-03:00",
-  "ultima_execucao": "2026-11-10T17:48:24-03:00",
+  "ultima_execucao": "2026-11-11T01:03:54-03:00",
   "info_kegg": "eco\tEscherichia coli K-12 MG1655\nT00007\t4288 proteins, 3243 proteins with KOs\n\t2979 RNAs, 206 RNAs with KOs\n\tKanehisa Laboratories\n\nlinked db\tpathway\n\tbrite\n\tmodule\n\tko\n\tgenome\n\tenzyme\n\tncbi-geneid\n\tncbi-proteinid\n\tuniprot",
   "criterio": {
     "limite_vias_regulares": "01100",

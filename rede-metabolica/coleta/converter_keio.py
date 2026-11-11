@@ -90,7 +90,7 @@ def main() -> None:
         print(f"\nO artigo relata {ESPERADO} candidatos; a tabela tem {n_linhas}. Nada foi gravado.")
         print("Primeiras linhas da aba, para ver se há uma coluna separando os essenciais da Keio:")
         print(tabela.head(8).to_string())
-        sys.exit("Filtre as linhas da Keio (ou me mande o arquivo) e rode de novo; --forcar grava assim mesmo.")
+        sys.exit("Filtre as linhas da Keio e rode de novo; --forcar grava assim mesmo.")
 
     args.destino.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame({"gene": genes}).to_csv(args.destino, index=False)

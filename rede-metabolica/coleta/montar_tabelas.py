@@ -40,7 +40,7 @@ def _unicos(itens: Iterable[str]) -> list[str]:
 
 
 def _codigo(nome: str) -> str:
-    """Tira o prefixo do KEGG: "cpd:C00024" -> "C00024", "bsu:BSU00010" -> "BSU00010"."""
+    """Tira o prefixo do KEGG: "cpd:C00024" -> "C00024", "eco:b0001" -> "b0001"."""
     return nome.strip().split(":", 1)[-1]
 
 
@@ -78,10 +78,10 @@ def ler_kgml(caminho: Path) -> tuple[list[dict], list[dict], list[dict]]:
     ordem do KGML) e recusa o arquivo inteiro se uma reação apontar para uma
     entrada que não existe.
 
-    Os prefixos rn:, cpd:, gl: e o do organismo (eco:, bsu:, mge:...) saem
-    pelo texto depois do primeiro ":", e não por um prefixo fixo, para que
-    bsu e mge também tenham genes. Levanta ET.ParseError ou ValueError se o
-    arquivo não for um KGML válido.
+    Os prefixos rn:, cpd:, gl: e o do organismo (eco:...) saem pelo texto
+    depois do primeiro ":", e não por um prefixo fixo, para que a leitura
+    sirva a qualquer organismo do KEGG. Levanta ET.ParseError ou ValueError
+    se o arquivo não for um KGML válido.
     """
     raiz = ET.parse(caminho).getroot()
     if raiz.tag != "pathway":
@@ -389,7 +389,7 @@ def relatorio(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame,
       - reações com um metabólito dos dois lados, linhas com vários códigos R
       - metabólitos que não aparecem em nenhuma reação
       - os metabólitos mais frequentes (para conferir a lista de moeda) e os
-        códigos do config.py (nutrientes, substâncias do Exp 3, moeda) na rede
+        códigos do config.py (nutrientes, moeda) na rede
     """
     nomes = dict(zip(metabolitos["metabolito"], metabolitos["nome"]))
     genes_de = {linha["reacao"]: set(linha["genes"]) for linha in reacoes.to_dict("records")}
@@ -506,7 +506,6 @@ def relatorio(reacoes_por_via: pd.DataFrame, genes_por_via: pd.DataFrame,
         ],
         "codigos_do_config": {
             "nutrientes": _conferir_codigos(config.NUTRIENTES, nomes, na_rede),
-            "substancias_exp3": _conferir_codigos(config.SUBSTANCIAS_EXP3, nomes, na_rede),
             "moeda_fora_da_rede": sorted(set(config.METABOLITOS_MOEDA) - na_rede),
         },
         "falhas_leitura": falhas_leitura,

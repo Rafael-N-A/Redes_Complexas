@@ -219,38 +219,6 @@
         "na_rede": true
       }
     },
-    "substancias_exp3": {
-      "C00022": {
-        "nome_config": "Piruvato",
-        "nome_kegg": "Pyruvate",
-        "na_rede": true
-      },
-      "C00024": {
-        "nome_config": "Acetil-CoA",
-        "nome_kegg": "Acetyl-CoA",
-        "na_rede": true
-      },
-      "C00036": {
-        "nome_config": "Oxaloacetato",
-        "nome_kegg": "Oxaloacetate",
-        "na_rede": true
-      },
-      "C00026": {
-        "nome_config": "2-Oxoglutarato",
-        "nome_kegg": "2-Oxoglutarate",
-        "na_rede": true
-      },
-      "C00025": {
-        "nome_config": "L-Glutamato",
-        "nome_kegg": "L-Glutamate",
-        "na_rede": true
-      },
-      "C00092": {
-        "nome_config": "Glicose-6-fosfato",
-        "nome_kegg": "D-Glucose 6-phosphate",
-        "na_rede": true
-      }
-    },
     "moeda_fora_da_rede": [
       "C00001",
       "C00004",

@@ -1,22 +1,21 @@
 """Métricas usadas por mais de um experimento.
 
-Descritivas (exp0, exp4): tamanho, graus, clustering, caminhos, bow-tie.
-De dano (exp1, exp4): maior componente, índice R, eficiência, alcance.
-Dano estrutural de uma remoção (exp2, exp3): queda do maior componente forte,
-do maior componente fraco e da eficiência (medidas_estruturais, queda_estrutural,
-dano_remocao_individual).
-Topológicas para o exp2: centralidades (betweenness, harmônica) e choke points.
+Descritivas (Exp 0 e os modelos clássicos do Exp 4): tamanho, graus, clustering,
+caminhos, bow-tie, lei de potência.
+De dano (Exp 1): maior componente, índice R e alcance.
+Dano estrutural de um nocaute (Exp 2): queda do maior componente forte, do maior
+componente fraco e da eficiência (medidas_estruturais, queda_estrutural).
+Centralidade: betweenness (Exps 1 e 2).
 
-Todas recebem o grafo simples dirigido (grafo.grafo_simples), exceto
-choke_points, que trabalha direto na tabela de reações. matriz_distancias,
-harmonica e assortatividade aceitam também o grafo não dirigido dos modelos
-clássicos (modelos_classicos.py).
+Todas recebem o grafo simples dirigido (grafo.grafo_simples). matriz_distancias e
+assortatividade aceitam também o grafo não dirigido dos modelos clássicos
+(modelos_classicos.py).
 """
 from __future__ import annotations
 
 import math
 import warnings
-from collections import defaultdict, deque
+from collections import deque
 from collections.abc import Iterable
 
 import networkx as nx
@@ -136,7 +135,7 @@ _MINIMO_AJUSTE = 10  # abaixo disso, o ajuste não faz sentido
 
 def _ajustar(dados: np.ndarray):
     """powerlaw.Fit discreto (Clauset et al., 2009), sem avisos; None se houver poucos dados."""
-    import powerlaw  # só aqui: o pacote é opcional e demora para importar
+    import powerlaw  # só aqui: o pacote demora para importar
 
     if len(dados) < _MINIMO_AJUSTE:
         return None
@@ -146,7 +145,7 @@ def _ajustar(dados: np.ndarray):
 
 
 def ajuste_lei_potencia(valores_grau: Iterable[int]) -> dict:
-    """Opcional: teste de Clauset et al. com o pacote powerlaw.
+    """Teste de Clauset et al. (2009) com o pacote powerlaw.
 
     Devolve alpha, xmin, quantos nós ficam na cauda (grau >= xmin) e a
     comparação com a log-normal: R > 0 favorece a lei de potência, R < 0 a
@@ -222,8 +221,7 @@ def tabela_descritiva(G: nx.DiGraph) -> dict:
 
     Chaves: nos, arestas, densidade, grau_medio, clustering_medio (na versão
     não dirigida), caminho_medio, diametro, bow-tie (núcleo, entrada, saída,
-    restante), assortatividade e reciprocidade. É reaproveitada pelo exp4
-    para os outros organismos e para os modelos nulos.
+    restante), assortatividade e reciprocidade.
 
     grau_medio é a média do grau de saída (igual à de entrada, = arestas/nós).
     maior_fraco é a fração dos nós no maior componente fraco.
@@ -273,24 +271,34 @@ def indice_robustez(fracoes_maior_componente: Iterable[float]) -> float:
     return float(valores.mean()) if len(valores) else math.nan
 
 
-def eficiencia_global_dirigida(G: nx.DiGraph, n_original: int) -> float:
-    """Média de 1/d(i, j) sobre os pares ordenados i != j, dividida por n_original*(n_original-1).
+def alcancaveis(G: nx.DiGraph, fontes: Iterable[str]) -> set:
+    """Nós alcançáveis a partir das fontes (incluindo as próprias fontes presentes em G)."""
+    vistos = {f for f in fontes if f in G}
+    fila = deque(vistos)
+    while fila:
+        u = fila.popleft()
+        for v in G.successors(u):
+            if v not in vistos:
+                vistos.add(v)
+                fila.append(v)
+    return vistos
 
-    nx.global_efficiency não aceita grafo dirigido, por isso a versão própria.
-    Normalizar pelo tamanho original faz a curva cair conforme a rede se parte.
-    É cara (distâncias entre todos os pares): o exp1 só a mede a cada
-    config.PASSO_EFICIENCIA da rede removida.
+
+def alcance(G: nx.DiGraph, fontes: Iterable[str], n_original: int) -> float:
+    """Fração de metabólitos alcançáveis por busca em largura a partir das fontes.
+
+    Versão topológica (cada aresta vale sozinha). A versão que exige todos os
+    substratos de uma reação é cascata.disponiveis.
+    Fontes ausentes do grafo são ignoradas; as presentes contam como alcançadas.
     """
-    if n_original < 2:
+    if n_original <= 0:
         return 0.0
-    soma = 0.0
-    for origem in G:
-        for destino, d in nx.single_source_shortest_path_length(G, origem).items():
-            if d > 0:
-                soma += 1.0 / d
-    return soma / (n_original * (n_original - 1))
+    return len(alcancaveis(G, fontes)) / n_original
 
 
+# ---------------------------------------------------------------------------
+# Dano estrutural de um nocaute (Exp 2)
+# ---------------------------------------------------------------------------
 def matriz_distancias(G: nx.Graph, nos: list | None = None) -> np.ndarray:
     """Distâncias (número de arestas) entre todos os pares, D[i, j] = d(nos[i], nos[j]).
 
@@ -306,14 +314,12 @@ def matriz_distancias(G: nx.Graph, nos: list | None = None) -> np.ndarray:
     return shortest_path(A, method="D", directed=G.is_directed(), unweighted=True)
 
 
-def eficiencia_global_dirigida_rapida(G: nx.DiGraph, n_original: int) -> float:
-    """A mesma eficiência de eficiencia_global_dirigida, com as distâncias calculadas pela scipy.
+def eficiencia_global_dirigida(G: nx.DiGraph, n_original: int) -> float:
+    """Média de 1/d(i, j) sobre os pares ordenados i != j, dividida por n_original*(n_original-1).
 
-    Soma 1/d(i, j) sobre os pares ordenados com caminho (matriz_distancias) e divide
-    pelo mesmo n_original*(n_original-1). Dá o mesmo valor da versão em Python
-    puro (até ~1e-11 relativo, a diferença de arredondamento das duas somas; ver
-    testes/test_dano_estrutural.py) em menos da metade do tempo: é a usada nos
-    ~1.700 nocautes e remoções individuais dos Exps 2 e 3.
+    nx.global_efficiency não aceita grafo dirigido, por isso a versão própria,
+    com as distâncias da scipy (matriz_distancias). Pares sem caminho contam 0.
+    Normalizar pelo tamanho original faz a medida cair quando a rede se parte.
     """
     if n_original < 2 or G.number_of_edges() == 0:
         return 0.0
@@ -322,42 +328,15 @@ def eficiencia_global_dirigida_rapida(G: nx.DiGraph, n_original: int) -> float:
     return float((1.0 / com_caminho).sum()) / (n_original * (n_original - 1))
 
 
-def harmonica(G: nx.Graph) -> pd.Series:
-    """Centralidade harmônica de cada nó: soma de 1/d(v, u) sobre os nós v que alcançam u.
-
-    É a nx.harmonic_centrality (Marchiori e Latora, 2000; Boldi e Vigna, 2014), a
-    versão da proximidade (closeness) que funciona em rede desconexa: par sem
-    caminho conta 0. Num grafo dirigido, conta as distâncias que chegam ao nó.
-    Calculada pelas contagens de distância (quantos v estão a 1, 2, 3... arestas
-    de u), e não somando 1/d na ordem em que a NetworkX visita as origens: assim
-    dois nós com a mesma contagem têm exatamente o mesmo valor (o empate aparece e
-    é desfeito pelo código do nó) e o resultado não muda de uma execução para
-    outra. Os valores batem com os da NetworkX (testado). Índice = nó, ordenado.
-    """
-    nos = sorted(G.nodes)
-    if not nos:
-        return pd.Series(dtype=float, name="harmonica")
-    D = matriz_distancias(G, nos)
-    finitas = D[np.isfinite(D)]
-    maior = int(finitas.max()) if finitas.size else 0
-    valores = np.zeros(len(nos))
-    for d in range(1, maior + 1):
-        valores += (D == d).sum(axis=0) / d   # coluna u: os v com d(v, u) = d
-    return pd.Series(valores, index=nos, name="harmonica")
-
-
-# ---------------------------------------------------------------------------
-# Dano estrutural de uma remoção (Exps 2 e 3)
-# ---------------------------------------------------------------------------
 def medidas_estruturais(G: nx.DiGraph, n_original: int) -> dict:
     """Tamanho (em nós) do maior componente forte e do maior fraco, e a eficiência global dirigida.
 
-    A eficiência é a de eficiencia_global_dirigida_rapida, normalizada por n_original.
+    A eficiência é a de eficiencia_global_dirigida, normalizada por n_original.
     """
     return {
         "maior_forte": max((len(c) for c in nx.strongly_connected_components(G)), default=0),
         "maior_fraco": max((len(c) for c in nx.weakly_connected_components(G)), default=0),
-        "eficiencia": eficiencia_global_dirigida_rapida(G, n_original),
+        "eficiencia": eficiencia_global_dirigida(G, n_original),
     }
 
 
@@ -383,93 +362,10 @@ def queda_estrutural(antes: dict, depois: dict, n_original: int) -> dict:
             "dano_eficiencia": (e0 - depois["eficiencia"]) / e0 if e0 > 0 else math.nan}
 
 
-def dano_remocao_individual(G: nx.DiGraph) -> pd.DataFrame:
-    """Remove cada nó de G sozinho e mede o dano estrutural (queda_estrutural) em relação a G.
-
-    N é o número de nós de G, o mesmo antes e depois: a eficiência depois da
-    remoção também é dividida por N*(N-1), então os pares do próprio nó removido
-    contam como perdidos, como nas curvas do Exp 1. Uma linha por nó, em ordem de
-    código. Colunas: metabolito e COLUNAS_DANO_ESTRUTURAL. Leva ~30 s na eco.
-    """
-    n = G.number_of_nodes()
-    simples = nx.DiGraph()
-    simples.add_nodes_from(G.nodes)
-    simples.add_edges_from(G.edges())   # sem atributos: a cópia a cada remoção fica mais leve
-    antes = medidas_estruturais(simples, n)
-    linhas = []
-    for no in sorted(simples.nodes):
-        H = simples.copy()
-        H.remove_node(no)
-        linhas.append({"metabolito": no, **queda_estrutural(antes, medidas_estruturais(H, n), n)})
-    return pd.DataFrame(linhas, columns=["metabolito", *COLUNAS_DANO_ESTRUTURAL])
-
-
-def alcancaveis(G: nx.DiGraph, fontes: Iterable[str]) -> set:
-    """Nós alcançáveis a partir das fontes (incluindo as próprias fontes presentes em G)."""
-    vistos = {f for f in fontes if f in G}
-    fila = deque(vistos)
-    while fila:
-        u = fila.popleft()
-        for v in G.successors(u):
-            if v not in vistos:
-                vistos.add(v)
-                fila.append(v)
-    return vistos
-
-
-def alcance(G: nx.DiGraph, fontes: Iterable[str], n_original: int) -> float:
-    """Fração de metabólitos alcançáveis por busca em largura a partir das fontes.
-
-    Versão topológica (cada aresta vale sozinha), que funciona também nos
-    modelos nulos. A versão que exige todos os substratos é cascata.disponiveis.
-    Fontes ausentes do grafo são ignoradas; as presentes contam como alcançadas.
-    """
-    if n_original <= 0:
-        return 0.0
-    return len(alcancaveis(G, fontes)) / n_original
-
-
 # ---------------------------------------------------------------------------
-# Para o exp2
+# Centralidade
 # ---------------------------------------------------------------------------
-def betweenness(G: nx.DiGraph, k: int | None = None, semente: int | None = None) -> pd.Series:
-    """Betweenness de cada nó; com k, a versão aproximada por amostragem (mais rápida).
-
-    Normalizada, dirigida e sem pesos. Com k >= número de nós, calcula a exata.
-    """
-    if k is not None and k >= G.number_of_nodes():
-        k = None
-    valores = nx.betweenness_centrality(G, k=k, seed=semente, normalized=True)
+def betweenness(G: nx.DiGraph) -> pd.Series:
+    """Betweenness (intermediação) exata de cada nó: normalizada, dirigida e sem pesos."""
+    valores = nx.betweenness_centrality(G, normalized=True)
     return pd.Series(valores, name="betweenness", dtype=float).sort_index()
-
-
-def choke_points(reacoes: pd.DataFrame, remover_moeda: bool = True,
-                 conflito_como_irreversivel: bool = False) -> set[str]:
-    """Reações que são a única produtora ou a única consumidora de algum metabólito
-    (Rahman e Schomburg, 2006).
-
-    Uma reação reversível conta como produtora e consumidora dos dois lados.
-    Com remover_moeda=True (o padrão, como na cascata), os metabólitos-moeda
-    não contam: ser a única reação que consome um deles não diz nada.
-    conflito_como_irreversivel: o teste de sensibilidade de grafo.reversivel.
-    """
-    produtoras: dict[str, set[str]] = defaultdict(set)
-    consumidoras: dict[str, set[str]] = defaultdict(set)
-    for r in reacoes.to_dict("records"):
-        substratos = grafo.sem_moeda(r["substratos"], remover_moeda)
-        produtos = grafo.sem_moeda(r["produtos"], remover_moeda)
-        for m in substratos:
-            consumidoras[m].add(r["reacao"])
-        for m in produtos:
-            produtoras[m].add(r["reacao"])
-        if grafo.reversivel(r, conflito_como_irreversivel):
-            for m in substratos:
-                produtoras[m].add(r["reacao"])
-            for m in produtos:
-                consumidoras[m].add(r["reacao"])
-
-    choke: set[str] = set()
-    for conjunto in [*produtoras.values(), *consumidoras.values()]:
-        if len(conjunto) == 1:
-            choke |= conjunto
-    return choke

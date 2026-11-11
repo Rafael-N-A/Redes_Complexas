@@ -1,7 +1,7 @@
-"""Checagem, nos dados, das inferências do artigo (v2.0). Só para a E. coli.
+"""Análises complementares da discussão do artigo. Só para a E. coli.
 
-Não é um experimento novo: confere quatro afirmações da discussão com os mesmos
-grafos e as mesmas funções dos Exps 1, 2 e 4.
+Não é um experimento novo: confere nos dados quatro afirmações do texto, com os
+mesmos grafos e as mesmas funções dos Exps 1, 2 e 4.
   (1) rankings    onde ficam, na gravata-borboleta, os primeiros metabólitos que a
                   remoção estática do Exp 1 tira por grau, betweenness e PageRank
                   (robustez.ordem_de_remocao, nutrientes protegidos): frações no
@@ -21,12 +21,14 @@ grafos e as mesmas funções dos Exps 1, 2 e 4.
                   alcance), e quais aromáticos (config.AROMATICOS) estão entre eles.
   (4) pontes      na versão não dirigida (a do Exp 4): pontes, pontes internas (sem
                   folha nas pontas) e pontos de articulação da E. coli e das
-                  config.N_MODELOS_NULOS redes do modelo de configuração do Exp 4
+                  config.N_REDES_POR_MODELO redes do modelo de configuração do Exp 4
                   (modelos_classicos.gerar_modelos, as mesmas sementes).
 
-Versões: (1) a do Exp 1 (config.VERSAO_ROBUSTEZ), (2) e (3) a do Exp 2
-(config.VERSAO_CASCATA), (4) a do Exp 4 (config.VERSAO_COMPARACAO); hoje, as três
-são sem moeda.
+No artigo: (1) os 39 primeiros de grau e intermediação no núcleo, os do PageRank
+também na saída (precursores da coenzima A); (2) os ramos de saída (heme, hemA a
+hemD) x os de entrada (melibiose, melA); (3) aroA a aroD no meio mínimo; (4) 508
+pontes na E. coli contra ~541 na configuração. Tudo na versão sem moeda
+(config.VERSAO_PRINCIPAL).
 
 Lê:    dados/<org>/reacoes.csv, metabolitos.csv
        resultados/tabelas/exp2_genes_<org>.csv  (rode antes o Exp 2)
@@ -234,7 +236,7 @@ def pontes(U: nx.Graph) -> dict:
             "pontes_internas": internas, "articulacao": sum(1 for _ in nx.articulation_points(U))}
 
 
-def pontes_contra_configuracao(U: nx.Graph, n_redes: int = config.N_MODELOS_NULOS,
+def pontes_contra_configuracao(U: nx.Graph, n_redes: int = config.N_REDES_POR_MODELO,
                                semente: int = config.SEMENTE) -> pd.DataFrame:
     """A rede U (rede = "eco", indice vazio) e cada rede do modelo de configuração do Exp 4.
 
@@ -252,19 +254,6 @@ def pontes_contra_configuracao(U: nx.Graph, n_redes: int = config.N_MODELOS_NULO
 # ---------------------------------------------------------------------------
 # Pipeline
 # ---------------------------------------------------------------------------
-def _grafos(reacoes: pd.DataFrame) -> dict:
-    """Grafos por versão (só as que as checagens usam), cada um construído uma vez."""
-    versoes = {config.VERSAO_ROBUSTEZ, config.VERSAO_CASCATA, config.VERSAO_COMPARACAO}
-    resultado = {}
-    for versao in versoes:
-        remover = config.VERSOES_MOEDA[versao]
-        M = grafo.grafo_metabolitos(reacoes, remover_moeda=remover)
-        resultado[versao] = {"M": M, "G": grafo.grafo_simples(M)}
-    resultado[config.VERSAO_CASCATA]["B"] = grafo.grafo_bipartido(
-        reacoes, remover_moeda=config.VERSOES_MOEDA[config.VERSAO_CASCATA])
-    return resultado
-
-
 def rodar(org: str = config.ORGANISMO_PRINCIPAL) -> dict:
     """Faz as quatro checagens, grava as tabelas e devolve um dicionário com elas."""
     arquivo_genes = config.arquivo_tabela("exp2", "genes", org)
@@ -275,32 +264,32 @@ def rodar(org: str = config.ORGANISMO_PRINCIPAL) -> dict:
     tabelas = grafo.carregar_tabelas(org)
     reacoes = tabelas["reacoes"]
     nomes = grafo.nomes_metabolitos(tabelas["metabolitos"])
-    grafos = _grafos(reacoes)
-    G1 = grafos[config.VERSAO_ROBUSTEZ]["G"]
-    M2, B2 = grafos[config.VERSAO_CASCATA]["M"], grafos[config.VERSAO_CASCATA]["B"]
-    G4 = grafos[config.VERSAO_COMPARACAO]["G"]
+    remover = config.VERSOES_MOEDA[config.VERSAO_PRINCIPAL]
+    M = grafo.grafo_metabolitos(reacoes, remover_moeda=remover)
+    G = grafo.grafo_simples(M)
+    B = grafo.grafo_bipartido(reacoes, remover_moeda=remover)
 
-    rankings, primeiros = rankings_bow_tie(G1, nomes=nomes)
-    genes = genes_por_lado(M2, reacoes, genes_exp2)
+    rankings, primeiros = rankings_bow_tie(G, nomes=nomes)
+    genes = genes_por_lado(M, reacoes, genes_exp2)
     resultado = {
         "rankings": rankings,
         "primeiros": primeiros,
         "genes": genes,
         "lados": taxas_por_lado(genes),
-        "chiquimato": via_chiquimato(M2, B2, reacoes, genes_exp2, nomes=nomes),
-        "pontes": pontes_contra_configuracao(mc.rede_nao_dirigida(G4)),
+        "chiquimato": via_chiquimato(M, B, reacoes, genes_exp2, nomes=nomes),
+        "pontes": pontes_contra_configuracao(mc.rede_nao_dirigida(G)),
     }
     config.PASTA_TABELAS.mkdir(parents=True, exist_ok=True)
     for conteudo, tabela in resultado.items():
         tabela.to_csv(config.arquivo_tabela("inferencias", conteudo, org), index=False)
-    resultado["rede"] = {"nos": G1.number_of_nodes(), "arestas": G1.number_of_edges(),
-                         "gravata": metricas.bow_tie(G1)}
-    resultado["aromaticos_nas_fontes"] = aromaticos_nas_fontes(B2)
+    resultado["rede"] = {"nos": G.number_of_nodes(), "arestas": G.number_of_edges(),
+                         "gravata": metricas.bow_tie(G)}
+    resultado["aromaticos_nas_fontes"] = aromaticos_nas_fontes(B)
     return resultado
 
 
 def _resumo(r: dict) -> str:
-    linhas = [f"  rede ({config.VERSAO_ROBUSTEZ}): {r['rede']['nos']} nós, {r['rede']['arestas']} arestas;"
+    linhas = [f"  rede ({config.VERSAO_PRINCIPAL}): {r['rede']['nos']} nós, {r['rede']['arestas']} arestas;"
               f" gravata {r['rede']['gravata']}", "", "  (1) primeiros removidos de cada ranking (estáticas do Exp 1)"]
     for c in r["rankings"].to_dict("records"):
         linhas.append(f"      {c['centralidade']:11s} top {c['k']:3d}: núcleo {c['nucleo']:.0%}  entrada "
@@ -330,7 +319,7 @@ def _resumo(r: dict) -> str:
     p = r["pontes"]
     eco = p[p["rede"] == "eco"].iloc[0]
     nulas = p[p["rede"] == "configuracao"][["pontes", "pontes_internas", "articulacao"]]
-    linhas += ["", f"  (4) não dirigida ({config.VERSAO_COMPARACAO}): {eco['nos']} nós, {eco['arestas']} arestas",
+    linhas += ["", f"  (4) não dirigida ({config.VERSAO_PRINCIPAL}): {eco['nos']} nós, {eco['arestas']} arestas",
                f"      E. coli: {eco['pontes']} pontes, {eco['pontes_internas']} internas, "
                f"{eco['articulacao']} pontos de articulação"]
     if len(nulas):
@@ -341,7 +330,7 @@ def _resumo(r: dict) -> str:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Checa nos dados as inferências do artigo.")
+    parser = argparse.ArgumentParser(description="Análises complementares da discussão do artigo.")
     parser.add_argument("--org", default=config.ORGANISMO_PRINCIPAL, help="código KEGG do organismo")
     args = parser.parse_args()
     inicio = time.perf_counter()

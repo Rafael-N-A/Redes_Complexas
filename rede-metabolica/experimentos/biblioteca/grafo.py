@@ -7,7 +7,7 @@ a informação de que uma reação precisa de todos os substratos ao mesmo tempo
 Visões:
     grafo_metabolitos   MultiDiGraph, metabólito -> metabólito, uma aresta por reação
     grafo_simples       DiGraph com peso = número de reações entre o par (métricas clássicas)
-    grafo_nao_dirigido  Graph, para o coeficiente de clustering
+    grafo_nao_dirigido  Graph, para o coeficiente de clustering e os modelos clássicos
     grafo_bipartido     DiGraph metabólito -> reação -> metabólito (cascata e nocaute)
 
 Uso típico nos experimentos:
@@ -44,13 +44,14 @@ def sem_moeda(metabolitos: Iterable[str], remover_moeda: bool = True) -> list[st
 
 
 def reversivel(r: dict, conflito_como_irreversivel: bool = False) -> bool:
-    """Se a reação vale nos dois sentidos nesta versão do grafo.
+    """Se a reação vale nos dois sentidos no grafo.
 
     Por padrão, o que está na tabela (regra da coleta: vale o reversível).
     Com conflito_como_irreversivel=True, as reações em que as vias discordam
-    (conflito_reversibilidade) ficam irreversíveis, no sentido guardado na
-    tabela, que é o da via irreversível. É o teste de sensibilidade da regra:
-    reproduz "vale o irreversível" sem refazer a coleta.
+    (conflito_reversibilidade, 77 na E. coli) ficam irreversíveis, no sentido
+    guardado na tabela, que é o da via irreversível: é a regra contrária
+    ("vale o irreversível"), sem refazer a coleta. Serve só para conferir a
+    escolha da regra (ver o README).
     """
     if conflito_como_irreversivel and r["conflito_reversibilidade"]:
         return False
@@ -58,7 +59,6 @@ def reversivel(r: dict, conflito_como_irreversivel: bool = False) -> bool:
 
 
 def grafo_metabolitos(reacoes: pd.DataFrame, remover_moeda: bool = True,
-                      so_irreversiveis: bool = False,
                       conflito_como_irreversivel: bool = False) -> nx.MultiDiGraph:
     """Rede metabólito-cêntrica dirigida (a modelagem principal).
 
@@ -68,10 +68,7 @@ def grafo_metabolitos(reacoes: pd.DataFrame, remover_moeda: bool = True,
     com o mesmo código.
 
     remover_moeda:     tira os metabólitos de config.METABOLITOS_MOEDA antes de criar as arestas
-    so_irreversiveis:  teste de sensibilidade (ignora as reações reversíveis)
-    conflito_como_irreversivel: teste de sensibilidade da regra de reversibilidade
-                       (ver reversivel); com so_irreversiveis, as reações com
-                       conflito passam a contar como irreversíveis e ficam
+    conflito_como_irreversivel: a regra contrária de reversibilidade (ver reversivel)
 
     Duas escolhas que valem para todas as métricas:
       - um metabólito dos dois lados da mesma reação (ex.: R04241) não gera
@@ -82,8 +79,6 @@ def grafo_metabolitos(reacoes: pd.DataFrame, remover_moeda: bool = True,
     G = nx.MultiDiGraph()
     for r in reacoes.to_dict("records"):
         nos_dois_sentidos = reversivel(r, conflito_como_irreversivel)
-        if so_irreversiveis and nos_dois_sentidos:
-            continue
         atributos = {"reacao": r["reacao"], "reversivel": nos_dois_sentidos,
                      "genes": r["genes"], "vias": r["vias"]}
         substratos = sem_moeda(r["substratos"], remover_moeda)
@@ -133,8 +128,7 @@ def no_de_reacao(codigo: str, sentido: str) -> str:
     return f"{codigo}:{sentido}"
 
 
-def grafo_bipartido(reacoes: pd.DataFrame, remover_moeda: bool = True,
-                    conflito_como_irreversivel: bool = False) -> nx.DiGraph:
+def grafo_bipartido(reacoes: pd.DataFrame, remover_moeda: bool = True) -> nx.DiGraph:
     """Rede bipartida metabólito-reação, usada pela cascata e pelo nocaute.
 
     Nós de metabólito: id = C#####, atributo tipo="metabolito".
@@ -145,16 +139,15 @@ def grafo_bipartido(reacoes: pd.DataFrame, remover_moeda: bool = True,
 
     Com remover_moeda=True, os metabólitos-moeda saem das listas de substratos
     e produtos. Para a cascata, isso equivale a tratá-los como sempre disponíveis.
-    conflito_como_irreversivel: o mesmo teste de sensibilidade de grafo_metabolitos.
     Todo nó de reação é criado, mesmo sem substratos (só moeda) ou sem produtos:
-    o número de nós de reação é sempre reações + reações reversíveis (nesta versão).
+    o número de nós de reação é sempre reações + reações reversíveis.
     """
     B = nx.DiGraph()
     for r in reacoes.to_dict("records"):
         substratos = sem_moeda(r["substratos"], remover_moeda)
         produtos = sem_moeda(r["produtos"], remover_moeda)
         sentidos = [("ida", substratos, produtos)]
-        if reversivel(r, conflito_como_irreversivel):
+        if reversivel(r):
             sentidos.append(("volta", produtos, substratos))
         for sentido, entram, saem in sentidos:
             no = no_de_reacao(r["reacao"], sentido)
@@ -171,8 +164,3 @@ def grafo_bipartido(reacoes: pd.DataFrame, remover_moeda: bool = True,
 def nos_metabolito(B: nx.DiGraph) -> set[str]:
     """Os nós de metabólito da rede bipartida."""
     return {n for n, tipo in B.nodes(data="tipo") if tipo == "metabolito"}
-
-
-def nos_reacao(B: nx.DiGraph) -> set[str]:
-    """Os nós de reação da rede bipartida (um por sentido)."""
-    return {n for n, tipo in B.nodes(data="tipo") if tipo == "reacao"}

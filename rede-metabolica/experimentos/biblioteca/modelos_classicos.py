@@ -23,9 +23,8 @@ parâmetros inteiros permitem (os nomes são os de config.MODELOS_CLASSICOS):
                     clustering alto, mas o dobro de arestas.
 Com grau médio 2,3 não dá para casar a densidade e o clustering do Watts–Strogatz
 ao mesmo tempo: com k = 2 a rede é um anel sem triângulos, e o clustering alto
-exige k >= 4. Por isso as duas versões. Se M/N sair de [1, 2] (redes muito
-partidas, como a mge), os p ficam presos em [0, 1] e o M não casa; a tabela
-descritiva mostra o M de cada rede.
+exige k >= 4. Por isso as duas versões. Se M/N sair de [1, 2], os p ficam
+presos em [0, 1] e o M não casa; a tabela descritiva mostra o M de cada rede.
 
 Robustez (o foco): a métrica é o tamanho do maior componente conexo depois de
 remover os nós numa ordem. Como a curva só depende da ordem, ela sai por
@@ -34,10 +33,10 @@ readicionados do último removido para o primeiro, acompanhando o maior
 componente, em O(M) por curva (Newman e Ziff, 2000). A ordem das estratégias
 estáticas e da aleatória é a de robustez.ordem_inicial; a do grau adaptativo
 é calculada passo a passo (robustez.ordem_de_remocao), e só depois percorrida.
-Índices (os mesmos do Exp 1 e do Exp 4): R (Schneider et al., 2011), R
-normalizado = R / S0 (S0 = maior componente na rede intacta; necessário porque
-BA e WS nascem 100% conexos e a E. coli tem só 80% dos nós no maior
-componente) e a fração removida até o maior componente cair à metade.
+Índices (os mesmos do Exp 1): R (Schneider et al., 2011), R normalizado = R / S0
+(S0 = maior componente na rede intacta; necessário porque BA e WS nascem 100%
+conexos e a E. coli tem só 80% dos nós no maior componente) e a fração removida
+até o maior componente cair à metade.
 """
 from __future__ import annotations
 
@@ -49,13 +48,15 @@ import numpy as np
 import pandas as pd
 
 import config
-from experimentos.biblioteca import grafo, metricas, modelos_nulos, robustez
+from experimentos.biblioteca import grafo, metricas, robustez
 
 COLUNAS_DESCRITIVA = ("nos", "arestas", "grau_medio", "grau_max", "clustering_medio", "maior_componente",
                       "caminho_medio", "diametro", "assortatividade")
-COLUNAS_CURVA = ("estrategia", "n_removidos", "fracao_removida", "maior_componente", "maior_componente_dp",
-                 "maior_componente_rel", "maior_componente_rel_dp")
 COLUNAS_INDICES = ("estrategia", "n_rep", "S0", "R", "R_dp", "R_norm", "metade", "metade_dp")
+
+# Limite de tentativas por troca pedida no modelo de configuração (o max_tries de
+# nx.double_edge_swap, que para com erro se as tentativas acabarem antes das trocas).
+TENTATIVAS_POR_TROCA = 10
 
 
 # ---------------------------------------------------------------------------
@@ -85,15 +86,15 @@ def configuracao(U: nx.Graph, semente: int | None = None,
                  trocas_por_aresta: int = config.TROCAS_POR_ARESTA) -> nx.Graph:
     """Mesmos graus de U, arestas embaralhadas por trocas duplas (nx.double_edge_swap).
 
-    Faz trocas_por_aresta * M trocas, com até modelos_nulos.TENTATIVAS_POR_TROCA
-    tentativas por troca. Os nós continuam os de U.
+    Faz trocas_por_aresta * M trocas, com até TENTATIVAS_POR_TROCA tentativas
+    por troca (Maslov e Sneppen, 2002). Os nós continuam os de U.
     """
     H = nx.Graph()
     H.add_nodes_from(sorted(U.nodes))
     H.add_edges_from(sorted(U.edges()))
     trocas = trocas_por_aresta * H.number_of_edges()
     if trocas and H.number_of_nodes() >= 4:
-        nx.double_edge_swap(H, nswap=trocas, max_tries=modelos_nulos.TENTATIVAS_POR_TROCA * trocas, seed=semente)
+        nx.double_edge_swap(H, nswap=trocas, max_tries=TENTATIVAS_POR_TROCA * trocas, seed=semente)
     H.graph["trocas"] = trocas
     return H
 
@@ -128,9 +129,9 @@ def gerar(modelo: str, U: nx.Graph, semente: int) -> nx.Graph:
     return R
 
 
-def gerar_modelos(U: nx.Graph, modelo: str, n_redes: int = config.N_MODELOS_NULOS,
+def gerar_modelos(U: nx.Graph, modelo: str, n_redes: int = config.N_REDES_POR_MODELO,
                   semente: int = config.SEMENTE) -> Iterator[nx.Graph]:
-    """n_redes redes do modelo; a rede i usa a semente semente * 1000 + i (como modelos_nulos.gerar_nulos)."""
+    """n_redes redes do modelo; a rede i usa a semente semente * 1000 + i, para ser reprodutível sozinha."""
     for i in range(n_redes):
         yield gerar(modelo, U, semente * 1000 + i)
 
@@ -183,14 +184,6 @@ def descritiva(G: nx.Graph) -> dict:
     }
 
 
-def ccdf_graus(grafos: Iterable[nx.Graph]) -> pd.DataFrame:
-    """CCDF do grau juntando os nós de todas as redes: grau, n_nos, ccdf_empirica = P(K >= grau)."""
-    graus = pd.Series([d for G in grafos for _, d in G.degree()], dtype=int)
-    contagem = graus.value_counts().sort_index()
-    ccdf = contagem[::-1].cumsum()[::-1] / contagem.sum()
-    return pd.DataFrame({"grau": contagem.index, "n_nos": contagem.to_numpy(), "ccdf_empirica": ccdf.to_numpy()})
-
-
 # ---------------------------------------------------------------------------
 # Robustez
 # ---------------------------------------------------------------------------
@@ -201,7 +194,7 @@ def maior_componente_por_ordem(G: nx.Graph, ordem: list) -> np.ndarray:
     removido (ordem[-1]) para o primeiro, unindo cada um aos vizinhos já
     presentes e acompanhando o maior componente. s[N] = 0 (nada sobrou).
     ordem tem que ter cada nó de G uma vez. Dá a mesma curva da simulação que
-    remove nó a nó e recalcula os componentes (testes/test_modelos_classicos.py).
+    remove nó a nó e recalcula os componentes, em O(M).
     """
     n = G.number_of_nodes()
     if len(ordem) != n or set(ordem) != set(G.nodes):
@@ -257,21 +250,15 @@ def ordem(G: nx.Graph, estrategia: str, rng: np.random.Generator | None = None) 
 
 
 def robustez_rede(G: nx.Graph, estrategias: Iterable[str] = config.ESTRATEGIAS_CLASSICOS,
-                  n_rep: int = config.N_REPETICOES_NULOS,
-                  semente: int = config.SEMENTE) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Curvas e índices de robustez de uma rede não dirigida.
+                  n_rep: int = config.N_REPETICOES_MODELOS,
+                  semente: int = config.SEMENTE) -> pd.DataFrame:
+    """Índices de robustez de uma rede não dirigida, uma linha por estratégia (COLUNAS_INDICES).
 
-    Retorna (curvas, indices):
-        curvas:  colunas de COLUNAS_CURVA, uma linha por estratégia e passo (0..N);
-                 maior_componente em fração de N e _rel dividido pelo valor na rede
-                 intacta; na aleatória, média das n_rep repetições e _dp o desvio
-                 padrão entre elas (NaN nas outras)
-        indices: uma linha por estratégia: S0, R, R_norm = R/S0, metade; na
-                 aleatória, médias das repetições e _dp o desvio padrão entre elas.
-    A repetição i da aleatória usa np.random.default_rng([semente, i]).
+    S0 (maior componente na rede intacta, em fração de N), R, R_norm = R/S0 e
+    metade; na aleatória, médias das n_rep repetições e _dp o desvio padrão entre
+    elas (NaN nas outras). A repetição i da aleatória usa np.random.default_rng([semente, i]).
     """
-    n = G.number_of_nodes()
-    curvas, indices = [], []
+    indices = []
     for estrategia in estrategias:
         if estrategia == "aleatoria":
             if n_rep < 1:
@@ -280,8 +267,7 @@ def robustez_rede(G: nx.Graph, estrategias: Iterable[str] = config.ESTRATEGIAS_C
                       for i in range(n_rep)]
         else:
             series = [maior_componente_por_ordem(G, ordem(G, estrategia))]
-        matriz = np.vstack(series)
-        s0 = float(matriz[0, 0])
+        s0 = float(series[0][0])
         Rs = np.array([indice_R(s) for s in series])
         metades = np.array([fracao_ate_metade(s) for s in series])
         desvio = (lambda v: float(v.std(ddof=1))) if len(series) > 1 else (lambda v: math.nan)
@@ -289,33 +275,7 @@ def robustez_rede(G: nx.Graph, estrategias: Iterable[str] = config.ESTRATEGIAS_C
                         "R": float(Rs.mean()), "R_dp": desvio(Rs),
                         "R_norm": float(Rs.mean()) / s0 if s0 > 0 else math.nan,
                         "metade": float(metades.mean()), "metade_dp": desvio(metades)})
-        media = matriz.mean(axis=0)
-        dp = matriz.std(axis=0, ddof=1) if len(series) > 1 else np.full(n + 1, np.nan)
-        curvas.append(pd.DataFrame({
-            "estrategia": estrategia, "n_removidos": np.arange(n + 1), "fracao_removida": np.arange(n + 1) / n,
-            "maior_componente": media, "maior_componente_dp": dp,
-            "maior_componente_rel": media / s0 if s0 > 0 else np.nan,
-            "maior_componente_rel_dp": dp / s0 if s0 > 0 else np.nan,
-        }))
-    return (pd.concat(curvas, ignore_index=True)[list(COLUNAS_CURVA)],
-            pd.DataFrame(indices, columns=list(COLUNAS_INDICES)))
-
-
-def media_das_redes(curvas: list[pd.DataFrame]) -> pd.DataFrame:
-    """Curva média de várias redes do mesmo modelo, por estratégia e passo.
-
-    Os _dp passam a ser o desvio padrão entre as redes (das curvas de cada uma;
-    na aleatória, da média das repetições de cada rede). Todas têm o mesmo
-    número de nós, então os passos coincidem. Coluna n_redes.
-    """
-    juntas = pd.concat(curvas, ignore_index=True)
-    grupos = juntas.groupby(["estrategia", "n_removidos"], sort=False)
-    media = grupos[["fracao_removida", "maior_componente", "maior_componente_rel"]].mean()
-    desvio = grupos[["maior_componente", "maior_componente_rel"]].std(ddof=1)
-    desvio.columns = ["maior_componente_dp", "maior_componente_rel_dp"]
-    resultado = pd.concat([media, desvio], axis=1).reset_index()
-    resultado["n_redes"] = len(curvas)
-    return resultado[[*COLUNAS_CURVA, "n_redes"]]
+    return pd.DataFrame(indices, columns=list(COLUNAS_INDICES))
 
 
 def sigma_mundo_pequeno(C: float, L: float, C_er: float, L_er: float) -> float:

@@ -18,7 +18,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy.stats import mannwhitneyu
-from sklearn.metrics import roc_auc_score, roc_curve
+from sklearn.metrics import roc_auc_score
 
 import config
 
@@ -120,10 +120,3 @@ def avaliar_rankings(y: pd.Series, rankings: dict[str, pd.Series],
     colunas = ["ranking", "auc", "auc_ic_inf", "auc_ic_sup", "p_auc",
                *[f"precisao_{k}" for k in ks], "n_genes", "n_essenciais", "taxa_base"]
     return pd.DataFrame(linhas, columns=colunas)
-
-
-def curva_roc(y: pd.Series, pontuacao: pd.Series) -> pd.DataFrame:
-    """Pontos da curva ROC para a figura: colunas fpr, tpr (sklearn.metrics.roc_curve)."""
-    rotulo, valores = _alinhar(y, pontuacao)
-    fpr, tpr, _ = roc_curve(rotulo, valores)
-    return pd.DataFrame({"fpr": fpr, "tpr": tpr})

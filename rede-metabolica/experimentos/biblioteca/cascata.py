@@ -14,8 +14,7 @@ O dano é o que estava disponível na rede intacta e deixa de estar.
 Por quê: toda reação reversível A <-> B cria um ciclo em que A "produz" B e
 B "produz" A. Partindo de tudo vivo, esse ciclo se sustenta sozinho mesmo
 quando A e B perderam todas as entradas de fora, e a cascata para antes da
-hora. A expansão não tem esse problema. Os testes em testes/test_regras.py
-cobrem exatamente esse caso.
+hora. A expansão não tem esse problema.
 
 As fontes são calculadas sempre na rede intacta: uma remoção nunca cria
 fontes novas. É isso que impede o ciclo A <-> B de virar fonte depois de
@@ -27,7 +26,6 @@ from collections import deque
 from collections.abc import Iterable
 
 import networkx as nx
-import pandas as pd
 
 import config
 
@@ -48,8 +46,8 @@ def fontes_externas(B: nx.DiGraph) -> set[str]:
         nitrato <-> nitrito ou sulfato <-> APS <-> PAPS. São nutrientes que
         entram por uma primeira reação reversível: sem um produtor de fora, a
         expansão nunca chegaria a eles, embora venham do meio.
-    Um grupo que recebe alguma entrada de fora (o A <-> B alimentado por X do
-    teste do ciclo reversível) não é fonte: ele depende dessa entrada.
+    Um grupo que recebe alguma entrada de fora (um A <-> B alimentado por um X)
+    não é fonte: ele depende dessa entrada.
 
     Por que a moeda entra: na versão com moeda, ATP e ADP só se produzem um a
     partir do outro e o ciclo tem entrada de fora (os substratos das reações
@@ -60,7 +58,7 @@ def fontes_externas(B: nx.DiGraph) -> set[str]:
     Os grupos de origem são procurados sem os nós de moeda: como ela está
     sempre disponível, uma aresta vinda dela não é dependência de nada. Assim
     as fontes (fora a própria moeda) são as mesmas nas duas versões, e a
-    cascata também (o que config.VERSAO_CASCATA pressupõe).
+    cascata também.
     """
     moeda = set(config.METABOLITOS_MOEDA)
     sem_a_moeda = B.subgraph(n for n in B if n not in moeda)
@@ -82,8 +80,8 @@ def disponiveis(B: nx.DiGraph, fontes: Iterable[str],
     reacoes_removidas:     códigos R##### que nunca ativam (os dois sentidos)
     Retorna (metabolitos_disponiveis, nos_de_reacao_ativos).
 
-    Implementação (uma passada pelas arestas, porque os Exps 2 e 3
-    chamam esta função ~1.500 vezes):
+    Implementação (uma passada pelas arestas, porque o nocaute de cada gene
+    do Exp 2 chama esta função mais de mil vezes):
       - para cada nó de reação, um contador de substratos ainda faltando;
       - uma fila com os metabólitos que acabaram de ficar disponíveis;
       - ao tirar um metabólito da fila, decrementa o contador das reações que
@@ -149,19 +147,3 @@ def cascata(B: nx.DiGraph, metabolitos_removidos: Iterable[str] = (),
     fontes = fontes_externas(B) if fontes is None else set(fontes)
     intactos, _ = disponiveis(B, fontes)
     return _perdidos(B, fontes, intactos, metabolitos_removidos, reacoes_removidas)
-
-
-def avalanches_todos(B: nx.DiGraph, fontes: Iterable[str] | None = None) -> pd.Series:
-    """Tamanho da avalanche ao remover cada metabólito sozinho (índice = C#####).
-
-    Base da distribuição de tamanhos de avalanche do exp3. Só entram os
-    metabólitos disponíveis na rede intacta: remover um que já não era
-    produzido não muda nada e só encheria a distribuição de zeros.
-    A rede intacta é calculada uma vez só, e não a cada remoção.
-    """
-    fontes = fontes_externas(B) if fontes is None else set(fontes)
-    intactos, _ = disponiveis(B, fontes)
-    tamanhos = {m: len(_perdidos(B, fontes, intactos, [m], ())) for m in sorted(intactos)}
-    serie = pd.Series(tamanhos, name="avalanche", dtype=int)
-    serie.index.name = "metabolito"
-    return serie

@@ -1,7 +1,5 @@
-"""Experimento 1 — Robustez estrutural (P1: removendo nós por grau, betweenness e outras centralidades, como a rede se desfaz?).
-
-Pergunta: a rede da E. coli tolera remoções aleatórias e é frágil a remoções
-direcionadas aos nós mais centrais, como prevê a teoria de redes livres de escala?
+"""Experimento 1 — Remoção de nós por centralidade (P1: removendo metabólitos por grau,
+intermediação e outras centralidades, como a rede se desfaz?). Tabela 2 e Figura 3 do artigo.
 
 Estratégias (config.ESTRATEGIAS; ver robustez.py): a remoção aleatória (média de
 config.N_REPETICOES_ALEATORIAS = 100 repetições) e três centralidades, cada uma
@@ -10,54 +8,39 @@ nas versões estática (calculada uma vez, na rede intacta) e adaptativa
   grau          o grau total (entrada + saída) no grafo simples: um vizinho
                 ligado por uma reação reversível (u -> v e v -> u) conta duas vezes;
                 a versão adaptativa recalcula depois de cada remoção
-  betweenness   a exata (metricas.betweenness); a adaptativa recalcula a cada
-                config.PASSO_BETWEENNESS = 10 remoções
+  betweenness   a intermediação exata (metricas.betweenness); a adaptativa recalcula
+                a cada config.PASSO_BETWEENNESS = 10 remoções
   pagerank      o PageRank (amortecimento 0,85, peso = número de reações entre o par);
                 a adaptativa recalcula a cada 10 remoções
 A centralidade de autovetor fica de fora: numa rede dirigida que não é
 fortemente conexa ela não é bem definida.
 
-Os nutrientes de config.NUTRIENTES (as fontes do alcance) não são removidos
-antes dos outros nós: vão para o fim da ordem em todas as estratégias
-(robustez.simular_remocao, proteger_fontes=True). Sem isso, o ataque por grau
-removia a glicose (grau 12, entre os 22 mais conectados) e o alcance caía a zero
-por isso, e não pelo dano à rede. Na eco sem moeda são 2 dos 1.111 nós (glicose
-e sulfato; NH3 e ortofosfato são moeda e já não estão no grafo), então os
-índices mudam só na margem.
+A cada passo, mede o maior componente fraco, o núcleo (maior componente forte)
+e o alcance: a fração de metabólitos a que se chega, por busca em largura, a
+partir dos nutrientes de config.NUTRIENTES (na versão sem moeda, glicose e
+sulfato). Os nutrientes não são removidos antes dos outros nós: vão para o fim
+da ordem em todas as estratégias (robustez.simular_remocao). Sem isso, o ataque
+por grau removia a glicose (grau 12, entre os 22 mais conectados) e o alcance
+caía a zero por isso, e não pelo dano à rede.
 
 Cada curva vira três números (robustez.comparar_estrategias): o índice R de
 Schneider et al. (2011), a área sob a curva do maior componente; o R
-normalizado, R dividido pelo maior componente na rede intacta (S0), como no
-Exp 4; e a fração removida até o maior componente cair à metade.
+normalizado, R dividido pelo maior componente na rede intacta (S0); e a fração
+removida até o maior componente cair à metade.
 
 Lê:    dados/<org>/reacoes.csv
-Grava: resultados/tabelas/exp1_curvas_<org>_<versao>.csv   (formato longo, uma linha por passo)
-       resultados/tabelas/exp1_indices_<org>_<versao>.csv  (por estratégia: índice R, R normalizado e
-                                                            fração removida até o maior componente
-                                                            cair à metade, nos componentes fraco e forte)
-       resultados/figuras/exp1_<metrica>_<org>_<versao>.png
-           para metrica em maior_fraco, maior_forte, eficiencia, alcance: a remoção
-           aleatória e a versão adaptativa de cada centralidade (curva inteira e um
-           detalhe dos primeiros 10% removidos; a eficiência, medida só a cada 5%,
-           fica sem o detalhe)
-       resultados/figuras/exp1_maior_fraco_inteira_<org>_<versao>.png  (a figura do artigo: as mesmas
-                                                           curvas do maior componente fraco, sem o detalhe)
-       resultados/figuras/exp1_painel_<org>_<versao>.png  (as quatro métricas num painel 2x2, com as
-                                                           mesmas curvas)
-       resultados/figuras/exp1_estatica_adaptativa_<org>_<versao>.png  (para cada centralidade, a
-                                                           versão estática x a adaptativa)
-Todas as estratégias aparecem na tabela de índices.
+Grava: resultados/tabelas/exp1_curvas_<org>_<versao>.csv   (formato longo, uma linha por estratégia e passo)
+       resultados/tabelas/exp1_indices_<org>_<versao>.csv  (Tabela 2: por estratégia, índice R, R normalizado
+                                                            e fração removida até o maior componente cair à
+                                                            metade, nos componentes fraco e forte)
+       resultados/figuras/exp1_maior_fraco_inteira_<org>_<versao>.png  (Figura 3: o maior componente fraco
+                                                            na remoção aleatória e nas versões adaptativas)
 
-Roda por padrão só na versão sem moeda (config.VERSAO_ROBUSTEZ), como os
-Exps 2, 3 e 4: a versão com moeda só repetiria a mesma conclusão com o dobro
-de figuras. Ela continua disponível com --versao com_moeda ou --versao ambas.
-
-Leva ~4 min por versão na eco (quase tudo nas 100 repetições aleatórias). Use
---so-figuras para ajustar os gráficos sem recalcular.
+Roda na versão sem moeda (config.VERSAO_PRINCIPAL). Leva ~4 min na eco (quase
+tudo nas 100 repetições aleatórias). Use --so-figuras para refazer só a figura.
 
 Uso, na raiz:
-    python -m experimentos.exp1_robustez --org eco
-    python -m experimentos.exp1_robustez --versao ambas
+    python -m experimentos.exp1_robustez
     python -m experimentos.exp1_robustez --so-figuras
 """
 from __future__ import annotations
@@ -70,26 +53,16 @@ import pandas as pd
 import config
 from experimentos.biblioteca import figuras, grafo, robustez
 
-METRICAS_FIGURA = ("maior_fraco", "maior_forte", "eficiencia", "alcance")
-# O painel e as figuras de cada métrica: a remoção aleatória e uma curva por
-# centralidade, a versão adaptativa (a mais danosa). As estáticas ficam na
-# tabela e na figura estática x adaptativa.
-ESTRATEGIAS_PAINEL = ("aleatoria", "grau_adaptativo", "betweenness_adaptativo", "pagerank_adaptativo")
-CENTRALIDADES = ("grau", "betweenness", "pagerank")
-ZOOM = 0.1  # detalhe das figuras individuais: os ataques derrubam a rede nos primeiros 10%
+# A figura: a remoção aleatória e uma curva por centralidade, a versão adaptativa
+# (a mais danosa). As estáticas ficam na tabela de índices.
+ESTRATEGIAS_FIGURA = ("aleatoria", "grau_adaptativo", "betweenness_adaptativo", "pagerank_adaptativo")
 
 
-def rodar(org: str, versao: str) -> pd.DataFrame:
+def rodar(org: str, versao: str = config.VERSAO_PRINCIPAL) -> pd.DataFrame:
     """Roda todas as estratégias de config.ESTRATEGIAS e grava curvas e índices.
 
-    Passos:
-      1. reacoes = grafo.carregar_tabelas(org)["reacoes"]
-      2. G = grafo.grafo_simples(grafo.grafo_metabolitos(reacoes, remover_moeda=config.VERSOES_MOEDA[versao]))
-      3. curvas, indices = robustez.comparar_estrategias(G, nutrientes=config.NUTRIENTES)
-         (os nutrientes vão para o fim da ordem; indices já traz R_fraco, R_forte, os
-         normalizados, metade_fraco e metade_forte, com os _dp)
-      4. Grave em config.arquivo_tabela("exp1", "curvas", org, versao) e ("exp1", "indices", ...).
-    Devolve a tabela de índices.
+    G = grafo simples metabólito-cêntrico da versão; robustez.comparar_estrategias
+    com os nutrientes no fim da ordem. Devolve a tabela de índices.
     """
     reacoes = grafo.carregar_tabelas(org)["reacoes"]
     G = grafo.grafo_simples(grafo.grafo_metabolitos(reacoes, remover_moeda=config.VERSOES_MOEDA[versao]))
@@ -109,32 +82,14 @@ def rodar(org: str, versao: str) -> pd.DataFrame:
     return indices
 
 
-def plotar(org: str, versao: str) -> None:
-    """Lê exp1_curvas_<org>_<versao>.csv e grava as figuras.
-
-    Uma por métrica de METRICAS_FIGURA e o painel 2x2 com as quatro, todas com
-    as estratégias de ESTRATEGIAS_PAINEL (a remoção aleatória e a versão
-    adaptativa de cada centralidade); a figura do artigo (exp1_maior_fraco_inteira:
-    o maior componente fraco com as mesmas curvas, a curva inteira sem o detalhe;
-    é a curva clássica de Albert, Jeong e Barabási, 2000); e a figura estática x
-    adaptativa de cada centralidade (maior componente fraco). A eficiência só tem
-    pontos a cada 5%.
-    """
+def plotar(org: str, versao: str = config.VERSAO_PRINCIPAL) -> None:
+    """Lê exp1_curvas e grava a Figura 3: o maior componente fraco, a curva inteira,
+    na remoção aleatória (com a faixa de ±1 dp) e na versão adaptativa de cada centralidade."""
     figuras.estilo()
     todas = pd.read_csv(config.arquivo_tabela("exp1", "curvas", org, versao))
-    curvas = todas[todas["estrategia"].isin(ESTRATEGIAS_PAINEL)]
-    for metrica in METRICAS_FIGURA:
-        # A eficiência só tem pontos a cada 5%: no detalhe sobrariam três.
-        fig = figuras.curvas_robustez(curvas, metrica, zoom=None if metrica == "eficiencia" else ZOOM)
-        figuras.salvar(fig, config.arquivo_figura("exp1", metrica, org, versao))
-    figuras.salvar(figuras.curvas_robustez(curvas, "maior_fraco", zoom=None),
+    curvas = todas[todas["estrategia"].isin(ESTRATEGIAS_FIGURA)]
+    figuras.salvar(figuras.curvas_robustez(curvas, "maior_fraco"),
                    config.arquivo_figura("exp1", "maior_fraco_inteira", org, versao))
-    figuras.salvar(figuras.painel_robustez(curvas, METRICAS_FIGURA),
-                   config.arquivo_figura("exp1", "painel", org, versao))
-    centralidades = [c for c in CENTRALIDADES if c in set(todas["estrategia"])]
-    if centralidades:
-        figuras.salvar(figuras.estatica_vs_adaptativa(todas, centralidades, "maior_fraco"),
-                       config.arquivo_figura("exp1", "estatica_adaptativa", org, versao))
 
 
 def _resumo(indices: pd.DataFrame) -> str:
@@ -153,18 +108,14 @@ def _resumo(indices: pd.DataFrame) -> str:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Exp 1: robustez estrutural (remoção de nós).")
+    parser = argparse.ArgumentParser(description="Exp 1: remoção de nós por centralidade.")
     parser.add_argument("--org", default=config.ORGANISMO_PRINCIPAL, help="código KEGG do organismo")
-    parser.add_argument("--versao", choices=[*config.VERSOES_MOEDA, "ambas"],
-                        default=config.VERSAO_ROBUSTEZ, help="com ou sem metabólitos-moeda")
-    parser.add_argument("--so-figuras", action="store_true", help="refaz só as figuras, sem recalcular")
+    parser.add_argument("--so-figuras", action="store_true", help="refaz só a figura, sem recalcular")
     args = parser.parse_args()
 
-    versoes = list(config.VERSOES_MOEDA) if args.versao == "ambas" else [args.versao]
-    for versao in versoes:
-        if not args.so_figuras:
-            print(_resumo(rodar(args.org, versao)))
-        plotar(args.org, versao)
+    if not args.so_figuras:
+        print(_resumo(rodar(args.org)))
+    plotar(args.org)
 
 
 if __name__ == "__main__":

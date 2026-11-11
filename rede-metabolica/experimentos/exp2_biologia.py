@@ -1,7 +1,7 @@
-"""Experimento 2 — Dano x essencialidade dos genes (P2: o gene que mais danifica a rede é essencial?).
+"""Experimento 2 — Dano x essencialidade dos genes (P2: o gene cuja deleção causa mais dano
+na rede é essencial?). Tabela 3 e Figura 4 do artigo.
 
-A resposta depende de como o dano é medido. Duas medidas principais, as mesmas
-que o Exp 3 usa para os metabólitos:
+A resposta depende de como o dano é medido. Duas medidas principais:
   estrutural  "quebrar o maior componente": quantos metabólitos deixam o maior
               componente forte (o núcleo) e o maior componente fraco quando o
               gene é nocauteado (nocaute.dano_estrutural_todos_genes). É a mesma
@@ -15,45 +15,38 @@ arestas da rede, nunca metabólitos.
 
 Só para a E. coli, o único organismo com gabarito (coleção Keio, Baba et al.,
 2006): 103 dos 300 genes essenciais estão entre os 952 genes da rede (os
-positivos); os outros 849 são os negativos. Roda na versão config.VERSAO_CASCATA,
-como o Exp 3. A literatura diz que a correlação com centralidade é fraca (Samal et al., 2006).
+positivos); os outros 849 são os negativos. Roda na versão config.VERSAO_PRINCIPAL.
+A literatura diz que a correlação com centralidade é fraca (Samal et al., 2006).
 
-Rankings (maior pontuação = mais provável de ser essencial):
+Rankings (maior pontuação = mais provável de ser essencial), os blocos da Tabela 3:
   dano               metabólitos perdidos na cascata ao deletar o gene, meio rico
-                     (config.DANO_NOCAUTE)                                 [principal: funcional]
-  dano_forte         metabólitos que deixam o maior componente forte      [principal: estrutural]
+                     (config.DANO_NOCAUTE)                                 [funcional]
+  dano_forte         metabólitos que deixam o maior componente forte      [estrutural]
   dano_fraco         metabólitos que deixam o maior componente fraco      [estrutural]
-  dano_eficiencia    queda relativa da eficiência global dirigida         [complementar]
-  grau, betweenness  centralidade dos metabólitos das reações do gene     [centralidade]
-  harmonica, pagerank  idem, com a harmônica e o PageRank                  [centralidade]
-  dano_meio_minimo   a cascata partindo só do meio mínimo                 [sensibilidade]
+  dano_eficiencia    queda relativa da eficiência global dirigida         [estrutural, complementar]
+  grau, betweenness, pagerank  centralidade do metabólito mais central das
+                     reações do gene (config.AGREGACAO_CENTRALIDADE_GENE)  [centralidade]
   reacoes_perdidas   só quantas reações o gene derruba, sem a cascata    [linha de base]
 A linha de base mostra quanto a propagação pela rede acrescenta à perda direta.
-Os choke points são sim/não: entram num teste exato de Fisher, não num ranking.
 
 Checagem das isoenzimas: 378 dos 952 genes não perdem nenhuma reação (toda
 reação deles tem outro gene) e têm dano 0 em qualquer medida. Para mostrar que
 a vantagem da cascata não vem só de saber quem tem isoenzima, a avaliação se
 repete só com os 574 genes que perdem pelo menos uma reação (coluna
-subconjunto: "todos" ou "perde_reacao" nas tabelas de rankings, ROC e correlações).
+subconjunto: "todos" ou "perde_reacao" nas tabelas de rankings e correlações).
 
 Lê:    dados/eco/reacoes.csv, genes.csv; dados/keio/essenciais.csv
 Grava: resultados/tabelas/exp2_genes_eco.csv        (uma linha por gene: essencial, danos estrutural e
-                                                     funcional, centralidades, choke)
-       resultados/tabelas/exp2_rankings_eco.csv     (por subconjunto e ranking: AUC com IC 95% e p, precisão@k)
-       resultados/tabelas/exp2_choke_eco.csv        (essenciais dentro e fora dos choke points + teste)
-       resultados/tabelas/exp2_roc_eco.csv          (pontos das curvas ROC, por subconjunto)
+                                                     funcional, centralidades)
+       resultados/tabelas/exp2_rankings_eco.csv     (Tabela 3: por subconjunto e ranking, AUC com IC 95% e p,
+                                                     precisão@k)
        resultados/tabelas/exp2_correlacoes_eco.csv  (Spearman entre o dano estrutural e o funcional)
-       resultados/tabelas/exp2_exemplos_eco.csv     (essenciais de baixa centralidade que o dano acerta)
        resultados/tabelas/exp2_exemplos_dano_eco.csv (os três grupos de casos de config.EXEMPLOS_DANO_EXP2)
        resultados/tabelas/exp2_essenciais_por_faixa_eco.csv (genes e essenciais por faixa de dano, nos que
                                                      perdem reação; estrutural e funcional)
        resultados/tabelas/exp2_resumo_eco.csv       (cobertura da Keio na rede e a rede intacta)
-       resultados/figuras/exp2_roc_eco.png          (a) ROC da cascata, do núcleo, da eficiência e do grau
-       resultados/figuras/exp2_dispersao_eco.png    (b) dano estrutural x funcional por gene
-       resultados/figuras/exp2_auc_eco.png          (c) AUC de cada ranking, todos os genes x os 574
-       resultados/figuras/exp2_essenciais_por_faixa_eco.png  (d) % de essenciais por faixa de dano,
-                                                     estrutural x funcional (Figura 4 do artigo)
+       resultados/figuras/exp2_essenciais_por_faixa_eco.png  (Figura 4: % de essenciais por faixa de dano,
+                                                     estrutural x funcional)
 
 Uso, na raiz:
     python -m experimentos.exp2_biologia
@@ -67,29 +60,24 @@ import time
 
 import networkx as nx
 import pandas as pd
-from scipy.stats import fisher_exact, spearmanr
+from scipy.stats import spearmanr
 
 import config
 from experimentos.biblioteca import figuras, grafo, metricas, nocaute, validacao
 
-MEIO = {"avalanche": "meio_rico", "alcance": "meio_minimo"}  # medida de dano -> nome da coluna
 PAPEIS = {"dano": "principal (funcional)", "dano_forte": "principal (estrutural)",
           "dano_fraco": "estrutural", "dano_eficiencia": "complementar (estrutural)",
-          "grau": "centralidade", "betweenness": "centralidade",
-          "harmonica": "centralidade", "pagerank": "centralidade",
-          "dano_meio_minimo": "sensibilidade", "dano_meio_rico": "sensibilidade",
+          "grau": "centralidade", "betweenness": "centralidade", "pagerank": "centralidade",
           "reacoes_perdidas": "linha de base"}
 # ranking -> coluna da tabela de genes; a ordem é a das tabelas.
 RANKINGS = {"dano": "dano", "dano_forte": "dano_forte", "dano_fraco": "dano_fraco",
             "dano_eficiencia": "dano_eficiencia", "grau": "grau", "betweenness": "betweenness",
-            "harmonica": "harmonica", "pagerank": "pagerank"}
-RANKINGS_FIGURA = ("dano", "dano_forte", "dano_eficiencia", "grau")  # (a) as curvas ROC
+            "pagerank": "pagerank", "reacoes_perdidas": "n_reacoes_perdidas"}
 SUBCONJUNTOS = ("todos", "perde_reacao")
 # Pares do Spearman (dano funcional x estrutural e entre as estruturais).
 PARES_CORRELACAO = (("dano", "dano_forte"), ("dano", "dano_fraco"), ("dano", "dano_eficiencia"),
                     ("dano_forte", "dano_eficiencia"), ("dano_forte", "dano_fraco"))
-N_EXEMPLOS = 5
-# (d) % de essenciais por faixa de dano: a principal estrutural e a funcional, nesta ordem.
+# Figura 4, % de essenciais por faixa de dano: a principal estrutural e a funcional, nesta ordem.
 MEDIDAS_FAIXAS = ("dano_forte", "dano")
 COLUNAS_FAIXAS = ["medida", "faixa", "minimo", "maximo", "genes", "essenciais", "taxa"]
 
@@ -98,42 +86,6 @@ def _gravar(tabela: pd.DataFrame, conteudo: str, org: str) -> None:
     destino = config.arquivo_tabela("exp2", conteudo, org)
     destino.parent.mkdir(parents=True, exist_ok=True)
     tabela.to_csv(destino, index=False)
-
-
-def tabela_choke(genes: pd.DataFrame, n_choke: int, n_reacoes: int) -> pd.DataFrame:
-    """Uma linha: essenciais dentro e fora dos choke points, razão de chances e p de Fisher.
-
-    genes precisa das colunas essencial e choke (booleanas).
-    """
-    dentro, fora = genes[genes["choke"]], genes[~genes["choke"]]
-    tabela_2x2 = [[int(dentro["essencial"].sum()), int((~dentro["essencial"]).sum())],
-                  [int(fora["essencial"].sum()), int((~fora["essencial"]).sum())]]
-    razao, p = fisher_exact(tabela_2x2, alternative="two-sided")
-    return pd.DataFrame([{
-        "reacoes_choke": n_choke, "reacoes_total": n_reacoes,
-        "genes_choke": len(dentro), "essenciais_choke": tabela_2x2[0][0],
-        "genes_outros": len(fora), "essenciais_outros": tabela_2x2[1][0],
-        "fracao_essenciais_choke": tabela_2x2[0][0] / len(dentro) if len(dentro) else float("nan"),
-        "fracao_essenciais_outros": tabela_2x2[1][0] / len(fora) if len(fora) else float("nan"),
-        "razao_de_chances": float(razao), "p_fisher": float(p),
-    }])
-
-
-def exemplos_baixa_centralidade(genes: pd.DataFrame, n: int = N_EXEMPLOS) -> pd.DataFrame:
-    """Essenciais com centralidade abaixo da mediana (grau e betweenness) que o dano acerta.
-
-    São os casos que a topologia sozinha não vê e a cascata vê: ordenados pelo
-    dano (maior primeiro) e, no empate, pelo grau (menor primeiro). Para a
-    discussão do artigo (o plano pede dois ou três).
-    """
-    tabela = genes.copy()
-    tabela["percentil_grau"] = tabela["grau"].rank(pct=True)
-    tabela["percentil_betweenness"] = tabela["betweenness"].rank(pct=True)
-    baixos = tabela[tabela["essencial"] & (tabela["percentil_grau"] <= 0.5)
-                    & (tabela["percentil_betweenness"] <= 0.5) & (tabela["dano"] > 0)]
-    baixos = baixos.sort_values(["dano", "grau", "gene"], ascending=[False, True, True]).head(n)
-    return baixos[["gene", "simbolo", "descricao", "grau", "percentil_grau", "betweenness",
-                   "percentil_betweenness", "dano", "n_reacoes_perdidas", "choke"]].reset_index(drop=True)
 
 
 COLUNAS_EXEMPLOS_DANO = ["grupo", "gene", "simbolo", "descricao", "essencial", "n_reacoes", "n_reacoes_perdidas",
@@ -233,44 +185,35 @@ def rodar(org: str) -> pd.DataFrame:
     """Simula o nocaute de cada gene, mede o dano de três formas e compara os rankings com a Keio.
 
     Passos:
-      1. tabelas = grafo.carregar_tabelas(org); remover = config.VERSOES_MOEDA[config.VERSAO_CASCATA]
-         B = grafo.grafo_bipartido(tabelas["reacoes"], remover_moeda=remover)
-         M = grafo.grafo_metabolitos(tabelas["reacoes"], remover_moeda=remover); G = grafo.grafo_simples(M)
-      2. funcional: nocaute.dano_todos_genes(B, reacoes) (e a sensibilidade no meio mínimo);
-         estrutural: nocaute.dano_estrutural_todos_genes(M, reacoes)
-      3. centralidades por gene: nocaute.centralidade_por_gene com o grau, a betweenness,
-         a harmônica (metricas.harmonica) e o PageRank (nx.pagerank) dos metabólitos de G
-      4. y = validacao.rotulos(genes, validacao.carregar_keio()); reporte quantos essenciais
+      1. B = grafo bipartido e M = grafo metabólito-cêntrico da versão principal; G = grafo_simples(M).
+      2. funcional: nocaute.dano_todos_genes(B, reacoes);
+         estrutural: nocaute.dano_estrutural_todos_genes(M, reacoes).
+      3. centralidades por gene: nocaute.centralidade_por_gene com o grau, a betweenness
+         e o PageRank (nx.pagerank) dos metabólitos de G.
+      4. y = validacao.rotulos(genes, validacao.carregar_keio()); reporta quantos essenciais
          da Keio ficaram fora da rede.
       5. avaliar_subconjuntos: validacao.avaliar_rankings (AUC com IC 95%, p de Mann–Whitney,
-         precisão@k) em todos os genes e nos que perdem reação; validacao.curva_roc de cada um.
+         precisão@k) em todos os genes e nos que perdem reação.
       6. Spearman entre o dano estrutural e o funcional (correlacoes).
-      7. Choke points: metricas.choke_points -> nocaute.genes_em_choke_points;
-         tabela 2x2 (choke x essencial) e scipy.stats.fisher_exact.
-      8. Exemplos: exemplos_baixa_centralidade e exemplos_dano (config.EXEMPLOS_DANO_EXP2).
-         Essenciais por faixa de dano (essenciais_por_faixa, config.FAIXAS_DANO_EXP2).
-      9. Grave as tabelas com config.arquivo_tabela("exp2", <conteudo>, org).
+      7. Exemplos (exemplos_dano, config.EXEMPLOS_DANO_EXP2) e essenciais por faixa de dano
+         (essenciais_por_faixa, config.FAIXAS_DANO_EXP2).
+      8. Grava as tabelas com config.arquivo_tabela("exp2", <conteudo>, org).
     Devolve a tabela de rankings (os dois subconjuntos).
     """
     inicio = time.perf_counter()
     essenciais = validacao.carregar_keio()  # primeiro: sem o gabarito, não vale a pena simular os nocautes
     tabelas = grafo.carregar_tabelas(org)
     reacoes = tabelas["reacoes"]
-    remover = config.VERSOES_MOEDA[config.VERSAO_CASCATA]
+    remover = config.VERSOES_MOEDA[config.VERSAO_PRINCIPAL]
     B = grafo.grafo_bipartido(reacoes, remover_moeda=remover)
     M = grafo.grafo_metabolitos(reacoes, remover_moeda=remover)
     G = grafo.grafo_simples(M)
 
-    # Medida principal (config.DANO_NOCAUTE) e a outra como sensibilidade.
-    sensibilidade = next(m for m in nocaute.MEDIDAS if m != config.DANO_NOCAUTE)
-    coluna_sens = f"dano_{MEIO[sensibilidade]}"
     dano = nocaute.dano_todos_genes(B, reacoes, medida=config.DANO_NOCAUTE).set_index("gene")
-    dano_sens = nocaute.dano_todos_genes(B, reacoes, medida=sensibilidade).set_index("gene")["dano"]
     estrutural = nocaute.dano_estrutural_todos_genes(M, reacoes).set_index("gene")
     centralidades = {
         "grau": metricas.graus(G)["total"],
         "betweenness": metricas.betweenness(G),
-        "harmonica": metricas.harmonica(G),
         "pagerank": pd.Series(nx.pagerank(G), name="pagerank", dtype=float),
     }
     por_gene = {nome: nocaute.centralidade_por_gene(reacoes, valores) for nome, valores in centralidades.items()}
@@ -278,8 +221,6 @@ def rodar(org: str) -> pd.DataFrame:
     y = validacao.rotulos(dano.index, essenciais)
     fora_da_rede = sorted(essenciais - set(y.index))
 
-    choke = metricas.choke_points(reacoes)
-    no_choke = nocaute.genes_em_choke_points(reacoes, choke)
     descricao = tabelas["genes"].set_index("gene")
     genes = pd.DataFrame({
         "gene": y.index,
@@ -289,28 +230,17 @@ def rodar(org: str) -> pd.DataFrame:
         "n_reacoes": dano["n_reacoes"].reindex(y.index).to_numpy(),
         "n_reacoes_perdidas": dano["n_reacoes_perdidas"].reindex(y.index).to_numpy(),
         "dano": dano["dano"].reindex(y.index).to_numpy(),
-        coluna_sens: dano_sens.reindex(y.index).to_numpy(),
         **{coluna: estrutural[coluna].reindex(y.index).to_numpy()
            for coluna in ("arestas_perdidas", *metricas.COLUNAS_DANO_ESTRUTURAL)},
         **{nome: serie.reindex(y.index).fillna(0).to_numpy() for nome, serie in por_gene.items()},
-        "choke": no_choke.reindex(y.index).fillna(False).to_numpy(dtype=bool),
     })
     pontuacoes = genes.set_index("gene")
-    rankings = {**RANKINGS, coluna_sens: coluna_sens, "reacoes_perdidas": "n_reacoes_perdidas"}
     perde_reacao = pontuacoes["n_reacoes_perdidas"] > 0
-    avaliacao = avaliar_subconjuntos(y, pontuacoes, rankings, perde_reacao)
-
-    rocs = []
-    for subconjunto in SUBCONJUNTOS:
-        manter = y.index if subconjunto == "todos" else y.index[perde_reacao.to_numpy()]
-        for nome, coluna in rankings.items():
-            roc = validacao.curva_roc(y.loc[manter], pontuacoes.loc[manter, coluna])
-            rocs.append(roc.assign(subconjunto=subconjunto, ranking=nome))
-    roc = pd.concat(rocs, ignore_index=True)[["subconjunto", "ranking", "fpr", "tpr"]]
+    avaliacao = avaliar_subconjuntos(y, pontuacoes, RANKINGS, perde_reacao)
 
     antes = metricas.medidas_estruturais(G, G.number_of_nodes())
     resumo = pd.DataFrame([{
-        "org": org, "versao": config.VERSAO_CASCATA, "medida_dano": config.DANO_NOCAUTE,
+        "org": org, "versao": config.VERSAO_PRINCIPAL, "medida_dano": config.DANO_NOCAUTE,
         "agregacao_centralidade": config.AGREGACAO_CENTRALIDADE_GENE,
         "genes_rede": len(y), "essenciais_keio": len(essenciais), "essenciais_na_rede": int(y.sum()),
         "essenciais_fora_da_rede": len(fora_da_rede),
@@ -319,7 +249,7 @@ def rodar(org: str) -> pd.DataFrame:
         "genes_com_dano": int((genes["dano"] > 0).sum()),
         "genes_com_dano_forte": int((genes["dano_forte"] > 0).sum()),
         "genes_com_dano_eficiencia": int((genes["dano_eficiencia"] > 0).sum()),
-        "reacoes_choke": len(choke), "reacoes_total": len(reacoes),
+        "reacoes_total": len(reacoes),
         "metabolitos_grafo": G.number_of_nodes(), "arestas_grafo": G.number_of_edges(),
         "nucleo_intacto": antes["maior_forte"], "maior_fraco_intacto": antes["maior_fraco"],
         "eficiencia_intacta": antes["eficiencia"],
@@ -327,10 +257,7 @@ def rodar(org: str) -> pd.DataFrame:
 
     _gravar(genes, "genes", org)
     _gravar(avaliacao, "rankings", org)
-    _gravar(tabela_choke(genes, len(choke), len(reacoes)), "choke", org)
-    _gravar(roc, "roc", org)
     _gravar(correlacoes(genes), "correlacoes", org)
-    _gravar(exemplos_baixa_centralidade(genes), "exemplos", org)
     _gravar(exemplos_dano(genes), "exemplos_dano", org)
     _gravar(essenciais_por_faixa(genes), "essenciais_por_faixa", org)
     _gravar(resumo, "resumo", org)
@@ -339,62 +266,16 @@ def rodar(org: str) -> pd.DataFrame:
 
 
 def plotar(org: str) -> None:
-    """Lê as tabelas e grava as quatro figuras.
-
-    (a) exp2_roc: curvas ROC da cascata, da queda do núcleo, da queda da
-        eficiência e do grau, em todos os genes (as outras ficam só na tabela);
-    (b) exp2_dispersao: dano estrutural (núcleo e eficiência) x funcional por
-        gene, com os essenciais destacados e os casos de exemplos_dano com nome;
-    (c) exp2_auc: AUC de cada ranking com o IC de 95%, todos os genes x os que perdem reação;
-    (d) exp2_essenciais_por_faixa: % de essenciais por faixa de dano, estrutural (queda do
-        núcleo) x funcional (cascata), nos genes que perdem reação (a Figura 4 do artigo).
-        Refeita da tabela de genes, para --so-figuras funcionar com resultados antigos.
-    """
+    """Lê exp2_essenciais_por_faixa e grava a Figura 4: % de essenciais por faixa de dano,
+    estrutural (queda do núcleo) x funcional (cascata), nos genes que perdem reação."""
     figuras.estilo()
-    roc = pd.read_csv(config.arquivo_tabela("exp2", "roc", org))
-    avaliacao = pd.read_csv(config.arquivo_tabela("exp2", "rankings", org))
-    todos = avaliacao[avaliacao["subconjunto"] == "todos"].set_index("ranking")
-    roc = roc[roc["subconjunto"] == "todos"]
-    rocs = {nome: roc[roc["ranking"] == nome] for nome in RANKINGS_FIGURA if nome in set(roc["ranking"])}
-    aucs = {nome: float(todos.loc[nome, "auc"]) for nome in rocs}
-    figuras.salvar(figuras.curvas_roc(rocs, aucs), config.arquivo_figura("exp2", "roc", org))
-
-    genes = pd.read_csv(config.arquivo_tabela("exp2", "genes", org))
-    exemplos = pd.read_csv(config.arquivo_tabela("exp2", "exemplos_dano", org))
-    correlacao = pd.read_csv(config.arquivo_tabela("exp2", "correlacoes", org))
-    figuras.salvar(figuras.dispersao_dano_genes(genes, rotulos_dispersao(exemplos), correlacao),
-                   config.arquivo_figura("exp2", "dispersao", org))
-    ordem = [r for r in [*RANKINGS, "reacoes_perdidas"] if r in set(avaliacao["ranking"])]
-    figuras.salvar(figuras.barras_auc(avaliacao, ordem), config.arquivo_figura("exp2", "auc", org))
-    figuras.salvar(figuras.barras_essenciais_por_faixa(essenciais_por_faixa(genes)),
+    faixas = pd.read_csv(config.arquivo_tabela("exp2", "essenciais_por_faixa", org))
+    figuras.salvar(figuras.barras_essenciais_por_faixa(faixas),
                    config.arquivo_figura("exp2", "essenciais_por_faixa", org))
-
-
-def rotulos_dispersao(exemplos: pd.DataFrame) -> dict[str, list[str]]:
-    """Nomes da dispersão (b): os genes dos dois grupos de alto dano de exemplos_dano.
-
-    Genes seguidos do mesmo grupo com o mesmo prefixo de três letras e o mesmo
-    dano no núcleo caem no mesmo ponto e viram um nome só ("aroA–aroD"). Os
-    essenciais de dano zero ficam sem nome (estão todos na origem).
-    """
-    rotulos: dict[str, list[str]] = {}
-    for _, parte in exemplos[exemplos["grupo"] != "essencial_dano_zero"].groupby("grupo", sort=False):
-        bloco: list[dict] = []
-        for linha in [*parte.to_dict("records"), None]:
-            if bloco and (linha is None or linha["simbolo"][:3] != bloco[0]["simbolo"][:3]
-                          or linha["dano_forte"] != bloco[0]["dano_forte"]):
-                simbolos = [b["simbolo"] for b in bloco]
-                texto = simbolos[0] if len(simbolos) == 1 else f"{simbolos[0]}–{simbolos[-1]}"
-                rotulos[texto] = simbolos
-                bloco = []
-            if linha is not None:
-                bloco.append(linha)
-    return rotulos
 
 
 def _resumo(avaliacao: pd.DataFrame, org: str) -> str:
     resumo = pd.read_csv(config.arquivo_tabela("exp2", "resumo", org)).iloc[0]
-    choke = pd.read_csv(config.arquivo_tabela("exp2", "choke", org)).iloc[0]
     correlacao = pd.read_csv(config.arquivo_tabela("exp2", "correlacoes", org))
     exemplos = pd.read_csv(config.arquivo_tabela("exp2", "exemplos_dano", org))
     faixas = pd.read_csv(config.arquivo_tabela("exp2", "essenciais_por_faixa", org))
@@ -405,18 +286,15 @@ def _resumo(avaliacao: pd.DataFrame, org: str) -> str:
               f"metabólitos do núcleo",
               f"  rede intacta: núcleo (maior componente forte) = {resumo['nucleo_intacto']}, maior componente "
               f"fraco = {resumo['maior_fraco_intacto']}, eficiência = {resumo['eficiencia_intacta']:.4f}",
-              f"  {'ranking':18s} {'AUC (952)':>9s} {'IC 95%':>13s} {'p':>8s} {'prec@10':>8s} {'prec@50':>8s}"
+              f"  {'ranking':18s} {'AUC (952)':>9s} {'IC 95%':>13s} {'p':>8s} {'prec@10':>8s}"
               f" {'AUC (perde reação)':>19s}"]
     por_sub = avaliacao.set_index(["subconjunto", "ranking"])
     for linha in avaliacao[avaliacao["subconjunto"] == "todos"].to_dict("records"):
         perde = por_sub.loc[("perde_reacao", linha["ranking"]), "auc"]
         linhas.append(f"  {linha['ranking']:18s} {linha['auc']:9.3f} [{linha['auc_ic_inf']:.2f}, "
                       f"{linha['auc_ic_sup']:.2f}] {linha['p_auc']:8.1e} {linha['precisao_10']:8.2f} "
-                      f"{linha['precisao_50']:8.2f} {perde:19.3f}")
-    linhas.append(f"  choke points: {choke['fracao_essenciais_choke']:.0%} essenciais "
-                  f"(contra {choke['fracao_essenciais_outros']:.0%} fora), razão de chances "
-                  f"{choke['razao_de_chances']:.2f}, p = {choke['p_fisher']:.1e}; taxa base "
-                  f"{avaliacao['taxa_base'].iloc[0]:.0%}")
+                      f"{perde:19.3f}")
+    linhas.append(f"  taxa base (essenciais / genes da rede): {avaliacao['taxa_base'].iloc[0]:.0%}")
     perde = correlacao[correlacao["subconjunto"] == "perde_reacao"].set_index(["medida_x", "medida_y"])
     linhas.append("  Spearman nos genes que perdem reação: cascata x eficiência = "
                   f"{perde.loc[('dano', 'dano_eficiencia'), 'spearman']:.2f}, cascata x núcleo = "
@@ -438,7 +316,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Exp 2: dano do nocaute de cada gene x essencialidade (Keio).")
     parser.add_argument("--org", default=config.ORGANISMO_PRINCIPAL,
                         help="código KEGG; só a E. coli (eco) tem gabarito")
-    parser.add_argument("--so-figuras", action="store_true", help="refaz só as figuras, sem recalcular")
+    parser.add_argument("--so-figuras", action="store_true", help="refaz só a figura, sem recalcular")
     args = parser.parse_args()
 
     if args.org != "eco":

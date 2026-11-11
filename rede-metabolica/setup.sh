@@ -40,7 +40,6 @@ mkdir -p dados/kgml dados/keio resultados/tabelas resultados/figuras
 
 echo
 echo "Pronto. Para usar:"
-echo "  source .venv/bin/activate"
-echo "  python -m pytest testes/                 # confere as regras"
-echo "  python -m coleta.baixar_kgml --org eco   # um passo por vez"
-echo "  bash executar_tudo.sh                    # ou o pipeline completo"
+echo "  bash executar_tudo.sh                    # o pipeline completo"
+echo "  source .venv/bin/activate                # ou um passo por vez:"
+echo "  python -m experimentos.exp1_robustez"

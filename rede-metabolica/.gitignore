@@ -4,5 +4,8 @@ __pycache__/
 *.pyc
 .pytest_cache/
 
+# Saída de execuções (ex.: bash executar_tudo.sh | tee execucao.log)
+*.log
+
 # Os dados NÃO são ignorados: o roteiro exige entregar dados, código e texto,
 # e o cache do KGML fixa a versão do KEGG usada (a base muda continuamente).

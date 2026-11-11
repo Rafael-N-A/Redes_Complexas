@@ -1,14 +1,13 @@
 """Configuração central do projeto.
 
-Tudo que é parâmetro (caminhos, organismos, listas de metabólitos, semente,
+Tudo que é parâmetro (caminhos, organismo, listas de metabólitos, semente,
 número de repetições) fica aqui, para que a coleta e os experimentos usem
 os mesmos valores. O formato das tabelas fica em `contrato.py`.
 
 Rode tudo a partir da raiz do projeto, como módulo:
 
     python -m coleta.baixar_kgml --org eco
-    python -m experimentos.exp1_robustez --org eco
-    python -m pytest testes/
+    python -m experimentos.exp1_robustez
 """
 from __future__ import annotations
 
@@ -95,10 +94,9 @@ VIAS_EXCLUIDAS = {
 LIMITE_LACUNA_GENES = 0.10
 
 # ---------------------------------------------------------------------------
-# Organismos
+# Organismo
 # ---------------------------------------------------------------------------
 ORGANISMO_PRINCIPAL = "eco"            # E. coli K-12 MG1655
-ORGANISMOS_COMPARACAO = ["bsu", "mge"]  # alternativa: "sce"
 
 # ---------------------------------------------------------------------------
 # Reprodutibilidade
@@ -106,8 +104,8 @@ ORGANISMOS_COMPARACAO = ["bsu", "mge"]  # alternativa: "sce"
 SEMENTE = 42
 
 # ---------------------------------------------------------------------------
-# Metabólitos-moeda
-# Conferir contra os nós de maior grau na primeira execução do exp0.
+# Metabólitos-moeda (17): saem da rede principal. Os metabólitos mais frequentes
+# nas reações ficam no relatorio_extracao.json da coleta, para conferência.
 # ---------------------------------------------------------------------------
 METABOLITOS_MOEDA = {
     "C00001": "H2O",
@@ -136,23 +134,18 @@ METABOLITOS_MOEDA = {
     "C00229": "ACP (proteína carregadora de acila)",
 }
 
-# As duas versões de toda análise: nome -> remover metabólitos-moeda?
+# As duas versões da rede: nome -> remover metabólitos-moeda?
 VERSOES_MOEDA = {"sem_moeda": True, "com_moeda": False}
 
-# Versão usada pelos Exps 2 e 3. Na cascata, os metabólitos-moeda são sempre
-# fontes, então o resultado é o mesmo nas duas versões; os hubs de controle
-# do Exp 3 saem desta versão do grafo.
-VERSAO_CASCATA = "sem_moeda"
-
-# Versão padrão do Exp 1. A com moeda só repetiria a mesma conclusão com o
-# dobro de figuras; continua disponível com --versao com_moeda ou ambas.
-VERSAO_ROBUSTEZ = "sem_moeda"
+# A versão de todas as análises (Exps 0 a 4). A com moeda entra só na
+# comparação da Tabela 1 (Exp 0). Na cascata, os metabólitos-moeda são sempre
+# fontes, então o resultado é o mesmo nas duas versões.
+VERSAO_PRINCIPAL = "sem_moeda"
 
 # ---------------------------------------------------------------------------
-# Meio mínimo (Exp 1: alcance a partir de nutrientes)
+# Meio mínimo (Exp 1: alcance a partir de nutrientes; checagem do chiquimato)
 # Atenção: NH3 e ortofosfato também são metabólitos-moeda. Na versão
-# "sem_moeda" eles saem do grafo e o alcance parte só dos que sobraram.
-# Conferir os códigos na extração (a glicose pode aparecer como C00267).
+# "sem_moeda" eles saem do grafo e o alcance parte só da glicose e do sulfato.
 # ---------------------------------------------------------------------------
 NUTRIENTES = {
     "C00031": "D-Glicose",
@@ -162,29 +155,28 @@ NUTRIENTES = {
 }
 
 # ---------------------------------------------------------------------------
-# Experimento 1 — Robustez estrutural
+# Experimento 1 — Remoção de nós por centralidade (P1)
 # Cada centralidade nas versões estática (calculada uma vez, na rede intacta) e
 # adaptativa (recalculada na rede que sobrou). O grau é o total (entrada + saída)
 # no grafo simples. Nas remoções, os nutrientes (fontes do alcance) vão para o
-# fim da ordem (robustez.simular_remocao, proteger_fontes=True).
+# fim da ordem (robustez.simular_remocao).
 # ---------------------------------------------------------------------------
 ESTRATEGIAS = ("aleatoria", "grau", "grau_adaptativo", "betweenness", "betweenness_adaptativo",
                "pagerank", "pagerank_adaptativo")
 N_REPETICOES_ALEATORIAS = 100
-PASSO_EFICIENCIA = 0.05     # mede a eficiência a cada 5% da rede removida
 PASSO_BETWEENNESS = 10      # nas adaptativas de betweenness e PageRank, recalcula a cada k remoções
 
 # ---------------------------------------------------------------------------
-# Experimento 2 — Dano x essencialidade dos genes (gabarito: Keio)
+# Experimento 2 — Dano x essencialidade dos genes (P2; gabarito: Keio)
 # ---------------------------------------------------------------------------
 K_PRECISAO = (10, 25, 50)   # precisão nos k primeiros do ranking
 
-# Como o grau e a betweenness dos metabólitos viram a pontuação de um gene:
-# "max" (o metabólito mais central das reações do gene) ou "soma".
+# Como o grau, a betweenness e o PageRank dos metabólitos viram a pontuação de um
+# gene: "max" (o metabólito mais central das reações do gene) ou "soma".
 AGREGACAO_CENTRALIDADE_GENE = "max"
 
 # Medida de dano funcional (cascata) de um nocaute:
-#   "avalanche" -> metabólitos perdidos com as fontes externas (reaproveita o Exp 3)
+#   "avalanche" -> metabólitos perdidos partindo das fontes externas (o "meio rico")
 #   "alcance"   -> metabólitos perdidos partindo só do meio mínimo (NUTRIENTES)
 DANO_NOCAUTE = "avalanche"
 
@@ -206,71 +198,29 @@ EXEMPLOS_DANO_EXP2 = {
         "reação, mas a rede tem um desvio entre os mesmos metabólitos, sem garantia de fluxo"),
 }
 
-# Faixas de dano da figura de barras do Exp 2 (exp2_essenciais_por_faixa): rótulo ->
-# maior dano da faixa (inclusive); a primeira começa em 0 e a última não tem teto.
+# Faixas de dano da Figura 4 (exp2_essenciais_por_faixa): rótulo -> maior dano da
+# faixa (inclusive); a primeira começa em 0 e a última não tem teto.
 # Só os genes que perdem pelo menos uma reação (os outros têm dano 0 em tudo).
 FAIXAS_DANO_EXP2 = (("0", 0), ("1–2", 2), ("3–9", 9), ("10 ou mais", float("inf")))
 
 # ---------------------------------------------------------------------------
-# Experimento 3 — Dano individual dos metabólitos (não há gabarito para metabólitos)
-# As 6 substâncias e os 12 controles continuam nas tabelas, como exemplos.
+# Experimento 4 — Comparação com os modelos clássicos (P3), na versão NÃO dirigida
+# da rede: mesmo N e mesmo M da E. coli (ou o mais perto possível),
+# N_REDES_POR_MODELO redes de cada modelo, com a semente SEMENTE * 1000 + i.
+# Ver experimentos/biblioteca/modelos_classicos.py.
 # ---------------------------------------------------------------------------
-SUBSTANCIAS_EXP3 = {
-    "C00022": "Piruvato",
-    "C00024": "Acetil-CoA",
-    "C00036": "Oxaloacetato",
-    "C00026": "2-Oxoglutarato",
-    "C00025": "L-Glutamato",
-    "C00092": "Glicose-6-fosfato",
-}
-N_CONTROLES_EXP3 = 6        # 6 hubs de maior grau + 6 sorteados de baixo grau
-QUANTIL_BAIXO_GRAU = 0.25   # os de baixo grau são sorteados entre os 25% de menor grau
-N_ROTULOS_EXP3 = 3          # na dispersão dano estrutural x avalanche: os k mais discordantes de cada lado
-
-# Casos para a discussão (tabela exp3_exemplos): código -> o que ilustram.
-# O C04734 é o FAICAR (formil-AICAR, 5-formamido-imidazol-4-carboxamida ribotídeo);
-# o AICAR propriamente dito é o C04677, o substrato da reação anterior (PurH).
-EXEMPLOS_DANO_EXP3 = {
-    "C04734": "síntese de purinas: tira dezenas de metabólitos do núcleo e não interrompe nenhuma produção",
-    "C00130": "tira dezenas de metabólitos do núcleo e interrompe só uma produção",
-    "C00083": "grau baixo, mas uma das maiores avalanches (síntese de ácidos graxos)",
-    "C00024": "alta nas duas medidas",
-}
-
-# Nomes curtos para os rótulos das figuras do Exp 3 (o nome do KEGG é longo demais
-# para rótulo); os que não estão aqui aparecem com o nome do KEGG.
-NOMES_CURTOS_EXP3 = {
-    "C04734": "FAICAR", "C00130": "IMP", "C00083": "Malonil-CoA", "C00024": "Acetil-CoA",
-    "C00655": "XMP", "C00365": "dUMP", "C01269": "EPSP", "C04501": "GlcNAc-1P", "C00043": "UDP-GlcNAc",
-    "C05753": "3-Oxodecanoil-ACP", "C04619": "3-Hidroxidecanoil-ACP", "C00144": "GMP",
-    "C00022": "Piruvato", "C00025": "L-Glutamato", "C00036": "Oxaloacetato",
-}
-
-# ---------------------------------------------------------------------------
-# Experimento 4 — Comparação com outras redes
-# Estratégias mais baratas para não multiplicar o custo do Exp 1.
-# ---------------------------------------------------------------------------
-ESTRATEGIAS_COMPARACAO = ("aleatoria", "grau", "grau_adaptativo")
-VERSAO_COMPARACAO = "sem_moeda"  # o Exp 4 roda numa versão só, para caber no tempo
-# Tipos de modelo nulo: modelos_nulos.TIPOS (rewiring recíproco, rewiring, Erdős–Rényi).
-N_MODELOS_NULOS = 10        # redes sorteadas por tipo de modelo nulo (30 no total, ~14 s cada)
-N_REPETICOES_NULOS = 20     # repetições da remoção aleatória em cada rede nula
-TROCAS_POR_ARESTA = 10      # rewiring: TROCAS_POR_ARESTA * número de arestas trocas aceitas
-MEDIR_EFICIENCIA_EXP4 = False  # o índice R não depende dela; sem ela, o Exp 4 leva ~9 min
-
-# Modelos clássicos (seção nova do Exp 4, na versão NÃO dirigida da rede): mesmo N e
-# mesmo M da E. coli (ou o mais perto possível), config.N_MODELOS_NULOS redes de cada,
-# com a semente SEMENTE * 1000 + i. Ver experimentos/biblioteca/modelos_classicos.py.
 MODELOS_CLASSICOS = ("configuracao", "erdos_renyi", "ba_misto", "ba_m1", "newman_watts", "watts_strogatz")
-# Estratégias de remoção nos modelos clássicos (maior componente conexo). As estáticas
-# e a aleatória saem por percolação reversa (union-find); o grau adaptativo, da
-# sequência calculada passo a passo.
-ESTRATEGIAS_CLASSICOS = ("aleatoria", "grau", "grau_adaptativo", "betweenness", "pagerank")
+# Estratégias de remoção (maior componente conexo): a aleatória e o ataque por
+# grau, por percolação reversa (union-find).
+ESTRATEGIAS_CLASSICOS = ("aleatoria", "grau")
+N_REDES_POR_MODELO = 10     # redes sorteadas de cada modelo
+N_REPETICOES_MODELOS = 20   # repetições da remoção aleatória em cada rede sorteada
+TROCAS_POR_ARESTA = 10      # modelo de configuração: TROCAS_POR_ARESTA * M trocas de arestas
 K_WATTS_STROGATZ = 4        # WS de clustering alto: com k = 4 tem o dobro das arestas da E. coli
 P_WATTS_STROGATZ = 0.1
 
 # ---------------------------------------------------------------------------
-# Checagem das inferências do artigo (experimentos/checar_inferencias.py)
+# Análises complementares da discussão (experimentos/checar_inferencias.py)
 # Só na E. coli: a parte dos genes usa a tabela do Exp 2 (gabarito da Keio).
 # ---------------------------------------------------------------------------
 # Os primeiros k metabólitos de cada ranking, com k = round(fração * N): 3,5% (na

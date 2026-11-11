@@ -8,7 +8,7 @@ Limitação: o KGML não diz se os genes de uma reação são
 alternativas (isoenzimas, OU) ou peças do mesmo complexo (E). Aqui todos
 valem como OU, o que subestima a fragilidade nos complexos.
 
-Duas medidas do dano de um nocaute, as mesmas usadas para os metabólitos no Exp 3:
+Duas medidas do dano de um nocaute:
     funcional  (dano_todos_genes)            metabólitos que a rede intacta produz e
                deixam de ser produzidos (a avalanche da cascata, na rede bipartida);
     estrutural (dano_estrutural_todos_genes) metabólitos que deixam o maior componente
@@ -16,8 +16,8 @@ Duas medidas do dano de um nocaute, as mesmas usadas para os metabólitos no Exp
                sem as arestas das reações perdidas.
 O nocaute remove arestas (reações), nunca metabólitos.
 
-Também ficam aqui as pontuações por gene usadas nos rankings do Exp 2
-(dano simulado, grau, betweenness, choke points).
+Também fica aqui a pontuação por gene das centralidades usadas nos rankings
+do Exp 2 (centralidade_por_gene).
 """
 from __future__ import annotations
 
@@ -59,7 +59,8 @@ def fontes_da_medida(B: nx.DiGraph, medida: str = config.DANO_NOCAUTE) -> set[st
     "avalanche": cascata.fontes_externas(B), o "meio rico" do artigo (a Keio foi
                  medida em LB);
     "alcance":   config.NUTRIENTES mais a moeda presentes em B, o meio mínimo
-                 (na eco sem moeda, só glicose e sulfato; apaga 47% da rede intacta).
+                 (na eco sem moeda, só glicose e sulfato; apaga 47% da rede intacta);
+                 usado na checagem da via do chiquimato (checar_inferencias.py).
     """
     if medida == "avalanche":
         return cascata.fontes_externas(B)
@@ -69,27 +70,12 @@ def fontes_da_medida(B: nx.DiGraph, medida: str = config.DANO_NOCAUTE) -> set[st
     raise ValueError(f"medida de dano desconhecida: {medida!r} (use {' ou '.join(MEDIDAS)})")
 
 
-def dano_nocaute(B: nx.DiGraph, reacoes: pd.DataFrame, genes_removidos: Iterable[str],
-                 medida: str = config.DANO_NOCAUTE, fontes: Iterable[str] | None = None) -> int:
-    """Número de metabólitos perdidos ao deletar genes_removidos.
-
-    medida="avalanche": cascata.cascata(B, reacoes_removidas=...) com as fontes externas.
-    medida="alcance":   a mesma cascata, mas partindo só de config.NUTRIENTES
-                        (mais a moeda, como em cascata.fontes_externas).
-    fontes: as de fontes_da_medida(B, medida), para não recalcular a cada gene.
-    """
-    perdidas = reacoes_perdidas(genes_removidos, reacoes)
-    if not perdidas:
-        return 0
-    fontes = fontes_da_medida(B, medida) if fontes is None else set(fontes)
-    return len(cascata.cascata(B, reacoes_removidas=perdidas, fontes=fontes))
-
-
 def dano_todos_genes(B: nx.DiGraph, reacoes: pd.DataFrame,
                      medida: str = config.DANO_NOCAUTE) -> pd.DataFrame:
     """Nocaute de cada gene da rede, um de cada vez.
 
-    Uma linha por gene, colunas:
+    O dano é o tamanho da cascata (cascata.cascata) com as fontes de
+    fontes_da_medida(B, medida). Uma linha por gene, colunas:
         gene, n_reacoes (em que aparece), n_reacoes_perdidas, dano
     Muitos genes terão dano 0 (todas as reações deles têm isoenzima); isso é
     esperado e o AUC lida bem com empates. Ordenada pelo gene.
@@ -169,7 +155,7 @@ def dano_estrutural_todos_genes(M: nx.MultiDiGraph, reacoes: pd.DataFrame) -> pd
 
 def centralidade_por_gene(reacoes: pd.DataFrame, valores_metabolito: pd.Series,
                           agregacao: str = config.AGREGACAO_CENTRALIDADE_GENE) -> pd.Series:
-    """Leva uma medida por metabólito (grau ou betweenness) para uma por gene.
+    """Leva uma medida por metabólito (grau, betweenness ou PageRank) para uma por gene.
 
     Para cada gene, junta os metabólitos (substratos e produtos) das reações
     em que ele aparece e aplica a agregação: "max" ou "soma".
@@ -188,17 +174,5 @@ def centralidade_por_gene(reacoes: pd.DataFrame, valores_metabolito: pd.Series,
         lista = [float(valores.get(m, 0.0)) for m in metabolitos_do_gene[gene]] or [0.0]
         pontuacao[gene] = max(lista) if agregacao == "max" else sum(lista)
     serie = pd.Series(pontuacao, name=valores_metabolito.name, dtype=float)
-    serie.index.name = "gene"
-    return serie
-
-
-def genes_em_choke_points(reacoes: pd.DataFrame, choke: set[str]) -> pd.Series:
-    """True para o gene que aparece em pelo menos uma reação choke point.
-
-    choke vem de metricas.choke_points(reacoes). Índice = gene.
-    """
-    por_gene = reacoes_por_gene(reacoes)
-    serie = pd.Series({gene: bool(por_gene[gene] & set(choke)) for gene in sorted(por_gene)},
-                      name="choke", dtype=bool)
     serie.index.name = "gene"
     return serie

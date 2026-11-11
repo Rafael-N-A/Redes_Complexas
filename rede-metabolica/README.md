@@ -90,56 +90,6 @@ ficam no repositório. Para refazer a lista da Keio a partir do arquivo original
 `python -m coleta.converter_keio caminho/do/arquivo.xls --forcar` (a tabela tem 300 genes, e o texto
 de Baba et al. fala em 303 candidatos; ver o `LEIAME.md`).
 
-## Metodologia
-
-**Extração.** Da API REST do KEGG, para a *E. coli* K-12 (código `eco`): as 97 vias metabólicas,
-sem os mapas globais (011xx e 012xx), que repetem as demais vias, e sem a via de aminoacil-tRNA
-(tradução). Cada via vem num arquivo KGML, lido por um parser próprio (`coleta/montar_tabelas.py`),
-porque o Biopython perdia a ordem dos substratos. As vias são fundidas numa tabela com uma linha por
-reação; quando duas vias discordam sobre a reversibilidade (77 reações), vale a reversível. Entram os
-metabólitos, as reações, com seu sentido, e os 952 genes que as catalisam; ficam de fora fluxos,
-compartimentos e regulação.
-
-**Modelagem** (`experimentos/biblioteca/grafo.py`). Cada vértice é um metabólito e cada aresta liga
-um substrato a um produto da mesma reação, nos dois sentidos se ela for reversível. Os 17
-metabólitos-moeda de `config.METABOLITOS_MOEDA` (ATP, água, NAD+...) saem da rede: a rede final tem
-1.111 metabólitos e 1.716 arestas (a versão com moeda só aparece na comparação da Tabela 1). Um gene
-não é vértice: deletá-lo remove as reações que só ele catalisa (se há isoenzima, a reação continua).
-Há também a versão não dirigida (1.277 arestas), para os modelos clássicos, e a bipartida
-metabólito–reação, para a cascata de falhas.
-
-**Análise descritiva** (`exp0_descritiva.py`). Densidade, graus, agrupamento, maior componente fraco,
-gravata-borboleta (núcleo = maior componente forte, entrada e saída), caminho médio e diâmetro no
-núcleo, e o teste de lei de potência contra log-normal da distribuição de graus (Clauset et al., 2009,
-pacote `powerlaw`).
-
-**P1, remoção de nós** (`exp1_robustez.py`). Os metabólitos são removidos um a um ao acaso (100
-repetições) e por grau, intermediação e PageRank, cada centralidade calculada uma vez (estática) ou
-recalculada durante as remoções (adaptativa; intermediação e PageRank a cada 10 remoções). A cada passo
-mede-se o maior componente fraco, o núcleo e o alcance a partir da glicose e do sulfato (que vão para o
-fim da ordem de remoção). Cada curva vira o índice R de Schneider et al. (2011), normalizado pelo maior
-componente da rede intacta, e a fração removida até o maior componente cair à metade.
-
-**P2, dano e essencialidade** (`exp2_biologia.py`). Para cada um dos 952 genes, simula-se a deleção e
-mede-se o dano estrutural (metabólitos que saem do núcleo e do maior componente fraco), o funcional
-(metabólitos que a rede intacta produz e deixam de ser produzidos, pela cascata de falhas de Smart et
-al., 2008, partindo de tudo o que a rede não fabrica sozinha, o "meio rico") e a queda da eficiência
-global; cada gene recebe também a centralidade do metabólito mais central das suas reações. Cada
-medida ordena os genes, e a ordem é comparada com a Keio pela AUC (com IC de 95%) e pela precisão nos
-10 primeiros, em todos os genes e só nos 574 que perdem ao menos uma reação.
-
-**P3, modelos clássicos** (`exp4_comparacao.py`). Na versão não dirigida, 10 redes de cada modelo com o
-mesmo número de vértices e, quando possível, de arestas: configuração (mesmos graus), Erdős–Rényi,
-Barabási–Albert com 1 ou 2 arestas por vértice novo (misto) ou só 1 (árvore), Newman–Watts com a
-densidade da *E. coli* e Watts–Strogatz com 4 vizinhos. Compara-se agrupamento, caminho médio, grau
-máximo e o R normalizado (remoção aleatória e ataque por grau, por percolação reversa), com o escore z
-da *E. coli* contra cada modelo.
-
-**Análises complementares** (`checar_inferencias.py`). Onde ficam, na gravata-borboleta, os primeiros
-metabólitos removidos por cada centralidade; que lado (entrada ou saída do núcleo) cada nocaute
-desconecta; o nocaute de *aroA* a *aroD* no meio mínimo (só glicose e sulfato); e as pontes da rede não
-dirigida contra o modelo de configuração.
-
 ## Onde está cada resultado do artigo
 
 Caminhos relativos a `resultados/`.
@@ -166,35 +116,3 @@ Caminhos relativos a `resultados/`.
 | Via do chiquimato no meio mínimo | `tabelas/inferencias_chiquimato_eco.csv` |
 | Pontes: *E. coli* × modelo de configuração | `tabelas/inferencias_pontes_eco.csv` |
 | Contagens da extração (vias, reações, genes, conflitos de reversibilidade) | `../dados/eco/relatorio_extracao.json` |
-
-## Regra de reversibilidade
-
-A regra da coleta ("vale a reversível") pode ser comparada com a contrária sem refazer a coleta.
-Com a contrária, succinato e succinil-CoA saem do núcleo, e o ciclo de Krebs deixa de fechar
-(na pasta `rede-metabolica/`, com o `.venv` ativo):
-
-```bash
-python -c "
-from experimentos.biblioteca import grafo, metricas
-reacoes = grafo.carregar_tabelas('eco')['reacoes']
-for regra in (False, True):
-    G = grafo.grafo_simples(grafo.grafo_metabolitos(reacoes, conflito_como_irreversivel=regra))
-    nucleo = metricas.maior_componente_forte(G)
-    print('vale o irreversível:' if regra else 'vale o reversível: ', 'núcleo', len(nucleo),
-          '| succinato e succinil-CoA no núcleo:', {'C00042', 'C00091'} <= nucleo)
-"
-```
-
-```
-vale o reversível:  núcleo 415 | succinato e succinil-CoA no núcleo: True
-vale o irreversível: núcleo 368 | succinato e succinil-CoA no núcleo: False
-```
-
-## Limitações
-
-A rede é estática: não tem fluxos, regulação nem compartimentos. O KGML não diz se os genes de uma
-reação são isoenzimas ou partes de um complexo, e todos são tratados como isoenzimas (regra OU), o
-que subestima o dano de genes de complexos como *accA*–*accD*. O "meio rico" da cascata não é o LB da
-Keio. Os modelos clássicos têm parâmetros inteiros, então o Barabási–Albert puro e o Watts–Strogatz
-não casam ao mesmo tempo o número de vértices e o de arestas da rede (daí o BA misto e as duas versões
-de Watts–Strogatz).
